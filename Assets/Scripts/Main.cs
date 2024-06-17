@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Main : MonoBehaviour
 {
+    public Deckbuilder DB;
+    public Hand hand;
+
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        DB.InitializeDeck();
+        hand.DisplayCards();
     }
 }

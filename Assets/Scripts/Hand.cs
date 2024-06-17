@@ -17,4 +17,17 @@ public class Hand : MonoBehaviour
     {
         
     }
+
+    public void DisplayCards()
+    {
+        int i = 0;
+        foreach (Card card in cards)
+        {
+            Debug.Log(card); // crashes because hand is empty
+            Debug.Log(card.transform);
+            Debug.Log(transform);
+            card.transform.position = transform.position + Vector3.right * i++;
+            Debug.Log(card.transform.position);
+        }
+    }
 }

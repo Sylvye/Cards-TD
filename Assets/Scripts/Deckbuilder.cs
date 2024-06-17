@@ -8,7 +8,11 @@ public class Deckbuilder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach(Card card in cards)
+        
+    }
+    public void InitializeDeck()
+    {
+        foreach (Card card in cards)
         {
             Deck.cards.Add(card);
         }
