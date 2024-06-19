@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SampleCard : Card
+public class RareCard : Card
 {
     public GameObject spawnable;
 

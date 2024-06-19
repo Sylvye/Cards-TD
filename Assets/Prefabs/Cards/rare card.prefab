@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7158332179295412726}
   - component: {fileID: 8857968249970093843}
   m_Layer: 0
-  m_Name: sample card
+  m_Name: rare card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: caa640a8c91d120488831c33a4ed641d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 72f8c6cb0574f534baaaf7055b267c6b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -144,4 +144,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   indexInHand: -1
-  spawnable: {fileID: 5304065507062134350, guid: 987c16521ba5619458f023b92a5c78be, type: 3}
+  radius: 0
+  hitboxReticle: {fileID: 0}
+  spawnable: {fileID: 5304065507062134350, guid: df4fa3818a6d3e046be03900477dc6f8, type: 3}

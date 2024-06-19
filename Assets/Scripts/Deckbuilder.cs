@@ -14,7 +14,7 @@ public class Deckbuilder : MonoBehaviour
     {
         foreach (Card card in cards)
         {
-            Deck.cards.Add(card);
+            Deck.Add(card);
         }
     }
 }
