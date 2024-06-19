@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 467519594113573095}
   - component: {fileID: 5919581471223590647}
   - component: {fileID: 7158332179295412726}
-  - component: {fileID: 8857968249970093843}
+  - component: {fileID: 6066731110582671636}
   m_Layer: 0
   m_Name: rare card
   m_TagString: Untagged
@@ -131,7 +131,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8857968249970093843
+--- !u!114 &6066731110582671636
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,10 +140,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7631322497954940115}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dd9151e92d78464b881c807b355c54e, type: 3}
+  m_Script: {fileID: 11500000, guid: 6bbf17a5b3257e744a073cab635387fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   indexInHand: -1
-  radius: 0
-  hitboxReticle: {fileID: 0}
+  radius: 0.75
   spawnable: {fileID: 5304065507062134350, guid: df4fa3818a6d3e046be03900477dc6f8, type: 3}

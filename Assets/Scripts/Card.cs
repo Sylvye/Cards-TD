@@ -8,7 +8,7 @@ public abstract class Card : MonoBehaviour
     private Vector3 handPos;
     public int indexInHand = -1;
     private Collider2D col;
-    public float radius;
+    public float radius = 1;
 
     public abstract void OnPlay();
 
@@ -22,7 +22,7 @@ public abstract class Card : MonoBehaviour
         if (gameObject.GetComponent<Collider2D>().OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition)))
         {
             selected = true;
-            transform.localScale = Vector3.one;
+            transform.localScale = Vector3.one * 0.5f;
             handPos = transform.position;
             Main.hitboxReticle_.transform.localScale = Vector3.one * radius * 2;
         }
@@ -59,6 +59,10 @@ public abstract class Card : MonoBehaviour
             Vector3 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector3(target.x, target.y, -7);
             Main.hitboxReticle_.transform.position = new Vector3(target.x, target.y, -4);
+            if (Physics2D.OverlapCircle(transform.position, radius, Main.placementLayerMask_) == null)
+                Main.hitboxReticle_.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+            else
+                Main.hitboxReticle_.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.5f); 
         }
     }
 }
