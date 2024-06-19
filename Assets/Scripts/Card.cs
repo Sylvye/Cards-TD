@@ -9,7 +9,6 @@ public abstract class Card : MonoBehaviour
     public int indexInHand = -1;
     private Collider2D col;
     public float radius;
-    public GameObject hitboxReticle;
 
     public abstract void OnPlay();
 
@@ -25,6 +24,7 @@ public abstract class Card : MonoBehaviour
             selected = true;
             transform.localScale = Vector3.one;
             handPos = transform.position;
+            Main.hitboxReticle_.transform.localScale = Vector3.one * radius * 2;
         }
     }
 
@@ -35,8 +35,13 @@ public abstract class Card : MonoBehaviour
         {
             OnPlay();
             Hand.main.cards.RemoveAt(indexInHand);
+            if (Hand.main.cards.Count == 0 )
+            {
+                Hand.main.Deal();
+            }
             Deck.Add(this);
-            Destroy(gameObject);
+            gameObject.transform.position = Vector3.up * 10;
+            gameObject.transform.localScale = Vector3.one * 1.5f;
             Hand.main.DisplayCards();
         }
         else
@@ -44,6 +49,7 @@ public abstract class Card : MonoBehaviour
             transform.position = handPos;
             transform.localScale = Vector3.one * 1.5f;
         }
+        Main.hitboxReticle_.transform.position = new Vector3(2, 10, 0);
     }
 
     private void OnMouseDrag()
@@ -51,7 +57,8 @@ public abstract class Card : MonoBehaviour
         if (selected)
         {
             Vector3 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = new Vector3(target.x, target.y, 1);
+            transform.position = new Vector3(target.x, target.y, -7);
+            Main.hitboxReticle_.transform.position = new Vector3(target.x, target.y, -4);
         }
     }
 }

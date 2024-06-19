@@ -8,7 +8,7 @@ public class RareCard : Card
 
     private void Start()
     {
-        radius = 0.5f;
+        radius = 0.75f;
     }
 
     public override void OnPlay()
