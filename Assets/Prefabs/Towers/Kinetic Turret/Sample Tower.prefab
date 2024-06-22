@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1820388846495544464}
   - component: {fileID: 4856065107173903896}
   - component: {fileID: 5780642335862219962}
+  - component: {fileID: 6478213714469146643}
   m_Layer: 6
   m_Name: Sample Tower
   m_TagString: Untagged
@@ -120,3 +121,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &6478213714469146643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5304065507062134350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8913c6412cff764bb7f25cc66d41e9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 2
+  damage: 1
+  attackSpeed: 2
+  projectileSpeed: 10
+  projectile: {fileID: 265608084915569301, guid: e98d3ed888d12e0459d3a3f5efaa149f, type: 3}

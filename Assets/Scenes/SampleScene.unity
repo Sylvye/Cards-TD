@@ -865,13 +865,13 @@ MonoBehaviour:
   DB: {fileID: 1505739289}
   hand: {fileID: 1612709407}
   spawner: {fileID: 1412497683}
+  hitboxReticle: {fileID: 1783182364}
   placementLayerMask:
     serializedVersion: 2
     m_Bits: 1600
   enemyLayerMask:
     serializedVersion: 2
-    m_Bits: 0
-  hitboxReticle: {fileID: 1783182364}
+    m_Bits: 128
 --- !u!4 &688472668
 Transform:
   m_ObjectHideFlags: 0

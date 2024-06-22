@@ -1,20 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class KineticTurret : Turret
 {
     private float lastShot = -999;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-        //if (Time.time)
+        if (lastShot + 1/attackSpeed <= Time.time)
+        {
+            Debug.Log("Ready");
+            if (Shoot())
+            {
+                
+                lastShot = Time.time;
+            }
+            else
+            {
+                Debug.Log("No enemies");
+            }
+        }
     }
 }

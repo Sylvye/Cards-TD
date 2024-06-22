@@ -11,12 +11,15 @@ public class Main : MonoBehaviour
     public Deckbuilder DB;
     public Hand hand;
     public Spawner spawner;
+
+    public static GameObject hitboxReticle_;
+    public GameObject hitboxReticle;
+
     public static LayerMask placementLayerMask_;
     public LayerMask placementLayerMask;
-    public LayerMask enemyLayerMask;
+
     public static LayerMask enemyLayerMask_;
-    public GameObject hitboxReticle;
-    public static GameObject hitboxReticle_;
+    public LayerMask enemyLayerMask;
 
     private static Main main;
 

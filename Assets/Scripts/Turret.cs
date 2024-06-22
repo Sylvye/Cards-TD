@@ -4,23 +4,11 @@ using UnityEngine;
 
 public abstract class Turret : Tower
 {
-    public int range;
+    public float range;
     public int damage;
-    public int attackSpeed;
+    public float attackSpeed;
     public float projectileSpeed;
     public GameObject projectile;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     // returns true if it successfully shoots at a target, false if there are no targets in sight
     public bool Shoot()
@@ -28,9 +16,9 @@ public abstract class Turret : Tower
         GameObject target = GetFirstEnemy();
         if (target != null)
         {
-            Vector2 dir = transform.position - target.transform.position;
+            Vector2 dir = target.transform.position - transform.position;
             GameObject proj = Instantiate(projectile, transform.position, Quaternion.Euler(dir));
-            proj.GetComponent<Rigidbody>().velocity = dir.normalized * projectileSpeed;
+            proj.GetComponent<Rigidbody2D>().velocity = dir.normalized * projectileSpeed;
             return true;
         }
         return false;
@@ -39,6 +27,8 @@ public abstract class Turret : Tower
     public GameObject GetFirstEnemy()
     {
         RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, range, Vector2.zero, 0, Main.enemyLayerMask_);
+        Debug.DrawLine(transform.position + Vector3.left * range, transform.position + Vector3.right * range);
+        Debug.DrawLine(transform.position + Vector3.up * range, transform.position + Vector3.down * range);
         if (hit.Length > 0 )
         {
             int firstIndex = 0;
@@ -49,9 +39,15 @@ public abstract class Turret : Tower
                     firstIndex = i;
                 }
             }
+            Debug.DrawLine(transform.position, hit[firstIndex].transform.position, Color.green, 0.5f);
             return hit[firstIndex].transform.gameObject;
         }
         else
+        {
+
+            Debug.DrawLine(transform.position + new Vector3(0.5f, 0.5f, 0), transform.position + new Vector3(-0.5f, -0.5f, 0), Color.red);
+            Debug.DrawLine(transform.position + new Vector3(0.5f, -0.5f, 0), transform.position + new Vector3(-0.5f, 0.5f, 0), Color.red);
             return null;
+        }
     }
 }

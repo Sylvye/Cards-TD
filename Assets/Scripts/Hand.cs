@@ -13,12 +13,6 @@ public class Hand : MonoBehaviour
         main = this;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     // returns all cards back to the deck. adds 5 cards from the deck to the hand
     public void Deal()
     {
