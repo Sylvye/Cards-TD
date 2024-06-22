@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -9,8 +10,11 @@ public class Main : MonoBehaviour
     public int lives = 100;
     public Deckbuilder DB;
     public Hand hand;
+    public Spawner spawner;
     public static LayerMask placementLayerMask_;
     public LayerMask placementLayerMask;
+    public LayerMask enemyLayerMask;
+    public static LayerMask enemyLayerMask_;
     public GameObject hitboxReticle;
     public static GameObject hitboxReticle_;
 
@@ -22,12 +26,14 @@ public class Main : MonoBehaviour
         main = this;
         placementLayerMask_ = placementLayerMask;
         hitboxReticle_ = hitboxReticle;
+        enemyLayerMask_ = enemyLayerMask;
         DB.InitializeDeck();
         hand.Deal();
         hand.DisplayCards();
+        spawner.active = true;
     }
 
-    public static void damage(int amount)
+    public static void Damage(int amount)
     {
         main.lives -= amount;
         if (main.lives <= 0)

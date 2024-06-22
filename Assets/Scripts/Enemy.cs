@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
         transform.position += Vector3.right * speed * Time.deltaTime;
         if (transform.position.x >= 11.5f)
         {
-            Main.damage(hp);
+            Main.Damage(hp);
             Destroy(gameObject);
         }
     }
