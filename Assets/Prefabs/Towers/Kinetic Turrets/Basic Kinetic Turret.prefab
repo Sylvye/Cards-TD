@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5780642335862219962}
   - component: {fileID: 6478213714469146643}
   m_Layer: 6
-  m_Name: Sample Tower
+  m_Name: Basic Kinetic Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

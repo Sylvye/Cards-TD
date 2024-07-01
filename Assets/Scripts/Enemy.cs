@@ -27,6 +27,10 @@ public class Enemy : MonoBehaviour
         if (hp <= 0)
         {
             Destroy(gameObject);
+            foreach (GameObject obj in spawnOnDeath)
+            {
+                Instantiate(obj, transform.position, obj.transform.rotation);
+            }
             return true;
         }
         return false;

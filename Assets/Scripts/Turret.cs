@@ -5,10 +5,23 @@ using UnityEngine;
 public abstract class Turret : Tower
 {
     public float range;
-    public int damage;
     public float attackSpeed;
-    public float projectileSpeed;
+    public int damageMultiplier = 1;
+    public float projectileSpeedMultiplier = 1;
     public GameObject projectile;
+    private float lastShot = -999;
+
+    void Update()
+    {
+        if (lastShot + 1 / attackSpeed <= Time.time)
+        {
+            if (Shoot())
+            {
+
+                lastShot = Time.time;
+            }
+        }
+    }
 
     // returns true if it successfully shoots at a target, false if there are no targets in sight
     public bool Shoot()
@@ -18,7 +31,8 @@ public abstract class Turret : Tower
         {
             Vector2 dir = target.transform.position - transform.position;
             GameObject proj = Instantiate(projectile, transform.position, Quaternion.Euler(dir));
-            proj.GetComponent<Rigidbody2D>().velocity = dir.normalized * projectileSpeed;
+            proj.GetComponent<Rigidbody2D>().velocity = projectileSpeedMultiplier * proj.GetComponent<Projectile>().speed * dir.normalized;
+            proj.GetComponent<Projectile>().damage *= damageMultiplier;
             return true;
         }
         return false;
