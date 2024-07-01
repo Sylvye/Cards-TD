@@ -12,15 +12,10 @@ public class KineticTurret : Turret
     {
         if (lastShot + 1/attackSpeed <= Time.time)
         {
-            Debug.Log("Ready");
             if (Shoot())
             {
                 
                 lastShot = Time.time;
-            }
-            else
-            {
-                Debug.Log("No enemies");
             }
         }
     }

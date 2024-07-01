@@ -16,7 +16,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision != null && collision.gameObject.layer == Main.enemyLayerMask_)
+        if (collision != null && collision.gameObject.tag.Equals("Enemy"))
         {
             Hit(collision.gameObject);
         }
@@ -25,6 +25,6 @@ public class Projectile : MonoBehaviour
     public void Hit(GameObject target)
     {
         Destroy(gameObject);
-        target.GetComponent<Enemy>().hp -= damage;
+        target.GetComponent<Enemy>().Damage(damage);
     }
 }

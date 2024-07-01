@@ -42,7 +42,6 @@ public class Main : MonoBehaviour
         if (main.lives <= 0)
         {
             main.lives = 0;
-            Debug.Log("died");
             Debug.Break();
         }
     }
