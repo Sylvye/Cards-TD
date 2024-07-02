@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public List<GameObject> enemies;
     public List<GameObject> wave;
     public float density = 1;
     public bool active = false;
@@ -40,5 +41,10 @@ public class Spawner : MonoBehaviour
                 cooldown = 0;
             }
         }
+    }
+
+    public void Send(int tier)
+    {
+        Instantiate(enemies[tier - 1], transform.position, enemies[tier - 1].transform.rotation);
     }
 }

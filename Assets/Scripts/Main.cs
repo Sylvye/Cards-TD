@@ -45,4 +45,15 @@ public class Main : MonoBehaviour
             Debug.Break();
         }
     }
+
+    private void Update() // testing purposes
+    {
+        if (Input.GetKeyUp(KeyCode.Alpha1))
+            spawner.Send(1);
+        if (Input.GetKeyUp(KeyCode.Alpha2))
+            spawner.Send(2);
+        if (Input.GetKeyUp(KeyCode.Alpha3))
+            spawner.Send(3);
+
+    }
 }
