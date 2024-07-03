@@ -14,7 +14,6 @@ public class CardOption : MonoBehaviour
     void OnMouseUpAsButton()
     {
         Deck.Add(card);
-        SceneManager.LoadScene(0);
-        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(0));
+        Main.SwitchStage(0);
     }
 }

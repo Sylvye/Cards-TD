@@ -22,6 +22,8 @@ public class Main : MonoBehaviour
     public static LayerMask enemyLayerMask_;
     public LayerMask enemyLayerMask;
 
+    private static Vector3 destination = new Vector3(0, 0, -10);
+
     private static Main main;
 
     // Start is called before the first frame update
@@ -49,9 +51,9 @@ public class Main : MonoBehaviour
 
     void Update() 
     {
-        if (GameObject.FindWithTag("Enemy") == null && spawner.wave.Count > 0)
+        if (GameObject.FindWithTag("Enemy") == null && spawner.complete)
         {
-            SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(1));
+            SwitchStage(1);
         }
 
         // testing purposes
@@ -61,5 +63,34 @@ public class Main : MonoBehaviour
             spawner.Send(2);
         if (Input.GetKeyUp(KeyCode.Alpha3))
             spawner.Send(3);
+
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            foreach (Card card in Deck.cards)
+            {
+                Debug.Log(card.name);
+            }
+        }
+
+        if (Vector3.Distance(Camera.main.transform.position, destination) > 0.02f)
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, destination, Time.deltaTime*5);
+        else
+            Camera.main.transform.position = destination;
+    }
+
+    // 0 is battle
+    // 1 is deckbuilding
+    public static void SwitchStage(int stageIndex)
+    {
+        switch (stageIndex)
+        {
+            case 0:
+                destination = new Vector3(0, 0, -10);
+                break;
+            case 1:
+                destination = new Vector3(0, -8, -10);
+                break;
+        }
+        
     }
 }

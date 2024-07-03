@@ -11,6 +11,7 @@ public class Spawner : MonoBehaviour
     public List<GameObject> wave;
     public float density = 1;
     public bool active = false;
+    public bool complete = false;
     private float cooldown = 0;
 
     // Update is called once per frame
@@ -39,8 +40,8 @@ public class Spawner : MonoBehaviour
             else
             {
                 active = false;
+                complete = true;
                 cooldown = 0;
-                SceneManager.LoadSceneAsync(1);
             }
         }
     }
