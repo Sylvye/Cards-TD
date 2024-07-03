@@ -19,13 +19,10 @@ public abstract class Card : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (gameObject.GetComponent<Collider2D>().OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition)))
-        {
-            selected = true;
-            transform.localScale = Vector3.one * 0.5f;
-            handPos = transform.position;
-            Main.hitboxReticle_.transform.localScale = Vector3.one * radius * 2;
-        }
+        selected = true;
+        transform.localScale = Vector3.one * 0.5f;
+        handPos = transform.position;
+        Main.hitboxReticle_.transform.localScale = Vector3.one * radius * 2;
     }
 
     private void OnMouseUp()
