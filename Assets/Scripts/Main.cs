@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Main : MonoBehaviour
 {
@@ -46,14 +47,19 @@ public class Main : MonoBehaviour
         }
     }
 
-    private void Update() // testing purposes
+    void Update() 
     {
+        if (GameObject.FindWithTag("Enemy") == null && spawner.wave.Count > 0)
+        {
+            SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(1));
+        }
+
+        // testing purposes
         if (Input.GetKeyUp(KeyCode.Alpha1))
             spawner.Send(1);
         if (Input.GetKeyUp(KeyCode.Alpha2))
             spawner.Send(2);
         if (Input.GetKeyUp(KeyCode.Alpha3))
             spawner.Send(3);
-
     }
 }
