@@ -67,14 +67,6 @@ public class Main : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Alpha3))
             spawner.Send(3);
 
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            foreach (Card card in Deck.cards)
-            {
-                Debug.Log(card.name);
-            }
-        }
-
         if (Vector3.Distance(Camera.main.transform.position, destination) > 0.02f)
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, destination, Time.deltaTime*5);
         else

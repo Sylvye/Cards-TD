@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class AnimationHandler : MonoBehaviour
 {
+    public string path;
     public bool killAfterComplete;
     public bool randomFirstFrame;
     private int numFrames;
@@ -12,7 +13,7 @@ public class AnimationHandler : MonoBehaviour
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
-        Sprite[] sprites = Resources.LoadAll<Sprite>("Assets/Images/EnemyAnimation.png"); // grabs all packed frames
+        Sprite[] sprites = Resources.LoadAll<Sprite>(path); // grabs all packed frames
         numFrames = sprites.Length;
         if (randomFirstFrame)
         {

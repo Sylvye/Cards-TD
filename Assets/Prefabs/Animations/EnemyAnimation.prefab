@@ -119,6 +119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88de207af10b2624a9d0bcd5c0bf1adb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numFrames: 0
+  path: EnemyAnimation
   killAfterComplete: 0
   randomFirstFrame: 1
