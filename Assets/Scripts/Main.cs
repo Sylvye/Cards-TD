@@ -13,6 +13,9 @@ public class Main : MonoBehaviour
     public Hand hand;
     public Spawner spawner;
 
+    // 0=battle, 1=deckbuild
+    public static int mode = 0;
+
     public static GameObject hitboxReticle_;
     public GameObject hitboxReticle;
 
@@ -86,9 +89,11 @@ public class Main : MonoBehaviour
         {
             case 0:
                 destination = new Vector3(0, 0, -10);
+                mode = 0;
                 break;
             case 1:
                 destination = new Vector3(0, -8, -10);
+                mode = 1;
                 break;
         }
         

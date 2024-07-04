@@ -14,7 +14,7 @@ public class DeckbuilderHelper : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            GameObject Card = Instantiate(dummyCard, new Vector2(-5 + i * 5, -11), Quaternion.identity);
+            GameObject Card = Instantiate(dummyCard, new Vector2(-5 + i * 5, -9), Quaternion.identity);
             CardOption cardOption = Card.GetComponent<CardOption>();
             cardOption.card = cardProbabilities.GetRandom();
             Card.GetComponent<SpriteRenderer>().sprite = cardOption.card.gameObject.GetComponent<SpriteRenderer>().sprite;
