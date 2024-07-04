@@ -41,6 +41,7 @@ public class Hand : MonoBehaviour
         {
             card.indexInHand = i;
             card.transform.position = transform.position + Vector3.right * 2 * i++ + Vector3.forward * -7;
+            card.SetHandPos();
         }
     }
 }

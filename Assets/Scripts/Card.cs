@@ -7,15 +7,9 @@ public abstract class Card : MonoBehaviour
     private bool selected = false;
     private Vector3 handPos;
     public int indexInHand = -1;
-    private Collider2D col;
     public float radius = 1;
 
     public abstract void OnPlay();
-
-    private void Start()
-    {
-        col = GetComponent<Collider2D>();
-    }
 
     private void OnMouseDown()
     {
@@ -23,16 +17,17 @@ public abstract class Card : MonoBehaviour
         {
             selected = true;
             transform.localScale = Vector3.one * 0.5f;
-            handPos = transform.position;
-            Main.hitboxReticle_.transform.localScale = Vector3.one * radius * 2;
+            SetHandPos();
+            Main.hitboxReticle_.transform.localScale = 2 * radius * Vector3.one;
         }
     }
 
     private void OnMouseUp()
     {
+        selected = false;
+        Main.hitboxReticle_.transform.position = new Vector3(2, 10, 0);
         if (Main.mode == 0)
         {
-            selected = false;
             if (transform.position.y > -2.5 && Physics2D.OverlapCircle(transform.position, radius, Main.placementLayerMask_) == null)
             {
                 OnPlay();
@@ -51,11 +46,11 @@ public abstract class Card : MonoBehaviour
                 transform.position = handPos;
                 transform.localScale = Vector3.one * 1.5f;
             }
-            Main.hitboxReticle_.transform.position = new Vector3(2, 10, 0);
         }
         else
         {
             transform.position = handPos;
+            transform.localScale = Vector3.one * 1.5f;
         }
     }
 
@@ -71,5 +66,10 @@ public abstract class Card : MonoBehaviour
             else
                 Main.hitboxReticle_.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.5f); 
         }
+    }
+
+    public void SetHandPos()
+    {
+        handPos = transform.position;
     }
 }
