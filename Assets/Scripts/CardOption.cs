@@ -10,6 +10,13 @@ public class CardOption : MonoBehaviour
     public LayerMask cardMask;
     public bool active = true;
 
+    private void Update()
+    {
+        if (Main.mode == 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void OnMouseUpAsButton()
     {

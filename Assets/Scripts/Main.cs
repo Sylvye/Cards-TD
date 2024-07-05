@@ -11,7 +11,6 @@ public class Main : MonoBehaviour
     public int lives = 100;
     public Deckbuilder DB;
     public Hand hand;
-    public Spawner spawner;
 
     // 0=battle, 1=deckbuild
     public static int mode = 0;
@@ -39,7 +38,6 @@ public class Main : MonoBehaviour
         DB.InitializeDeck();
         hand.Deal();
         hand.DisplayCards();
-        spawner.active = true;
     }
 
     public static void Damage(int amount)
@@ -54,18 +52,18 @@ public class Main : MonoBehaviour
 
     void Update() 
     {
-        if (GameObject.FindWithTag("Enemy") == null && spawner.complete)
+        if (GameObject.FindWithTag("Enemy") == null && Spawner.main.complete && mode == 0)
         {
             SwitchStage(1);
         }
 
         // testing purposes
         if (Input.GetKeyUp(KeyCode.Alpha1))
-            spawner.Send(1);
+            Spawner.main.Send(1);
         if (Input.GetKeyUp(KeyCode.Alpha2))
-            spawner.Send(2);
+            Spawner.main.Send(2);
         if (Input.GetKeyUp(KeyCode.Alpha3))
-            spawner.Send(3);
+            Spawner.main.Send(3);
 
         if (Vector3.Distance(Camera.main.transform.position, destination) > 0.02f)
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, destination, Time.deltaTime*5);
@@ -82,10 +80,12 @@ public class Main : MonoBehaviour
             case 0:
                 destination = new Vector3(0, 0, -10);
                 mode = 0;
+                Spawner.main.complete = false;
                 break;
             case 1:
                 destination = new Vector3(0, -8, -10);
                 mode = 1;
+                DeckbuilderHelper.main.SetupOptions();
                 break;
         }
         

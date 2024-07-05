@@ -5,12 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class DeckbuilderHelper : MonoBehaviour
 {
+    public static DeckbuilderHelper main;
     public CardProbs cardProbabilities;
     public GameObject dummyCard;
     public static bool cardSelected = false;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
+    {
+        main = this;
+    }
+
+    public void SetupOptions()
     {
         for (int i = 0; i < 3; i++)
         {

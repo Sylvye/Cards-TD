@@ -7,12 +7,18 @@ using UnityEngine.SceneManagement;
 
 public class Spawner : MonoBehaviour
 {
+    public static Spawner main;
     public List<GameObject> enemies;
     public List<GameObject> wave;
     public float density = 1;
-    public bool active = false;
+    public bool active = true;
     public bool complete = false;
     private float cooldown = 0;
+
+    private void Start()
+    {
+        main = this;
+    }
 
     // Update is called once per frame
     void Update()
