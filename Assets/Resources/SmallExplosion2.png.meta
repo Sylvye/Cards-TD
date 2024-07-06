@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d3d15bef7c232114fa25853aa15dc83d
+guid: c8e61ad7256e35a43917775cb73772e8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Small Explosion_0
+      name: Small Explosion_2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c06ccb4d5b6dc6d4380e74d3d032a52f
-      internalID: -1891796973
+      spriteID: 52040f3f3e3a1754f9d899f4be82d21e
+      internalID: -142914262
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Small Explosion_1
+      name: Small Explosion_2_1
       rect:
         serializedVersion: 2
         x: 5
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 123a0f947619a2a4da8d49beea23d5e1
-      internalID: 832742285
+      spriteID: 79b0e55f268e6e64894729f2917782e6
+      internalID: -1672869552
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Small Explosion_2
+      name: Small Explosion_2_2
       rect:
         serializedVersion: 2
         x: 10
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d15b843e59e3b2448e0204e96ed76db
-      internalID: 359876082
+      spriteID: 36ac6c0576cc27f4897b717275f813e7
+      internalID: -1915653425
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Small Explosion_3
+      name: Small Explosion_2_3
       rect:
         serializedVersion: 2
         x: 0
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc17ee5fcacfa9649b8f3bcb8d24785b
-      internalID: -1677020418
+      spriteID: dec0fa1f2f7dec64da09a65583960fed
+      internalID: -650304302
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Small Explosion_4
+      name: Small Explosion_2_4
       rect:
         serializedVersion: 2
         x: 5
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 468e01c6af5a55946a9a9d2706a6f8a0
-      internalID: -1351646064
+      spriteID: c42d4965ca8851141a748a95475cc813
+      internalID: 1242261545
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Small Explosion_5
+      name: Small Explosion_2_5
       rect:
         serializedVersion: 2
         x: 10
@@ -229,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 207e7b06a8a34f744a52b0902c24806b
-      internalID: -613123418
+      spriteID: 5f5020e5c9e4c5e4f8c1527f1226f5d3
+      internalID: 249991407
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Small Explosion_6
+      name: Small Explosion_2_6
       rect:
         serializedVersion: 2
         x: 0
@@ -250,8 +250,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 168627cf4c5726a47bf6f37be47f21bf
-      internalID: -1151436172
+      spriteID: 9c3a73a201927f642bfaaaea1373fe8f
+      internalID: -938592634
       vertices: []
       indices: 
       edges: []
@@ -267,13 +267,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Small Explosion_0: -1891796973
-      Small Explosion_1: 832742285
-      Small Explosion_2: 359876082
-      Small Explosion_3: -1677020418
-      Small Explosion_4: -1351646064
-      Small Explosion_5: -613123418
-      Small Explosion_6: -1151436172
+      Small Explosion_2_0: -142914262
+      Small Explosion_2_1: -1672869552
+      Small Explosion_2_2: -1915653425
+      Small Explosion_2_3: -650304302
+      Small Explosion_2_4: 1242261545
+      Small Explosion_2_5: 249991407
+      Small Explosion_2_6: -938592634
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d3d15bef7c232114fa25853aa15dc83d
+guid: 4f54d7ed9c5b2e748828db2ab09b3996
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 5
+  spritePixelsToUnits: 3
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,139 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Small Explosion_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 10
-        width: 5
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c06ccb4d5b6dc6d4380e74d3d032a52f
-      internalID: -1891796973
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Small Explosion_1
-      rect:
-        serializedVersion: 2
-        x: 5
-        y: 10
-        width: 5
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 123a0f947619a2a4da8d49beea23d5e1
-      internalID: 832742285
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Small Explosion_2
-      rect:
-        serializedVersion: 2
-        x: 10
-        y: 10
-        width: 5
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5d15b843e59e3b2448e0204e96ed76db
-      internalID: 359876082
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Small Explosion_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 5
-        width: 5
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bc17ee5fcacfa9649b8f3bcb8d24785b
-      internalID: -1677020418
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Small Explosion_4
-      rect:
-        serializedVersion: 2
-        x: 5
-        y: 5
-        width: 5
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 468e01c6af5a55946a9a9d2706a6f8a0
-      internalID: -1351646064
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Small Explosion_5
-      rect:
-        serializedVersion: 2
-        x: 10
-        y: 5
-        width: 5
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 207e7b06a8a34f744a52b0902c24806b
-      internalID: -613123418
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Small Explosion_6
+      name: SparkAnimation_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 5
-        height: 5
+        width: 3
+        height: 3
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,8 +124,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 168627cf4c5726a47bf6f37be47f21bf
-      internalID: -1151436172
+      spriteID: 8c5d7c3d9417b5a418b4604b8aafc908
+      internalID: -2115159468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SparkAnimation_1
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 0
+        width: 3
+        height: 3
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eefca25bda131e042813717a939bb12d
+      internalID: 680231392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SparkAnimation_2
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 0
+        width: 3
+        height: 3
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a72261023c2c1c443bab9d4833658bf1
+      internalID: -577546363
       vertices: []
       indices: 
       edges: []
@@ -267,13 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Small Explosion_0: -1891796973
-      Small Explosion_1: 832742285
-      Small Explosion_2: 359876082
-      Small Explosion_3: -1677020418
-      Small Explosion_4: -1351646064
-      Small Explosion_5: -613123418
-      Small Explosion_6: -1151436172
+      SparkAnimation_0: -2115159468
+      SparkAnimation_1: 680231392
+      SparkAnimation_2: -577546363
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

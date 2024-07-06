@@ -27,9 +27,17 @@ public class Enemy : MonoBehaviour
         if (hp <= 0)
         {
             Destroy(gameObject);
+            float spawnOffset = 0;
             foreach (GameObject obj in spawnOnDeath)
             {
-                Instantiate(obj, transform.position, obj.transform.rotation);
+                Vector3 spawnPos = transform.position;
+                if (obj.CompareTag("Enemy"))
+                {
+                    spawnPos += Vector3.left * spawnOffset;
+                    spawnOffset += 0.5f;
+                }
+                GameObject instance = Instantiate(obj, spawnPos, obj.transform.rotation);
+                instance.GetComponent<Enemy>().Damage(-hp);
             }
             return true;
         }

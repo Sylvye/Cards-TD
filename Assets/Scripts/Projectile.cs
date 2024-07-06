@@ -8,13 +8,15 @@ public class Projectile : MonoBehaviour
     public float speed;
     public float lifetime = 1;
     public int pierce = 0;
-    public GameObject deathFX;
+    public bool randomFX = true;
+    public GameObject[] deathFX;
+    public GameObject[] despawnFX;
     private Rigidbody2D rb;
  
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject, lifetime);
+        StartCoroutine(Despawn(lifetime));
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -37,9 +39,26 @@ public class Projectile : MonoBehaviour
         target.GetComponent<Enemy>().Damage(damage);
         if (deathFX != null)
         {
-            GameObject fx = Instantiate(deathFX, transform.position, Quaternion.identity);
-            int rand = Random.Range(0, 4);
-            fx.transform.rotation = Quaternion.Euler(new Vector3(0, 0, rand * 90));
+            int spawnCount = deathFX.Length;
+            if (randomFX)
+                spawnCount = 1;
+            for (int i = 0; i < spawnCount; i++)
+            {
+                int objIndex = i;
+                if (randomFX)
+                    objIndex = Random.Range(0, deathFX.Length);
+                GameObject fx = Instantiate(deathFX[objIndex], transform.position, Quaternion.identity);
+            }
         }
+    }
+
+    IEnumerator Despawn(float time)
+    {
+        yield return new WaitForSeconds(time);
+        for (int i = 0; i < despawnFX.Length; i++)
+        {
+            Instantiate(despawnFX[i], transform.position, Quaternion.identity);
+        }
+        Destroy(gameObject);
     }
 }

@@ -64,6 +64,8 @@ public class Main : MonoBehaviour
             Spawner.main.Send(2);
         if (Input.GetKeyUp(KeyCode.Alpha3))
             Spawner.main.Send(3);
+        if (Input.GetKeyUp(KeyCode.Alpha4))
+            Spawner.main.Send(4);
 
         if (Vector3.Distance(Camera.main.transform.position, destination) > 0.02f)
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, destination, Time.deltaTime*5);

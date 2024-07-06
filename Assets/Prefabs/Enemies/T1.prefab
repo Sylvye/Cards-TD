@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2056554629, guid: a48aec11483e6d14dad2664a98811ce7, type: 3}
-  m_Color: {r: 1, g: 0.23113209, b: 0.23113209, a: 1}
+  m_Color: {r: 1, g: 0.4292453, b: 0.4292453, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -140,6 +140,7 @@ MonoBehaviour:
   path: EnemyAnimation
   killAfterComplete: 0
   randomFirstFrame: 1
+  randomRotation: []
 --- !u!61 &-5500212807460279529
 BoxCollider2D:
   m_ObjectHideFlags: 0
