@@ -7,43 +7,49 @@ public class MapController : MonoBehaviour
 {
     public static MapNode currentNode;
 
-    public GameObject node;
-    public static GameObject node_;
+    public GameObject nodeObj;
+    public static GameObject nodeObj_;
 
-    public Sprite nodeDark;
-    public static Sprite nodeDark_;
-
-    public Sprite nodeLight;
-    public static Sprite nodeLight_;
-
-    public Sprite nodeMainDark;
-    public static Sprite nodeMainDark_;
-
-    public Sprite nodeMainLight;
-    public static Sprite nodeMainLight_;
-
-    public Sprite nodeX;
-    public static Sprite nodeX_;
-
-    public Sprite nodeBossDark;
-    public static Sprite nodeBossDark_;
-
-    public Sprite nodeBossLight;
-    public static Sprite nodeBossLight_;
+    public static Sprite nodeCompleted;
+    public static Sprite nodeX;
+    public static Sprite nodeCurrentDark;
+    public static Sprite nodeCurrentLight;
+    public static Sprite nodeMinibossDark;
+    public static Sprite nodeMinibossLight;
+    public static Sprite nodeBattleDark;
+    public static Sprite nodeBattleLight;
+    public static Sprite nodeShopDark;
+    public static Sprite nodeShopLight;
+    public static Sprite nodeUpgradeDark;
+    public static Sprite nodeUpgradeLight;
+    public static Sprite nodeAugmentDark;
+    public static Sprite nodeAugmentLight;
+    public static Sprite nodeBossDark;
+    public static Sprite nodeBossLight;
 
     private static int[] lengths;
     private static GameObject[] nodes;
 
     private void Start()
     {
-        node_ = node;
-        nodeDark_ = nodeDark;
-        nodeLight_ = nodeLight;
-        nodeMainDark_ = nodeMainDark;
-        nodeMainLight_ = nodeMainLight;
-        nodeX_ = nodeX;
-        nodeBossDark_ = nodeBossDark;
-        nodeBossLight_ = nodeBossLight;
+        Sprite[] sprites = Resources.LoadAll<Sprite>("NodePack");
+        nodeObj_ = nodeObj;
+        nodeCompleted = sprites[0];
+        nodeX = sprites[1];
+        nodeCurrentDark = sprites[2];
+        nodeCurrentLight = sprites[3];
+        nodeMinibossDark = sprites[4];
+        nodeMinibossLight = sprites[5];
+        nodeBattleDark = sprites[6];
+        nodeBattleLight = sprites[7];
+        nodeShopDark = sprites[8];
+        nodeShopLight = sprites[9];
+        nodeUpgradeDark = sprites[10];
+        nodeUpgradeLight = sprites[11];
+        nodeAugmentDark= sprites[12];
+        nodeAugmentLight= sprites[13];
+        nodeBossDark= sprites[14];
+        nodeBossLight= sprites[15];
     }
 
     public static void GenerateMap(int length)
@@ -87,8 +93,9 @@ public class MapController : MonoBehaviour
         nodes = new GameObject[sum];
         for (int i=0; i<sum; i++)
         {
-            nodes[i] = Instantiate(node_, new Vector3(-15, -9, 0), Quaternion.identity);
-            nodes[i].GetComponent<MapNode>().index = i;
+            nodes[i] = Instantiate(nodeObj_, new Vector3(-15, -9, 0), Quaternion.identity);
+            MapNode n = nodes[i].GetComponent<MapNode>();
+            n.index = i;
         }
 
         // positions the nodes
@@ -109,15 +116,74 @@ public class MapController : MonoBehaviour
         MapNode bossNode = nodes[index].GetComponent<MapNode>();
         nodes[index].transform.position = new Vector3(10, -9, 0);
         bossNode.column = length-1;
-        bossNode.SetSprite(nodeBossDark_);
-        bossNode.spriteLight = nodeBossLight_;
-        bossNode.spriteDark = nodeBossDark_;
+        bossNode.SetSprite(nodeBossDark);
+        bossNode.spriteLight = nodeBossLight;
+        bossNode.spriteDark = nodeBossDark;
+        bossNode.type = "Stage Boss";
 
         // assigns nodes their possible exits
         for (int i=0; i<nodes.Length-1; i++)
         {
             GameObject nObj = nodes[i];
             MapNode n = nObj.GetComponent<MapNode>();
+
+            MapNode startNode = nodes[0].GetComponent<MapNode>();
+            nodes[0].GetComponentInParent<SpriteRenderer>().sprite = nodeCurrentDark;
+            startNode.spriteLight = nodeCurrentLight;
+            startNode.spriteDark = nodeCurrentDark;
+
+            currentNode = startNode;
+
+            if (n.column % 2 == 0) // battle stages are every even column
+            {
+                n.spriteLight = nodeBattleLight;
+                n.spriteDark = nodeBattleDark;
+                n.SetSprite(nodeBattleDark);
+            }
+            else
+            {
+                int r = Random.Range(0, 4);
+
+                switch (r)
+                {
+                    case 0:
+                        n.spriteLight = nodeShopLight;
+                        n.spriteDark = nodeShopDark;
+                        n.SetSprite(nodeShopDark);
+                        n.type = "Shop";
+                        break;
+                    case 1:
+                        n.spriteLight = nodeUpgradeLight;
+                        n.spriteDark = nodeUpgradeDark;
+                        n.SetSprite(nodeUpgradeDark);
+                        n.type = "Upgrade";
+                        break;
+                    case 2:
+                        n.spriteLight = nodeAugmentLight;
+                        n.spriteDark = nodeAugmentDark;
+                        n.SetSprite(nodeAugmentDark);
+                        n.type = "Augment";
+                        break;
+                    case 3:
+                        if (Random.Range(0, 2) == 0)
+                        {
+                            n.spriteLight = nodeMinibossLight;
+                            n.spriteDark = nodeMinibossDark;
+                            n.SetSprite(nodeMinibossDark);
+                            n.type = "Miniboss";
+                            break;
+                        }
+                        else
+                        {
+                            n.spriteLight = nodeBattleLight;
+                            n.spriteDark = nodeBattleDark;
+                            n.SetSprite(nodeBattleDark);
+                            n.type = "Defense";
+                            break;
+                        }
+                }
+            }
+
             n.exits = new MapNode[2];
 
             int exit1Index = i + lengths[n.column];
@@ -132,13 +198,16 @@ public class MapController : MonoBehaviour
             if (n.exits[1] != null && n.exits[1].column != n.column+1)
                 n.exits[1] = null;
         }
+    }
 
-        MapNode startNode = nodes[0].GetComponent<MapNode>();
-        nodes[0].GetComponentInParent<SpriteRenderer>().sprite = nodeMainDark_;
-        startNode.spriteLight = nodeMainLight_;
-        startNode.spriteDark = nodeMainDark_;
-
-        currentNode = startNode;
+    public static void DestroyMap()
+    {
+        currentNode = null;
+        lengths = new int[0];
+        foreach (GameObject obj in nodes)
+        {
+            Destroy(obj);
+        }
     }
 
     // n represents the node in the column to save from being destroyed
@@ -154,9 +223,9 @@ public class MapController : MonoBehaviour
                 reachedColumn = true;
                 if (!objNode.Equals(n))
                 {
-                    objNode.SetSprite(nodeX_);
-                    objNode.spriteLight = nodeX_;
-                    objNode.spriteDark = nodeX_;
+                    objNode.SetSprite(nodeX);
+                    objNode.spriteLight = nodeX;
+                    objNode.spriteDark = nodeX;
                 }
             }
             else if (reachedColumn)

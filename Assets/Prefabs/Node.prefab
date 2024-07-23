@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -26479853, guid: 2503412a23daaaa4facd4f4254b63b43, type: 3}
+  m_Sprite: {fileID: 1967874482, guid: 2503412a23daaaa4facd4f4254b63b43, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,8 +101,8 @@ MonoBehaviour:
   index: 0
   column: 0
   exits: []
-  spriteLight: {fileID: 2078923610, guid: 2503412a23daaaa4facd4f4254b63b43, type: 3}
-  spriteDark: {fileID: -26479853, guid: 2503412a23daaaa4facd4f4254b63b43, type: 3}
+  spriteLight: {fileID: -1720419689, guid: 2503412a23daaaa4facd4f4254b63b43, type: 3}
+  spriteDark: {fileID: 1967874482, guid: 2503412a23daaaa4facd4f4254b63b43, type: 3}
   type: Defense
 --- !u!58 &8670052439710610988
 CircleCollider2D:

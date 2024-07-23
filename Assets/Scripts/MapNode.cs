@@ -16,7 +16,7 @@ public class MapNode : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -39,17 +39,20 @@ public class MapNode : MonoBehaviour
             if (column == MapController.currentNode.column + 1 && ((MapController.currentNode.exits[0] != null && MapController.currentNode.exits[0].Equals(this)) || MapController.currentNode.exits[1] != null && MapController.currentNode.exits[1].Equals(this))) 
             {
                 MapController.EliminateColumn(this);
+                MapController.currentNode.SetSprite(MapController.nodeCompleted);
+                MapController.currentNode.spriteLight = MapController.nodeCompleted;
+                MapController.currentNode.spriteDark = MapController.nodeCompleted;
                 MapController.currentNode = this;
-                SetSprite(MapController.nodeMainDark_);
-                spriteDark = MapController.nodeMainDark_;
-                spriteLight = MapController.nodeMainLight_;
+                SetSprite(MapController.nodeCurrentDark);
+                spriteDark = MapController.nodeCurrentDark;
+                spriteLight = MapController.nodeCurrentLight;
             }
         }
     }
 
     private void OnMouseOver()
     {
-        if (GetComponent<SpriteRenderer>().sprite.Equals(MapController.nodeDark_))
+        if (spriteDark != spriteLight)
         {
             SetSpriteLight(true);
             if (exits.Length >= 1 && exits[0] != null)

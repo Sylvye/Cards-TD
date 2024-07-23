@@ -862,6 +862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lives: 100
+  mapLength: 20
   DB: {fileID: 1505739289}
   hand: {fileID: 1612709407}
   hitboxReticle: {fileID: 1783182364}
@@ -1495,7 +1496,7 @@ MonoBehaviour:
   - {fileID: 3867853743162614571, guid: d77933d2c41e38a4c9496e94a4198290, type: 3}
   density: 1
   active: 0
-  complete: 0
+  complete: 1
 --- !u!1 &1505739288
 GameObject:
   m_ObjectHideFlags: 0
@@ -2152,14 +2153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2b5615f29da84e4f9dfd35515d9d055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  node: {fileID: 4281045009634875367, guid: 6554b996ef45a7b48a874760182a2840, type: 3}
-  nodeDark: {fileID: -26479853, guid: 2503412a23daaaa4facd4f4254b63b43, type: 3}
-  nodeLight: {fileID: 2078923610, guid: 2503412a23daaaa4facd4f4254b63b43, type: 3}
-  nodeMainDark: {fileID: -309229491, guid: 2503412a23daaaa4facd4f4254b63b43, type: 3}
-  nodeMainLight: {fileID: 1386268384, guid: 2503412a23daaaa4facd4f4254b63b43, type: 3}
-  nodeX: {fileID: -1044176380, guid: 2503412a23daaaa4facd4f4254b63b43, type: 3}
-  nodeBossDark: {fileID: -1552684854, guid: 2503412a23daaaa4facd4f4254b63b43, type: 3}
-  nodeBossLight: {fileID: -1794952835, guid: 2503412a23daaaa4facd4f4254b63b43, type: 3}
+  nodeObj: {fileID: 4281045009634875367, guid: 6554b996ef45a7b48a874760182a2840, type: 3}
 --- !u!4 &2019246468
 Transform:
   m_ObjectHideFlags: 0
