@@ -9,6 +9,10 @@ using UnityEngine.SceneManagement;
 public class Main : MonoBehaviour
 {
     public int lives = 100;
+
+    public int mapLength;
+    public static int mapLength_;
+
     public Deckbuilder DB;
     public Hand hand;
 
@@ -24,7 +28,7 @@ public class Main : MonoBehaviour
     public static LayerMask enemyLayerMask_;
     public LayerMask enemyLayerMask;
 
-    private static Vector3 destination = new Vector3(0, 0, -10);
+    private static Vector3 destination = new(0, 0, -10);
 
     private static Main main;
 
@@ -38,6 +42,7 @@ public class Main : MonoBehaviour
         DB.InitializeDeck();
         hand.Deal();
         hand.DisplayCards();
+        mapLength_ = mapLength;
     }
 
     public static void Damage(int amount)
@@ -87,7 +92,8 @@ public class Main : MonoBehaviour
             case 1:
                 destination = new Vector3(0, -8, -10);
                 mode = 1;
-                DeckbuilderHelper.main.SetupOptions();
+                //DeckbuilderHelper.main.SetupOptions();
+                MapController.GenerateMap(mapLength_);
                 break;
         }
         
