@@ -9,7 +9,7 @@ public abstract class Turret : Tower
     public int damageMultiplier = 1;
     public float projectileSpeedMultiplier = 1;
     public GameObject projectile;
-    private float lastShot = -999;
+    public float lastShot = -999;
 
     void Update()
     {
@@ -17,14 +17,13 @@ public abstract class Turret : Tower
         {
             if (Shoot())
             {
-
                 lastShot = Time.time;
             }
         }
     }
 
     // returns true if it successfully shoots at a target, false if there are no targets in sight
-    public bool Shoot()
+    public virtual bool Shoot()
     {
         GameObject target = GetFirstEnemy();
         if (target != null)
@@ -33,6 +32,7 @@ public abstract class Turret : Tower
             GameObject proj = Instantiate(projectile, transform.position, Quaternion.Euler(dir));
             proj.GetComponent<Rigidbody2D>().velocity = projectileSpeedMultiplier * proj.GetComponent<Projectile>().speed * dir.normalized;
             proj.GetComponent<Projectile>().damage *= damageMultiplier;
+            proj.GetComponent<Projectile>().parentTower = gameObject;
             return true;
         }
         return false;

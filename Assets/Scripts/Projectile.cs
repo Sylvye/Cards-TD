@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public GameObject parentTower;
     public int damage;
     public float speed;
     public float lifetime = 1;
     public int pierce = 0;
+    public bool combo = false;
     public bool randomFX = true;
     public GameObject[] deathFX;
     public GameObject[] despawnFX;
@@ -35,8 +37,15 @@ public class Projectile : MonoBehaviour
 
     public void Hit(GameObject target)
     {
-        Destroy(gameObject);
-        target.GetComponent<Enemy>().Damage(damage);
+        if (--pierce <= -1)
+            Destroy(gameObject);
+        if (pierce < -1)
+            return;
+        if (target.GetComponent<Enemy>().Damage(damage) && combo)
+        {
+            parentTower.GetComponent<Turret>().lastShot = -999;
+            combo = false;
+        }
         if (deathFX != null)
         {
             int spawnCount = deathFX.Length;

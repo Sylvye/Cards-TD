@@ -7,13 +7,13 @@ public abstract class Card : MonoBehaviour
     private bool selected = false;
     private Vector3 handPos;
     public int indexInHand = -1;
-    public float radius = 1;
+    public float radius;
 
     public abstract void OnPlay();
 
     private void OnMouseDown()
     {
-        if (Main.mode == 0)
+        if (Main.mode == 1)
         {
             selected = true;
             transform.localScale = Vector3.one * 0.5f;
@@ -26,7 +26,7 @@ public abstract class Card : MonoBehaviour
     {
         selected = false;
         Main.hitboxReticle_.transform.position = new Vector3(2, 10, 0);
-        if (Main.mode == 0)
+        if (Main.mode == 1)
         {
             if (transform.position.y > -2.5 && Physics2D.OverlapCircle(transform.position, radius, Main.placementLayerMask_) == null)
             {
@@ -56,7 +56,7 @@ public abstract class Card : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (selected && Main.mode == 0)
+        if (selected && Main.mode == 1)
         {
             Vector3 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector3(target.x, target.y, -7);

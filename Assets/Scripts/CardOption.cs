@@ -4,25 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CardOption : MonoBehaviour
+public class CardOption : Button
 {
     public Card card;
     public LayerMask cardMask;
-    public bool active = true;
 
-    private void Update()
-    {
-
-    }
-
-    void OnMouseUpAsButton()
+    public override void Action()
     {
         Deck.Add(card);
         Main.SwitchStage("Map");
-    }
-
-    void OnMouseUp()
-    {
-        Destroy(gameObject);
     }
 }

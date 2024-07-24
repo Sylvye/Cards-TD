@@ -16,7 +16,7 @@ public class Main : MonoBehaviour
     public Deckbuilder DB;
     public Hand hand;
 
-    // 0=battle, 1=deckbuild
+    // 0=map, 1=battle, 2=shop, 3=augment, 4=upgrade
     public static int mode = 0;
 
     public static GameObject hitboxReticle_;
@@ -84,29 +84,29 @@ public class Main : MonoBehaviour
     {
         switch (name)
         {
-            case "Defense":
-                destination = new Vector3(0, 0, -10);
-                mode = 0;
-                Spawner.main.complete = false;
-                break;
             case "Map":
                 destination = new Vector3(0, -8, -10);
-                mode = 1;
+                mode = 0;
                 if (MapController.currentNode == null)
                     MapController.GenerateMap(mapLength_);
                 break;
+            case "Defense":
+                destination = new Vector3(0, 0, -10);
+                mode = 1;
+                Spawner.main.complete = false;
+                break;
             case "Shop":
                 destination = new Vector3(0, -8, -10);
-                mode = 1;
-                DeckbuilderHelper.main.SetupOptions();
+                mode = 2;
+                ShopController.main.SetupOptions();
                 break;
             case "Augment":
                 destination = new Vector3(0, -8, -10);
-                mode = 1;
+                mode = 3;
                 break;
             case "Upgrade":
                 destination = new Vector3(0, -8, -10);
-                mode = 1;
+                mode = 4;
                 break;
             default:
                 break;
