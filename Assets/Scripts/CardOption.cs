@@ -12,15 +12,17 @@ public class CardOption : MonoBehaviour
 
     private void Update()
     {
-        if (Main.mode == 0)
-        {
-            Destroy(gameObject);
-        }
+
     }
 
     void OnMouseUpAsButton()
     {
         Deck.Add(card);
-        Main.SwitchStage(0);
+        Main.SwitchStage("Map");
+    }
+
+    void OnMouseUp()
+    {
+        Destroy(gameObject);
     }
 }

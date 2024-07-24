@@ -13,40 +13,38 @@ public class MapNode : MonoBehaviour
 
     public string type;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void OnMouseDown()
     {
         if (spriteDark != spriteLight)
+        {
             transform.localScale = new Vector3(0.4f, 0.4f, 1);
+            SetSprite(spriteLight);
+        }
     }
 
     private void OnMouseUp()
     {
-        if (spriteDark != spriteLight)
+        transform.localScale = new Vector3(0.6f, 0.6f, 1);
+    }
+
+    private void OnMouseUpAsButton()
+    {
+        string output = type;
+        if (spriteDark != spriteLight && column == MapController.currentNode.column + 1 && ((MapController.currentNode.exits[0] != null && MapController.currentNode.exits[0].Equals(this)) || MapController.currentNode.exits[1] != null && MapController.currentNode.exits[1].Equals(this)))
         {
-            transform.localScale = new Vector3(0.6f, 0.6f, 1);
-            if (column == MapController.currentNode.column + 1 && ((MapController.currentNode.exits[0] != null && MapController.currentNode.exits[0].Equals(this)) || MapController.currentNode.exits[1] != null && MapController.currentNode.exits[1].Equals(this))) 
-            {
-                MapController.EliminateColumn(this);
-                MapController.currentNode.SetSprite(MapController.nodeCompleted);
-                MapController.currentNode.spriteLight = MapController.nodeCompleted;
-                MapController.currentNode.spriteDark = MapController.nodeCompleted;
-                MapController.currentNode = this;
-                SetSprite(MapController.nodeCurrentDark);
-                spriteDark = MapController.nodeCurrentDark;
-                spriteLight = MapController.nodeCurrentLight;
-            }
+            MapController.EliminateColumn(this);
+            MapController.currentNode.SetSprite(MapController.nodeCompleted);
+            MapController.currentNode.spriteLight = MapController.nodeCompleted;
+            MapController.currentNode.spriteDark = MapController.nodeCompleted;
+            MapController.currentNode = this;
+            SetSprite(MapController.nodeCurrentDark);
+            spriteDark = MapController.nodeCurrentDark;
+            spriteLight = MapController.nodeCurrentLight;
+            type = "Your Location";
+        }
+        if (Equals(MapController.currentNode))
+        {
+            Main.SwitchStage(output);
         }
     }
 
@@ -54,6 +52,8 @@ public class MapNode : MonoBehaviour
     {
         if (spriteDark != spriteLight)
         {
+            if (NodeLabel.main.GetText() != type)
+                NodeLabel.main.SetText(type);
             SetSpriteLight(true);
             if (exits.Length >= 1 && exits[0] != null)
             {

@@ -59,7 +59,7 @@ public class Main : MonoBehaviour
     {
         if (GameObject.FindWithTag("Enemy") == null && Spawner.main.complete && mode == 0)
         {
-            SwitchStage(1);
+            SwitchStage("Map");
         }
 
         // testing purposes
@@ -80,20 +80,35 @@ public class Main : MonoBehaviour
 
     // 0 is battle
     // 1 is deckbuilding
-    public static void SwitchStage(int stageIndex)
+    public static void SwitchStage(string name)
     {
-        switch (stageIndex)
+        switch (name)
         {
-            case 0:
+            case "Defense":
                 destination = new Vector3(0, 0, -10);
                 mode = 0;
                 Spawner.main.complete = false;
                 break;
-            case 1:
+            case "Map":
                 destination = new Vector3(0, -8, -10);
                 mode = 1;
-                //DeckbuilderHelper.main.SetupOptions();
-                MapController.GenerateMap(mapLength_);
+                if (MapController.currentNode == null)
+                    MapController.GenerateMap(mapLength_);
+                break;
+            case "Shop":
+                destination = new Vector3(0, -8, -10);
+                mode = 1;
+                DeckbuilderHelper.main.SetupOptions();
+                break;
+            case "Augment":
+                destination = new Vector3(0, -8, -10);
+                mode = 1;
+                break;
+            case "Upgrade":
+                destination = new Vector3(0, -8, -10);
+                mode = 1;
+                break;
+            default:
                 break;
         }
         

@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 public class MapController : MonoBehaviour
 {
+    public static MapController main;
     public static MapNode currentNode;
 
     public GameObject nodeObj;
@@ -32,6 +34,7 @@ public class MapController : MonoBehaviour
 
     private void Start()
     {
+        main = this;
         Sprite[] sprites = Resources.LoadAll<Sprite>("NodePack");
         nodeObj_ = nodeObj;
         nodeCompleted = sprites[0];
@@ -56,10 +59,11 @@ public class MapController : MonoBehaviour
     {
         lengths = new int[length];
         lengths[0] = 1;
-        lengths[1] = 2;
+        lengths[1] = 1;
+        lengths[2] = 2;
 
         // creates the random array of heights for each column in the map
-        for (int i=2; i<length; i++)
+        for (int i=3; i<length; i++)
         {
             int r = Random.Range(0, 2);
 
@@ -94,6 +98,7 @@ public class MapController : MonoBehaviour
         for (int i=0; i<sum; i++)
         {
             nodes[i] = Instantiate(nodeObj_, new Vector3(-15, -9, 0), Quaternion.identity);
+            nodes[i].transform.SetParent(main.transform);
             MapNode n = nodes[i].GetComponent<MapNode>();
             n.index = i;
         }
@@ -121,20 +126,14 @@ public class MapController : MonoBehaviour
         bossNode.spriteDark = nodeBossDark;
         bossNode.type = "Stage Boss";
 
-        // assigns nodes their possible exits
+        // assigns nodes their possible exits & sprites
         for (int i=0; i<nodes.Length-1; i++)
         {
             GameObject nObj = nodes[i];
             MapNode n = nObj.GetComponent<MapNode>();
 
-            MapNode startNode = nodes[0].GetComponent<MapNode>();
-            nodes[0].GetComponentInParent<SpriteRenderer>().sprite = nodeCurrentDark;
-            startNode.spriteLight = nodeCurrentLight;
-            startNode.spriteDark = nodeCurrentDark;
-
-            currentNode = startNode;
-
-            if (n.column % 2 == 0) // battle stages are every even column
+            // assigns sprites
+            if (n.column % 2 != 0) // battle stages are every even column
             {
                 n.spriteLight = nodeBattleLight;
                 n.spriteDark = nodeBattleDark;
@@ -164,16 +163,8 @@ public class MapController : MonoBehaviour
                         n.SetSprite(nodeAugmentDark);
                         n.type = "Augment";
                         break;
-                    case 3:
-                        if (Random.Range(0, 2) == 0)
-                        {
-                            n.spriteLight = nodeMinibossLight;
-                            n.spriteDark = nodeMinibossDark;
-                            n.SetSprite(nodeMinibossDark);
-                            n.type = "Miniboss";
-                            break;
-                        }
-                        else
+                    default:
+                        if (Random.Range(0, 1 + n.column/2) == 0)
                         {
                             n.spriteLight = nodeBattleLight;
                             n.spriteDark = nodeBattleDark;
@@ -181,11 +172,20 @@ public class MapController : MonoBehaviour
                             n.type = "Defense";
                             break;
                         }
+                        else
+                        {
+                            n.spriteLight = nodeMinibossLight;
+                            n.spriteDark = nodeMinibossDark;
+                            n.SetSprite(nodeMinibossDark);
+                            n.type = "Miniboss";
+                            break;
+                        }
                 }
             }
 
             n.exits = new MapNode[2];
 
+            // assigns exits
             int exit1Index = i + lengths[n.column];
             int exit2Index = i + lengths[n.column+1];
             if (exit1Index < nodes.Length)
@@ -198,6 +198,14 @@ public class MapController : MonoBehaviour
             if (n.exits[1] != null && n.exits[1].column != n.column+1)
                 n.exits[1] = null;
         }
+
+        MapNode startNode = nodes[0].GetComponent<MapNode>();
+        nodes[0].GetComponentInParent<SpriteRenderer>().sprite = nodeCurrentDark;
+        startNode.spriteLight = nodeCurrentLight;
+        startNode.spriteDark = nodeCurrentDark;
+        startNode.type = "Start";
+
+        currentNode = startNode;
     }
 
     public static void DestroyMap()
