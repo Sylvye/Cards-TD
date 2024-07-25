@@ -8,11 +8,11 @@ public class TaserTurret : Turret
     {
         if (tier >= 2)
         {
-            chainBoost++;
+            // new idea
         }
         if (tier >= 3)
         {
-            chainBoost++;
+            // new idea
         }
         if (tier >= 4)
         {
@@ -20,7 +20,7 @@ public class TaserTurret : Turret
         }
         if (tier >= 5)
         {
-            projectiles *= 2;
+            projectiles++;
         }
     }
 }

@@ -174,10 +174,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentTower: {fileID: 0}
-  damage: 1
+  damage: 2
   speed: 25
   lifetime: 2
   pierce: 0
+  chain: 0
+  explosionRadius: 0
   combo: 1
   randomFX: 1
   deathFX:

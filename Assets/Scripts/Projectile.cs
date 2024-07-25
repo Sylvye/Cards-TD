@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -9,7 +10,6 @@ public class Projectile : MonoBehaviour
     public float speed;
     public float lifetime = 1;
     public int pierce = 0;
-    public int chain = 0;
     public float explosionRadius = 0;
     public bool combo = false;
     public bool randomFX = true;
@@ -44,13 +44,21 @@ public class Projectile : MonoBehaviour
         if (pierce < -1)
             return;
 
+        bool hitSuccessfully = false;
+
         if (explosionRadius == 0) // contact damage
         {
-            if (target.GetComponent<Enemy>().Damage(damage) && combo) // deals damage & checks for combo
+            if (target.GetComponent<Enemy>().Damage(damage, this)) // deals damage & checks for combo
             {
-                parentTower.GetComponent<Turret>().lastShot = -999;
-                combo = false;
+                hitSuccessfully = true;
+                if (combo)
+                {
+                    parentTower.GetComponent<Turret>().lastShot = -999;
+                    combo = false;
+                }
             }
+            else
+                pierce++;
         }
         else // explosion damage
         {
@@ -58,16 +66,22 @@ public class Projectile : MonoBehaviour
 
             foreach (RaycastHit2D rcH2d in hit)
             {
+                hitSuccessfully = true;
                 GameObject obj = rcH2d.collider.gameObject;
-                if (obj.GetComponent<Enemy>().Damage(damage) && combo)// deals damage & checks for combo
+                if (obj.GetComponent<Enemy>().Damage(damage))// deals damage & checks for combo
                 {
-                    parentTower.GetComponent<Turret>().lastShot = -999;
-                    combo = false;
+                    if (combo)
+                    {
+                        parentTower.GetComponent<Turret>().lastShot = -999;
+                        combo = false;
+                    }
                 }
+                else
+                    pierce++;
             }
         }
 
-        if (deathFX != null) // spawns FX
+        if (deathFX != null && hitSuccessfully) // spawns FX
         {
             int spawnCount = deathFX.Length;
             if (randomFX)

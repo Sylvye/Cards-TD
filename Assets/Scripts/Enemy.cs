@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public int hp;
     public int maxhp;
     public float speed;
+    public Projectile parentKiller;
     public GameObject[] spawnOnDeath;
 
     // Update is called once per frame
@@ -40,6 +41,33 @@ public class Enemy : MonoBehaviour
                 instance.GetComponent<Enemy>().Damage(-hp);
             }
             return true;
+        }
+        return false;
+    }
+
+    public bool Damage(int amount, Projectile reference)
+    {
+        if (parentKiller != reference)
+        {
+            hp -= amount;
+            if (hp <= 0)
+            {
+                Destroy(gameObject);
+                float spawnOffset = 0;
+                foreach (GameObject obj in spawnOnDeath)
+                {
+                    Vector3 spawnPos = transform.position;
+                    if (obj.CompareTag("Enemy"))
+                    {
+                        spawnPos += Vector3.left * spawnOffset;
+                        spawnOffset += 0.5f;
+                    }
+                    GameObject instance = Instantiate(obj, spawnPos, obj.transform.rotation);
+                    instance.GetComponent<Enemy>().Damage(-hp, reference);
+                    instance.GetComponent<Enemy>().parentKiller = reference;
+                }
+                return true;
+            }
         }
         return false;
     }

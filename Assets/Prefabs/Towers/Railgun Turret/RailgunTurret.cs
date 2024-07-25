@@ -21,7 +21,7 @@ public class RailgunTurret : Turret
         }
         if (tier >= 5)
         {
-            pierceBoost += 8;
+            pierceBoost += 7;
             baseDamageBoost += 4;
         }
     }

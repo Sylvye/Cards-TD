@@ -12,7 +12,6 @@ public abstract class Turret : Tower
     public int damageMultiplier = 1;
     public int baseDamageBoost = 0;
     public int pierceBoost = 0;
-    public int chainBoost = 0;
     public float explosionRadiusBoost = 0;
     public float projectileSpeedMultiplier = 1;
     public GameObject projectile;
@@ -60,7 +59,6 @@ public abstract class Turret : Tower
         p.damage += baseDamageBoost;
         p.damage *= damageMultiplier;
         p.pierce += pierceBoost;
-        p.chain += chainBoost;
         p.explosionRadius += explosionRadiusBoost;
         p.parentTower = gameObject;
         return projectile;

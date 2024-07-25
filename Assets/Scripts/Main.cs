@@ -28,6 +28,9 @@ public class Main : MonoBehaviour
     public static LayerMask enemyLayerMask_;
     public LayerMask enemyLayerMask;
 
+    public static GameObject laser_;
+    public GameObject laser;
+
     private static Vector3 destination = new(0, 0, -10);
 
     private static Main main;
@@ -39,6 +42,7 @@ public class Main : MonoBehaviour
         placementLayerMask_ = placementLayerMask;
         hitboxReticle_ = hitboxReticle;
         enemyLayerMask_ = enemyLayerMask;
+        laser_ = laser;
         DB.InitializeDeck();
         hand.Deal();
         hand.DisplayCards();
