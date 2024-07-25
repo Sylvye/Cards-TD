@@ -63,8 +63,15 @@ public class Enemy : MonoBehaviour
                         spawnOffset += 0.5f;
                     }
                     GameObject instance = Instantiate(obj, spawnPos, obj.transform.rotation);
-                    instance.GetComponent<Enemy>().Damage(-hp, reference);
-                    instance.GetComponent<Enemy>().parentKiller = reference;
+                    if (instance.TryGetComponent(out Enemy child))
+                    {
+                        child.Damage(-hp, reference);
+                        child.parentKiller = reference;
+                        if (speed == 0)
+                        {
+                            child.Stun(0.1f);
+                        }
+                    }
                 }
                 return true;
             }

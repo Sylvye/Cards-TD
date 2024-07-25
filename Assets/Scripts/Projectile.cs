@@ -93,7 +93,7 @@ public class Projectile : MonoBehaviour
                 int objIndex = i;
                 if (randomFX)
                     objIndex = Random.Range(0, deathFX.Length);
-                GameObject fx = Instantiate(deathFX[objIndex], transform.position, Quaternion.identity);
+                GameObject fx = Instantiate(deathFX[objIndex], transform.position + Vector3.back, Quaternion.identity);
                 if (explosionRadius > 0)
                 {
                     fx.transform.localScale = explosionRadius * 2 * Vector2.one;

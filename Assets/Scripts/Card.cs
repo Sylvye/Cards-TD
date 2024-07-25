@@ -32,7 +32,7 @@ public abstract class Card : MonoBehaviour
             if (transform.position.y > -2.5 && Physics2D.OverlapCircle(transform.position, radius, Main.placementLayerMask_) == null)
             {
                 GameObject obj = OnPlay();
-                Turret t;
+                Tower t;
                 if (obj != null && obj.TryGetComponent(out t))
                     t.tier = tier;
                 Hand.main.cards.RemoveAt(indexInHand);

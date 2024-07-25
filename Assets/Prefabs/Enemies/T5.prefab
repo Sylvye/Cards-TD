@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -1648381231430774736}
   - component: {fileID: 8341023729203104490}
   m_Layer: 7
-  m_Name: T3
+  m_Name: T5
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2056554629, guid: a48aec11483e6d14dad2664a98811ce7, type: 3}
-  m_Color: {r: 0.96956134, g: 0.28773582, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.9687075, b: 0.27058828, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -100,12 +100,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba4cedf4ef3beb4e888f9ac6e8018ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 3
-  maxhp: 3
-  speed: 2
+  hp: 15
+  maxhp: 15
+  speed: 3
   parentKiller: {fileID: 0}
   spawnOnDeath:
-  - {fileID: 3867853743162614571, guid: 062180e3fff32af47b4baff53aba7967, type: 3}
+  - {fileID: 3867853743162614571, guid: 46f552fa97eea0b4cbd1b94f2f05d132, type: 3}
+  - {fileID: 3867853743162614571, guid: 46f552fa97eea0b4cbd1b94f2f05d132, type: 3}
 --- !u!95 &-4032076880467101793
 Animator:
   serializedVersion: 5

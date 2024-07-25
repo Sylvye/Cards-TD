@@ -935,7 +935,6 @@ MonoBehaviour:
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 128
-  laser: {fileID: 6254124567953751875, guid: 61cb3435ca5d60a4e857f925901aef26, type: 3}
 --- !u!4 &688472668
 Transform:
   m_ObjectHideFlags: 0
@@ -1642,6 +1641,7 @@ MonoBehaviour:
   - {fileID: 3867853743162614571, guid: 062180e3fff32af47b4baff53aba7967, type: 3}
   - {fileID: 3867853743162614571, guid: d77933d2c41e38a4c9496e94a4198290, type: 3}
   - {fileID: 3867853743162614571, guid: 46f552fa97eea0b4cbd1b94f2f05d132, type: 3}
+  - {fileID: 3867853743162614571, guid: e02184a9ab415764da7d699711c46b6c, type: 3}
   wave:
   - {fileID: 3867853743162614571, guid: 53315ca4737905743bdbf41ad03cfc94, type: 3}
   - {fileID: 3867853743162614571, guid: 53315ca4737905743bdbf41ad03cfc94, type: 3}

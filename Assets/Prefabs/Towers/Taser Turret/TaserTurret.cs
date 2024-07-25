@@ -1,56 +1,107 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
 
-public class TaserTurret : Turret
+public class TaserTurret : Tower
 {
+    public GameObject laser;
+    public int damage;
+    public float range;
+    public float attackSpeed;
+    public int projectiles = 1;
+    public float lastShot = -999;
+    public GameObject FX;
+
     public float stunTime = 0;
-    public override bool Shoot()
+
+    private void Start()
     {
-        GameObject[] targets = new GameObject[projectiles];
-        for (int i = 0; i < projectiles; i++)
-        {
-            GameObject target = GetFirstEnemy(targets);
-            if (target != null)
-            {
-                GameObject obj = Instantiate(projectile, Vector2.zero, Quaternion.identity);
-                LineRenderer l = obj.GetComponent<LineRenderer>();
-
-                l.SetPosition(0, (Vector2)transform.position);
-                l.SetPosition(1, target.transform.position);
-                Destroy(obj, 0.1f);
-
-                target.GetComponent<Enemy>().Damage(baseDamageBoost * damageMultiplier);
-                if (stunTime > 0)
-                {
-                    target.GetComponent<Enemy>().Stun(stunTime);
-                }
-            }
-            targets[i] = target;
-        }
-
-        return targets[0] != null;
+        SetupTierEffects();
     }
 
-    public override void SetupTierEffects()
+    void Update()
+    {
+        if (lastShot + 1 / attackSpeed <= Time.time)
+        {
+            Shoot();
+        }
+    }
+    
+    public void Shoot()
+    {
+        GameObject[] targets = GetTargets();
+        foreach (GameObject target in targets)
+        {
+            if (target != null)
+            {
+                GameObject laserObj = Instantiate(laser, Vector2.zero, Quaternion.identity);
+                LineRenderer lr = laserObj.GetComponent<LineRenderer>();
+                Enemy e = target.GetComponent<Enemy>();
+
+                lr.SetPosition(0, (Vector2)transform.position);
+                lr.SetPosition(1, target.transform.position);
+                Destroy(laserObj, 0.1f);
+
+                Vector3 randomOffset = new(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f), -1);
+                Instantiate(FX, target.transform.position + randomOffset, Quaternion.identity); // spawns spark effect
+
+                if (stunTime > 0)
+                    e.Stun(stunTime);
+                e.Damage((int)(damage * damageMultiplier));
+            }
+        }
+
+        lastShot = Time.time;
+    }
+
+    public GameObject[] GetTargets()
+    {
+        List<RaycastHit2D> hit = new(Physics2D.CircleCastAll(transform.position, range, Vector2.zero, 0, Main.enemyLayerMask_));
+        List<GameObject> output = new();
+
+        for (int i=0; i<projectiles; i++)
+        {
+            if (hit.Count > 0)
+            {
+                int firstIndex = 0;
+                for (int j = 0; j < hit.Count; j++)
+                {
+                    if (hit[j].transform.position.x > hit[firstIndex].transform.position.x)
+                    {
+                        firstIndex = j;
+                    }
+                }
+                output.Add(hit[firstIndex].collider.gameObject);
+                hit.RemoveAt(firstIndex);
+            }
+        }
+
+        return output.ToArray();
+    }
+
+    public void SetupTierEffects()
     {
         if (tier >= 2)
         {
             projectiles++;
+            stunTime += 0.2f;
         }
         if (tier >= 3)
         {
-            stunTime += 0.1f;
+            projectiles++;
+            attackSpeed *= 1.5f;
         }
         if (tier >= 4)
         {
-            baseDamageBoost++;
+            projectiles++;
+            damage++;
         }
         if (tier >= 5)
         {
             projectiles++;
-            stunTime += 0.1f;
         }
     }
 }
