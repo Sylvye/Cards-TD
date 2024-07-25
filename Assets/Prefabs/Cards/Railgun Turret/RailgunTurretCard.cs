@@ -6,8 +6,8 @@ public class RailgunTurretCard : Card
 {
     public GameObject spawnable;
 
-    public override void OnPlay()
+    public override GameObject OnPlay()
     {
-        Instantiate(spawnable, transform.position, Quaternion.identity);
+        return Instantiate(spawnable, transform.position, Quaternion.identity);
     }
 }

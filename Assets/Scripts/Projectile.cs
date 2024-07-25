@@ -9,6 +9,8 @@ public class Projectile : MonoBehaviour
     public float speed;
     public float lifetime = 1;
     public int pierce = 0;
+    public int chain = 0;
+    public float explosionRadius = 0;
     public bool combo = false;
     public bool randomFX = true;
     public GameObject[] deathFX;
@@ -41,12 +43,31 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         if (pierce < -1)
             return;
-        if (target.GetComponent<Enemy>().Damage(damage) && combo)
+
+        if (explosionRadius == 0) // contact damage
         {
-            parentTower.GetComponent<Turret>().lastShot = -999;
-            combo = false;
+            if (target.GetComponent<Enemy>().Damage(damage) && combo) // deals damage & checks for combo
+            {
+                parentTower.GetComponent<Turret>().lastShot = -999;
+                combo = false;
+            }
         }
-        if (deathFX != null)
+        else // explosion damage
+        {
+            RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, explosionRadius, Vector2.zero, 0, Main.enemyLayerMask_);
+
+            foreach (RaycastHit2D rcH2d in hit)
+            {
+                GameObject obj = rcH2d.collider.gameObject;
+                if (obj.GetComponent<Enemy>().Damage(damage) && combo)// deals damage & checks for combo
+                {
+                    parentTower.GetComponent<Turret>().lastShot = -999;
+                    combo = false;
+                }
+            }
+        }
+
+        if (deathFX != null) // spawns FX
         {
             int spawnCount = deathFX.Length;
             if (randomFX)
@@ -57,6 +78,10 @@ public class Projectile : MonoBehaviour
                 if (randomFX)
                     objIndex = Random.Range(0, deathFX.Length);
                 GameObject fx = Instantiate(deathFX[objIndex], transform.position, Quaternion.identity);
+                if (explosionRadius > 0)
+                {
+                    fx.transform.localScale = Vector2.one * explosionRadius * 2;
+                }
             }
         }
     }

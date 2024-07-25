@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bbf17a5b3257e744a073cab635387fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tier: 1
   indexInHand: 2
   radius: 0.75
   spawnable: {fileID: 5304065507062134350, guid: df4fa3818a6d3e046be03900477dc6f8, type: 3}
