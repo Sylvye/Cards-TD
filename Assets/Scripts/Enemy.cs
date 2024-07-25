@@ -71,4 +71,17 @@ public class Enemy : MonoBehaviour
         }
         return false;
     }
+
+    public void Stun(float time)
+    {
+        StartCoroutine(StunC(time));
+    }
+
+    IEnumerator StunC(float time)
+    {
+        float spd = speed;
+        speed = 0;
+        yield return new WaitForSeconds(time);
+        speed = spd;
+    }
 }

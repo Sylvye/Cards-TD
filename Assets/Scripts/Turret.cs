@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class Turret : Tower
@@ -12,6 +13,7 @@ public abstract class Turret : Tower
     public int damageMultiplier = 1;
     public int baseDamageBoost = 0;
     public int pierceBoost = 0;
+    public float slowEffectMultiplier = 1;
     public float explosionRadiusBoost = 0;
     public float projectileSpeedMultiplier = 1;
     public GameObject projectile;
@@ -86,6 +88,39 @@ public abstract class Turret : Tower
             for (int i = 1; i < hit.Length; i++)
             {
                 if (hit[i].transform.position.x > hit[firstIndex].transform.position.x)
+                {
+                    firstIndex = i;
+                }
+            }
+            Debug.DrawLine(transform.position, hit[firstIndex].transform.position, Color.green, 0.5f);
+            return hit[firstIndex].transform.gameObject;
+        }
+        else
+        {
+
+            Debug.DrawLine(transform.position + new Vector3(0.5f, 0.5f, 0), transform.position + new Vector3(-0.5f, -0.5f, 0), Color.red);
+            Debug.DrawLine(transform.position + new Vector3(0.5f, -0.5f, 0), transform.position + new Vector3(-0.5f, 0.5f, 0), Color.red);
+            return null;
+        }
+    }
+
+    public GameObject GetFirstEnemy(GameObject[] ignore)
+    {
+        RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, range, Vector2.zero, 0, Main.enemyLayerMask_);
+        if (hit.Length > 0)
+        {
+            int firstIndex = 0;
+            for (int i = 1; i < hit.Length; i++)
+            {
+                bool shouldIgnore = false;
+                foreach (GameObject g in ignore)
+                {
+                    if (hit[i].collider.gameObject.Equals(g))
+                    {
+                        shouldIgnore = true;
+                    }
+                }
+                if (!shouldIgnore && hit[i].transform.position.x > hit[firstIndex].transform.position.x)
                 {
                     firstIndex = i;
                 }

@@ -31,7 +31,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision != null && collision.gameObject.tag.Equals("Enemy"))
+        if (collision != null && collision.gameObject.CompareTag("Enemy"))
         {
             Hit(collision.gameObject);
         }
@@ -81,6 +81,8 @@ public class Projectile : MonoBehaviour
             }
         }
 
+        
+
         if (deathFX != null && hitSuccessfully) // spawns FX
         {
             int spawnCount = deathFX.Length;
@@ -94,7 +96,7 @@ public class Projectile : MonoBehaviour
                 GameObject fx = Instantiate(deathFX[objIndex], transform.position, Quaternion.identity);
                 if (explosionRadius > 0)
                 {
-                    fx.transform.localScale = Vector2.one * explosionRadius * 2;
+                    fx.transform.localScale = explosionRadius * 2 * Vector2.one;
                 }
             }
         }
