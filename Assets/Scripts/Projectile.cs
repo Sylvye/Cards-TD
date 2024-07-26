@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using UnityEngine;
+using UnityEngine.U2D.IK;
 
 public class Projectile : MonoBehaviour
 {
@@ -13,8 +14,10 @@ public class Projectile : MonoBehaviour
     public float explosionRadius = 0;
     public bool combo = false;
     public bool randomFX = true;
+    public float homingSpeed = 0;
     public GameObject[] deathFX;
     public GameObject[] despawnFX;
+    public float angle;
     private Rigidbody2D rb;
  
     // Start is called before the first frame update
@@ -26,6 +29,18 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
+        if (homingSpeed > 0)
+        {
+            GameObject target = parentTower.GetComponent<Turret>().targetEnemy;
+            if (target != null)
+            {
+                float angleToTarget = AngleHelper.VectorToDegrees(target.transform.position - transform.position);
+                angle = Mathf.LerpAngle(angle, angleToTarget, Time.deltaTime * homingSpeed);
+            }
+        }
+
+        rb.velocity = speed * AngleHelper.DegreesToVector(angle);
+
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, AngleHelper.VectorToDegrees(rb.velocity.normalized)-90));
     }
 
@@ -48,27 +63,30 @@ public class Projectile : MonoBehaviour
 
         if (explosionRadius == 0) // contact damage
         {
+            if (target.GetComponent<Enemy>().parentKiller == null)
+                hitSuccessfully = true;
+            else if (!target.GetComponent<Enemy>().parentKiller.Equals(this))
+                hitSuccessfully = true;
             if (target.GetComponent<Enemy>().Damage(damage, this)) // deals damage & checks for combo
             {
-                hitSuccessfully = true;
                 if (combo)
                 {
                     parentTower.GetComponent<Turret>().lastShot = -999;
                     combo = false;
                 }
             }
-            else
-                pierce++;
         }
         else // explosion damage
         {
             RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, explosionRadius, Vector2.zero, 0, Main.enemyLayerMask_);
-
             foreach (RaycastHit2D rcH2d in hit)
             {
-                hitSuccessfully = true;
                 GameObject obj = rcH2d.collider.gameObject;
-                if (obj.GetComponent<Enemy>().Damage(damage))// deals damage & checks for combo
+                if (obj.GetComponent<Enemy>().parentKiller == null)
+                    hitSuccessfully = true;
+                else if (!obj.GetComponent<Enemy>().parentKiller.Equals(this))
+                    hitSuccessfully = true;
+                if (obj.GetComponent<Enemy>().Damage(damage, this)) // deals damage & checks for combo
                 {
                     if (combo)
                     {
@@ -76,27 +94,29 @@ public class Projectile : MonoBehaviour
                         combo = false;
                     }
                 }
-                else
-                    pierce++;
             }
         }
 
         
-
-        if (deathFX != null && hitSuccessfully) // spawns FX
+        if (hitSuccessfully)
         {
-            int spawnCount = deathFX.Length;
-            if (randomFX)
-                spawnCount = 1;
-            for (int i = 0; i < spawnCount; i++)
+            pierce++;
+            homingSpeed = 0;
+            if (deathFX != null) // spawns FX
             {
-                int objIndex = i;
+                int spawnCount = deathFX.Length;
                 if (randomFX)
-                    objIndex = Random.Range(0, deathFX.Length);
-                GameObject fx = Instantiate(deathFX[objIndex], transform.position + Vector3.back, Quaternion.identity);
-                if (explosionRadius > 0)
+                    spawnCount = 1;
+                for (int i = 0; i < spawnCount; i++)
                 {
-                    fx.transform.localScale = explosionRadius * 2 * Vector2.one;
+                    int objIndex = i;
+                    if (randomFX)
+                        objIndex = Random.Range(0, deathFX.Length);
+                    GameObject fx = Instantiate(deathFX[objIndex], transform.position + Vector3.back, Quaternion.identity);
+                    if (explosionRadius > 0)
+                    {
+                        fx.transform.localScale = explosionRadius * 2 * Vector2.one;
+                    }
                 }
             }
         }

@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public abstract class Turret : Tower
 {
@@ -12,8 +14,10 @@ public abstract class Turret : Tower
     public int pierceBoost = 0;
     public float explosionRadiusBoost = 0;
     public float projectileSpeedMultiplier = 1;
+    public float homingSpeed = 0;
     public GameObject projectile;
     public float lastShot = -999;
+    public GameObject targetEnemy;
 
     private void Start()
     {
@@ -52,13 +56,16 @@ public abstract class Turret : Tower
     private GameObject Launch(GameObject obj, Vector2 spawnPos, Vector2 dir)
     {
         GameObject projectile = Instantiate(obj, spawnPos, Quaternion.LookRotation(Vector3.forward, dir));
-        projectile.GetComponent<Rigidbody2D>().velocity = projectileSpeedMultiplier * projectile.GetComponent<Projectile>().speed * dir.normalized;
         Projectile p = projectile.GetComponent<Projectile>();
+        p.angle = AngleHelper.VectorToDegrees(dir.normalized);
+        p.speed *= projectileSpeedMultiplier;
         p.damage += baseDamageBoost;
         p.damage = (int)(p.damage * damageMultiplier);
         p.pierce += pierceBoost;
         p.explosionRadius += explosionRadiusBoost;
         p.parentTower = gameObject;
+        if (homingSpeed > 0)
+            p.homingSpeed = homingSpeed;
         return projectile;
     }
 
@@ -88,14 +95,11 @@ public abstract class Turret : Tower
                     firstIndex = i;
                 }
             }
-            Debug.DrawLine(transform.position, hit[firstIndex].transform.position, Color.green, 0.5f);
+            targetEnemy = hit[firstIndex].transform.gameObject;
             return hit[firstIndex].transform.gameObject;
         }
         else
         {
-
-            Debug.DrawLine(transform.position + new Vector3(0.5f, 0.5f, 0), transform.position + new Vector3(-0.5f, -0.5f, 0), Color.red);
-            Debug.DrawLine(transform.position + new Vector3(0.5f, -0.5f, 0), transform.position + new Vector3(-0.5f, 0.5f, 0), Color.red);
             return null;
         }
     }

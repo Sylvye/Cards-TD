@@ -13,23 +13,24 @@ public class RocketTurret : Turret
         }
         if (tier >= 3)
         {
-            explosionRadiusBoost += 0.1f;
             projectileSpeedMultiplier *= 2;
         }
         if (tier >= 4)
         {
-            pierceBoost += 1;
+            attackSpeed *= 1.5f;
+            projectileSpeedMultiplier *= 1.5f;
         }
         if (tier >= 5)
         {
-            explosionRadiusBoost += 0.3f;
-            pierceBoost += 3;
+            pierceBoost++;
+            explosionRadiusBoost += 0.25f;
+            attackSpeed *= 1.5f;
             baseDamageBoost += 3;
         }
     }
 
     public override float GetRange(int t)
     {
-        return t >= 3 ? range + 2 : range;
+        return t >= 2 ? range + 1 : range;
     }
 }

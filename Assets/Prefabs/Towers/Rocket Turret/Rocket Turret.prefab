@@ -136,12 +136,14 @@ MonoBehaviour:
   tier: 1
   damageMultiplier: 1
   range: 4
-  attackSpeed: 0.25
+  attackSpeed: 0.4
   projectiles: 1
   spread: 20
   baseDamageBoost: 0
   pierceBoost: 0
   explosionRadiusBoost: 0
   projectileSpeedMultiplier: 1
+  homingSpeed: 5
   projectile: {fileID: 265608084915569301, guid: 6200e177180d30e4ab338262758b2821, type: 3}
   lastShot: -999
+  targetEnemy: {fileID: 0}
