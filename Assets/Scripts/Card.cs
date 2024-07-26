@@ -4,13 +4,18 @@ using UnityEngine;
 
 public abstract class Card : MonoBehaviour
 {
+    public GameObject spawnable;
     public int tier;
     private bool selected = false;
     private Vector3 handPos;
     public int indexInHand = -1;
     public float radius;
 
-    public abstract GameObject OnPlay();
+    public virtual GameObject OnPlay()
+    {
+        GameObject obj = Instantiate(spawnable, transform.position, Quaternion.identity);
+        return obj;
+    }
 
     private void OnMouseDown()
     {
@@ -32,8 +37,7 @@ public abstract class Card : MonoBehaviour
             if (transform.position.y > -2.5 && Physics2D.OverlapCircle(transform.position, radius, Main.placementLayerMask_) == null)
             {
                 GameObject obj = OnPlay();
-                Tower t;
-                if (obj != null && obj.TryGetComponent(out t))
+                if (obj != null && obj.TryGetComponent(out Tower t))
                     t.tier = tier;
                 Hand.main.cards.RemoveAt(indexInHand);
                 if (Hand.main.cards.Count == 0)

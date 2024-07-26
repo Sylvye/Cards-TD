@@ -5,7 +5,6 @@ using UnityEngine;
 
 public abstract class Turret : Tower
 {
-    public float range;
     public float attackSpeed;
     public int projectiles = 1;
     public float spread = 10;

@@ -13,6 +13,7 @@ public class RailgunTurret : Turret
         if (tier >= 3)
         {
             pierceBoost += 2;
+            range += 2;
         }
         if (tier >= 4)
         {

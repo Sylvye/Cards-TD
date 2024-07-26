@@ -4,10 +4,5 @@ using UnityEngine;
 
 public class AssaultTurretCard : Card
 {
-    public GameObject spawnable;
 
-    public override GameObject OnPlay()
-    {
-        return Instantiate(spawnable, transform.position, Quaternion.identity);
-    }
 }

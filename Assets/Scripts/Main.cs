@@ -22,6 +22,9 @@ public class Main : MonoBehaviour
     public static GameObject hitboxReticle_;
     public GameObject hitboxReticle;
 
+    public static GameObject towerRangeReticle_;
+    public GameObject towerRangeReticle;
+
     public static LayerMask placementLayerMask_;
     public LayerMask placementLayerMask;
 
@@ -38,6 +41,7 @@ public class Main : MonoBehaviour
         main = this;
         placementLayerMask_ = placementLayerMask;
         hitboxReticle_ = hitboxReticle;
+        towerRangeReticle_ = towerRangeReticle;
         enemyLayerMask_ = enemyLayerMask;
         DB.InitializeDeck();
         hand.Deal();

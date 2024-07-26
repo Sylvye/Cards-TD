@@ -9,7 +9,6 @@ public class TaserTurret : Tower
 {
     public GameObject laser;
     public int damage;
-    public float range;
     public float attackSpeed;
     public int projectiles = 1;
     public float lastShot = -999;
@@ -86,22 +85,25 @@ public class TaserTurret : Tower
     {
         if (tier >= 2)
         {
-            projectiles++;
+            projectiles += 2;
             stunTime += 0.2f;
         }
         if (tier >= 3)
         {
-            projectiles++;
-            attackSpeed *= 1.5f;
+            projectiles += 2;
+            attackSpeed *= 1.66f;
         }
         if (tier >= 4)
         {
-            projectiles++;
+            projectiles += 2;
             damage++;
         }
         if (tier >= 5)
         {
-            projectiles++;
+            projectiles += 2;
+            damage++;
+            stunTime += 0.1f;
+            range += 3;
         }
     }
 }
