@@ -6,11 +6,17 @@ using UnityEngine;
 public abstract class Card : MonoBehaviour
 {
     public GameObject spawnable;
+    public int towerIndex;
     public int tier;
     private bool selected = false;
     private Vector3 handPos;
     public int indexInHand = -1;
     public float radius;
+
+    private void Start()
+    {
+        GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("CardPack")[towerIndex * 5 + tier - 1];
+    }
 
     public virtual GameObject OnPlay()
     {

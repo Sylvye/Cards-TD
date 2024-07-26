@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -5571696489812159382}
   - component: {fileID: 7326664043114705390}
   m_Layer: 8
-  m_Name: HV projectile
+  m_Name: Rocket
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,10 +165,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentTower: {fileID: 0}
   damage: 3
-  speed: 10
-  lifetime: 2
-  pierce: 1
-  explosionRadius: 0
+  speed: 5
+  lifetime: 3
+  pierce: 0
+  explosionRadius: 0.2
   combo: 0
   randomFX: 1
   deathFX:

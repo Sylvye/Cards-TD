@@ -10,7 +10,6 @@ public abstract class Turret : Tower
     public float spread = 10;
     public int baseDamageBoost = 0;
     public int pierceBoost = 0;
-    public float slowEffectMultiplier = 1;
     public float explosionRadiusBoost = 0;
     public float projectileSpeedMultiplier = 1;
     public GameObject projectile;
