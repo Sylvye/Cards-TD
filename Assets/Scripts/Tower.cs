@@ -4,9 +4,14 @@ using UnityEngine;
 
 public abstract class Tower : MonoBehaviour
 {
-    public float tier = 1;
+    public int tier = 1;
     public float damageMultiplier;
     public float range;
+
+    public virtual float GetRange(int t)
+    {
+        return range;
+    }
 
     private void OnMouseEnter()
     {

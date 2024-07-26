@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Card : MonoBehaviour
@@ -13,7 +14,7 @@ public abstract class Card : MonoBehaviour
 
     public virtual GameObject OnPlay()
     {
-        GameObject obj = Instantiate(spawnable, transform.position, Quaternion.identity);
+        GameObject obj = Instantiate(spawnable, new Vector3(transform.position.x, transform.position.y, -7), Quaternion.identity);
         return obj;
     }
 
@@ -25,6 +26,10 @@ public abstract class Card : MonoBehaviour
             transform.localScale = Vector3.one * 0.5f;
             SetHandPos();
             Main.hitboxReticle_.transform.localScale = 2 * radius * Vector3.one;
+            if (spawnable.TryGetComponent(out Tower t))
+            {
+                Main.towerRangeReticle_.transform.localScale = t.GetRange(tier) * 2 * Vector3.one + Vector3.forward * -6;
+            }
         }
     }
 
@@ -32,13 +37,18 @@ public abstract class Card : MonoBehaviour
     {
         selected = false;
         Main.hitboxReticle_.transform.position = new Vector3(2, 10, 0);
+        if (spawnable.TryGetComponent(out Tower _))
+        {
+            Main.towerRangeReticle_.transform.position = new Vector3(4, 10, 0);
+            Main.towerRangeReticle_.transform.localScale = Vector2.one;
+        }
         if (Main.mode == 1)
         {
             if (transform.position.y > -2.5 && Physics2D.OverlapCircle(transform.position, radius, Main.placementLayerMask_) == null)
             {
                 GameObject obj = OnPlay();
-                if (obj != null && obj.TryGetComponent(out Tower t))
-                    t.tier = tier;
+                if (obj != null && obj.TryGetComponent(out Tower tower))
+                    tower.tier = tier;
                 Hand.main.cards.RemoveAt(indexInHand);
                 if (Hand.main.cards.Count == 0)
                 {
@@ -69,10 +79,12 @@ public abstract class Card : MonoBehaviour
             Vector3 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector3(target.x, target.y, -7);
             Main.hitboxReticle_.transform.position = new Vector3(target.x, target.y, -4);
+            if (spawnable.TryGetComponent(out Tower _))
+                Main.towerRangeReticle_.transform.position = new Vector3(target.x, target.y, -4);
             if (Physics2D.OverlapCircle(transform.position, radius, Main.placementLayerMask_) == null)
                 Main.hitboxReticle_.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
             else
-                Main.hitboxReticle_.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.5f); 
+                Main.hitboxReticle_.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.5f);
         }
     }
 

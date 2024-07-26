@@ -26,4 +26,9 @@ public class RailgunTurret : Turret
             baseDamageBoost += 4;
         }
     }
+
+    public override float GetRange(int t)
+    {
+        return t >= 3 ? range + 2 : range;
+    }
 }

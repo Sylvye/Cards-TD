@@ -25,4 +25,9 @@ public class AssaultTurret : Turret
             explosionRadiusBoost += 0.25f;
         }
     }
+
+    public override float GetRange(int t)
+    {
+        return t >= 1 ? range + 1 : range;
+    }
 }

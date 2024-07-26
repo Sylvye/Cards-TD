@@ -106,4 +106,9 @@ public class TaserTurret : Tower
             range += 3;
         }
     }
+
+    public override float GetRange(int t)
+    {
+        return t >= 5 ? range + 3 : range;
+    }
 }

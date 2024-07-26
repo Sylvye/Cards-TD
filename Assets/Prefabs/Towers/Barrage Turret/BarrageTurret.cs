@@ -24,4 +24,9 @@ public class BarrageTurret : Turret
             attackSpeed *= 2f;
         }
     }
+
+    public override float GetRange(int t)
+    {
+        return t >= 5 ? range * 2 : range;
+    }
 }
