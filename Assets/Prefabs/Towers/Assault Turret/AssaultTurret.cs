@@ -28,6 +28,6 @@ public class AssaultTurret : Turret
 
     public override float GetRange(int t)
     {
-        return t >= 1 ? range + 1 : range;
+        return t >= 2 ? range + 1 : range;
     }
 }

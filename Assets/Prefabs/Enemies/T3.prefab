@@ -104,7 +104,7 @@ MonoBehaviour:
   maxhp: 3
   speed: 2
   parentKiller: {fileID: 0}
-  spawnOnDeath:
+  children:
   - {fileID: 3867853743162614571, guid: 062180e3fff32af47b4baff53aba7967, type: 3}
 --- !u!95 &-4032076880467101793
 Animator:

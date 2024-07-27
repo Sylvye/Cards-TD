@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     public int maxhp;
     public float speed;
     public Projectile parentKiller;
-    public GameObject[] spawnOnDeath;
+    public GameObject[] children;
 
     // Update is called once per frame
     void Update()
@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
             float spawnOffset = 0;
-            foreach (GameObject obj in spawnOnDeath)
+            foreach (GameObject obj in children)
             {
                 Vector3 spawnPos = transform.position;
                 if (obj.CompareTag("Enemy"))
@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
                     spawnOffset += 0.5f;
                 }
                 GameObject instance = Instantiate(obj, spawnPos, obj.transform.rotation);
-                instance.GetComponent<Enemy>().Damage(-hp);
+                instance.GetComponent<Enemy>().Damage(-hp / children.Length);
             }
             return true;
         }
@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour
             {
                 Destroy(gameObject);
                 float spawnOffset = 0;
-                foreach (GameObject obj in spawnOnDeath)
+                foreach (GameObject obj in children)
                 {
                     Vector3 spawnPos = transform.position;
                     if (obj.CompareTag("Enemy"))
@@ -63,14 +63,12 @@ public class Enemy : MonoBehaviour
                         spawnOffset += 0.5f;
                     }
                     GameObject instance = Instantiate(obj, spawnPos, obj.transform.rotation);
-                    if (instance.TryGetComponent(out Enemy child))
+                    Enemy child = instance.GetComponent<Enemy>();
+                    child.Damage(-hp / children.Length, reference);
+                    child.parentKiller = reference;
+                    if (speed == 0)
                     {
-                        child.Damage(-hp, reference);
-                        child.parentKiller = reference;
-                        if (speed == 0)
-                        {
-                            child.Stun(0.1f);
-                        }
+                        child.Stun(0.1f);
                     }
                 }
                 return true;
