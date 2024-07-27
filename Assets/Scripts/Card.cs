@@ -26,7 +26,7 @@ public abstract class Card : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (Main.mode == 1)
+        if (StageController.stageIndex == 1)
         {
             selected = true;
             transform.localScale = Vector3.one * 0.5f;
@@ -48,7 +48,7 @@ public abstract class Card : MonoBehaviour
             Main.towerRangeReticle_.transform.position = new Vector3(4, 10, 0);
             Main.towerRangeReticle_.transform.localScale = Vector2.one;
         }
-        if (Main.mode == 1)
+        if (StageController.stageIndex == 1)
         {
             if (transform.position.y > -2.5 && Physics2D.OverlapCircle(transform.position, radius, Main.placementLayerMask_) == null)
             {
@@ -80,7 +80,7 @@ public abstract class Card : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (selected && Main.mode == 1)
+        if (selected && StageController.stageIndex == 1)
         {
             Vector3 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector3(target.x, target.y, -7);

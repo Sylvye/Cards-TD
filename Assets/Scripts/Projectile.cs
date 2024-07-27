@@ -100,7 +100,6 @@ public class Projectile : MonoBehaviour
         
         if (hitSuccessfully)
         {
-            pierce++;
             homingSpeed = 0;
             if (deathFX != null) // spawns FX
             {
@@ -119,6 +118,10 @@ public class Projectile : MonoBehaviour
                     }
                 }
             }
+        }
+        else
+        {
+            pierce++;
         }
     }
 

@@ -52,9 +52,9 @@ public class Spawner : MonoBehaviour
             }
         }
 
-        if (Main.mode == 1 && complete && spawnedEnemies.Count == 0)
+        if (StageController.stageIndex == 1 && complete && spawnedEnemies.Count == 0)
         {
-            Main.SwitchStage("Map");
+            StageController.SwitchStage("Map");
         }
     }
 
