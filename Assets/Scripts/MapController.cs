@@ -149,18 +149,21 @@ public class MapController : MonoBehaviour
                         n.spriteLight = nodeShopLight;
                         n.spriteDark = nodeShopDark;
                         n.SetSprite(nodeShopDark);
+                        n.displayName = "Shop";
                         n.type = "Shop";
                         break;
                     case 1:
                         n.spriteLight = nodeUpgradeLight;
                         n.spriteDark = nodeUpgradeDark;
                         n.SetSprite(nodeUpgradeDark);
+                        n.displayName = "Upgrade";
                         n.type = "Upgrade";
                         break;
                     case 2:
                         n.spriteLight = nodeAugmentLight;
                         n.spriteDark = nodeAugmentDark;
                         n.SetSprite(nodeAugmentDark);
+                        n.displayName = "Augment";
                         n.type = "Augment";
                         break;
                     default:
@@ -169,6 +172,7 @@ public class MapController : MonoBehaviour
                             n.spriteLight = nodeBattleLight;
                             n.spriteDark = nodeBattleDark;
                             n.SetSprite(nodeBattleDark);
+                            n.displayName = "Defense";
                             n.type = "Defense";
                             break;
                         }
@@ -177,7 +181,8 @@ public class MapController : MonoBehaviour
                             n.spriteLight = nodeMinibossLight;
                             n.spriteDark = nodeMinibossDark;
                             n.SetSprite(nodeMinibossDark);
-                            n.type = "Miniboss";
+                            n.displayName = "Miniboss";
+                            n.type = "Defense";
                             break;
                         }
                 }

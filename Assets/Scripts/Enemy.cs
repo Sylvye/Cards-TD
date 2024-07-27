@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
         {
             Main.Damage(hp);
             Destroy(gameObject);
+            Spawner.spawnedEnemies.Remove(gameObject);
         }
     }
 
@@ -28,6 +29,7 @@ public class Enemy : MonoBehaviour
         if (hp <= 0)
         {
             Destroy(gameObject);
+            Spawner.spawnedEnemies.Remove(gameObject);
             float spawnOffset = 0;
             foreach (GameObject obj in children)
             {
@@ -53,6 +55,7 @@ public class Enemy : MonoBehaviour
             if (hp <= 0)
             {
                 Destroy(gameObject);
+                Spawner.spawnedEnemies.Remove(gameObject);
                 float spawnOffset = 0;
                 foreach (GameObject obj in children)
                 {

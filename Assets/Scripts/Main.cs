@@ -31,7 +31,7 @@ public class Main : MonoBehaviour
     public static LayerMask enemyLayerMask_;
     public LayerMask enemyLayerMask;
 
-    private static Vector3 destination = new(0, 0, -10);
+    private static Vector3 destination = new(0, -8, -10);
 
     private static Main main;
 
@@ -47,6 +47,7 @@ public class Main : MonoBehaviour
         hand.Deal();
         hand.DisplayCards();
         mapLength_ = mapLength;
+        StartCoroutine(SetupMap());
     }
 
     public static void Damage(int amount)
@@ -61,11 +62,6 @@ public class Main : MonoBehaviour
 
     void Update() 
     {
-        if (GameObject.FindWithTag("Enemy") == null && Spawner.main.complete && mode == 0)
-        {
-            SwitchStage("Map");
-        }
-
         // testing purposes
         if (Input.GetKeyUp(KeyCode.Alpha1))
             Spawner.main.Send(1);
@@ -84,8 +80,6 @@ public class Main : MonoBehaviour
             Camera.main.transform.position = destination;
     }
 
-    // 0 is battle
-    // 1 is deckbuilding
     public static void SwitchStage(string name)
     {
         switch (name)
@@ -93,8 +87,6 @@ public class Main : MonoBehaviour
             case "Map":
                 destination = new Vector3(0, -8, -10);
                 mode = 0;
-                if (MapController.currentNode == null)
-                    MapController.GenerateMap(mapLength_);
                 break;
             case "Defense":
                 destination = new Vector3(0, 0, -10);
@@ -107,16 +99,22 @@ public class Main : MonoBehaviour
                 ShopController.main.SetupOptions();
                 break;
             case "Augment":
-                destination = new Vector3(0, -8, -10);
+                destination = new Vector3(-25, -8, -10);
                 mode = 3;
                 break;
             case "Upgrade":
-                destination = new Vector3(0, -8, -10);
+                destination = new Vector3(25, -8, -10);
                 mode = 4;
                 break;
             default:
                 break;
         }
         
+    }
+
+    IEnumerator SetupMap()
+    {
+        yield return null;
+        MapController.GenerateMap(mapLength_);
     }
 }

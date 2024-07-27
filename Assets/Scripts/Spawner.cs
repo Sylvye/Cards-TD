@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class Spawner : MonoBehaviour
 {
     public static Spawner main;
+    public static List<GameObject> spawnedEnemies = new List<GameObject>();
     public List<GameObject> enemies;
     public List<GameObject> wave;
     public float density = 1;
@@ -34,7 +35,7 @@ public class Spawner : MonoBehaviour
                     if (wave[0] != null)
                     {
                         cooldown = 1 / density;
-                        Instantiate(wave[0], transform.position, wave[0].transform.rotation);
+                        Spawn(wave[0], transform.position, wave[0].transform.rotation);
                         wave.RemoveAt(0);
                     }
                     else
@@ -50,10 +51,22 @@ public class Spawner : MonoBehaviour
                 cooldown = 0;
             }
         }
+
+        if (Main.mode == 1 && complete && spawnedEnemies.Count == 0)
+        {
+            Main.SwitchStage("Map");
+        }
     }
 
     public void Send(int tier)
     {
-        Instantiate(enemies[tier - 1], transform.position, enemies[tier - 1].transform.rotation);
+        Spawn(enemies[tier - 1], transform.position, enemies[tier - 1].transform.rotation);
+    }
+
+    public GameObject Spawn(GameObject obj, Vector3 pos, Quaternion rot)
+    {
+        GameObject o = Instantiate(obj, pos, rot);
+        spawnedEnemies.Add(o);
+        return o;
     }
 }
