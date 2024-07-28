@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 7631322497954940115}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.5, y: -4, z: -7}
+  m_LocalPosition: {x: -7.5, y: -4, z: -7}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -146,5 +146,5 @@ MonoBehaviour:
   spawnable: {fileID: 5304065507062134350, guid: 831fcc7542379f34caea02f4979fdd26, type: 3}
   towerIndex: 2
   tier: 1
-  indexInHand: -1
+  indexInHand: 1
   radius: 0.5

@@ -33,7 +33,7 @@ public abstract class Button : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (active)
+        if (active && spriteDown != null)
         {
             GetComponent<SpriteRenderer>().sprite = spriteDown;
         }
@@ -43,7 +43,8 @@ public abstract class Button : MonoBehaviour
     {
         if (active)
         {
-            GetComponent<SpriteRenderer>().sprite = spriteUp;
+            if (spriteUp != null)
+                GetComponent<SpriteRenderer>().sprite = spriteUp;
             Action();
         }
     }

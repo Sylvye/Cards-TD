@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1265815099439906272}
   - component: {fileID: 2097830135294878065}
   m_Layer: 11
-  m_Name: Dummy Card Option
+  m_Name: Shop Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,11 +98,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a86376a3452dc647a113d12f4e3a1ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteUp: {fileID: 0}
+  spriteDown: {fileID: 0}
+  active: 1
   card: {fileID: 0}
   cardMask:
     serializedVersion: 2
     m_Bits: 2048
-  active: 1
 --- !u!61 &2097830135294878065
 BoxCollider2D:
   m_ObjectHideFlags: 0

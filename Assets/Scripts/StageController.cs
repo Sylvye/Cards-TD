@@ -6,20 +6,25 @@ using UnityEngine;
 public class StageController : MonoBehaviour
 {
     public static int stageIndex = 0;
-    private static Vector3 destination = new(0, -8, -10);
+    private static Vector3 destination = new(0, -10, -10);
     [Header("Shop")]
     public CardProbs cardProbs;
     public GameObject cardOption;
+    public float[] rarityWeights = { 78, 12, 6, 3, 1 };
     [Header("Upgrade")]
     public int test2 = 10;
     [Header("Augment")]
     public int test3 = 10;
 
+
+    public static float[] rarityWeights_;
     private static CardProbs cardProbs_;
     private static GameObject cardOption_;
+    private static GameObject[] shopCards = new GameObject[3];
 
     private void Start()
     {
+        rarityWeights_ = new float[3];
         cardProbs_ = cardProbs;
         cardOption_ = cardOption;
     }
@@ -33,10 +38,19 @@ public class StageController : MonoBehaviour
 
     public static void SwitchStage(string name)
     {
+        foreach (GameObject obj in shopCards) // clears card options on scene change
+        {
+            if (obj != null)
+            {
+                Destroy(obj);
+                Destroy(obj.GetComponent<CardOption>().card.gameObject);
+            }
+        }
+
         switch (name)
         {
             case "Map":
-                destination = new Vector3(0, -8, -10);
+                destination = new Vector3(0, -10, -10);
                 stageIndex = 0;
                 break;
             case "Defense":
@@ -45,16 +59,16 @@ public class StageController : MonoBehaviour
                 Spawner.main.complete = false;
                 break;
             case "Shop":
-                destination = new Vector3(0, -8, -10);
+                destination = new Vector3(0, -20, -10);
                 stageIndex = 2;
                 SetupShop();
                 break;
             case "Augment":
-                destination = new Vector3(-25, -8, -10);
+                destination = new Vector3(-25, -10, -10);
                 stageIndex = 3;
                 break;
             case "Upgrade":
-                destination = new Vector3(25, -8, -10);
+                destination = new Vector3(25, -10, -10);
                 stageIndex = 4;
                 break;
             default:
@@ -65,10 +79,12 @@ public class StageController : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            GameObject Card = Instantiate(cardOption_, new Vector2(-5 + i * 5, -9), Quaternion.identity);
-            CardOption cardOption = Card.GetComponent<CardOption>();
-            cardOption.card = cardProbs_.GetRandom();
-            Card.GetComponent<SpriteRenderer>().sprite = cardOption.card.gameObject.GetComponent<SpriteRenderer>().sprite;
+            GameObject cardOptionObj = Instantiate(cardOption_, new Vector2(-5 + i * 5, -20), Quaternion.identity);
+            CardOption co = cardOptionObj.GetComponent<CardOption>();
+            co.card = Instantiate(cardProbs_.GetRandom(), new Vector2(0, 10), Quaternion.identity);
+            co.card.tier = WeightedRandom.SelectWeightedIndex(new List<float>(rarityWeights_)) + 1;
+            cardOptionObj.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("CardPack")[co.card.towerIndex * 5 + co.card.tier - 1];
+            shopCards[i] = cardOptionObj;
         }
     }
 

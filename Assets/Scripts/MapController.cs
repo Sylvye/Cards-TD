@@ -97,18 +97,18 @@ public class MapController : MonoBehaviour
         nodes = new GameObject[sum];
         for (int i=0; i<sum; i++)
         {
-            nodes[i] = Instantiate(nodeObj_, new Vector3(-15, -9, 0), Quaternion.identity);
+            nodes[i] = Instantiate(nodeObj_, new Vector3(-15, -10, 0), Quaternion.identity);
             nodes[i].transform.SetParent(main.transform);
             MapNode n = nodes[i].GetComponent<MapNode>();
             n.index = i;
         }
 
         // positions the nodes
-        Vector3 pos = new(-10, -9, 0);
+        Vector3 pos = new(-10, -10, 0);
         int index = 0;
         for (int i=0; i < length-1; i++)
         {
-            pos.y = -8.5f - lengths[i] / 2f;
+            pos.y = -9.5f - lengths[i] / 2f;
             for (int j=0; j < lengths[i]; j++)
             {
                 nodes[index].GetComponent<MapNode>().column = i;
@@ -119,12 +119,13 @@ public class MapController : MonoBehaviour
             pos.x += 20f/(length-1);
         }
         MapNode bossNode = nodes[index].GetComponent<MapNode>();
-        nodes[index].transform.position = new Vector3(10, -9, 0);
+        nodes[index].transform.position = new Vector3(10, -10, 0);
         bossNode.column = length-1;
         bossNode.SetSprite(nodeBossDark);
         bossNode.spriteLight = nodeBossLight;
         bossNode.spriteDark = nodeBossDark;
-        bossNode.type = "Stage Boss";
+        bossNode.type = "Boss";
+        bossNode.displayName = "Stage Boss";
 
         // assigns nodes their possible exits & sprites
         for (int i=0; i<nodes.Length-1; i++)
@@ -138,6 +139,8 @@ public class MapController : MonoBehaviour
                 n.spriteLight = nodeBattleLight;
                 n.spriteDark = nodeBattleDark;
                 n.SetSprite(nodeBattleDark);
+                n.displayName = "Defense";
+                n.type = "Defense";
             }
             else
             {
@@ -209,6 +212,7 @@ public class MapController : MonoBehaviour
         startNode.spriteLight = nodeCurrentLight;
         startNode.spriteDark = nodeCurrentDark;
         startNode.type = "Start";
+        startNode.displayName = "Start";
 
         currentNode = startNode;
     }
