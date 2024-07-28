@@ -13,6 +13,7 @@ public class Projectile : MonoBehaviour
     public int pierce = 0;
     public float explosionRadius = 0;
     public bool combo = false;
+    public bool curse = false;
     public bool randomFX = true;
     public float homingSpeed = 0;
     public GameObject[] deathFX;
