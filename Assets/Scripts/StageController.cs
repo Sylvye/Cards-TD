@@ -14,7 +14,8 @@ public class StageController : MonoBehaviour
     [Header("Upgrade")]
     public int test2 = 10;
     [Header("Augment")]
-    public int test3 = 10;
+    public GameObject item;
+
 
 
     public static float[] rarityWeights_;
@@ -95,6 +96,9 @@ public class StageController : MonoBehaviour
 
     public static void SetupAugment()
     {
-
+        for (int i=0; i<Deck.cards.Count; i++)
+        {
+            // spawn cards into the thing
+        }
     }
 }
