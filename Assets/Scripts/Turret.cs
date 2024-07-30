@@ -7,10 +7,8 @@ using static UnityEngine.GraphicsBuffer;
 
 public abstract class Turret : Tower
 {
-    public float attackSpeed;
     public int projectiles = 1;
     public float spread = 10;
-    public int baseDamageBoost = 0;
     public int pierceBoost = 0;
     public float explosionRadiusBoost = 0;
     public float projectileSpeedMultiplier = 1;
@@ -59,7 +57,7 @@ public abstract class Turret : Tower
         Projectile p = projectile.GetComponent<Projectile>();
         p.angle = AngleHelper.VectorToDegrees(dir.normalized);
         p.speed *= projectileSpeedMultiplier;
-        p.damage += baseDamageBoost;
+        p.damage += damage;
         p.damage = (int)(p.damage * damageMultiplier);
         p.pierce += pierceBoost;
         p.explosionRadius += explosionRadiusBoost;

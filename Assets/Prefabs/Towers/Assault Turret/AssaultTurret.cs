@@ -13,7 +13,7 @@ public class AssaultTurret : Turret
         }
         if (tier >= 3)
         {
-            baseDamageBoost++;
+            damage++;
         }
         if (tier >= 4)
         {
@@ -21,7 +21,7 @@ public class AssaultTurret : Turret
         }
         if (tier >= 5)
         {
-            baseDamageBoost++;
+            damage++;
             explosionRadiusBoost += 0.25f;
         }
     }

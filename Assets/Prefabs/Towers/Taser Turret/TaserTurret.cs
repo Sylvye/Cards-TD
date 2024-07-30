@@ -8,8 +8,6 @@ using static UnityEngine.GraphicsBuffer;
 public class TaserTurret : Tower
 {
     public GameObject laser;
-    public int damage;
-    public float attackSpeed;
     public int projectiles = 1;
     public float lastShot = -999;
     public GameObject FX;

@@ -11,7 +11,7 @@ public class CardOption : Button
 
     public override void Action()
     {
-        Deck.Add(card);
+        Cards.Add(card);
         StageController.SwitchStage("Map");
     }
 }

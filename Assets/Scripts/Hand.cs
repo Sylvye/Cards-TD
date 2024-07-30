@@ -23,12 +23,12 @@ public class Hand : MonoBehaviour
                 Card c = cards[cards.Count-1];
                 cards.RemoveAt(cards.Count-1);
                 if (c != null)
-                    Deck.Add(c);
+                    Cards.Add(c);
             }
         }
         for (int i=0; i<5; i++)
         {
-            Card c = Deck.Draw();
+            Card c = Cards.Draw();
             cards.Add(c);
             c.indexInHand = i;
         }

@@ -16,7 +16,7 @@ public class BarrageTurret : Turret
         }
         if (tier >= 4)
         {
-            baseDamageBoost++;
+            damage++;
         }
         if (tier >= 5)
         {

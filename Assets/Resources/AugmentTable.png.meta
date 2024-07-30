@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6123bd647aaae614a99807027ad65bbe
+guid: ab702954f22978a40961e1d1668e6940
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 19
+  spritePixelsToUnits: 20
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AugmentSlot_0
+      name: AugmentTable_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 34
-        width: 27
-        height: 34
+        y: 110
+        width: 61
+        height: 55
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 05b5486fdc4f9c84788dd3c1ee56e6ae
-      internalID: -638818104
+      spriteID: f4c759f0953ae8d4485b4e8d28d76669
+      internalID: 722930460
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AugmentSlot_1
+      name: AugmentTable_1
       rect:
         serializedVersion: 2
-        x: 27
-        y: 34
-        width: 27
-        height: 34
+        x: 0
+        y: 55
+        width: 61
+        height: 55
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cdc9088ccdbee584ea0e8bc3241c91cc
-      internalID: -1292258748
+      spriteID: 03988ae13ea81e149be360cd2cc25d7a
+      internalID: 74888756
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AugmentSlot_2
+      name: AugmentTable_2
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 27
-        height: 34
+        width: 61
+        height: 55
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,29 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b1ce4598a07be744b16aee7a0b85e40
-      internalID: -1488115882
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AugmentSlot_3
-      rect:
-        serializedVersion: 2
-        x: 27
-        y: 0
-        width: 27
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8ea6822fb94bcb743ae245210a3ca5fd
-      internalID: -832738908
+      spriteID: b7fdddaae9b85014ba1aaee948e88097
+      internalID: 1157377354
       vertices: []
       indices: 
       edges: []
@@ -204,10 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      AugmentSlot_0: -638818104
-      AugmentSlot_1: -1292258748
-      AugmentSlot_2: -1488115882
-      AugmentSlot_3: -832738908
+      AugmentTable_0: 722930460
+      AugmentTable_1: 74888756
+      AugmentTable_2: 1157377354
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

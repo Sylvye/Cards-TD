@@ -5,6 +5,8 @@ using UnityEngine;
 public abstract class Tower : MonoBehaviour
 {
     public int tier = 1;
+    public int damage;
+    public float attackSpeed;
     public float damageMultiplier;
     public float range;
 

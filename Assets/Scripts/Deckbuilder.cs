@@ -9,7 +9,7 @@ public class Deckbuilder : MonoBehaviour
     {
         foreach (GameObject card in cards)
         {
-            Deck.Add(card.GetComponent<Card>());
+            Cards.Add(card.GetComponent<Card>());
         }
     }
 }

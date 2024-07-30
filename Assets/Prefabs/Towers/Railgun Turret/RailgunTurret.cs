@@ -18,12 +18,12 @@ public class RailgunTurret : Turret
         if (tier >= 4)
         {
             projectileSpeedMultiplier *= 2f;
-            baseDamageBoost += 3;
+            damage += 3;
         }
         if (tier >= 5)
         {
             pierceBoost += 7;
-            baseDamageBoost += 4;
+            damage += 4;
         }
     }
 
