@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR;
 
 public class StageController : MonoBehaviour
 {
@@ -60,6 +61,8 @@ public class StageController : MonoBehaviour
                 stageIndex = 0;
                 break;
             case "Defense":
+                Hand.main.Deal();
+                Hand.main.DisplayCards();
                 destination = new Vector3(0, 0, -10);
                 stageIndex = 1;
                 Spawner.main.complete = false;
@@ -102,14 +105,16 @@ public class StageController : MonoBehaviour
 
     public static void SetupAugment()
     {
-        int vertOffset = -30;
+        int vertOffset = 0;
         for (int i=0; i<Cards.deck.Count; i++)
         {
             if (i % 5 == 0)
-                vertOffset += 30;
+            {
+                vertOffset += 40;
+            }
             GameObject itemObj = Instantiate(item_, Vector3.zero, Quaternion.identity, content_.transform);
             itemObj.GetComponent<Image>().sprite = Cards.deck[i].GetComponent<SpriteRenderer>().sprite;
-            itemObj.transform.localPosition = new Vector2(-100 + i * 50 + 150, 60 - vertOffset-100);
+            itemObj.transform.localPosition = new Vector2(i%5 * 50 + 50, 0 - vertOffset);
         }
     }
 }

@@ -1310,7 +1310,6 @@ MonoBehaviour:
   lives: 100
   mapLength: 20
   DB: {fileID: 1505739289}
-  hand: {fileID: 1612709407}
   hitboxReticle: {fileID: 1783182364}
   towerRangeReticle: {fileID: 2065561394}
   placementLayerMask:

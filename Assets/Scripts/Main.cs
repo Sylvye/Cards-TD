@@ -14,7 +14,6 @@ public class Main : MonoBehaviour
     public static int mapLength_;
 
     public Deckbuilder DB;
-    public Hand hand;
 
     public static GameObject hitboxReticle_;
     public GameObject hitboxReticle;
@@ -38,11 +37,9 @@ public class Main : MonoBehaviour
         hitboxReticle_ = hitboxReticle;
         towerRangeReticle_ = towerRangeReticle;
         enemyLayerMask_ = enemyLayerMask;
-        DB.InitializeDeck();
-        hand.Deal();
-        hand.DisplayCards();
         mapLength_ = mapLength;
         StartCoroutine(SetupMap());
+        DB.InitializeDeck();
     }
 
     public static void Damage(int amount)

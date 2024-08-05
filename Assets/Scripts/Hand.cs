@@ -34,6 +34,16 @@ public class Hand : MonoBehaviour
         }
     }
 
+    public void ClearHand()
+    {
+        foreach (Card c in cards)
+        {
+            Cards.deck.Add(c);
+            cards.Remove(c);
+            c.transform.position = new Vector3(0, 0, -7);
+        }
+    }
+
     public void DisplayCards()
     {
         int i = 0;
