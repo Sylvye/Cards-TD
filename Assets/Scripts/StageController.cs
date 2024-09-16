@@ -21,19 +21,14 @@ public class StageController : MonoBehaviour
     public int test2 = 10;
     [Header("Augment")]
     public GameObject item;
-    private GameObject content;
     public static GameObject item_;
-    private static GameObject content_;
 
     private void Start()
     {
         rarityWeights_ = new float[3];
         cardProbs_ = cardProbs;
         cardOption_ = cardOption;
-        GameObject scrollView = GameObject.Find("Augment Scroll View");
-        content = scrollView.transform.GetChild(0).GetChild(0).gameObject;
         item_ = item;
-        content_ = content;
     }
     private void Update()
     {
@@ -112,7 +107,7 @@ public class StageController : MonoBehaviour
             {
                 vertOffset += 40;
             }
-            GameObject itemObj = Instantiate(item_, Vector3.zero, Quaternion.identity, content_.transform);
+            GameObject itemObj = Instantiate(item_, Vector3.zero, Quaternion.identity);
             itemObj.GetComponent<Image>().sprite = Cards.deck[i].GetComponent<SpriteRenderer>().sprite;
             itemObj.transform.localPosition = new Vector2(i%5 * 50 + 50, 0 - vertOffset);
         }
