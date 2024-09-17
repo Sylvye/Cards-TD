@@ -20,15 +20,15 @@ public class StageController : MonoBehaviour
     [Header("Upgrade")]
     public int test2 = 10;
     [Header("Augment")]
-    public GameObject item;
-    public static GameObject item_;
+    public GameObject cardItem;
+    public static GameObject cardItem_;
 
     private void Start()
     {
         rarityWeights_ = new float[3];
         cardProbs_ = cardProbs;
         cardOption_ = cardOption;
-        item_ = item;
+        cardItem_ = cardItem;
     }
     private void Update()
     {
@@ -100,16 +100,23 @@ public class StageController : MonoBehaviour
 
     public static void SetupAugment()
     {
-        int vertOffset = 0;
-        for (int i=0; i<Cards.deck.Count; i++)
+        ScrollArea deck = GameObject.Find("Augment Deck Scroll Area").GetComponent<ScrollArea>();
+        ScrollArea augmentDeck = GameObject.Find("Augment Scroll Area").GetComponent<ScrollArea>();
+        GameObject cardDestination = GameObject.Find("Card Slot");
+        GameObject augmentDestination = GameObject.Find("Augment Slot");
+        for (int i=0; i<Cards.deck.Count; i++) // places cards in deck scroll area
         {
-            if (i % 5 == 0)
-            {
-                vertOffset += 40;
-            }
-            GameObject itemObj = Instantiate(item_, Vector3.zero, Quaternion.identity);
-            itemObj.GetComponent<Image>().sprite = Cards.deck[i].GetComponent<SpriteRenderer>().sprite;
-            itemObj.transform.localPosition = new Vector2(i%5 * 50 + 50, 0 - vertOffset);
+            GameObject itemObj = Instantiate(cardItem_, Vector3.zero, Quaternion.identity);
+            itemObj.GetComponent<SpriteRenderer>().sprite = Cards.deck[i].GetComponent<SpriteRenderer>().sprite;
+            deck.AddToInventory(itemObj);
+            itemObj.GetComponent<ScrollAreaItem>().destinations.Add(cardDestination);
+        }
+        for (int i = 0; i < Cards.augments.Count; i++) // places augments in augment scroll area
+        {
+            GameObject itemObj = Instantiate(cardItem_, Vector3.zero, Quaternion.identity);
+            itemObj.GetComponent<SpriteRenderer>().sprite = Cards.augments[i].GetComponent<SpriteRenderer>().sprite;
+            augmentDeck.AddToInventory(itemObj);
+            itemObj.GetComponent<ScrollAreaItem>().destinations.Add(augmentDestination);
         }
     }
 }
