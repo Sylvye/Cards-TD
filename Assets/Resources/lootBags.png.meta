@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b9187c9fadf252b4593b33ca8ceafd09
+guid: 0e9a472bbb761ef4fb9711cadd3b9f21
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 20
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StartButton_0
+      name: lootBags_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 16
-        width: 31
-        height: 16
+        y: 20
+        width: 11
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 008baca26cd736149954a65a4f1209b8
-      internalID: -1760483617
+      spriteID: 24f388b7006373b41bfeddb410c136bb
+      internalID: -1822924986
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StartButton_1
+      name: lootBags_1
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 31
-        height: 16
+        y: 10
+        width: 11
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,8 +145,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 186ea15f802891046a8749ea2cf41f13
-      internalID: 1122195833
+      spriteID: a152ea00343a9944bba6c030a3e9c758
+      internalID: -641639276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lootBags_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b16e71b3c30bbd44948a5959197944e
+      internalID: -2136088363
       vertices: []
       indices: 
       edges: []
@@ -162,8 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      StartButton_0: -1760483617
-      StartButton_1: 1122195833
+      lootBags_0: -1822924986
+      lootBags_1: -641639276
+      lootBags_2: -2136088363
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
