@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destinations: []
+  snapDist: 1
 --- !u!61 &1804055935688440616
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -51,11 +52,11 @@ public class Spawner : MonoBehaviour
                 cooldown = 0;
             }
         }
+    }
 
-        if (StageController.stageIndex == 1 && complete && spawnedEnemies.Count == 0)
-        {
-            StageController.SwitchStage("Map");
-        }
+    public bool IsStageComplete()
+    {
+        return StageController.stageIndex == 1 && complete && spawnedEnemies.Count == 0;
     }
 
     public void Send(int tier)

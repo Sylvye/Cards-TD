@@ -106,6 +106,16 @@ MonoBehaviour:
   parentKiller: {fileID: 0}
   children:
   - {fileID: 3867853743162614571, guid: 062180e3fff32af47b4baff53aba7967, type: 3}
+  itemDummy: {fileID: 5356345781520377033, guid: 07ffcdd95c0698e4384e7346c30342a0, type: 3}
+  deathDropPulls: 1
+  drops:
+  - {fileID: 0}
+  - {fileID: 503293304816352400, guid: 3634da6ce461d454bb5150b5b3eb2b0d, type: 3}
+  - {fileID: 2534792069798157300, guid: c8773390d5002e34eb4133e50aef9ae1, type: 3}
+  dropWeights:
+  - 75
+  - 20
+  - 5
 --- !u!95 &-4032076880467101793
 Animator:
   serializedVersion: 5
@@ -139,9 +149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88de207af10b2624a9d0bcd5c0bf1adb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path: EnemyAnimation
-  killAfterComplete: 0
-  randomFirstFrame: 1
   randomRotation: []
 --- !u!61 &8341023729203104490
 BoxCollider2D:

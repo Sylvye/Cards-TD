@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 public class ScrollAreaItem : MonoBehaviour
 {
     public List<GameObject> destinations = new List<GameObject>();
+    public float snapDist = 0.5f;
     Vector2 lerpPos;
     Vector2 ogScale;
     Vector2 scale;
@@ -63,7 +64,7 @@ public class ScrollAreaItem : MonoBehaviour
     {
         transform.localScale = scale;
 
-        GameObject closest = GetViableDestination(0.5f);
+        GameObject closest = GetViableDestination(snapDist);
         if (closest != null)
         {
             transform.parent = closest.transform;
@@ -100,7 +101,7 @@ public class ScrollAreaItem : MonoBehaviour
         for (int i=0; i<destinations.Count; i++)
         {
             GameObject o = destinations[i];
-            float d = Vector2.Distance(o.transform.position, transform.position);
+            float d = Vector2.Distance(o.transform.position, lerpPos);
             if (d < dist && o.transform.childCount == 0)
             {
                 closest = o;

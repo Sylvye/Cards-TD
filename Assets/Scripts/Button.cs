@@ -4,9 +4,10 @@ using UnityEngine;
 
 public abstract class Button : MonoBehaviour
 {
-    private Vector3 startScale;
+    public Vector3 startScale;
     public Sprite spriteUp;
     public Sprite spriteDown;
+    public float scaleAmount = 0.9f;
     public bool active = true;
 
     // Start is called before the first frame update
@@ -15,11 +16,11 @@ public abstract class Button : MonoBehaviour
         startScale = transform.localScale;
     }
 
-    private void OnMouseOver()
+    private void OnMouseEnter()
     {
         if (active)
         {
-            transform.localScale = startScale * 0.9f;
+            transform.localScale = startScale * scaleAmount;
         }
     }
 
@@ -51,6 +52,6 @@ public abstract class Button : MonoBehaviour
 
     public virtual void Action()
     {
-        Debug.Log("Clicked");
+        Debug.Log("Default button method :(");
     }
 }

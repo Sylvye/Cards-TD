@@ -29,4 +29,28 @@ public class WeightedRandom
 
         throw new Exception("Code should not reach this state");
     }
+
+    public static int SelectWeightedIndex(float[] weights)
+    {
+        if (weights.Length == 0) throw new ArgumentException("List is empty");
+
+        float weightSum = 0;
+
+        foreach (float weight in weights)
+        {
+            weightSum += weight;
+        }
+
+        float num = UnityEngine.Random.Range(0, weightSum);
+        for (int i = 0; i < weights.Length; i++)
+        {
+            if (num <= weights[i])
+            {
+                return i;
+            }
+            num -= weights[i];
+        }
+
+        throw new Exception("Code should not reach this state");
+    }
 }
