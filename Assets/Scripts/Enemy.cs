@@ -12,7 +12,6 @@ public class Enemy : MonoBehaviour
     public Projectile parentKiller;
     public GameObject[] children;
     [Header("Drops")]
-    public GameObject itemDummy;
     public int deathDropPulls;
     public List<GameObject> drops;
     public List<float> dropWeights;
@@ -39,10 +38,9 @@ public class Enemy : MonoBehaviour
             if (children.Length > 0)
             {
                 float spawnOffset = 0;
-                children[0].GetComponent<Enemy>().drops = drops;
-                foreach (GameObject obj in children)
+                for (int i = 0; i < children.Length; i++)
                 {
-                    obj.GetComponent<Enemy>().drops = new List<GameObject>();
+                    GameObject obj = children[i];
                     Vector3 spawnPos = transform.position;
                     if (obj.CompareTag("Enemy"))
                     {
@@ -50,7 +48,18 @@ public class Enemy : MonoBehaviour
                         spawnOffset += 0.5f;
                     }
                     GameObject instance = Instantiate(obj, spawnPos, obj.transform.rotation);
-                    instance.GetComponent<Enemy>().Damage(-hp / children.Length);
+                    Enemy child = instance.GetComponent<Enemy>();
+                    child.Damage(-hp / children.Length);
+                    if (i == 0)
+                    {
+                        child.drops = drops;
+                        child.dropWeights = dropWeights;
+                    }
+                    else
+                    {
+                        child.drops = new List<GameObject>();
+                        child.dropWeights = new List<float>();
+                    }
                 }
             }
             else
@@ -74,9 +83,9 @@ public class Enemy : MonoBehaviour
                 if (children.Length > 0)
                 {
                     float spawnOffset = 0;
-                    foreach (GameObject obj in children)
+                    for (int i=0; i<children.Length; i++)
                     {
-                        obj.GetComponent<Enemy>().drops = new List<GameObject>();
+                        GameObject obj = children[i];
                         Vector3 spawnPos = transform.position;
                         if (obj.CompareTag("Enemy"))
                         {
@@ -87,6 +96,16 @@ public class Enemy : MonoBehaviour
                         Enemy child = instance.GetComponent<Enemy>();
                         child.Damage(-hp / children.Length, reference);
                         child.parentKiller = reference;
+                        if (i == 0)
+                        {
+                            child.drops = drops;
+                            child.dropWeights = dropWeights;
+                        }
+                        else
+                        {
+                            child.drops = new List<GameObject>();
+                            child.dropWeights = new List<float>();
+                        }
                         if (speed == 0)
                         {
                             child.Stun(0.1f);
@@ -95,7 +114,7 @@ public class Enemy : MonoBehaviour
                 }
                 else
                 {
-                    PerformDeathDrops(deathDropPulls);
+                    PerformDeathDrops(deathDropPulls, AngleHelper.DegreesToVector(reference.angle));
                     return true;
                 }
             }
@@ -107,17 +126,34 @@ public class Enemy : MonoBehaviour
     {
         for (int i=0; i<pulls; i++)
         {
-            GameObject obj = Instantiate(itemDummy, transform.position, Quaternion.identity);
-            ItemDrop objID = itemDummy.GetComponent<ItemDrop>();
-            objID.rep = PullLoot();
-            itemDummy.GetComponent<SpriteRenderer>().sprite = objID.rep.GetComponent<SpriteRenderer>().sprite;
-            obj.GetComponent<Rigidbody2D>().velocity = AngleHelper.DegreesToVector(UnityEngine.Random.Range(0, 360)).normalized * 1.5f;
+            GameObject loot = PullLoot();
+            if (loot != null)
+            {
+                GameObject obj = Instantiate(loot, transform.position, Quaternion.identity);
+                ItemDrop objID = loot.GetComponent<ItemDrop>();
+                obj.GetComponent<Rigidbody2D>().velocity = AngleHelper.DegreesToVector(UnityEngine.Random.Range(0, 360)).normalized * UnityEngine.Random.Range(5, 11);
+            }
+        }
+    }
+
+    public void PerformDeathDrops(int pulls, Vector2 direction)
+    {
+        for (int i = 0; i < pulls; i++)
+        {
+            GameObject loot = PullLoot();
+            if (loot != null)
+            {
+                GameObject obj = Instantiate(loot, transform.position, Quaternion.identity);
+                ItemDrop objID = loot.GetComponent<ItemDrop>();
+                obj.GetComponent<Rigidbody2D>().velocity = direction.normalized * 10;
+            }
         }
     }
 
     // performs one pull from lootpool, returns object (null if nothing)
     public GameObject PullLoot()
     {
+        if (drops.Count == 0) return null;
         return drops[WeightedRandom.SelectWeightedIndex(dropWeights)];
     }
 

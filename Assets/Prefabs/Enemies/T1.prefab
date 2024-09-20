@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8338455407518369380}
   - component: {fileID: 3608488725132355754}
   - component: {fileID: -2601542057813028040}
-  - component: {fileID: 5628315971457667427}
   - component: {fileID: -5500212807460279529}
   m_Layer: 7
   m_Name: T1
@@ -105,14 +104,13 @@ MonoBehaviour:
   speed: 3
   parentKiller: {fileID: 0}
   children: []
-  itemDummy: {fileID: 5356345781520377033, guid: 07ffcdd95c0698e4384e7346c30342a0, type: 3}
   deathDropPulls: 1
   drops:
   - {fileID: 0}
   - {fileID: 503293304816352400, guid: 3634da6ce461d454bb5150b5b3eb2b0d, type: 3}
   dropWeights:
-  - 85
-  - 15
+  - 98
+  - 2
 --- !u!95 &-2601542057813028040
 Animator:
   serializedVersion: 5
@@ -134,19 +132,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5628315971457667427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3867853743162614571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88de207af10b2624a9d0bcd5c0bf1adb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  randomRotation: []
 --- !u!61 &-5500212807460279529
 BoxCollider2D:
   m_ObjectHideFlags: 0
