@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -7,11 +8,11 @@ public class ScrollAreaItem : MonoBehaviour
 {
     public List<GameObject> destinations = new List<GameObject>();
     public float snapDist = 0.5f;
-    Vector2 lerpPos;
+    public Vector2 lerpPos;
     Vector2 ogScale;
     Vector2 scale;
     SpriteRenderer sr;
-    Vector3 pos;
+    public Vector3 pos;
     Transform p;
     bool home = true;
 
@@ -29,16 +30,29 @@ public class ScrollAreaItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Vector2)transform.position != lerpPos)
+        Vector2 finalLerpPos = lerpPos;
+        if (home)
         {
-            transform.position = Vector3.Slerp((Vector2)transform.position, lerpPos, Time.deltaTime * 20) + Vector3.back*2;
-            if (Vector2.Distance(transform.position, lerpPos) < 0.02f)
+            finalLerpPos += Vector2.up * transform.GetComponentInParent<ScrollArea>().scrolledAmt;
+            finalLerpPos.x = pos.x;
+            sr.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+            Debug.Log(finalLerpPos.x);
+        }
+        if ((Vector2)transform.position != finalLerpPos)
+        {
+            Debug.Log(finalLerpPos.x);
+            if (home)
             {
-                transform.position = (Vector3)lerpPos + Vector3.back * 2;
-                if (home)
-                {
-                    sr.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
-                }
+                transform.position.y = Vector3.Slerp(transform.position.y, finalLerpPos.y, Time.deltaTime * 20) + Vector3.back * 2;
+            }
+            else
+            {
+                transform.position = Vector3.Slerp((Vector2)transform.position, finalLerpPos, Time.deltaTime * 20) + Vector3.back * 2;
+            }
+            //Debug.Log(transform.position.x +", "+ finalLerpPos.x);
+            if (Vector2.Distance(transform.position, finalLerpPos) < 0.02f)
+            {
+                transform.position = (Vector3)finalLerpPos + Vector3.back * 2;
             }
         }
     }
