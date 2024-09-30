@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -6,55 +7,65 @@ using UnityEngine.UIElements;
 
 public class ScrollAreaItem : MonoBehaviour
 {
+    public enum State
+    {
+        Home, Moving, Positioned, Returning
+    }
     public List<GameObject> destinations = new List<GameObject>();
     public float snapDist = 0.5f;
     public Vector2 lerpPos;
+    public Vector2 homePos;
+    public State s = State.Home;
+    Transform p;
     Vector2 ogScale;
     Vector2 scale;
     SpriteRenderer sr;
-    public Vector3 pos;
-    Transform p;
-    bool home = true;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
-        pos = transform.position;
         scale = transform.localScale;
         ogScale = scale;
         p = transform.parent;
         lerpPos = transform.position;
+        homePos = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 finalLerpPos = lerpPos;
-        if (home)
+        Vector3 pos;
+        switch (s)
         {
-            finalLerpPos += Vector2.up * transform.GetComponentInParent<ScrollArea>().scrolledAmt;
-            finalLerpPos.x = pos.x;
-            sr.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
-            Debug.Log(finalLerpPos.x);
+            case State.Home:
+                break;
+            case State.Moving:
+                pos = Vector3.Lerp(transform.position, lerpPos, Time.deltaTime * 50);
+                transform.position = new Vector3(pos.x, pos.y, -2);
+                break;
+            case State.Positioned:
+                break;
+            case State.Returning:
+                pos = Vector3.Lerp(transform.position, homePos, Time.deltaTime * 50);
+                transform.position = new Vector3(pos.x, pos.y, -2);
+                if (Vector2.Distance(transform.position, homePos) <= snapDist)
+                {
+                    transform.position = (Vector3)homePos + Vector3.back;
+                    transform.localScale = ogScale;
+                    transform.SetParent(p);
+                    if (TryGetComponent(out ScrollArea sa))
+                    {
+                        sa.ApplyEntryOffset(transform);
+                        homePos = transform.position;
+                    }
+                    s = State.Home;
+                    sr.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+                }
+                break;
         }
-        if ((Vector2)transform.position != finalLerpPos)
-        {
-            Debug.Log(finalLerpPos.x);
-            if (home)
-            {
-                transform.position.y = Vector3.Slerp(transform.position.y, finalLerpPos.y, Time.deltaTime * 20) + Vector3.back * 2;
-            }
-            else
-            {
-                transform.position = Vector3.Slerp((Vector2)transform.position, finalLerpPos, Time.deltaTime * 20) + Vector3.back * 2;
-            }
-            //Debug.Log(transform.position.x +", "+ finalLerpPos.x);
-            if (Vector2.Distance(transform.position, finalLerpPos) < 0.02f)
-            {
-                transform.position = (Vector3)finalLerpPos + Vector3.back * 2;
-            }
-        }
+
     }
 
     private void OnMouseEnter()
@@ -83,24 +94,27 @@ public class ScrollAreaItem : MonoBehaviour
         {
             transform.parent = closest.transform;
             transform.localScale = closest.transform.localScale;
-            lerpPos = closest.transform.position + Vector3.back;
+            transform.position = closest.transform.position + Vector3.back;
             scale = transform.localScale;
+            s = State.Positioned;
         }
         else
         {
-            lerpPos = pos;
             transform.parent = p;
             scale = ogScale;
             transform.localScale = scale;
-            home = true;
+            s = State.Returning;
         }
     }
 
     private void OnMouseDown()
     {
-        transform.parent = null;
-        home = false;
-        sr.maskInteraction = SpriteMaskInteraction.None;
+        if (s.Equals(State.Positioned) || s.Equals(State.Home))
+        {
+            transform.parent = null;
+            sr.maskInteraction = SpriteMaskInteraction.None;
+            s = State.Moving;
+        }
     }
 
     // returns the destination it can snap to if within range

@@ -22,14 +22,16 @@ public class ScrollArea : MonoBehaviour
     {
         if (GetComponent<Collider2D>().OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition)))
         {
-            int scrollAmt = (int)Input.mouseScrollDelta.y;
+            float scrollAmt = Input.mouseScrollDelta.y * 0.5f;
 
             if (scrollAmt != 0)
             {
                 scrolledAmt += scrollAmt;
                 foreach (Transform child in transform)
                 {
-                    child.transform.position -= Vector3.up * scrollAmt * 0.5f;
+                    Vector2 moveAmt = Vector3.up * scrollAmt;
+                    child.transform.position -= (Vector3)moveAmt;
+                    child.GetComponent<ScrollAreaItem>().homePos -= moveAmt;
                 }
             }
         }
@@ -41,5 +43,10 @@ public class ScrollArea : MonoBehaviour
         item.transform.parent = transform;
         item.transform.localPosition = new Vector3(offset.x * (itemCount % itemsPerRow) / transform.localScale.x, -offset.y * (itemCount++ / itemsPerRow) / transform.localScale.y, -1) + startPos;
         item.transform.localScale = scale / transform.localScale;
+    }
+
+    public void ApplyEntryOffset(Transform obj)
+    {
+        obj.position += Vector3.down * scrolledAmt;
     }
 }
