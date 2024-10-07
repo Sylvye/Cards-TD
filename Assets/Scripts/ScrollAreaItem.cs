@@ -9,15 +9,15 @@ public class ScrollAreaItem : MonoBehaviour
 {
     public enum State
     {
-        Home, Moving, Positioned, Returning
+        Home, Moving, Positioned
     }
     public List<GameObject> destinations = new List<GameObject>();
-    public float snapDist = 0.5f;
+    public float snapDist = 1;
     public Vector2 lerpPos;
     public Vector2 homePos;
     public State s = State.Home;
     Transform p;
-    Vector2 ogScale;
+    public Vector2 ogScale;
     Vector2 scale;
     SpriteRenderer sr;
     
@@ -46,23 +46,6 @@ public class ScrollAreaItem : MonoBehaviour
                 transform.position = new Vector3(pos.x, pos.y, -2);
                 break;
             case State.Positioned:
-                break;
-            case State.Returning:
-                pos = Vector3.Lerp(transform.position, homePos, Time.deltaTime * 50);
-                transform.position = new Vector3(pos.x, pos.y, -2);
-                if (Vector2.Distance(transform.position, homePos) <= snapDist)
-                {
-                    transform.position = (Vector3)homePos + Vector3.back;
-                    transform.localScale = ogScale;
-                    transform.SetParent(p);
-                    if (TryGetComponent(out ScrollArea sa))
-                    {
-                        sa.ApplyEntryOffset(transform);
-                        homePos = transform.position;
-                    }
-                    s = State.Home;
-                    sr.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
-                }
                 break;
         }
 
@@ -103,7 +86,10 @@ public class ScrollAreaItem : MonoBehaviour
             transform.parent = p;
             scale = ogScale;
             transform.localScale = scale;
-            s = State.Returning;
+            homePos += p.GetComponent<ScrollArea>().scrolledAmt * Vector2.down;
+            p.GetComponent<ScrollArea>().AddToInventory(gameObject);
+            s = State.Home;
+            sr.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
         }
     }
 
@@ -111,9 +97,12 @@ public class ScrollAreaItem : MonoBehaviour
     {
         if (s.Equals(State.Positioned) || s.Equals(State.Home))
         {
+            lerpPos = transform.position;
             transform.parent = null;
             sr.maskInteraction = SpriteMaskInteraction.None;
             s = State.Moving;
+            p.GetComponent<ScrollArea>().RemoveFromInventory(gameObject);
+            p.GetComponent<ScrollArea>().RefreshPositions();
         }
     }
 
