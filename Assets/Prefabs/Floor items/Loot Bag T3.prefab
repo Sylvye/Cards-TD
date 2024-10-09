@@ -162,5 +162,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Loot Bag T3
-  rarity: Epic
-  amount: 1
+  grade: 
+  tier: 3
+  fadeAmt: 10

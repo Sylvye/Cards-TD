@@ -162,5 +162,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: Loot Bag T2
-  rarity: Rare
-  amount: 1
+  grade: 
+  tier: 2
+  fadeAmt: 10

@@ -99,21 +99,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba4cedf4ef3beb4e888f9ac6e8018ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 3
-  maxhp: 3
+  hp: 10
+  maxhp: 10
   speed: 2
   parentKiller: {fileID: 0}
   children:
   - {fileID: 3867853743162614571, guid: 062180e3fff32af47b4baff53aba7967, type: 3}
-  deathDropPulls: 1
+  deathDropPulls: 2
   drops:
   - {fileID: 0}
   - {fileID: 503293304816352400, guid: 3634da6ce461d454bb5150b5b3eb2b0d, type: 3}
   - {fileID: 2534792069798157300, guid: c8773390d5002e34eb4133e50aef9ae1, type: 3}
   dropWeights:
-  - 96.5
+  - 90
+  - 7
   - 3
-  - 0.5
 --- !u!95 &-4032076880467101793
 Animator:
   serializedVersion: 5

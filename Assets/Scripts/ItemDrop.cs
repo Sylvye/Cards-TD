@@ -7,32 +7,51 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class ItemDrop : MonoBehaviour
 {
     public string itemName;
-    public string rarity;
-    public int amount = 1;
+    public string grade;
+    public int tier;
+    public float fadeAmt = 10f;
+    SpriteRenderer sr;
 
     // Start is called before the first frame update
     void Start()
     {
-        float layer = RarityToNum(rarity);
+        float layer = tier;
         transform.position -= Vector3.forward * layer * 0.5f;
+        sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public int RarityToNum(string r)
+    private void OnMouseOver()
     {
-        switch (r)
+        StartCoroutine(PickupEffect());
+    }
+
+    public int GradeToNum(string r)
+    {
+        return r switch
         {
-            case "Common":      return 0;
-            case "Rare":        return 1;
-            case "Unique":      return 2;
-            case "Epic":        return 2;
-            case "Legendary":   return 3;
-            default:            return -1;
+            "Fighter" => 0,
+            "Hoarder" => 1,
+            "Artisan" => 2,
+            _ => -1,
+        };
+    }
+
+    IEnumerator PickupEffect()
+    {
+        for (int i=0; i<20; i++)
+        {
+            sr.enabled = false;
+            yield return new WaitForSeconds(0.05f);
+            transform.position += Vector3.up * 0.01f;
+            sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, sr.color.a - fadeAmt * Time.deltaTime);
+            sr.enabled = true;
         }
+        Destroy(gameObject);
     }
 }

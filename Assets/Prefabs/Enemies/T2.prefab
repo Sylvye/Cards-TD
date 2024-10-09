@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba4cedf4ef3beb4e888f9ac6e8018ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 2
-  maxhp: 2
+  hp: 3
+  maxhp: 3
   speed: 2
   parentKiller: {fileID: 0}
   children:
@@ -110,8 +110,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 503293304816352400, guid: 3634da6ce461d454bb5150b5b3eb2b0d, type: 3}
   dropWeights:
-  - 97
-  - 3
+  - 95
+  - 5
 --- !u!95 &-8774828300923445121
 Animator:
   serializedVersion: 5

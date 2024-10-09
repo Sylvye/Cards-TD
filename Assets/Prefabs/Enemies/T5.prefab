@@ -99,24 +99,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba4cedf4ef3beb4e888f9ac6e8018ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 15
-  maxhp: 15
+  hp: 50
+  maxhp: 50
   speed: 3
   parentKiller: {fileID: 0}
   children:
   - {fileID: 3867853743162614571, guid: 46f552fa97eea0b4cbd1b94f2f05d132, type: 3}
   - {fileID: 3867853743162614571, guid: 46f552fa97eea0b4cbd1b94f2f05d132, type: 3}
-  deathDropPulls: 3
+  deathDropPulls: 4
   drops:
   - {fileID: 0}
   - {fileID: 503293304816352400, guid: 3634da6ce461d454bb5150b5b3eb2b0d, type: 3}
   - {fileID: 2534792069798157300, guid: c8773390d5002e34eb4133e50aef9ae1, type: 3}
   - {fileID: 1740889130559223688, guid: 60b3af87b81160443a70f5bd84ab87d2, type: 3}
   dropWeights:
-  - 95.5
-  - 2
-  - 2
-  - 0.5
+  - 70
+  - 15
+  - 10
+  - 5
 --- !u!95 &-4032076880467101793
 Animator:
   serializedVersion: 5
