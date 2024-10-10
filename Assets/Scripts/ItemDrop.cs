@@ -7,7 +7,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class ItemDrop : MonoBehaviour
 {
     public string itemName;
-    public string grade;
+    public string category;
     public int tier;
     public float fadeAmt = 10f;
     SpriteRenderer sr;
@@ -31,7 +31,7 @@ public class ItemDrop : MonoBehaviour
         StartCoroutine(PickupEffect());
     }
 
-    public int GradeToNum(string r)
+    public int CategoryToNum(string r)
     {
         return r switch
         {
