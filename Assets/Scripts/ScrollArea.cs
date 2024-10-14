@@ -10,7 +10,7 @@ public class ScrollArea : MonoBehaviour
     public Vector3 startPos;
     public float scrolledAmt = 0;
     public float scrollPower = 0.5f;
-    [SerializeField]
+    public int layer;
     List<GameObject> inventory = new List<GameObject>();
 
     // Start is called before the first frame update

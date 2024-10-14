@@ -2153,7 +2153,7 @@ MonoBehaviour:
   startPos: {x: -0.375, y: 0.25, z: 0}
   scrolledAmt: 0
   scrollPower: 0.25
-  inventory: []
+  layer: 0
 --- !u!61 &1553169468
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2313,9 +2313,9 @@ SpriteMask:
   m_BackSortingLayerID: 0
   m_FrontSortingLayer: 0
   m_BackSortingLayer: 0
-  m_FrontSortingOrder: 0
+  m_FrontSortingOrder: 1
   m_BackSortingOrder: 0
-  m_IsCustomRangeActive: 0
+  m_IsCustomRangeActive: 1
   m_SpriteSortPoint: 0
 --- !u!1 &1581402602
 GameObject:
@@ -2384,9 +2384,9 @@ SpriteMask:
   m_BackSortingLayerID: 0
   m_FrontSortingLayer: 0
   m_BackSortingLayer: 0
-  m_FrontSortingOrder: 0
-  m_BackSortingOrder: 0
-  m_IsCustomRangeActive: 0
+  m_FrontSortingOrder: 2
+  m_BackSortingOrder: 1
+  m_IsCustomRangeActive: 1
   m_SpriteSortPoint: 0
 --- !u!114 &1581402604
 MonoBehaviour:
@@ -2405,7 +2405,7 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   scrolledAmt: 0
   scrollPower: 0.25
-  inventory: []
+  layer: 1
 --- !u!61 &1581402605
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -109,14 +109,18 @@ public class StageController : MonoBehaviour
         for (int i=0; i<Cards.deck.Count; i++) // places cards in deck scroll area
         {
             GameObject itemObj = Instantiate(cardItem_, Vector3.zero, Quaternion.identity);
-            itemObj.GetComponent<SpriteRenderer>().sprite = Cards.deck[i].GetComponent<SpriteRenderer>().sprite;
+            SpriteRenderer sr = itemObj.GetComponent<SpriteRenderer>();
+            sr.sortingOrder = 0;
+            sr.sprite = Cards.deck[i].GetComponent<SpriteRenderer>().sprite;
             deck.AddToInventory(itemObj);
             itemObj.GetComponent<ScrollAreaItem>().destinations.Add(cardDestination);
         }
         for (int i = 0; i < Cards.augments.Count; i++) // places augments in augment scroll area
         {
             GameObject itemObj = Instantiate(cardItem_, Vector3.zero, Quaternion.identity);
-            itemObj.GetComponent<SpriteRenderer>().sprite = Cards.augments[i].GetComponent<SpriteRenderer>().sprite;
+            SpriteRenderer sr = itemObj.GetComponent<SpriteRenderer>();
+            sr.sortingOrder = 1;
+            sr.sprite = Cards.augments[i].GetComponent<SpriteRenderer>().sprite;
             augmentDeck.AddToInventory(itemObj);
             itemObj.GetComponent<ScrollAreaItem>().destinations.Add(augmentDestination);
         }
