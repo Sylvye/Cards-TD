@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -5872270090135206693}
   - component: {fileID: 7732941079095712592}
   - component: {fileID: 4218121437841180223}
+  - component: {fileID: 3887136450710297592}
   m_Layer: 0
   m_Name: Loot Bag T2
   m_TagString: Untagged
@@ -165,4 +166,19 @@ MonoBehaviour:
   category: 
   indicator: {fileID: 6573914848199131595, guid: 33b69122453df6c43b7655bff80fc63b, type: 3}
   tier: 2
-  fadeAmt: 10
+  fadeAmt: 0.3
+--- !u!114 &3887136450710297592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2534792069798157300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50a53cd10d586c14d84c6766d23c5c79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 0
+  fadeSpeed: 0.4
+  destroyOnInvisible: 1

@@ -6,6 +6,8 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class ItemDrop : MonoBehaviour
 {
+    public static string[] categories = { "Fighter", "Hoarder", "Artisan" };
+    public static bool firstDropArtisan = false;
     public string itemName;
     public string category;
     public GameObject indicator;
@@ -21,25 +23,19 @@ public class ItemDrop : MonoBehaviour
         transform.position -= Vector3.forward * layer * 0.5f;
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        Color c = sr.color;
-        if (c.a - fadeAmt < 0 )
+        if (!firstDropArtisan)
         {
-            sr.color = new Color(c.r, c.g, c.b, c.a - fadeAmt);
+            category = categories[2];
+            firstDropArtisan = true;
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        category = categories[Random.Range(0, 3)];
     }
 
     private void OnMouseOver()
     {
-        rb.AddForce(Vector2.up * 2);
+        GameObject ind = Instantiate(indicator, transform.position, Quaternion.identity);
+        indicator.GetComponent<Rigidbody2D>().AddForce(Vector2.up*20);
+        Destroy(gameObject);
     }
 
     public int CategoryToNum(string r)
