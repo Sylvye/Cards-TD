@@ -455,7 +455,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1114,6 +1114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lives: 100
+  currency: 0
   mapLength: 20
   DB: {fileID: 1505739289}
   hitboxReticle: {fileID: 1783182364}
@@ -1305,11 +1306,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 467519594113573095, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 467519594113573095, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 467519594113573095, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1731,7 +1732,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1871,7 +1872,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2731,11 +2732,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 467519594113573095, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 467519594113573095, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 467519594113573095, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2963,7 +2964,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1830901226}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Boundaries
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3440,7 +3441,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

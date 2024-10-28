@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 7372098750488470720}
   - component: {fileID: 5572400333989406201}
   - component: {fileID: 3110125680437061879}
-  - component: {fileID: -3326298049308898543}
   - component: {fileID: -7485955721978623468}
+  - component: {fileID: -2429067956438843661}
+  - component: {fileID: -3326298049308898543}
   m_Layer: 0
   m_Name: Category Indicator
   m_TagString: Untagged
@@ -113,22 +114,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &-3326298049308898543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6573914848199131595}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50a53cd10d586c14d84c6766d23c5c79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delay: 0
-  fadeSpeed: 0.5
-  destroyOnInvisible: 1
+  m_Constraints: 4
 --- !u!58 &-7485955721978623468
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -164,3 +150,32 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.33333334
+--- !u!114 &-2429067956438843661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6573914848199131595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6d85345488c86e4288e561983516288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  category: 
+  sprites: {fileID: 11400000, guid: 039de2aa89b912845bb77db2b33555f8, type: 2}
+--- !u!114 &-3326298049308898543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6573914848199131595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50a53cd10d586c14d84c6766d23c5c79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 0
+  fadeSpeed: 0.5
+  destroyOnInvisible: 1

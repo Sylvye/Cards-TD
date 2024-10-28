@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class Main : MonoBehaviour
 {
     public int lives = 100;
+    public int currency = 0; // rename this later
 
     public int mapLength;
     public static int mapLength_;
@@ -49,6 +50,15 @@ public class Main : MonoBehaviour
         {
             main.lives = 0;
             Debug.Break();
+        }
+    }
+
+    public static void Earn(int amount)
+    {
+        main.currency -= amount;
+        if (main.currency < 0) // shouldn't happen ever, but just in case.
+        {
+            main.currency = 0;
         }
     }
 
