@@ -50,7 +50,7 @@ public class Hand : MonoBehaviour
         foreach (Card card in cards)
         {
             card.indexInHand = i;
-            card.transform.position = transform.position + Vector3.right * 2 * i++ + Vector3.forward * -7;
+            card.transform.position = transform.position + Vector3.right * 1.2f * i++ + Vector3.forward * -7;
             card.SetHandPos();
         }
     }

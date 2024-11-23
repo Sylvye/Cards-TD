@@ -10,6 +10,7 @@ public class Main : MonoBehaviour
 {
     public int lives = 100;
     public int currency = 0; // rename this later
+    public int[] packs = { 0, 0, 0 }; // artisan, fighter, hoarder
 
     public int mapLength;
     public static int mapLength_;
@@ -28,7 +29,7 @@ public class Main : MonoBehaviour
     public static LayerMask enemyLayerMask_;
     public LayerMask enemyLayerMask;
 
-    private static Main main;
+    public static Main main;
 
     // Start is called before the first frame update
     void Start()
@@ -43,14 +44,15 @@ public class Main : MonoBehaviour
         DB.InitializeDeck();
     }
 
-    public static void Damage(int amount)
+    public static bool Damage(int amount)
     {
         main.lives -= amount;
         if (main.lives <= 0)
         {
             main.lives = 0;
-            Debug.Break();
+            return true;
         }
+        return false;
     }
 
     public static void Earn(int amount)
@@ -60,6 +62,12 @@ public class Main : MonoBehaviour
         {
             main.currency = 0;
         }
+    }
+
+    public static void UpdatePackLabel()
+    {
+        TMPLabel label = GameObject.Find("Pack Label").GetComponent<TMPLabel>();
+        label.SetText("ART: " + main.packs[0] + " FGT: " + main.packs[1] + " HRD: " + main.packs[2]);
     }
 
     void Update() 

@@ -14,6 +14,13 @@ public class MapNode : MonoBehaviour
     public string displayName;
     public string type;
 
+    private TMPLabel nodeLabel;
+
+    private void Start()
+    {
+        nodeLabel = GameObject.Find("Node Label").GetComponent<TMPLabel>();
+    }
+
     private void OnMouseDown()
     {
         if (spriteDark != spriteLight && StageController.stageIndex == 0)
@@ -56,8 +63,8 @@ public class MapNode : MonoBehaviour
     {
         if (spriteDark != spriteLight)
         {
-            if (NodeLabel.main.GetText() != displayName)
-                NodeLabel.main.SetText(displayName);
+            if (nodeLabel.GetText() != displayName)
+                nodeLabel.SetText(displayName);
             SetSpriteLight(true);
             if (exits.Length >= 1 && exits[0] != null)
             {

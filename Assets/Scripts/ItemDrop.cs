@@ -6,7 +6,7 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class ItemDrop : MonoBehaviour
 {
-    public GameObject indicator;
+    public GameObject item;
     public int tier;
 
     // Start is called before the first frame update
@@ -18,8 +18,7 @@ public class ItemDrop : MonoBehaviour
 
     private void OnMouseOver()
     {
-        GameObject ind = Instantiate(indicator, transform.position, Quaternion.identity);
-        indicator.GetComponent<Rigidbody2D>().AddForce(Vector2.up*20);
+        GameObject ind = Instantiate(item, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }
 }

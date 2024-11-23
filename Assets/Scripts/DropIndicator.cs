@@ -25,7 +25,20 @@ public class DropIndicator : MonoBehaviour
         }
         category = categories[Random.Range(0, 3)];
         sr.sprite = sprites.sprites[CategoryToNum(category)];
-        DrawLoot(1);
+    }
+
+    private void Update()
+    {
+        Vector2 dest = new Vector2(11.5f, 5);
+        if (Vector2.Distance(transform.position, dest) > 0.1f)
+        {
+            transform.position = Vector2.Lerp(transform.position, dest, Time.deltaTime * 10);
+        }
+        else
+        {
+            Main.main.packs[CategoryToNum(category)]++;
+            Main.UpdatePackLabel();
+        }
     }
 
     public int CategoryToNum(string r)
@@ -39,7 +52,7 @@ public class DropIndicator : MonoBehaviour
         };
     }
 
-    private void DrawLoot(int pulls)
+    /*private void DrawLoot(int pulls)
     {
         switch (category)
         {
@@ -59,5 +72,5 @@ public class DropIndicator : MonoBehaviour
                 }
                 return;
         }
-    }
+    }*/
 }
