@@ -162,11 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc60db57b1c2b0d4d882a0828c823e3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Loot Bag T3
-  category: 
   indicator: {fileID: 6573914848199131595, guid: 33b69122453df6c43b7655bff80fc63b, type: 3}
   tier: 3
-  fadeAmt: 0.2
 --- !u!114 &1378329388240246531
 MonoBehaviour:
   m_ObjectHideFlags: 0

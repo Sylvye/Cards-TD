@@ -164,6 +164,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   category: 
   sprites: {fileID: 11400000, guid: 039de2aa89b912845bb77db2b33555f8, type: 2}
+  cardLootpool: {fileID: 11400000, guid: 8c35a6c4cd076c24a8edd87b7f79db56, type: 2}
+  augmentLootpool: {fileID: 11400000, guid: bfb1dc40dbe26a64d91527bd18e805ea, type: 2}
+  currencyMax: 5
+  currencyMin: 25
 --- !u!114 &-3326298049308898543
 MonoBehaviour:
   m_ObjectHideFlags: 0

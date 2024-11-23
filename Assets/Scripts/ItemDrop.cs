@@ -8,7 +8,6 @@ public class ItemDrop : MonoBehaviour
 {
     public GameObject indicator;
     public int tier;
-    public float fadeAmt = 1;
 
     // Start is called before the first frame update
     void Start()
