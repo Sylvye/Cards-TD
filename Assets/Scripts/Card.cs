@@ -20,7 +20,7 @@ public abstract class Card : MonoBehaviour
 
     public virtual GameObject OnPlay()
     {
-        GameObject obj = Instantiate(spawnable, new Vector3(transform.position.x, transform.position.y, -7), Quaternion.identity);
+        GameObject obj = Instantiate(spawnable, new Vector3(transform.position.x, transform.position.y, -5), Quaternion.identity);
         return obj;
     }
 

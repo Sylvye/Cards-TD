@@ -19,7 +19,9 @@ public class StageController : MonoBehaviour
     private static Lootpool cardProbs_;
     private static GameObject cardOption_;
     private static GameObject[] shopCards = new GameObject[3];
-    private static GameObject battleButton;
+    public static GameObject battleButton;
+    public static GameObject inventoryOverlay;
+
     [Header("Upgrade")]
     public int test2 = 10;
     [Header("Augment")]
@@ -33,6 +35,8 @@ public class StageController : MonoBehaviour
         cardOption_ = cardOption;
         cardItem_ = cardItem;
         battleButton = GameObject.Find("Battle Button");
+        inventoryOverlay = GameObject.Find("Inventory Overlay");
+        inventoryOverlay.SetActive(false);
     }
     private void Update()
     {

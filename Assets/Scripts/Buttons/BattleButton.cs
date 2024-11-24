@@ -34,10 +34,18 @@ public class BattleButton : Button
         {
             if (Spawner.main.IsStageComplete()) // make this open inventory screen
             {
-                StageController.SwitchStage("Map");
-                spriteUp = startUp;
-                spriteDown = startDown;
-                UpdateSprite();
+                if (!StageController.inventoryOverlay.activeSelf)
+                {
+                    StageController.inventoryOverlay.SetActive(true);
+                }
+                else
+                {
+                    StageController.inventoryOverlay.SetActive(false);
+                    StageController.SwitchStage("Map");
+                    spriteUp = startUp;
+                    spriteDown = startDown;
+                    UpdateSprite();
+                }
             }
         }
     }
