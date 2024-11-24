@@ -16,10 +16,12 @@ public class Spawner : MonoBehaviour
     public bool active = true;
     public bool complete = false;
     private float cooldown = 0;
+    private GameObject battleButton;
 
     private void Start()
     {
         main = this;
+        battleButton = GameObject.Find("Battle Button");
     }
 
     // Update is called once per frame
@@ -51,6 +53,10 @@ public class Spawner : MonoBehaviour
                 complete = true;
                 cooldown = 0;
             }
+        }
+        else
+        {
+            battleButton.GetComponent<BattleButton>().SetActive(true); // VERY BAD
         }
     }
 

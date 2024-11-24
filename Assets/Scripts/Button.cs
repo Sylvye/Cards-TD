@@ -8,7 +8,8 @@ public abstract class Button : MonoBehaviour
     public Sprite spriteUp;
     public Sprite spriteDown;
     public float scaleAmount = 0.9f;
-    public bool active = true;
+    [SerializeField]
+    private bool active = true; // whether button can be clicked or not
 
     // Start is called before the first frame update
     void Start()
@@ -53,5 +54,28 @@ public abstract class Button : MonoBehaviour
     public virtual void Action()
     {
         Debug.Log("Default button method :(");
+    }
+
+    public void UpdateSprite()
+    {
+        GetComponent<SpriteRenderer>().sprite = spriteUp;
+    }
+
+    public void SetActive(bool a)
+    {
+        active = a;
+        if (a)
+        {
+            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().color = new Color(0.75f, 0.75f, 0.75f, 0.75f);
+        }
+    }
+
+    public bool GetActive()
+    {
+        return active;
     }
 }

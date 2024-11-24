@@ -20,7 +20,7 @@ public class DropIndicator : MonoBehaviour
 
     private void Start()
     {
-        destination = GameObject.Find("PackIcon").transform;
+        destination = GameObject.Find("Pack Icon").transform;
         sr = GetComponent<SpriteRenderer>();
         if (!firstDropArtisan)
         {
@@ -40,7 +40,6 @@ public class DropIndicator : MonoBehaviour
         else
         {
             Main.main.packs[CategoryToNum(category)]++;
-            Main.UpdatePackLabel();
             Destroy(gameObject);
         }
     }

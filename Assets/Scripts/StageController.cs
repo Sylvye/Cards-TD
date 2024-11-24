@@ -19,6 +19,7 @@ public class StageController : MonoBehaviour
     private static Lootpool cardProbs_;
     private static GameObject cardOption_;
     private static GameObject[] shopCards = new GameObject[3];
+    private static GameObject battleButton;
     [Header("Upgrade")]
     public int test2 = 10;
     [Header("Augment")]
@@ -31,6 +32,7 @@ public class StageController : MonoBehaviour
         cardProbs_ = cardProbs;
         cardOption_ = cardOption;
         cardItem_ = cardItem;
+        battleButton = GameObject.Find("Battle Button");
     }
     private void Update()
     {
@@ -63,6 +65,7 @@ public class StageController : MonoBehaviour
                 destination = new Vector3(0, 0, -10);
                 stageIndex = 1;
                 Spawner.main.complete = false;
+                battleButton.GetComponent<BattleButton>().SetActive(true);
                 break;
             case "Shop":
                 destination = new Vector3(0, -20, -10);
