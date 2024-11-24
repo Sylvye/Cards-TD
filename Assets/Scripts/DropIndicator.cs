@@ -13,10 +13,14 @@ public class DropIndicator : MonoBehaviour
     public int currencyMin = 25;
     public static string[] categories = { "Fighter", "Hoarder", "Artisan" };
     public static bool firstDropArtisan = false;
+    
     private SpriteRenderer sr;
+    private Transform destination;
+
 
     private void Start()
     {
+        destination = GameObject.Find("PackIcon").transform;
         sr = GetComponent<SpriteRenderer>();
         if (!firstDropArtisan)
         {
@@ -29,15 +33,15 @@ public class DropIndicator : MonoBehaviour
 
     private void Update()
     {
-        Vector2 dest = new Vector2(11.5f, 5);
-        if (Vector2.Distance(transform.position, dest) > 0.1f)
+        if (Vector2.Distance(transform.position, destination.position) > 0.1f)
         {
-            transform.position = Vector2.Lerp(transform.position, dest, Time.deltaTime * 10);
+            transform.position = Vector2.Lerp(transform.position, destination.position, Time.deltaTime * 10);
         }
         else
         {
             Main.main.packs[CategoryToNum(category)]++;
             Main.UpdatePackLabel();
+            Destroy(gameObject);
         }
     }
 

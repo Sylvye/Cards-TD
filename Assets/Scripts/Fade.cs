@@ -30,14 +30,17 @@ public class Fade : MonoBehaviour
             fading = true;
         }
 
-        Color c = sr.color;
-        if (c.a - fadeSpeed * Time.deltaTime > 0)
+        if (fading)
         {
-            sr.color = new Color(c.r, c.g, c.b, c.a - fadeSpeed * Time.deltaTime);
-        }
-        else if (destroyOnInvisible)
-        {
-            Destroy(gameObject);
+            Color c = sr.color;
+            if (c.a - fadeSpeed * Time.deltaTime > 0)
+            {
+                sr.color = new Color(c.r, c.g, c.b, c.a - fadeSpeed * Time.deltaTime);
+            }
+            else if (destroyOnInvisible)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

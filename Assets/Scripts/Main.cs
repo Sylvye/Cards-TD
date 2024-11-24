@@ -67,7 +67,7 @@ public class Main : MonoBehaviour
     public static void UpdatePackLabel()
     {
         TMPLabel label = GameObject.Find("Pack Label").GetComponent<TMPLabel>();
-        label.SetText("ART: " + main.packs[0] + " FGT: " + main.packs[1] + " HRD: " + main.packs[2]);
+        label.SetText("Artisan: " + main.packs[0] + " Fighter: " + main.packs[1] + " Hoarder: " + main.packs[2]);
     }
 
     void Update() 
