@@ -32,7 +32,7 @@ Texture2D:
   m_TextureDimension: 2
   m_TextureSettings:
     serializedVersion: 2
-    m_FilterMode: 1
+    m_FilterMode: 0
     m_Aniso: 1
     m_MipBias: 0
     m_WrapU: 0
@@ -60,9 +60,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: Pexilated_font
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: -1278039792
   material: {fileID: 9024869874199375436}
-  materialHashCode: 0
+  materialHashCode: 304963248
   m_Version: 1.1.0
   m_SourceFontFileGUID: b6beb0c2eb577aa44ad8d79b6d1a1474
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: b6beb0c2eb577aa44ad8d79b6d1a1474, type: 3}
@@ -87,7 +87,7 @@ MonoBehaviour:
     m_SubscriptSize: 0.5
     m_UnderlineOffset: 13.8359375
     m_UnderlineThickness: 9.1640625
-    m_StrikethroughOffset: 0
+    m_StrikethroughOffset: 18.4
     m_StrikethroughThickness: 9.1640625
     m_TabWidth: 69
   m_GlyphTable:

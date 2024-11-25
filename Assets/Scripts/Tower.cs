@@ -17,8 +17,11 @@ public abstract class Tower : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        Main.towerRangeReticle_.transform.position = transform.position;
-        Main.towerRangeReticle_.transform.localScale = range * 2 * Vector3.one + Vector3.forward * -6;
+        if (!Spawner.main.IsStageComplete())
+        {
+            Main.towerRangeReticle_.transform.position = transform.position;
+            Main.towerRangeReticle_.transform.localScale = range * 2 * Vector3.one + Vector3.forward * -6;
+        }
     }
 
     private void OnMouseExit()

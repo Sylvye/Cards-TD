@@ -20,13 +20,13 @@ public abstract class Card : MonoBehaviour
 
     public virtual GameObject OnPlay()
     {
-        GameObject obj = Instantiate(spawnable, new Vector3(transform.position.x, transform.position.y, -5), Quaternion.identity);
+        GameObject obj = Instantiate(spawnable, new Vector3(transform.position.x, transform.position.y, -2), Quaternion.identity);
         return obj;
     }
 
     private void OnMouseDown()
     {
-        if (StageController.stageIndex == 1)
+        if (StageController.stageIndex == 1 && !Spawner.main.IsStageComplete())
         {
             selected = true;
             transform.localScale = Vector3.one * 0.5f;
@@ -83,10 +83,10 @@ public abstract class Card : MonoBehaviour
         if (selected && StageController.stageIndex == 1)
         {
             Vector3 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = new Vector3(target.x, target.y, -7);
-            Main.hitboxReticle_.transform.position = new Vector3(target.x, target.y, -4);
+            transform.position = new Vector3(target.x, target.y, -6);
+            Main.hitboxReticle_.transform.position = new Vector3(target.x, target.y, -3);
             if (spawnable.TryGetComponent(out Tower _))
-                Main.towerRangeReticle_.transform.position = new Vector3(target.x, target.y, -4);
+                Main.towerRangeReticle_.transform.position = new Vector3(target.x, target.y, -3);
             if (Physics2D.OverlapCircle(transform.position, radius, Main.placementLayerMask_) == null)
                 Main.hitboxReticle_.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
             else
