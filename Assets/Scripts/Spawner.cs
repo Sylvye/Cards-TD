@@ -17,6 +17,8 @@ public class Spawner : MonoBehaviour
     public bool complete = false;
     private float cooldown = 0;
     private GameObject battleButton;
+    [SerializeField]
+    private bool freebie = false;
 
     private void Start()
     {
@@ -51,6 +53,7 @@ public class Spawner : MonoBehaviour
             {
                 active = false;
                 complete = true;
+                freebie = false;
                 cooldown = 0;
             }
         }
@@ -73,6 +76,12 @@ public class Spawner : MonoBehaviour
     public GameObject Spawn(GameObject obj, Vector3 pos, Quaternion rot)
     {
         GameObject o = Instantiate(obj, pos, rot);
+        if (!freebie && wave.Count == 0)
+        {
+            o.GetComponent<Enemy>().dropWeights[0] = 0;
+            freebie = true;
+            o.GetComponent<SpriteRenderer>().color = Color.red; // DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG 
+        }
         spawnedEnemies.Add(o);
         return o;
     }

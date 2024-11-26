@@ -25,7 +25,7 @@ public abstract class Button : MonoBehaviour
         }
     }
 
-    private void OnMouseExit()
+    public void OnMouseExit()
     {
         if (active)
         {

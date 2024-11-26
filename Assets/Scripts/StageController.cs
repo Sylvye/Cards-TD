@@ -21,6 +21,8 @@ public class StageController : MonoBehaviour
     private static GameObject[] shopCards = new GameObject[3];
     public static GameObject battleButton;
     public static GameObject inventoryOverlay;
+    public static GameObject inventoryUI;
+    public static ScrollArea inventoryLootScrollArea;
 
     [Header("Upgrade")]
     public int test2 = 10;
@@ -37,6 +39,9 @@ public class StageController : MonoBehaviour
         battleButton = GameObject.Find("Battle Button");
         inventoryOverlay = GameObject.Find("Inventory Overlay");
         inventoryOverlay.SetActive(false);
+        inventoryUI = GameObject.Find("Inventory UI");
+        inventoryUI.SetActive(false);
+        inventoryLootScrollArea = inventoryOverlay.GetComponentInChildren<ScrollArea>();
     }
     private void Update()
     {
@@ -120,7 +125,7 @@ public class StageController : MonoBehaviour
             sr.sortingOrder = 0;
             sr.sprite = Cards.deck[i].GetComponent<SpriteRenderer>().sprite;
             deck.AddToInventory(itemObj);
-            itemObj.GetComponent<ScrollAreaItem>().destinations.Add(cardDestination);
+            itemObj.GetComponent<ScrollAreaItem>().draggableDestinations.Add(cardDestination);
         }
         for (int i = 0; i < Cards.augments.Count; i++) // places augments in augment scroll area
         {
@@ -129,7 +134,7 @@ public class StageController : MonoBehaviour
             sr.sortingOrder = 1;
             sr.sprite = Cards.augments[i].GetComponent<SpriteRenderer>().sprite;
             augmentDeck.AddToInventory(itemObj);
-            itemObj.GetComponent<ScrollAreaItem>().destinations.Add(augmentDestination);
+            itemObj.GetComponent<ScrollAreaItem>().draggableDestinations.Add(augmentDestination);
         }
     }
 }

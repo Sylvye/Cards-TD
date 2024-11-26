@@ -11,7 +11,8 @@ public class ScrollAreaItem : MonoBehaviour
     {
         Home, Moving, Positioned
     }
-    public List<GameObject> destinations = new List<GameObject>();
+    public List<GameObject> draggableDestinations = new List<GameObject>();
+    public bool draggable = true;
     public float snapDist = 1;
     public Vector2 lerpPos;
     public Vector2 homePos;
@@ -53,49 +54,55 @@ public class ScrollAreaItem : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (!Input.GetMouseButton(0))
+        if (draggable && !Input.GetMouseButton(0))
             transform.localScale = scale * 1.1f;
     }
 
     private void OnMouseExit()
     {
-        if (!Input.GetMouseButton(0))
+        if (draggable && !Input.GetMouseButton(0))
             transform.localScale = scale;
     }
 
     private void OnMouseDrag()
     {
-        lerpPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (draggable)
+        {
+            lerpPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
     }
 
     private void OnMouseUp()
     {
-        transform.localScale = scale;
-
-        GameObject closest = GetViableDestination(snapDist);
-        if (closest != null)
+        if (draggable)
         {
-            transform.parent = closest.transform;
-            transform.localScale = closest.transform.localScale;
-            transform.position = closest.transform.position + Vector3.back;
-            scale = transform.localScale;
-            s = State.Positioned;
-        }
-        else
-        {
-            transform.parent = p;
-            scale = ogScale;
             transform.localScale = scale;
-            homePos += p.GetComponent<ScrollArea>().scrolledAmt * Vector2.down;
-            p.GetComponent<ScrollArea>().AddToInventory(gameObject);
-            s = State.Home;
-            sr.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+
+            GameObject closest = GetViableDestination(snapDist);
+            if (closest != null)
+            {
+                transform.parent = closest.transform;
+                transform.localScale = closest.transform.localScale;
+                transform.position = closest.transform.position + Vector3.back;
+                scale = transform.localScale;
+                s = State.Positioned;
+            }
+            else
+            {
+                transform.parent = p;
+                scale = ogScale;
+                transform.localScale = scale;
+                homePos += p.GetComponent<ScrollArea>().scrolledAmt * Vector2.down;
+                p.GetComponent<ScrollArea>().AddToInventory(gameObject);
+                s = State.Home;
+                sr.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+            }
         }
     }
 
     private void OnMouseDown()
     {
-        if (s.Equals(State.Positioned) || s.Equals(State.Home))
+        if (draggable && s.Equals(State.Positioned) || s.Equals(State.Home))
         {
             lerpPos = transform.position;
             transform.parent = null;
@@ -109,15 +116,15 @@ public class ScrollAreaItem : MonoBehaviour
     // returns the destination it can snap to if within range
     private GameObject GetViableDestination(float range)
     {
-        if (destinations.Count == 0) 
+        if (draggableDestinations.Count == 0) 
             return null;
 
         GameObject closest = null;
         float dist = float.MaxValue;
 
-        for (int i=0; i<destinations.Count; i++)
+        for (int i=0; i<draggableDestinations.Count; i++)
         {
-            GameObject o = destinations[i];
+            GameObject o = draggableDestinations[i];
             float d = Vector2.Distance(o.transform.position, lerpPos);
             if (d < dist && o.transform.childCount == 0)
             {
