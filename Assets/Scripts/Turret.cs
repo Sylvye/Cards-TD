@@ -22,7 +22,7 @@ public abstract class Turret : Tower
         SetupTierEffects();
     }
 
-    void Update()
+    private void Update()
     {
         if (lastShot + 1 / attackSpeed <= Time.time)
         {

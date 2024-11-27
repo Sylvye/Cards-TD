@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class BattleButton : Button
 {
-    Sprite startUp;
-    Sprite startDown;
+    private Sprite startUp;
+    private Sprite startDown;
     public Sprite exitUp;
     public Sprite exitDown;
 
@@ -15,6 +15,14 @@ public class BattleButton : Button
         startScale = transform.localScale;
         startUp = spriteUp;
         startDown = spriteDown;
+    }
+
+    private void Update()
+    {
+        if (Spawner.main.IsStageComplete())
+        {
+            SetActive(true);
+        }
     }
 
     public override void Action()
@@ -39,8 +47,9 @@ public class BattleButton : Button
                 {
                     StageController.inventoryOverlay.SetActive(true);
                     StageController.inventoryUI.SetActive(true);
+                    Main.UpdatePackLabels();
                 }
-                else
+                else // leaves battle stage
                 {
                     StageController.inventoryOverlay.SetActive(false);
                     StageController.inventoryUI.SetActive(false);

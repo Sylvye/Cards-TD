@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     public List<float> dropWeights;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         transform.position += speed * Time.deltaTime * Vector3.right;
         if (transform.position.x >= 11.5f)
@@ -49,7 +49,6 @@ public class Enemy : MonoBehaviour
                     }
                     GameObject instance = Instantiate(obj, spawnPos, obj.transform.rotation);
                     Enemy child = instance.GetComponent<Enemy>();
-                    child.Damage(-hp / children.Length);
                     if (i == 0)
                     {
                         child.drops = drops;
@@ -60,6 +59,8 @@ public class Enemy : MonoBehaviour
                         child.drops = new List<GameObject>();
                         child.dropWeights = new List<float>();
                     }
+                    child.Damage(-hp / children.Length);
+                    
                 }
             }
             else
@@ -71,30 +72,30 @@ public class Enemy : MonoBehaviour
         return false;
     }
 
+    //returns true if the attack killed the enemy
     public bool Damage(int amount, Projectile reference)
     {
         if (parentKiller != reference)
         {
             hp -= amount;
-            if (hp <= 0)
+            if (hp <= 0) // if died
             {
                 Destroy(gameObject);
                 Spawner.spawnedEnemies.Remove(gameObject);
-                if (children.Length > 0)
+                if (children.Length > 0) // if this enemy has children
                 {
-                    float spawnOffset = 0;
+                    float spawnOffset = 0.5f;
+                    bool output = false;
                     for (int i=0; i<children.Length; i++)
                     {
                         GameObject obj = children[i];
                         Vector3 spawnPos = transform.position;
                         if (obj.CompareTag("Enemy"))
                         {
-                            spawnPos += Vector3.left * spawnOffset;
-                            spawnOffset += 0.5f;
+                            spawnPos += Vector3.left * spawnOffset++ / 2;
                         }
                         GameObject instance = Instantiate(obj, spawnPos, obj.transform.rotation);
                         Enemy child = instance.GetComponent<Enemy>();
-                        child.Damage(-hp / children.Length, reference);
                         child.parentKiller = reference;
                         if (i == 0)
                         {
@@ -110,7 +111,14 @@ public class Enemy : MonoBehaviour
                         {
                             child.Stun(0.1f);
                         }
+                        if (child.Damage(-hp / children.Length, reference))
+                        {
+                            output = true;
+                            hp -= child.hp; // this makes overflow damage spread across enemies without creating extra damage
+                            if (hp > 0) hp = 0; // prevents healing subsequent children
+                        }
                     }
+                    return output;
                 }
                 else
                 {
@@ -162,7 +170,7 @@ public class Enemy : MonoBehaviour
         StartCoroutine(StunC(time));
     }
 
-    IEnumerator StunC(float time)
+    private IEnumerator StunC(float time)
     {
         float spd = speed;
         speed = 0;

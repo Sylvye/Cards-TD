@@ -20,9 +20,9 @@ public class Projectile : MonoBehaviour
     public GameObject[] despawnFX;
     public float angle;
     private Rigidbody2D rb;
- 
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         StartCoroutine(Despawn(lifetime));
         rb = GetComponent<Rigidbody2D>();
@@ -126,7 +126,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    IEnumerator Despawn(float time)
+    private IEnumerator Despawn(float time)
     {
         yield return new WaitForSeconds(time);
         for (int i = 0; i < despawnFX.Length; i++)

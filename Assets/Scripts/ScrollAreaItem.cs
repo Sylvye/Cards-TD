@@ -12,19 +12,19 @@ public class ScrollAreaItem : MonoBehaviour
         Home, Moving, Positioned
     }
     public List<GameObject> draggableDestinations = new List<GameObject>();
-    public bool draggable = true;
+    public bool draggable;
     public float snapDist = 1;
     public Vector2 lerpPos;
     public Vector2 homePos;
     public State s = State.Home;
-    Transform p;
+    private Transform p;
     public Vector2 ogScale;
-    Vector2 scale;
-    SpriteRenderer sr;
-    
+    private Vector2 scale;
+    private SpriteRenderer sr;
+
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         scale = transform.localScale;
@@ -35,21 +35,23 @@ public class ScrollAreaItem : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        Vector3 pos;
-        switch (s)
+        if (draggable)
         {
-            case State.Home:
-                break;
-            case State.Moving:
-                pos = Vector3.Lerp(transform.position, lerpPos, Time.deltaTime * 50);
-                transform.position = new Vector3(pos.x, pos.y, -2);
-                break;
-            case State.Positioned:
-                break;
+            Vector3 pos;
+            switch (s)
+            {
+                case State.Home:
+                    break;
+                case State.Moving:
+                    pos = Vector3.Lerp(transform.position, lerpPos, Time.deltaTime * 50);
+                    transform.position = new Vector3(pos.x, pos.y, -2);
+                    break;
+                case State.Positioned:
+                    break;
+            }
         }
-
     }
 
     private void OnMouseEnter()

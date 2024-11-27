@@ -32,7 +32,7 @@ public class Main : MonoBehaviour
     public static Main main;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         main = this;
         placementLayerMask_ = placementLayerMask;
@@ -64,13 +64,15 @@ public class Main : MonoBehaviour
         }
     }
 
-    public static void UpdatePackLabel()
+    public static void UpdatePackLabels()
     {
-        TMPLabel label = GameObject.Find("Pack Label").GetComponent<TMPLabel>();
-        label.SetText("Artisan: " + main.packs[0] + " Fighter: " + main.packs[1] + " Hoarder: " + main.packs[2]);
+        for (int i = 0; i < 3; i++)
+        {
+            StageController.inventoryUI.transform.GetChild(i+1).GetComponent<TMPLabel>().SetText("" + main.packs[i]);
+        }
     }
 
-    void Update() 
+    private void Update() 
     {
         // testing purposes
         if (Input.GetKeyUp(KeyCode.Alpha1))
@@ -85,7 +87,7 @@ public class Main : MonoBehaviour
             Spawner.main.Send(5);
     }
 
-    IEnumerator SetupMap()
+    private IEnumerator SetupMap()
     {
         yield return null;
         MapController.GenerateMap(mapLength_);

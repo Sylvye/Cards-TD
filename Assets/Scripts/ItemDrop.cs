@@ -10,7 +10,7 @@ public class ItemDrop : MonoBehaviour
     public int tier;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         float layer = tier;
         transform.position -= Vector3.forward * layer * 0.5f;

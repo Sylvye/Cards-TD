@@ -5,7 +5,19 @@ using UnityEngine;
 public class PackButton : Button
 {
     public int packIndex;
-    GameObject obj;
+    public GameObject lootObj;
+
+    private void Update()
+    {
+        if (Main.main.packs[packIndex] > 0)
+        {
+            SetActive(true);
+        }
+        else
+        {
+            SetActive(false);
+        }
+    }
 
     public override void Action()
     {
@@ -13,8 +25,9 @@ public class PackButton : Button
         if (packs > 0)
         {
             Main.main.packs[packIndex]--;
-            GameObject inventoryObj = Instantiate(obj);
+            GameObject inventoryObj = Instantiate(lootObj);
             StageController.inventoryLootScrollArea.AddToInventory(inventoryObj);
         }
+        Main.UpdatePackLabels();
     }
 }

@@ -27,7 +27,7 @@ public class Spawner : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (active)
         {
@@ -57,10 +57,6 @@ public class Spawner : MonoBehaviour
                 cooldown = 0;
             }
         }
-        else
-        {
-            battleButton.GetComponent<BattleButton>().SetActive(true); // VERY BAD
-        }
     }
 
     public bool IsStageComplete()
@@ -76,11 +72,10 @@ public class Spawner : MonoBehaviour
     public GameObject Spawn(GameObject obj, Vector3 pos, Quaternion rot)
     {
         GameObject o = Instantiate(obj, pos, rot);
-        if (!freebie && wave.Count == 0)
+        if (!freebie && wave.Count == 1)
         {
             o.GetComponent<Enemy>().dropWeights[0] = 0;
             freebie = true;
-            o.GetComponent<SpriteRenderer>().color = Color.red; // DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG DEBUG 
         }
         spawnedEnemies.Add(o);
         return o;

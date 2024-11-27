@@ -8,7 +8,7 @@ public class Hand : MonoBehaviour
     public List<Card> cards = new();
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         main = this;
     }

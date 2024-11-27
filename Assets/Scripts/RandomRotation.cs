@@ -5,7 +5,7 @@ public class RandomRotation : MonoBehaviour
     public float[] randomRotation;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         if (randomRotation.Length > 0)
         {

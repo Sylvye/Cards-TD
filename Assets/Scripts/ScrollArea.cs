@@ -11,16 +11,16 @@ public class ScrollArea : MonoBehaviour
     public float scrolledAmt = 0;
     public float scrollPower = 0.5f;
     public int layer;
-    List<GameObject> inventory = new List<GameObject>();
+    private List<GameObject> inventory = new List<GameObject>();
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
 
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (GetComponent<Collider2D>().OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition))) // handles scrolling
         {

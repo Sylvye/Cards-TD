@@ -7,12 +7,12 @@ public class Fade : MonoBehaviour
     public float delay = 0;
     public float fadeSpeed = 1;
     public bool destroyOnInvisible;
-    float time;
-    bool fading = true;
-    SpriteRenderer sr;
+    private float time;
+    private bool fading = true;
+    private SpriteRenderer sr;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         if (delay == 0)
@@ -22,7 +22,7 @@ public class Fade : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         time += Time.deltaTime;
         if (time >= delay)
