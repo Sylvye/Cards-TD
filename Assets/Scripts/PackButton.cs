@@ -27,6 +27,7 @@ public class PackButton : Button
             Main.main.packs[packIndex]--;
             GameObject inventoryObj = Instantiate(lootObj);
             StageController.inventoryLootScrollArea.AddToInventory(inventoryObj);
+            StageController.inventoryLootScrollArea.RefreshPositions();
         }
         Main.UpdatePackLabels();
     }
