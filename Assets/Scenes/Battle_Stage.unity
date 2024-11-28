@@ -756,7 +756,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemsPerRow: 10
   offset: {x: 1, y: 1}
-  startPos: {x: -0.375, y: 0.25, z: 0}
+  startPos: {x: -0.375, y: 0.3333333, z: 0}
   scrolledAmt: 0
   scrollPower: 0.25
   layer: 2

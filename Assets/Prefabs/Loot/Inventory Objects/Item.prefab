@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4984996326214199042}
   - component: {fileID: 6994004999299769164}
+  - component: {fileID: 4867638406729797866}
   m_Layer: 0
   m_Name: Item
   m_TagString: Untagged
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 1231281358, guid: 204d32536cb47494db6c6fef519545aa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -82,5 +83,24 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
+--- !u!114 &4867638406729797866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8027126686543341126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 321fe4586f589e641a6f32790fa77874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  draggableDestinations: []
+  draggable: 0
+  snapDist: 1
+  lerpPos: {x: 0, y: 0}
+  homePos: {x: 0, y: 0}
+  s: 0
+  ogScale: {x: 0, y: 0}

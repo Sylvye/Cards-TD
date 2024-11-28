@@ -33,12 +33,22 @@ public class PackButton : Button
     public override void Action()
     {
         int packs = Main.main.packs[packIndex];
-        if (packs > 0)
+        int loops = 1;
+        if (Input.GetKey(KeyCode.LeftShift)) // if you hold shift while you click the button, it will open all packs instantly
         {
-            Main.main.packs[packIndex]--;
-            StageController.inventoryLootScrollArea.AddToInventory(CreateItem());
-            StageController.inventoryLootScrollArea.RefreshPositions();
+            loops = packs;
         }
+
+        for (int i = 0; i < loops; i++)
+        {
+            if (packs > 0)
+            {
+                Main.main.packs[packIndex]--;
+                StageController.inventoryLootScrollArea.AddToInventory(CreateItem());
+            }
+        }
+
+        StageController.inventoryLootScrollArea.RefreshPositions();
         Main.UpdatePackLabels();
     }
 }

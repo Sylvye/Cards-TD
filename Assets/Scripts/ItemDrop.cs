@@ -13,7 +13,7 @@ public class ItemDrop : MonoBehaviour
     private void Start()
     {
         float layer = tier;
-        transform.position -= Vector3.forward * layer * 0.5f;
+        transform.position += Vector3.back * (2.5f + layer * 0.1f);
     }
 
     private void OnMouseOver()

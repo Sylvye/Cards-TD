@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7372098750488470720}
   - component: {fileID: 5572400333989406201}
   - component: {fileID: 3110125680437061879}
-  - component: {fileID: -7485955721978623468}
   - component: {fileID: -2429067956438843661}
   - component: {fileID: -3326298049308898543}
   m_Layer: 0
@@ -115,41 +114,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &-7485955721978623468
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6573914848199131595}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.33333334
 --- !u!114 &-2429067956438843661
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,12 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d85345488c86e4288e561983516288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  category: 
+  category: 0
   sprites: {fileID: 11400000, guid: 039de2aa89b912845bb77db2b33555f8, type: 2}
-  cardLootpool: {fileID: 11400000, guid: 8c35a6c4cd076c24a8edd87b7f79db56, type: 2}
-  augmentLootpool: {fileID: 11400000, guid: bfb1dc40dbe26a64d91527bd18e805ea, type: 2}
-  currencyMax: 5
-  currencyMin: 25
 --- !u!114 &-3326298049308898543
 MonoBehaviour:
   m_ObjectHideFlags: 0
