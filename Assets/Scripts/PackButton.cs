@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PackButton : Button
 {
+    public SpriteLootpool[] spriteLootpools;
     public int packIndex;
     public GameObject lootObj;
 
@@ -19,14 +20,23 @@ public class PackButton : Button
         }
     }
 
+    public GameObject CreateItem()
+    {
+        GameObject inventoryObj = Instantiate(lootObj);
+        inventoryObj.GetComponent<SpriteRenderer>().sprite = spriteLootpools[packIndex].GetRandom();
+
+        // make items add their value here
+
+        return inventoryObj;
+    }
+
     public override void Action()
     {
         int packs = Main.main.packs[packIndex];
         if (packs > 0)
         {
             Main.main.packs[packIndex]--;
-            GameObject inventoryObj = Instantiate(lootObj);
-            StageController.inventoryLootScrollArea.AddToInventory(inventoryObj);
+            StageController.inventoryLootScrollArea.AddToInventory(CreateItem());
             StageController.inventoryLootScrollArea.RefreshPositions();
         }
         Main.UpdatePackLabels();

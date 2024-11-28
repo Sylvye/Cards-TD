@@ -2,8 +2,8 @@ using JetBrains.Annotations;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Probabilities", menuName = "Probability List", order = 1)]
-public class Lootpool : ScriptableObject
+[CreateAssetMenu(fileName = "GameObject Lootpool", menuName = "GameObject Lootpool", order = 1)]
+public class GameobjectLootpool : ScriptableObject
 {
     public List<GameObject> objects;
     public List<float> weights;

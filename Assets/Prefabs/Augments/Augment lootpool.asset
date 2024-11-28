@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83d4212f9e44cfb48b312e7e80a84adc, type: 3}
-  m_Name: '!Augment lootpool'
+  m_Script: {fileID: 11500000, guid: d08cc902fe661614a917cb17aa98bf2a, type: 3}
+  m_Name: Augment lootpool
   m_EditorClassIdentifier: 
   objects:
   - {fileID: 183066773122249344, guid: 38376354ca5b97949a722708b0ba02b5, type: 3}
@@ -21,10 +21,10 @@ MonoBehaviour:
   - {fileID: 183066773122249344, guid: f99ac4aa2a06be74d977af37b98f6d2c, type: 3}
   - {fileID: 183066773122249344, guid: 7420a5ef509921e4ba401d94b08d6963, type: 3}
   weights:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1

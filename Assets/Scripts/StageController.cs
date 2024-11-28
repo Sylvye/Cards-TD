@@ -12,11 +12,11 @@ public class StageController : MonoBehaviour
     public static int stageIndex = 0;
     private static Vector3 destination = new(0, -10, -10);
     [Header("Shop")]
-    public Lootpool cardProbs;
+    public GameobjectLootpool cardProbs;
     public GameObject cardOption;
     public float[] rarityWeights = { 78, 12, 6, 3, 1 };
     public static float[] rarityWeights_;
-    private static Lootpool cardProbs_;
+    private static GameobjectLootpool cardProbs_;
     private static GameObject cardOption_;
     private static GameObject[] shopCards = new GameObject[3];
     public static GameObject battleButton;

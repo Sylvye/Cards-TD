@@ -7,8 +7,8 @@ public class DropIndicator : MonoBehaviour
 {
     public string category = "";
     public SpriteHolder sprites;
-    public Lootpool cardLootpool;
-    public Lootpool augmentLootpool;
+    public GameobjectLootpool cardLootpool;
+    public GameobjectLootpool augmentLootpool;
     public int currencyMax = 5;
     public int currencyMin = 25;
     public static string[] categories = { "Fighter", "Hoarder", "Artisan" };

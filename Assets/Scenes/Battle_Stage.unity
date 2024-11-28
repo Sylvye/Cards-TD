@@ -605,6 +605,10 @@ MonoBehaviour:
   spriteDown: {fileID: -312858689, guid: 204d32536cb47494db6c6fef519545aa, type: 3}
   scaleAmount: 0.9
   active: 1
+  spriteLootpools:
+  - {fileID: 11400000, guid: b6f049194857b9c4ea45df4d95911a31, type: 2}
+  - {fileID: 11400000, guid: 189a51c05ceb1044dbbce7f40d4c7d1e, type: 2}
+  - {fileID: 11400000, guid: a60a53d7012dcf344947fcc5994d11d5, type: 2}
   packIndex: 2
   lootObj: {fileID: 8027126686543341126, guid: 48be2498787ed894c9de35aaba12ac59, type: 3}
 --- !u!58 &128176965
@@ -1564,6 +1568,10 @@ MonoBehaviour:
   spriteDown: {fileID: -312858689, guid: 204d32536cb47494db6c6fef519545aa, type: 3}
   scaleAmount: 0.9
   active: 1
+  spriteLootpools:
+  - {fileID: 11400000, guid: b6f049194857b9c4ea45df4d95911a31, type: 2}
+  - {fileID: 11400000, guid: 189a51c05ceb1044dbbce7f40d4c7d1e, type: 2}
+  - {fileID: 11400000, guid: a60a53d7012dcf344947fcc5994d11d5, type: 2}
   packIndex: 1
   lootObj: {fileID: 8027126686543341126, guid: 48be2498787ed894c9de35aaba12ac59, type: 3}
 --- !u!58 &678704894
@@ -4471,6 +4479,10 @@ MonoBehaviour:
   spriteDown: {fileID: -312858689, guid: 204d32536cb47494db6c6fef519545aa, type: 3}
   scaleAmount: 0.9
   active: 1
+  spriteLootpools:
+  - {fileID: 11400000, guid: b6f049194857b9c4ea45df4d95911a31, type: 2}
+  - {fileID: 11400000, guid: 189a51c05ceb1044dbbce7f40d4c7d1e, type: 2}
+  - {fileID: 11400000, guid: a60a53d7012dcf344947fcc5994d11d5, type: 2}
   packIndex: 0
   lootObj: {fileID: 8027126686543341126, guid: 48be2498787ed894c9de35aaba12ac59, type: 3}
 --- !u!58 &1894987998
