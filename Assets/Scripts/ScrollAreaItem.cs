@@ -12,6 +12,7 @@ public class ScrollAreaItem : MonoBehaviour
         Home, Moving, Positioned
     }
     public List<GameObject> draggableDestinations = new List<GameObject>();
+    public string id;
     public bool draggable;
     public float snapDist = 1;
     public Vector2 lerpPos;
@@ -58,12 +59,15 @@ public class ScrollAreaItem : MonoBehaviour
     {
         if (draggable && !Input.GetMouseButton(0))
             transform.localScale = scale * 1.1f;
+        MouseTooltip.SetVisible(true);
+        MouseTooltip.SetText(id);
     }
 
     private void OnMouseExit()
     {
         if (draggable && !Input.GetMouseButton(0))
             transform.localScale = scale;
+        MouseTooltip.SetVisible(false);
     }
 
     private void OnMouseDrag()
