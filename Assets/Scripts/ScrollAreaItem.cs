@@ -11,7 +11,7 @@ public class ScrollAreaItem : MonoBehaviour
     {
         Home, Moving, Positioned
     }
-    public List<GameObject> draggableDestinations = new List<GameObject>();
+    public List<GameObject> draggableDestinations = new();
     public string id;
     [Header("Draggableness")]
     public bool draggable;

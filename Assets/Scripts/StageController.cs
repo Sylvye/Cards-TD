@@ -69,8 +69,8 @@ public class StageController : MonoBehaviour
                 stageIndex = 0;
                 break;
             case "Defense":
-                Hand.main.Deal();
-                Hand.main.DisplayCards();
+                Hand.Deal();
+                Hand.RepositionHand();
                 destination = new Vector3(0, 0, -10);
                 stageIndex = 1;
                 Spawner.main.complete = false;
@@ -118,24 +118,24 @@ public class StageController : MonoBehaviour
         ScrollArea augmentScrollArea = GameObject.Find("Augment Scroll Area").GetComponent<ScrollArea>();
         GameObject cardDestination = GameObject.Find("Card Slot");
         GameObject augmentDestination = GameObject.Find("Augment Slot");
-        for (int i=0; i<Cards.deck.Count; i++) // places cards in deck scroll area
+        for (int i=0; i<Cards.DeckSize(); i++) // places cards in deck scroll area
         {
             GameObject itemObj = Instantiate(cardItem_, Vector3.one, Quaternion.identity);
             SpriteRenderer sr = itemObj.GetComponent<SpriteRenderer>();
             ScrollAreaItem sai = itemObj.GetComponent<ScrollAreaItem>();
             sr.sortingOrder = 0;
-            sr.sprite = Cards.deck[i].GetComponent<SpriteRenderer>().sprite;
+            sr.sprite = Cards.GetFromDeck(i).GetComponent<SpriteRenderer>().sprite;
             cardScrollArea.AddToInventory(itemObj);
             sai.draggable = true;
             sai.draggableDestinations.Add(cardDestination);
         }
-        for (int i = 0; i < Cards.augments.Count; i++) // places augments in augment scroll area
+        for (int i = 0; i < Cards.AugmentSize(); i++) // places augments in augment scroll area
         {
             GameObject itemObj = Instantiate(cardItem_, Vector3.one, Quaternion.identity);
             SpriteRenderer sr = itemObj.GetComponent<SpriteRenderer>();
             ScrollAreaItem sai = itemObj.GetComponent<ScrollAreaItem>();
             sr.sortingOrder = 1;
-            sr.sprite = Cards.augments[i].GetComponent<SpriteRenderer>().sprite;
+            sr.sprite = Cards.GetFromAugments(i).GetComponent<SpriteRenderer>().sprite;
             augmentScrollArea.AddToInventory(itemObj);
             sai.draggable = true;
             sai.draggableDestinations.Add(augmentDestination);

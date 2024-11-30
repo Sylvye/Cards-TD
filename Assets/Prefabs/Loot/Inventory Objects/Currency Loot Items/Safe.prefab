@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   draggableDestinations: []
-  id: 
+  id: Safe of coins
   draggable: 0
   snapDist: 1
   state: 0

@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static UnityEditor.Rendering.CameraUI;
 
 public class Hand : MonoBehaviour
 {
     public static Hand main;
-    public List<Card> cards = new();
+    private List<Card> hand = new();
 
     // Start is called before the first frame update
     private void Start()
@@ -14,43 +16,104 @@ public class Hand : MonoBehaviour
     }
 
     // returns all cards back to the deck. adds 5 cards from the deck to the hand
-    public void Deal()
+    public static void Deal()
     {
-        if (cards.Count > 0)
+        if (main.hand.Count > 0) // if there are cards in the hand, safely remove them without deleting them
         {
-            for (int i = 0; i < cards.Count; i++)
+            for (int i = 0; i < main.hand.Count; i++)
             {
-                Card c = cards[cards.Count-1];
-                cards.RemoveAt(cards.Count-1);
+                Card c = main.hand[^1];
+                main.hand.RemoveAt(main.hand.Count - 1);
                 if (c != null)
                     Cards.AddToDeck(c);
+                c.transform.position = Vector3.up * 10;
             }
         }
-        for (int i=0; i<5; i++)
+        for (int i=0; i<5; i++) // draw 5 new cards
         {
             Card c = Cards.DrawFromDeck();
-            cards.Add(c);
-            c.indexInHand = i;
+            main.hand.Add(c);
+            c.transform.SetParent(main.transform);
         }
     }
 
-    public void ClearHand()
+    public static void Draw()
     {
-        foreach (Card c in cards)
+        if (Cards.DeckSize() > 0)
         {
-            Cards.deck.Add(c);
-            cards.Remove(c);
-            c.transform.position = new Vector3(0, 0, -7);
+            Card c = Cards.DrawFromDeck();
+            main.hand.Add(c);
+            c.transform.SetParent(main.transform);
+            RepositionHand();
         }
     }
 
-    public void DisplayCards()
+    public static void Draw(int num)
     {
-        int i = 0;
-        foreach (Card card in cards)
+        for (int i=0; i<num; i++)
         {
-            card.indexInHand = i;
-            card.transform.position = transform.position + Vector3.right * 1.2f * i++ + Vector3.forward * -5;
+            if (Cards.DeckSize() == 0) break;
+            Card c = Cards.DrawFromDeck();
+            main.hand.Add(c);
+            c.transform.SetParent(main.transform);
+        }
+        RepositionHand();
+    }
+
+    public static void Clear()
+    {
+        foreach (Card c in main.hand)
+        {
+            Cards.AddToDeck(c);
+            main.hand.Remove(c);
+            Cards.AddToDeck(c);
+        }
+    }
+
+    public static int GetIndexOf(Card c)
+    {
+        return main.hand.IndexOf(c);
+    }
+
+    public static Card Get(int index)
+    {
+        return main.hand[index];
+    }
+
+    public static Card Remove(int index)
+    {
+        Card c = main.hand[index];
+        main.hand.RemoveAt(index);
+        Cards.AddToDeck(c);
+        return c;
+    }
+
+    public static void Remove(Card c)
+    {
+        main.hand.Remove(c);
+        Cards.AddToDeck(c);
+    }
+    
+    public static Card Set(int index, Card c)
+    {
+        Card output = main.hand[index];
+        main.hand[index] = c;
+        c.transform.SetParent(main.transform);
+        Cards.AddToDeck(output);
+        return output;
+    }
+
+    public static int Size()
+    {
+        return main.hand.Count;
+    }
+
+    public static void RepositionHand() // moves cards to their spots in the card bar from the stack of cards out of frame
+    {
+        for (int i=0; i<main.hand.Count; i++)
+        {
+            Card card = main.hand[i];
+            card.transform.position = main.transform.position + 1.2f * i * Vector3.right + Vector3.forward * -5;
             card.SetHandPos();
         }
     }

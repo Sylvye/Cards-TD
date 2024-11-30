@@ -10,7 +10,6 @@ public abstract class Card : MonoBehaviour
     public int tier;
     private bool selected = false;
     private Vector3 handPos;
-    public int indexInHand = -1;
     public float radius;
 
     private void Start()
@@ -55,15 +54,15 @@ public abstract class Card : MonoBehaviour
                 GameObject obj = OnPlay();
                 if (obj != null && obj.TryGetComponent(out Tower tower))
                     tower.tier = tier;
-                Hand.main.cards.RemoveAt(indexInHand);
-                if (Hand.main.cards.Count == 0)
+                Hand.Remove(Hand.GetIndexOf(this));
+                if (Hand.Size() == 0)
                 {
-                    Hand.main.Deal();
+                    Hand.Deal();
                 }
                 Cards.AddToDeck(this);
                 gameObject.transform.position = Vector3.up * 10;
                 gameObject.transform.localScale = Vector3.one * 1.5f;
-                Hand.main.DisplayCards();
+                Hand.RepositionHand();
             }
             else
             {

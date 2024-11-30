@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   draggableDestinations: []
-  id: 
+  id: Large Pile of Coins
   draggable: 0
   snapDist: 1
   state: 0
