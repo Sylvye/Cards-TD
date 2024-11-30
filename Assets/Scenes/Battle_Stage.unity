@@ -605,10 +605,7 @@ MonoBehaviour:
   spriteDown: {fileID: -312858689, guid: 204d32536cb47494db6c6fef519545aa, type: 3}
   scaleAmount: 0.9
   active: 1
-  spriteLootpools:
-  - {fileID: 11400000, guid: b6f049194857b9c4ea45df4d95911a31, type: 2}
-  - {fileID: 11400000, guid: 189a51c05ceb1044dbbce7f40d4c7d1e, type: 2}
-  - {fileID: 11400000, guid: a60a53d7012dcf344947fcc5994d11d5, type: 2}
+  itemLootpool: {fileID: 11400000, guid: a60a53d7012dcf344947fcc5994d11d5, type: 2}
   packIndex: 2
   lootObj: {fileID: 8027126686543341126, guid: 48be2498787ed894c9de35aaba12ac59, type: 3}
 --- !u!58 &128176965
@@ -1568,10 +1565,7 @@ MonoBehaviour:
   spriteDown: {fileID: -312858689, guid: 204d32536cb47494db6c6fef519545aa, type: 3}
   scaleAmount: 0.9
   active: 1
-  spriteLootpools:
-  - {fileID: 11400000, guid: b6f049194857b9c4ea45df4d95911a31, type: 2}
-  - {fileID: 11400000, guid: 189a51c05ceb1044dbbce7f40d4c7d1e, type: 2}
-  - {fileID: 11400000, guid: a60a53d7012dcf344947fcc5994d11d5, type: 2}
+  itemLootpool: {fileID: 11400000, guid: 189a51c05ceb1044dbbce7f40d4c7d1e, type: 2}
   packIndex: 1
   lootObj: {fileID: 8027126686543341126, guid: 48be2498787ed894c9de35aaba12ac59, type: 3}
 --- !u!58 &678704894
@@ -1642,7 +1636,6 @@ MonoBehaviour:
   currency: 0
   packs: 000000000000000000000000
   mapLength: 20
-  DB: {fileID: 1505739289}
   hitboxReticle: {fileID: 1783182364}
   towerRangeReticle: {fileID: 2065561394}
   placementLayerMask:
@@ -1758,7 +1751,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 718686986}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -1771,17 +1764,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Rocket Turret T1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 449f3669b0332884282c533ffe82a181, type: 2}
+  m_sharedMaterial: {fileID: 9024869874199375436, guid: 449f3669b0332884282c533ffe82a181, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0.65882355, g: 0.8039216, b: 0.62352943, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1798,12 +1791,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
+  m_fontSize: 18.05
   m_fontSizeBase: 25
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 10
+  m_fontSizeMax: 20
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
@@ -1814,7 +1807,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 1
   m_linkedTextComponent: {fileID: 0}
@@ -3440,7 +3433,7 @@ GameObject:
   - component: {fileID: 1505739290}
   - component: {fileID: 1505739289}
   m_Layer: 0
-  m_Name: Deck setter upper
+  m_Name: Card Handler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3862,9 +3855,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a06dd67923fdd8241860b00735233442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemsPerRow: 0
-  offset: {x: 0, y: 0}
-  startPos: {x: 0, y: 0, z: 0}
+  itemsPerRow: 5
+  offset: {x: 1.5, y: 2}
+  startPos: {x: -0.375, y: 0.25, z: 0}
   scrolledAmt: 0
   scrollPower: 0.25
   layer: 1
@@ -4333,7 +4326,7 @@ GameObject:
   - component: {fileID: 1783182366}
   - component: {fileID: 1783182365}
   m_Layer: 0
-  m_Name: HitboxReticle
+  m_Name: Hitbox Reticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4741,10 +4734,7 @@ MonoBehaviour:
   spriteDown: {fileID: -312858689, guid: 204d32536cb47494db6c6fef519545aa, type: 3}
   scaleAmount: 0.9
   active: 1
-  spriteLootpools:
-  - {fileID: 11400000, guid: b6f049194857b9c4ea45df4d95911a31, type: 2}
-  - {fileID: 11400000, guid: 189a51c05ceb1044dbbce7f40d4c7d1e, type: 2}
-  - {fileID: 11400000, guid: a60a53d7012dcf344947fcc5994d11d5, type: 2}
+  itemLootpool: {fileID: 11400000, guid: b6f049194857b9c4ea45df4d95911a31, type: 2}
   packIndex: 0
   lootObj: {fileID: 8027126686543341126, guid: 48be2498787ed894c9de35aaba12ac59, type: 3}
 --- !u!58 &1894987998
@@ -5349,7 +5339,7 @@ GameObject:
   - component: {fileID: 2065561396}
   - component: {fileID: 2065561395}
   m_Layer: 0
-  m_Name: TowerRangeReticle
+  m_Name: Tower Range Reticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

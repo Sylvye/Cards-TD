@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4984996326214199042}
   - component: {fileID: 6994004999299769164}
-  - component: {fileID: 4867638406729797866}
+  - component: {fileID: 1821850310886029261}
+  - component: {fileID: -6421371425587655459}
   m_Layer: 0
-  m_Name: Item
+  m_Name: Barrage Turret Card Item T2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 1231281358, guid: 204d32536cb47494db6c6fef519545aa, type: 3}
+  m_Sprite: {fileID: 1672880092, guid: 51bbbeec59dcbd24b880c26bdd461b46, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -83,9 +84,9 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4867638406729797866
+--- !u!114 &1821850310886029261
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,13 +95,59 @@ MonoBehaviour:
   m_GameObject: {fileID: 8027126686543341126}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 321fe4586f589e641a6f32790fa77874, type: 3}
+  m_Script: {fileID: 11500000, guid: 66bfd3aeb11534949b61d3d175bad1e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   draggableDestinations: []
+  id: Barrage Turret T
   draggable: 0
   snapDist: 1
-  lerpPos: {x: 0, y: 0}
-  homePos: {x: 0, y: 0}
-  s: 0
-  ogScale: {x: 0, y: 0}
+  state: 0
+  claimed: 0
+  cardReference: {fileID: -6612765135822769905, guid: bbed92b32139ec642878e347d427052e, type: 3}
+  tier: 2
+--- !u!61 &-6421371425587655459
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8027126686543341126}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.65, y: 1}
+    newSize: {x: 0.65, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.65, y: 1}
+  m_EdgeRadius: 0

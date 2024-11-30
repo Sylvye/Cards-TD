@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7900f5160db60f84ab766b278ce0ff08, type: 3}
+  m_Name: '!Augment Lootpool'
+  m_EditorClassIdentifier: 
+  items:
+  - {fileID: 5043461548880334836, guid: 48be2498787ed894c9de35aaba12ac59, type: 3}
+  - {fileID: 5043461548880334836, guid: 189c4ca4f3c10384999063c83365e244, type: 3}
+  - {fileID: 5043461548880334836, guid: 9fb59eee77e53a044b9acd9d446210d4, type: 3}
+  - {fileID: 5043461548880334836, guid: 03d5039afd681024c8dc704d40bd7843, type: 3}
+  - {fileID: 5043461548880334836, guid: a003d8a24332819458755baa14188b02, type: 3}
+  - {fileID: 5043461548880334836, guid: ac0ffa2bec81dea4fb1e061f54b6ee62, type: 3}
+  - {fileID: 5043461548880334836, guid: 1dc961f2ea3e10b4cb5371577b50442b, type: 3}
+  weights:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1

@@ -16,7 +16,7 @@ public class Main : MonoBehaviour
     public int mapLength;
     public static int mapLength_;
 
-    public Deckbuilder DB;
+    public static GameObject DB;
 
     public static GameObject hitboxReticle_;
     public GameObject hitboxReticle;
@@ -41,8 +41,9 @@ public class Main : MonoBehaviour
         towerRangeReticle_ = towerRangeReticle;
         enemyLayerMask_ = enemyLayerMask;
         mapLength_ = mapLength;
+        DB = GameObject.Find("Card Handler");
         StartCoroutine(SetupMap());
-        DB.InitializeDeck();
+        DB.GetComponent<Deckbuilder>().InitializeDeck();
     }
 
     public static bool Damage(int amount)
@@ -58,7 +59,7 @@ public class Main : MonoBehaviour
 
     public static void Earn(int amount)
     {
-        main.currency -= amount;
+        main.currency += amount;
         if (main.currency < 0) // shouldn't happen ever, but just in case.
         {
             main.currency = 0;
@@ -88,7 +89,7 @@ public class Main : MonoBehaviour
             Spawner.main.Send(5);
     }
 
-    private IEnumerator SetupMap()
+    private IEnumerator SetupMap() // waits a frame because im lazy and didnt want to reassign script execution order.
     {
         yield return null;
         MapController.GenerateMap(mapLength_);

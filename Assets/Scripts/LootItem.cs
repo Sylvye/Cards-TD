@@ -5,8 +5,8 @@ using UnityEngine;
 // for items in the loot scroll area. (inventory items)
 public abstract class LootItem : ScrollAreaItem
 {
-    public Sprite sprite;
-
+    [Header("Loot Item Fields")]
+    public bool claimed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,9 +22,14 @@ public abstract class LootItem : ScrollAreaItem
 
     private void OnMouseDown()
     {
-        Claim();
-        StageController.inventoryLootScrollArea.RemoveFromInventory(gameObject);
-        StageController.inventoryLootScrollArea.RefreshPositions();
+        if (!claimed)
+        {
+            Claim();
+            GetComponent<SpriteRenderer>().color = new Color(0.8f, 0.8f, 0.8f, 1);
+            //StageController.inventoryLootScrollArea.RemoveFromInventory(gameObject);
+            //StageController.inventoryLootScrollArea.RefreshPositions();
+            claimed = true;
+        }
     }
 
     public abstract void Claim();

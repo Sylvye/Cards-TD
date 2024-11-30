@@ -60,7 +60,7 @@ public abstract class Card : MonoBehaviour
                 {
                     Hand.main.Deal();
                 }
-                Cards.Add(this);
+                Cards.AddToDeck(this);
                 gameObject.transform.position = Vector3.up * 10;
                 gameObject.transform.localScale = Vector3.one * 1.5f;
                 Hand.main.DisplayCards();

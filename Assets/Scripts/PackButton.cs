@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PackButton : Button
 {
-    public SpriteLootpool[] spriteLootpools;
+    public ItemLootpool itemLootpool;
     public int packIndex;
     public GameObject lootObj;
 
@@ -22,10 +22,7 @@ public class PackButton : Button
 
     public GameObject CreateItem()
     {
-        GameObject inventoryObj = Instantiate(lootObj);
-        inventoryObj.GetComponent<SpriteRenderer>().sprite = spriteLootpools[packIndex].GetRandom();
-
-        // make items add their value here
+        GameObject inventoryObj = Instantiate(itemLootpool.GetRandom().gameObject);
 
         return inventoryObj;
     }

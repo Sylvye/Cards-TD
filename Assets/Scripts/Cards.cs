@@ -9,7 +9,7 @@ public class Cards
     public static List<Augment> augments = new();
 
     // picks a random position in the deck to return a card from. The returned card is removed from the deck
-    public static Card Draw()
+    public static Card DrawFromDeck()
     {
         int index = Random.Range(0, deck.Count);
         Card c = deck[index];
@@ -17,9 +17,24 @@ public class Cards
         return c;
     }
 
-    public static void Add(Card c)
+    public static void AddToDeck(Card c)
     {
         c.indexInHand = -1;
         deck.Add(c);
+    }
+
+    public static void RemoveFromDeck(Card c)
+    {
+        deck.Remove(c);
+    }
+
+    public static void AddToAugments(Augment a)
+    {
+        augments.Add(a);
+    }
+
+    public static void RemoveFromAugments(Augment a)
+    {
+        augments.Remove(a);
     }
 }

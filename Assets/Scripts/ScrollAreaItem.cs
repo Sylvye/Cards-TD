@@ -13,15 +13,19 @@ public class ScrollAreaItem : MonoBehaviour
     }
     public List<GameObject> draggableDestinations = new List<GameObject>();
     public string id;
+    [Header("Draggableness")]
     public bool draggable;
     public float snapDist = 1;
-    public Vector2 lerpPos;
+    public State state = State.Home;
+    private Vector2 lerpPos;
+    [NonSerialized]
     public Vector2 homePos;
-    public State s = State.Home;
     private Transform p;
+    [NonSerialized]
     public Vector2 ogScale;
     private Vector2 scale;
-    private SpriteRenderer sr;
+    [NonSerialized]
+    public SpriteRenderer sr;
 
 
     // Start is called before the first frame update
@@ -41,7 +45,7 @@ public class ScrollAreaItem : MonoBehaviour
         if (draggable)
         {
             Vector3 pos;
-            switch (s)
+            switch (state)
             {
                 case State.Home:
                     break;
@@ -91,7 +95,7 @@ public class ScrollAreaItem : MonoBehaviour
                 transform.localScale = closest.transform.localScale;
                 transform.position = closest.transform.position + Vector3.back;
                 scale = transform.localScale;
-                s = State.Positioned;
+                state = State.Positioned;
             }
             else
             {
@@ -100,20 +104,18 @@ public class ScrollAreaItem : MonoBehaviour
                 transform.localScale = scale;
                 homePos += p.GetComponent<ScrollArea>().scrolledAmt * Vector2.down;
                 p.GetComponent<ScrollArea>().AddToInventory(gameObject);
-                s = State.Home;
-                sr.maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+                state = State.Home;
             }
         }
     }
 
     private void OnMouseDown()
     {
-        if (draggable && s.Equals(State.Positioned) || s.Equals(State.Home))
+        if (draggable && state.Equals(State.Positioned) || state.Equals(State.Home))
         {
             lerpPos = transform.position;
             transform.parent = null;
-            sr.maskInteraction = SpriteMaskInteraction.None;
-            s = State.Moving;
+            state = State.Moving;
             p.GetComponent<ScrollArea>().RemoveFromInventory(gameObject);
             p.GetComponent<ScrollArea>().RefreshPositions();
         }

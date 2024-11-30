@@ -114,27 +114,31 @@ public class StageController : MonoBehaviour
 
     public static void SetupAugment()
     {
-        ScrollArea deck = GameObject.Find("Augment Deck Scroll Area").GetComponent<ScrollArea>();
-        ScrollArea augmentDeck = GameObject.Find("Augment Scroll Area").GetComponent<ScrollArea>();
+        ScrollArea cardScrollArea = GameObject.Find("Augment Deck Scroll Area").GetComponent<ScrollArea>();
+        ScrollArea augmentScrollArea = GameObject.Find("Augment Scroll Area").GetComponent<ScrollArea>();
         GameObject cardDestination = GameObject.Find("Card Slot");
         GameObject augmentDestination = GameObject.Find("Augment Slot");
         for (int i=0; i<Cards.deck.Count; i++) // places cards in deck scroll area
         {
-            GameObject itemObj = Instantiate(cardItem_, Vector3.zero, Quaternion.identity);
+            GameObject itemObj = Instantiate(cardItem_, Vector3.one, Quaternion.identity);
             SpriteRenderer sr = itemObj.GetComponent<SpriteRenderer>();
+            ScrollAreaItem sai = itemObj.GetComponent<ScrollAreaItem>();
             sr.sortingOrder = 0;
             sr.sprite = Cards.deck[i].GetComponent<SpriteRenderer>().sprite;
-            deck.AddToInventory(itemObj);
-            itemObj.GetComponent<ScrollAreaItem>().draggableDestinations.Add(cardDestination);
+            cardScrollArea.AddToInventory(itemObj);
+            sai.draggable = true;
+            sai.draggableDestinations.Add(cardDestination);
         }
         for (int i = 0; i < Cards.augments.Count; i++) // places augments in augment scroll area
         {
-            GameObject itemObj = Instantiate(cardItem_, Vector3.zero, Quaternion.identity);
+            GameObject itemObj = Instantiate(cardItem_, Vector3.one, Quaternion.identity);
             SpriteRenderer sr = itemObj.GetComponent<SpriteRenderer>();
+            ScrollAreaItem sai = itemObj.GetComponent<ScrollAreaItem>();
             sr.sortingOrder = 1;
             sr.sprite = Cards.augments[i].GetComponent<SpriteRenderer>().sprite;
-            augmentDeck.AddToInventory(itemObj);
-            itemObj.GetComponent<ScrollAreaItem>().draggableDestinations.Add(augmentDestination);
+            augmentScrollArea.AddToInventory(itemObj);
+            sai.draggable = true;
+            sai.draggableDestinations.Add(augmentDestination);
         }
     }
 }
