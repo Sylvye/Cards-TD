@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0cfd2ebd847c50e49a3e52dcfadd0ff5
+guid: 7f4c0888bafbc8748ba242f3dce27cf3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,91 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: StartExitButtons_0
+      name: Buttons_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 30
+        width: 23
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2339208cf3690e045a0b686e40064e11
+      internalID: 446073088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buttons_1
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 30
+        width: 23
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfbb30be38c9df043b443ce1af78f176
+      internalID: 863563095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buttons_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 20
+        width: 23
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 385e094bfe5a04f47b7f581877746725
+      internalID: 540583396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buttons_3
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 20
+        width: 23
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1208b014a43a7464b904bc1c0257a031
+      internalID: -1644469888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Buttons_4
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2214af130004a24a85cef6281a46870
-      internalID: 1476903943
+      spriteID: e03eee4b2f50cb24cbefd4c123792691
+      internalID: 1064653082
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StartExitButtons_1
+      name: Buttons_5
       rect:
         serializedVersion: 2
         x: 23
@@ -145,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1419063065cd27443940120ba201bc7f
-      internalID: -108571274
+      spriteID: c88c79a90f3a68f409ece759ec0f43f2
+      internalID: -108163918
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StartExitButtons_2
+      name: Buttons_6
       rect:
         serializedVersion: 2
         x: 0
@@ -166,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4fc0167c9c333d340ade6def02b22691
-      internalID: -961297803
+      spriteID: 4023f114eee14cd44b693f2222e0c910
+      internalID: 395675980
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: StartExitButtons_3
+      name: Buttons_7
       rect:
         serializedVersion: 2
         x: 23
@@ -187,8 +271,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9042e91c3d14724790571f4e4d8f42f
-      internalID: -74954544
+      spriteID: b420e5159a40aa2499bc74996c042472
+      internalID: -845947251
       vertices: []
       indices: 
       edges: []
@@ -204,10 +288,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      StartExitButtons_0: 1476903943
-      StartExitButtons_1: -108571274
-      StartExitButtons_2: -961297803
-      StartExitButtons_3: -74954544
+      Buttons_0: 446073088
+      Buttons_1: 863563095
+      Buttons_2: 540583396
+      Buttons_3: -1644469888
+      Buttons_4: 1064653082
+      Buttons_5: -108163918
+      Buttons_6: 395675980
+      Buttons_7: -845947251
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

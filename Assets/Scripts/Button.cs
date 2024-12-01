@@ -51,10 +51,7 @@ public abstract class Button : MonoBehaviour
         }
     }
 
-    public virtual void Action()
-    {
-        Debug.Log("Default button method :(");
-    }
+    public abstract void Action();
 
     public void UpdateSprite()
     {

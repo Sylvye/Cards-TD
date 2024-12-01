@@ -29,13 +29,16 @@ public class TowerCard : Card
         tower.range += range;
         tower.damage += flatDamage;
         tower.attackSpeed += attackSpeed;
-        if (TryGetComponent(out Turret turret))
+        if (prefabTower.TryGetComponent(out Turret turret))
         {
             turret.spread -= spread;
             turret.homingSpeed += homingSpeed;
             turret.projectiles += projectiles;
             turret.projectileSpeedMultiplier += projectileSpeedMult;
             turret.pierceBoost += pierce;
+        } else if (prefabTower.TryGetComponent(out TaserTurret taserTurret))
+        {
+            taserTurret.projectiles += projectiles;
         }
         return obj;
     }
