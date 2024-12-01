@@ -14,18 +14,15 @@ public class Augment : MonoBehaviour
     public float homingSpeed;
     public float spread;
 
-    private void ApplyEffect(Tower tower)
+    public void ApplyEffect(Card c)
     {
-        tower.range += range;
-        tower.damage += flatDamage;
-        tower.attackSpeed += attackSpeed;
-        if (TryGetComponent(out Turret turret))
-        {
-            turret.spread -= spread;
-            turret.homingSpeed += homingSpeed;
-            turret.projectiles += projectiles;
-            turret.projectileSpeedMultiplier += projectileSpeedMult;
-            turret.pierceBoost += pierce;
-        }
+        c.range += range;
+        c.flatDamage += flatDamage;
+        c.attackSpeed += attackSpeed;
+        c.spread -= spread;
+        c.homingSpeed += homingSpeed;
+        c.projectiles += projectiles;
+        c.projectileSpeedMult += projectileSpeedMult;
+        c.pierce += pierce;
     }
 }

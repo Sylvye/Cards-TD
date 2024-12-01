@@ -10,7 +10,14 @@ public abstract class Card : MonoBehaviour
     public int tier;
     private bool selected = false;
     private Vector3 handPos;
-    public float radius;
+    public int flatDamage;
+    public float attackSpeed;
+    public int pierce;
+    public float range;
+    public int projectiles;
+    public float projectileSpeedMult;
+    public float homingSpeed;
+    public float spread;
 
     private void Start()
     {
@@ -20,6 +27,18 @@ public abstract class Card : MonoBehaviour
     public virtual GameObject OnPlay()
     {
         GameObject obj = Instantiate(spawnable, new Vector3(transform.position.x, transform.position.y, -2), Quaternion.identity);
+        Tower tower = obj.GetComponent<Tower>();
+        tower.range += range;
+        tower.damage += flatDamage;
+        tower.attackSpeed += attackSpeed;
+        if (TryGetComponent(out Turret turret))
+        {
+            turret.spread -= spread;
+            turret.homingSpeed += homingSpeed;
+            turret.projectiles += projectiles;
+            turret.projectileSpeedMultiplier += projectileSpeedMult;
+            turret.pierceBoost += pierce;
+        }
         return obj;
     }
 
@@ -30,7 +49,7 @@ public abstract class Card : MonoBehaviour
             selected = true;
             transform.localScale = Vector3.one * 0.5f;
             SetHandPos();
-            Main.hitboxReticle_.transform.localScale = 2 * radius * Vector3.one;
+            Main.hitboxReticle_.transform.localScale = 2 * range * Vector3.one;
             if (spawnable.TryGetComponent(out Tower t))
             {
                 Main.towerRangeReticle_.transform.localScale = t.GetRange(tier) * 2 * Vector3.one + Vector3.forward * -6;
@@ -49,13 +68,12 @@ public abstract class Card : MonoBehaviour
         }
         if (StageController.stageIndex == 1)
         {
-            if (transform.position.y > -2.5 && Physics2D.OverlapCircle(transform.position, radius, Main.placementLayerMask_) == null)
+            if (transform.position.y > -2.5 && Physics2D.OverlapCircle(transform.position, range, Main.placementLayerMask_) == null)
             {
                 GameObject obj = OnPlay();
                 if (obj != null && obj.TryGetComponent(out Tower tower))
                     tower.tier = tier;
                 Hand.Remove(this);
-                Cards.AddToDeck(this);
                 gameObject.transform.position = Vector3.up * 10;
                 gameObject.transform.localScale = Vector3.one * 1.5f;
             }
@@ -81,7 +99,7 @@ public abstract class Card : MonoBehaviour
             Main.hitboxReticle_.transform.position = new Vector3(target.x, target.y, -3);
             if (spawnable.TryGetComponent(out Tower _))
                 Main.towerRangeReticle_.transform.position = new Vector3(target.x, target.y, -3);
-            if (Physics2D.OverlapCircle(transform.position, radius, Main.placementLayerMask_) == null)
+            if (Physics2D.OverlapCircle(transform.position, range, Main.placementLayerMask_) == null)
                 Main.hitboxReticle_.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
             else
                 Main.hitboxReticle_.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.5f);

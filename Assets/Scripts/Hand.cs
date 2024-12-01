@@ -53,7 +53,6 @@ public class Hand : MonoBehaviour
         for (int i=Size()-1; i>=0; i--)
         {
             Card c = Get(i);
-            Cards.AddToDeck(c);
             Remove(i);
         }
     }
