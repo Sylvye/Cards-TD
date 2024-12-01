@@ -17,8 +17,13 @@ public class Cards : MonoBehaviour
 
     public static void AddAllChildren() // loops through children and adds cards/augments to their respective lists if found
     {
-        foreach (Transform t in main.transform)
+        if (main == null)
         {
+            main = GameObject.Find("Cards").GetComponent<Cards>();
+        }
+        for (int i=0; i<main.transform.childCount; i++)
+        {
+            Transform t = main.transform.GetChild(i);
             if (t.TryGetComponent(out Card c))
             {
                 AddToDeck(c);
@@ -34,9 +39,8 @@ public class Cards : MonoBehaviour
     // picks a random position in the deck to return a card from. The returned card is removed from the deck
     public static Card DrawFromDeck()
     {
-        int index = Random.Range(0, main.deck.Count);
-        Card c = main.deck[index];
-        main.deck.RemoveAt(index);
+        int index = Random.Range(0, DeckSize());
+        Card c = RemoveFromDeck(index);
         return c;
     }
 

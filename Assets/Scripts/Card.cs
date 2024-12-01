@@ -54,15 +54,10 @@ public abstract class Card : MonoBehaviour
                 GameObject obj = OnPlay();
                 if (obj != null && obj.TryGetComponent(out Tower tower))
                     tower.tier = tier;
-                Hand.Remove(Hand.GetIndexOf(this));
-                if (Hand.Size() == 0)
-                {
-                    Hand.Deal();
-                }
+                Hand.Remove(this);
                 Cards.AddToDeck(this);
                 gameObject.transform.position = Vector3.up * 10;
                 gameObject.transform.localScale = Vector3.one * 1.5f;
-                Hand.RepositionHand();
             }
             else
             {

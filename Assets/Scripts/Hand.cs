@@ -18,23 +18,13 @@ public class Hand : MonoBehaviour
     // returns all cards back to the deck. adds 5 cards from the deck to the hand
     public static void Deal()
     {
-        if (main.hand.Count > 0) // if there are cards in the hand, safely remove them without deleting them
-        {
-            for (int i = 0; i < main.hand.Count; i++)
-            {
-                Card c = main.hand[^1];
-                main.hand.RemoveAt(main.hand.Count - 1);
-                if (c != null)
-                    Cards.AddToDeck(c);
-                c.transform.position = Vector3.up * 10;
-            }
-        }
+        Clear();
         for (int i=0; i<5; i++) // draw 5 new cards
         {
             Card c = Cards.DrawFromDeck();
-            main.hand.Add(c);
-            c.transform.SetParent(main.transform);
+            Add(c);
         }
+        RepositionHand();
     }
 
     public static void Draw()
@@ -42,8 +32,7 @@ public class Hand : MonoBehaviour
         if (Cards.DeckSize() > 0)
         {
             Card c = Cards.DrawFromDeck();
-            main.hand.Add(c);
-            c.transform.SetParent(main.transform);
+            Add(c);
             RepositionHand();
         }
     }
@@ -54,20 +43,26 @@ public class Hand : MonoBehaviour
         {
             if (Cards.DeckSize() == 0) break;
             Card c = Cards.DrawFromDeck();
-            main.hand.Add(c);
-            c.transform.SetParent(main.transform);
+            Add(c);
         }
         RepositionHand();
     }
 
     public static void Clear()
     {
-        foreach (Card c in main.hand)
+        for (int i=Size()-1; i>=0; i--)
         {
+            Card c = Get(i);
             Cards.AddToDeck(c);
-            main.hand.Remove(c);
-            Cards.AddToDeck(c);
+            Remove(i);
         }
+    }
+
+    public static void Add(Card c)
+    {
+        main.hand.Add(c);
+        c.transform.SetParent(main.transform);
+        RepositionHand();
     }
 
     public static int GetIndexOf(Card c)
@@ -85,6 +80,7 @@ public class Hand : MonoBehaviour
         Card c = main.hand[index];
         main.hand.RemoveAt(index);
         Cards.AddToDeck(c);
+        RepositionHand();
         return c;
     }
 
@@ -92,14 +88,16 @@ public class Hand : MonoBehaviour
     {
         main.hand.Remove(c);
         Cards.AddToDeck(c);
+        RepositionHand();
     }
     
     public static Card Set(int index, Card c)
     {
-        Card output = main.hand[index];
+        Card output = Get(index);
         main.hand[index] = c;
         c.transform.SetParent(main.transform);
         Cards.AddToDeck(output);
+        RepositionHand();
         return output;
     }
 
@@ -110,9 +108,9 @@ public class Hand : MonoBehaviour
 
     public static void RepositionHand() // moves cards to their spots in the card bar from the stack of cards out of frame
     {
-        for (int i=0; i<main.hand.Count; i++)
+        for (int i=0; i<Size(); i++)
         {
-            Card card = main.hand[i];
+            Card card = Get(i);
             card.transform.position = main.transform.position + 1.2f * i * Vector3.right + Vector3.forward * -5;
             card.SetHandPos();
         }

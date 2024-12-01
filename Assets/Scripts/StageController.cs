@@ -10,7 +10,7 @@ using static UnityEditor.Progress;
 public class StageController : MonoBehaviour
 {
     public static int stageIndex = 0;
-    private static Vector3 destination = new(0, -10, -10);
+    private static Vector3 cameraDestination = new(0, -10, -10);
     [Header("Shop")]
     public GameobjectLootpool cardProbs;
     public GameObject cardOption;
@@ -45,10 +45,10 @@ public class StageController : MonoBehaviour
     }
     private void Update()
     {
-        if (Vector3.Distance(Camera.main.transform.position, destination) > 0.02f)
-            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, destination, Time.deltaTime * 5);
+        if (Vector3.Distance(Camera.main.transform.position, cameraDestination) > 0.02f)
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, cameraDestination, Time.deltaTime * 5);
         else
-            Camera.main.transform.position = destination;
+            Camera.main.transform.position = cameraDestination;
     }
 
     public static void SwitchStage(string name)
@@ -65,29 +65,28 @@ public class StageController : MonoBehaviour
         switch (name)
         {
             case "Map":
-                destination = new Vector3(0, -10, -10);
+                cameraDestination = new Vector3(0, -10, -10);
                 stageIndex = 0;
                 break;
             case "Defense":
                 Hand.Deal();
-                Hand.RepositionHand();
-                destination = new Vector3(0, 0, -10);
+                cameraDestination = new Vector3(0, 0, -10);
                 stageIndex = 1;
                 Spawner.main.complete = false;
                 battleButton.GetComponent<BattleButton>().SetActive(true);
                 break;
             case "Shop":
-                destination = new Vector3(0, -20, -10);
+                cameraDestination = new Vector3(0, -20, -10);
                 stageIndex = 2;
                 SetupShop();
                 break;
             case "Augment":
-                destination = new Vector3(-25, -10, -10);
+                cameraDestination = new Vector3(-25, -10, -10);
                 stageIndex = 3;
                 SetupAugment();
                 break;
             case "Upgrade":
-                destination = new Vector3(25, -10, -10);
+                cameraDestination = new Vector3(25, -10, -10);
                 stageIndex = 4;
                 break;
             default:
