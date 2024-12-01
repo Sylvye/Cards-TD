@@ -15,15 +15,14 @@ public class Spawner : MonoBehaviour
     public float density = 1;
     public bool active = true;
     public bool complete = false;
+    private int spawned; // how many enemies spawned this wave
     private float cooldown = 0;
-    private GameObject battleButton;
     [SerializeField]
     private bool freebie = false;
 
     private void Start()
     {
         main = this;
-        battleButton = GameObject.Find("Battle Button");
     }
 
     // Update is called once per frame
@@ -51,12 +50,18 @@ public class Spawner : MonoBehaviour
             }
             else
             {
-                active = false;
-                complete = true;
-                freebie = false;
-                cooldown = 0;
+                Complete();
             }
         }
+    }
+
+    private void Complete()
+    {
+        active = false;
+        complete = true;
+        freebie = false;
+        cooldown = 0;
+        spawned = 0;
     }
 
     public bool IsStageComplete()
@@ -71,13 +76,14 @@ public class Spawner : MonoBehaviour
 
     public GameObject Spawn(GameObject obj, Vector3 pos, Quaternion rot)
     {
-        GameObject o = Instantiate(obj, pos, rot);
+        GameObject o = Instantiate(obj, pos + 0.001f * spawned * Vector3.forward, rot);
         if (!freebie && wave.Count == 1)
         {
             o.GetComponent<Enemy>().dropWeights[0] = 0;
             freebie = true;
         }
         spawnedEnemies.Add(o);
+        spawned++;
         return o;
     }
 }

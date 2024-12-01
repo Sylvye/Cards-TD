@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CardOption : Button
+public class ShopCard : Button
 {
     public Card card;
     public LayerMask cardMask;

@@ -14,7 +14,7 @@ public class Augment : MonoBehaviour
     public float homingSpeed;
     public float spread;
 
-    public void ApplyEffect(Card c)
+    public void ApplyEffect(TowerCard c)
     {
         c.range += range;
         c.flatDamage += flatDamage;

@@ -19,7 +19,7 @@ public abstract class Turret : Tower
 
     private void Start()
     {
-        SetupTierEffects();
+        InitTierEffects();
     }
 
     private void Update()
@@ -31,11 +31,6 @@ public abstract class Turret : Tower
                 lastShot = Time.time;
             }
         }
-    }
-
-    public virtual void SetupTierEffects()
-    {
-
     }
 
     public void ShootSpread(GameObject projectile, Vector2 direction, int count, float spread) // spawns across an arc

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 467519594113573095}
   - component: {fileID: 5919581471223590647}
   - component: {fileID: 7158332179295412726}
-  - component: {fileID: -6612765135822769905}
+  - component: {fileID: 6066731110582671636}
   m_Layer: 0
-  m_Name: Barrage Turret Card
+  m_Name: Railgun Turret Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 7631322497954940115}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.5, y: -4, z: -7}
+  m_LocalPosition: {x: -5.5, y: -4, z: -7}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -131,7 +131,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-6612765135822769905
+--- !u!114 &6066731110582671636
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,11 +140,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 7631322497954940115}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4bec038e40c2194999c838453c586d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 96f00db6c497830478e1eed1d8a0deb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnable: {fileID: 5304065507062134350, guid: 831fcc7542379f34caea02f4979fdd26, type: 3}
-  towerIndex: 2
+  spawnable: {fileID: 5304065507062134350, guid: df4fa3818a6d3e046be03900477dc6f8, type: 3}
+  towerIndex: 1
   tier: 1
-  indexInHand: 1
-  radius: 0.5
+  hitboxRadius: 0.75
+  flatDamage: 0
+  attackSpeed: 0
+  pierce: 0
+  range: 0
+  projectiles: 0
+  projectileSpeedMult: 0
+  homingSpeed: 0
+  spread: 0

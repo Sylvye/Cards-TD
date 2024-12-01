@@ -15,6 +15,8 @@ public abstract class Tower : MonoBehaviour
         return range;
     }
 
+    public abstract void InitTierEffects();
+
     private void OnMouseEnter()
     {
         if (!Spawner.main.IsStageComplete())

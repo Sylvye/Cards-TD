@@ -58,7 +58,7 @@ public class StageController : MonoBehaviour
             if (obj != null)
             {
                 Destroy(obj);
-                Destroy(obj.GetComponent<CardOption>().card.gameObject);
+                Destroy(obj.GetComponent<ShopCard>().card.gameObject);
             }
         }
 
@@ -98,7 +98,7 @@ public class StageController : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             GameObject cardOptionObj = Instantiate(cardOption_, new Vector2(-5 + i * 5, -20), Quaternion.identity);
-            CardOption co = cardOptionObj.GetComponent<CardOption>();
+            ShopCard co = cardOptionObj.GetComponent<ShopCard>();
             co.card = Instantiate(cardProbs_.GetRandom().GetComponent<Card>(), new Vector2(0, 10), Quaternion.identity);
             co.card.tier = WeightedRandom.SelectWeightedIndex(new List<float>(rarityWeights_)) + 1;
             cardOptionObj.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("CardPack")[co.card.towerIndex * 5 + co.card.tier - 1];
@@ -121,23 +121,27 @@ public class StageController : MonoBehaviour
         {
             GameObject itemObj = Instantiate(cardItem_, Vector3.one, Quaternion.identity);
             SpriteRenderer sr = itemObj.GetComponent<SpriteRenderer>();
-            ScrollAreaItem sai = itemObj.GetComponent<ScrollAreaItem>();
+            ReferenceItem item = itemObj.GetComponent<ReferenceItem>();
+            Card c = Cards.GetFromDeck(i);
             sr.sortingOrder = 0;
-            sr.sprite = Cards.GetFromDeck(i).GetComponent<SpriteRenderer>().sprite;
+            sr.sprite = c.GetComponent<SpriteRenderer>().sprite;
             cardScrollArea.AddToInventory(itemObj);
-            sai.draggable = true;
-            sai.draggableDestinations.Add(cardDestination);
+            item.draggable = true;
+            item.draggableDestinations.Add(cardDestination);
+            item.reference = c.gameObject;
         }
         for (int i = 0; i < Cards.AugmentSize(); i++) // places augments in augment scroll area
         {
             GameObject itemObj = Instantiate(cardItem_, Vector3.one, Quaternion.identity);
             SpriteRenderer sr = itemObj.GetComponent<SpriteRenderer>();
-            ScrollAreaItem sai = itemObj.GetComponent<ScrollAreaItem>();
+            ReferenceItem item = itemObj.GetComponent<ReferenceItem>();
+            Augment a = Cards.GetFromAugments(i);
             sr.sortingOrder = 1;
-            sr.sprite = Cards.GetFromAugments(i).GetComponent<SpriteRenderer>().sprite;
+            sr.sprite = a.GetComponent<SpriteRenderer>().sprite;
             augmentScrollArea.AddToInventory(itemObj);
-            sai.draggable = true;
-            sai.draggableDestinations.Add(augmentDestination);
+            item.draggable = true;
+            item.draggableDestinations.Add(augmentDestination);
+            item.reference = a.gameObject;
         }
     }
 }

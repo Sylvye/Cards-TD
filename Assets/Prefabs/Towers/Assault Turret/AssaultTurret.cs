@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class AssaultTurret : Turret
 {
-    public override void SetupTierEffects()
+    public override void InitTierEffects()
     {
         if (tier >= 2)
         {

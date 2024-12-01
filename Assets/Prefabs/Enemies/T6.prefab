@@ -114,9 +114,9 @@ MonoBehaviour:
   - {fileID: 1740889130559223688, guid: 60b3af87b81160443a70f5bd84ab87d2, type: 3}
   dropWeights:
   - 40
-  - 25
   - 20
-  - 15
+  - 20
+  - 20
 --- !u!95 &-4032076880467101793
 Animator:
   serializedVersion: 5

@@ -16,7 +16,7 @@ public class AugmentTable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (StageController.stageIndex == 3 && transform.childCount == 5)
+        if (Input.GetKeyDown(KeyCode.Return)) // if enter key pressed, merge. TEMPORARY UNTIL BUTTON IS IMPLEMENTED
         {
             Merge();
         }
@@ -24,12 +24,14 @@ public class AugmentTable : MonoBehaviour
 
     public static void Merge() // combines an augment with a card, destroying the augment
     {
-        Card c = main.GetComponentInChildren<Card>();
-        Augment a = main.GetComponentInChildren<Augment>();
+        ReferenceItem augment = main.transform.GetChild(0).GetComponentInChildren<ReferenceItem>();
+        ReferenceItem card = main.transform.GetChild(1).GetComponentInChildren<ReferenceItem>();
+        Augment a = augment.reference.GetComponent<Augment>();
+        TowerCard c = card.reference.GetComponent<TowerCard>();
 
-        c.transform.position = main.outputSlot.transform.position;
+        card.transform.position = main.outputSlot.transform.position;
         a.ApplyEffect(c);
         Cards.RemoveFromAugments(a);
-        Destroy(a.gameObject);
+        Destroy(augment.gameObject);
     }
 }

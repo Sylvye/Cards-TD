@@ -40,6 +40,11 @@ public class MouseTooltip : MonoBehaviour
         main.label.SetText(text);
     }
 
+    public static string GetText()
+    {
+        return main.label.GetText();
+    }
+
     public static void SetVisible(bool visible)
     {
         main.tmp.enabled = visible;

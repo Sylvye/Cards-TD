@@ -16,7 +16,7 @@ public class TaserTurret : Tower
 
     private void Start()
     {
-        SetupTierEffects();
+        InitTierEffects();
     }
 
     private void Update()
@@ -79,7 +79,7 @@ public class TaserTurret : Tower
         return output.ToArray();
     }
 
-    public void SetupTierEffects()
+    public override void InitTierEffects()
     {
         if (tier >= 2)
         {

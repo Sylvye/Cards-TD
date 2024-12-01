@@ -134,14 +134,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tier: 1
-  range: 1.2
+  damage: 0
   attackSpeed: 5
-  projectiles: 2
-  spread: 10
   damageMultiplier: 1
-  baseDamageBoost: 0
+  range: 1.2
+  projectiles: 2
+  spread: 15
   pierceBoost: 0
-  chainBoost: 0
+  explosionRadiusBoost: 0
   projectileSpeedMultiplier: 1
+  homingSpeed: 0
   projectile: {fileID: 265608084915569301, guid: e98d3ed888d12e0459d3a3f5efaa149f, type: 3}
   lastShot: -999
+  targetEnemy: {fileID: 0}

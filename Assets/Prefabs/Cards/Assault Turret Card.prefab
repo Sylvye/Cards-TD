@@ -140,11 +140,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 7631322497954940115}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dd9151e92d78464b881c807b355c54e, type: 3}
+  m_Script: {fileID: 11500000, guid: 96f00db6c497830478e1eed1d8a0deb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnable: {fileID: 5304065507062134350, guid: 987c16521ba5619458f023b92a5c78be, type: 3}
   towerIndex: 0
   tier: 1
-  indexInHand: 0
-  radius: 0.5
+  hitboxRadius: 0.5
+  flatDamage: 0
+  attackSpeed: 0
+  pierce: 0
+  range: 0
+  projectiles: 0
+  projectileSpeedMult: 0
+  homingSpeed: 0
+  spread: 0

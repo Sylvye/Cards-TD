@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7893184854925427612}
   - component: {fileID: 1406284921208604270}
-  - component: {fileID: -2821669207343227697}
+  - component: {fileID: -3654700457792239689}
   - component: {fileID: 1804055935688440616}
   m_Layer: 5
   m_Name: Card Item
@@ -118,7 +118,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 1
   m_SpriteSortPoint: 0
---- !u!114 &-2821669207343227697
+--- !u!114 &-3654700457792239689
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,11 +127,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2544091038844672236}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 321fe4586f589e641a6f32790fa77874, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ed488feba9453d4b8499190af8168c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinations: []
+  draggableDestinations: []
+  id: 
+  draggable: 0
   snapDist: 1
+  state: 0
+  reference: {fileID: 0}
 --- !u!61 &1804055935688440616
 BoxCollider2D:
   m_ObjectHideFlags: 0

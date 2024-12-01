@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RocketTurret : Turret
 {
-    public override void SetupTierEffects()
+    public override void InitTierEffects()
     {
         if (tier >= 2)
         {
