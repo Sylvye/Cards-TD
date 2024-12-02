@@ -61,17 +61,23 @@ public class ScrollAreaItem : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (draggable && !Input.GetMouseButton(0))
-            transform.localScale = scale * 1.1f;
-        MouseTooltip.SetVisible(true);
-        MouseTooltip.SetText(id);
+        if (IsMouseInBounds())
+        {
+            if (draggable && !Input.GetMouseButton(0))
+                transform.localScale = scale * 1.1f;
+            MouseTooltip.SetVisible(true);
+            MouseTooltip.SetText(id);
+        }
     }
 
     private void OnMouseExit()
     {
-        if (draggable && !Input.GetMouseButton(0))
-            transform.localScale = scale;
-        MouseTooltip.SetVisible(false);
+        if (IsMouseInBounds())
+        {
+            if (draggable && !Input.GetMouseButton(0))
+                transform.localScale = scale;
+            MouseTooltip.SetVisible(false);
+        }
     }
 
     private void OnMouseDrag()
@@ -111,7 +117,7 @@ public class ScrollAreaItem : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (draggable && state.Equals(State.Positioned) || state.Equals(State.Home))
+        if (IsMouseInBounds() && ( draggable && state.Equals(State.Positioned) || state.Equals(State.Home))) // FIX THIS NOW!!!!            ~               ~           ~              ~               ~           ~
         {
             lerpPos = transform.position;
             transform.parent = null;
@@ -142,5 +148,10 @@ public class ScrollAreaItem : MonoBehaviour
         }
 
         return closest != null && Vector2.Distance(closest.transform.position, transform.position) < range ? closest : null; // if within range, return closest, otherwise return null
+    }
+
+    private bool IsMouseInBounds()
+    {
+        return transform.parent != null && transform.parent.GetComponent<SpriteMask>().bounds.Contains(Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
 }

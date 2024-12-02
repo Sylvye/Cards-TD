@@ -33,5 +33,6 @@ public class AugmentTable : MonoBehaviour
         a.ApplyEffect(c);
         Cards.RemoveFromAugments(a);
         Destroy(augment.gameObject);
+        Destroy(a.gameObject);
     }
 }

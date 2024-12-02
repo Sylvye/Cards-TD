@@ -3755,7 +3755,7 @@ Transform:
   m_GameObject: {fileID: 1505739288}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.75, y: 10, z: 0}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4569,8 +4569,8 @@ SpriteMask:
   m_BackSortingLayerID: 0
   m_FrontSortingLayer: 0
   m_BackSortingLayer: 0
-  m_FrontSortingOrder: 1
-  m_BackSortingOrder: 0
+  m_FrontSortingOrder: 4
+  m_BackSortingOrder: 3
   m_IsCustomRangeActive: 1
   m_SpriteSortPoint: 0
 --- !u!114 &1725877963
@@ -4590,7 +4590,7 @@ MonoBehaviour:
   startPos: {x: -0.375, y: 0.25, z: 0}
   scrolledAmt: 0
   scrollPower: 0.125
-  layer: 0
+  layer: 3
 --- !u!61 &1725877964
 BoxCollider2D:
   m_ObjectHideFlags: 0
