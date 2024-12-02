@@ -11,6 +11,7 @@ public class ScrollArea : MonoBehaviour
     public float scrolledAmt = 0;
     public float scrollPower = 0.5f;
     public int layer;
+    public bool hovered = false;
     private List<GameObject> inventory = new List<GameObject>();
 
     // Start is called before the first frame update
@@ -80,5 +81,14 @@ public class ScrollArea : MonoBehaviour
         {
             item.transform.localScale = sai.ogScale;
         }
+    }
+
+    private void OnMouseEnter()
+    {
+        hovered = true;
+    }
+    private void OnMouseExit()
+    {
+        hovered = false;
     }
 }

@@ -8,26 +8,12 @@ public abstract class LootItem : ScrollAreaItem
     [Header("Loot Item Fields")]
     public bool claimed = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        draggable = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnMouseDown()
     {
-        if (!claimed)
+        if (Clickable() && !claimed)
         {
             Claim();
             GetComponent<SpriteRenderer>().color = new Color(0.8f, 0.8f, 0.8f, 1);
-            //StageController.inventoryLootScrollArea.RemoveFromInventory(gameObject);
-            //StageController.inventoryLootScrollArea.RefreshPositions();
             claimed = true;
         }
     }

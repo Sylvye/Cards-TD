@@ -61,7 +61,7 @@ public class ScrollAreaItem : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (IsMouseInBounds())
+        if (state.Equals(State.Home) && Clickable())
         {
             if (draggable && !Input.GetMouseButton(0))
                 transform.localScale = scale * 1.1f;
@@ -72,10 +72,10 @@ public class ScrollAreaItem : MonoBehaviour
 
     private void OnMouseExit()
     {
-        if (IsMouseInBounds())
+        if (draggable && !Input.GetMouseButton(0))
+            transform.localScale = scale;
+        if (state.Equals(State.Home) && (Clickable() || MouseTooltip.GetText().Equals(id)))
         {
-            if (draggable && !Input.GetMouseButton(0))
-                transform.localScale = scale;
             MouseTooltip.SetVisible(false);
         }
     }
@@ -90,7 +90,7 @@ public class ScrollAreaItem : MonoBehaviour
 
     private void OnMouseUp()
     {
-        if (draggable)
+        if (Clickable() && draggable)
         {
             transform.localScale = scale;
 
@@ -117,7 +117,7 @@ public class ScrollAreaItem : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (IsMouseInBounds() && ( draggable && state.Equals(State.Positioned) || state.Equals(State.Home))) // FIX THIS NOW!!!!            ~               ~           ~              ~               ~           ~
+        if (Clickable() && (draggable && (state.Equals(State.Positioned) || state.Equals(State.Home))))
         {
             lerpPos = transform.position;
             transform.parent = null;
@@ -150,8 +150,8 @@ public class ScrollAreaItem : MonoBehaviour
         return closest != null && Vector2.Distance(closest.transform.position, transform.position) < range ? closest : null; // if within range, return closest, otherwise return null
     }
 
-    private bool IsMouseInBounds()
+    public bool Clickable()
     {
-        return transform.parent != null && transform.parent.GetComponent<SpriteMask>().bounds.Contains(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        return !state.Equals(State.Home) || (transform.parent.GetComponent<BoxCollider2D>() != null && transform.parent.GetComponent<BoxCollider2D>().OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition)));
     }
 }
