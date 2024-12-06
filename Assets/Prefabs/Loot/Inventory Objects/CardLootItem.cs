@@ -7,6 +7,10 @@ public class CardLootItem : LootItem
     public Card cardReference;
     public int tier;
 
+    private void Start()
+    {
+        GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("CardPack")[cardReference.towerIndex * 5 + tier - 1];
+    }
 
     public override void Claim()
     {
