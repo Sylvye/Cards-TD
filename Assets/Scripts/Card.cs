@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public abstract class Card : MonoBehaviour
 {
@@ -11,12 +12,9 @@ public abstract class Card : MonoBehaviour
     public int tier;
     private bool selected = false;
     private Vector3 handPos;
-    public float hitboxRadius;    
-
-    // for scaling
-    private float intensity = 0.1f;
-    private float threshold = 3;
-    private bool wasAbove = true;
+    public float hitboxRadius;
+    private Vector3 lerpPos;
+    bool areCardsBeingHovered = false;
 
     public virtual void Start()
     {
@@ -25,29 +23,35 @@ public abstract class Card : MonoBehaviour
 
     private void Update()
     {
-        if (StageController.stageIndex == 1)
+        if (StageController.stageIndex == 1 && Hand.GetIndexOf(this) != -1)
         {
             float mouseY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
-            if (mouseY > 5)
-                mouseY = 5;
-            float scaleConstant = -mouseY - threshold;
-
-            if (scaleConstant < 0)
+            float mouseX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+            float scale = 1.5f;
+            if (mouseY <= -3 && mouseX <= transform.parent.position.x + (Hand.Size()-1) * 2 && !isCardSelected && !areCardsBeingHovered && !Spawner.main.IsStageComplete()) // if mouse enters card bar
             {
-                scaleConstant = 0;
-                if (!wasAbove)
+                areCardsBeingHovered = true;
+                transform.localScale = scale * 2f * Vector3.one;
+                lerpPos = handPos + Vector3.up * scale;
+            } else if ((mouseY > -3+scale*1.2f || mouseX > transform.parent.position.x + (Hand.Size() - 1) * 2) && areCardsBeingHovered) // if mouse exits card bar
+            {
+                areCardsBeingHovered = false;
+                transform.localScale = 2 * Vector3.one;
+                lerpPos = handPos;
+            }
+
+            if (!selected)
+            {
+                if (Vector2.Distance(transform.position, lerpPos) < 0.01f)
                 {
-                    wasAbove = true;
-                    threshold = threshold == 3 ? 1 : 3;
+                    transform.position = lerpPos;
+                }
+                else
+                {
+                    transform.position = Vector3.Lerp(transform.position, lerpPos, Time.deltaTime * 10f);
                 }
             }
-            else
-            {
-                wasAbove = false;
-            }
 
-            transform.localScale = (intensity * scaleConstant + 1) * 1.5f * Vector3.one;
-            transform.localPosition = handPos + Vector3.up * scaleConstant * intensity + (handPos.x) * scaleConstant * intensity * Vector3.right;
             UpdateFX();
         }
     }
@@ -61,7 +65,7 @@ public abstract class Card : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (StageController.stageIndex == 1 && !Spawner.main.IsStageComplete())
+        if (StageController.stageIndex == 1 && !Spawner.main.IsStageComplete() && areCardsBeingHovered)
         {
             selected = true;
             isCardSelected = true;
@@ -77,35 +81,41 @@ public abstract class Card : MonoBehaviour
 
     private void OnMouseUp()
     {
-        selected = false;
-        isCardSelected = false;
-        Main.hitboxReticle_.transform.position = new Vector3(2, 10, 0);
-        if (spawnable.TryGetComponent(out Tower _))
+        if (!Spawner.main.IsStageComplete())
         {
-            Main.towerRangeReticle_.transform.position = new Vector3(4, 10, 0);
-            Main.towerRangeReticle_.transform.localScale = Vector2.one;
-        }
-        if (StageController.stageIndex == 1)
-        {
-            if (transform.position.y > -2.5 && Physics2D.OverlapCircle(transform.position, hitboxRadius, Main.placementLayerMask_) == null)
+            selected = false;
+            isCardSelected = false;
+            Main.hitboxReticle_.transform.position = new Vector3(2, 10, 0);
+            if (spawnable.TryGetComponent(out Tower _))
             {
-                GameObject obj = OnPlay();
-                if (obj != null && obj.TryGetComponent(out Tower t))
-                    t.tier = tier;
-                Hand.Remove(this);
-                gameObject.transform.position = Vector3.up * 10;
-                gameObject.transform.localScale = Vector3.one * 1.5f;
+                Main.towerRangeReticle_.transform.position = new Vector3(4, 10, 0);
+                Main.towerRangeReticle_.transform.localScale = Vector2.one;
+            }
+            if (StageController.stageIndex == 1)
+            {
+                if (transform.position.y > -2.5 && Physics2D.OverlapCircle(transform.position, hitboxRadius, Main.placementLayerMask_) == null)
+                {
+                    GameObject obj = OnPlay();
+                    if (obj != null && obj.TryGetComponent(out Tower t))
+                    {
+                        t.tier = tier;
+                        t.LoadSprite(towerIndex);
+                    }
+                    Hand.Remove(this);
+                    gameObject.transform.position = Vector3.up * 10;
+                    gameObject.transform.localScale = Vector3.one * 1.5f;
+                }
+                else
+                {
+                    transform.position = handPos;
+                    transform.localScale = Vector3.one * 1.5f;
+                }
             }
             else
             {
-                transform.localPosition = handPos;
+                transform.position = handPos;
                 transform.localScale = Vector3.one * 1.5f;
             }
-        }
-        else
-        {
-            transform.localPosition = handPos;
-            transform.localScale = Vector3.one * 1.5f;
         }
     }
 
@@ -129,6 +139,8 @@ public abstract class Card : MonoBehaviour
 
     public void SetHandPos()
     {
-        handPos = transform.localPosition;
+        handPos = (Vector2)transform.parent.position + Hand.GetIndexOf(this) * 2f * Vector2.right;
+        handPos.z = -5;
+        lerpPos = handPos;
     }
 }

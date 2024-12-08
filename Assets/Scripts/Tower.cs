@@ -10,6 +10,11 @@ public abstract class Tower : MonoBehaviour
     public float damageMultiplier;
     public float range;
 
+    public void LoadSprite(int towerIndex)
+    {
+        GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("TowerArt")[towerIndex * 5 + tier - 1];
+    }
+
     public virtual float GetRange(int t)
     {
         return range;

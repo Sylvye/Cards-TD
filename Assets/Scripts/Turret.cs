@@ -70,6 +70,7 @@ public abstract class Turret : Tower
         {
             Vector2 dir = target.transform.position - transform.position;
             ShootSpread(projectile, dir, projectiles, spread);
+            transform.rotation = Quaternion.Euler(0, 0, AngleHelper.VectorToDegrees(dir.normalized)-90);
             return true;
         }
         return false;

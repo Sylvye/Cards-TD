@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.5, y: -4, z: -7}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 2, y: 2, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96f00db6c497830478e1eed1d8a0deb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  areCardsBeingHovered: 0
   spawnable: {fileID: 5304065507062134350, guid: 50f35958cda5a6a49b2184264fe87f36, type: 3}
   towerIndex: 4
   tier: 1
