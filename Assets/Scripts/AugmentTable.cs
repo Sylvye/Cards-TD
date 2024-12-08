@@ -5,7 +5,6 @@ using UnityEngine;
 public class AugmentTable : MonoBehaviour
 {
     public static AugmentTable main;
-    public GameObject outputSlot;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +28,6 @@ public class AugmentTable : MonoBehaviour
         Augment a = augment.reference.GetComponent<Augment>();
         TowerCard c = card.reference.GetComponent<TowerCard>();
 
-        card.transform.position = main.outputSlot.transform.position;
         a.ApplyEffect(c);
         Cards.RemoveFromAugments(a);
         Destroy(augment.gameObject);

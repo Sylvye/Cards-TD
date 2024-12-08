@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dc1152ea8c4859e498e1db1ac64967c0
+guid: 8647462658fc53f4eaaa6d78ab1254ad
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 35
+  spritePixelsToUnits: 46
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AugmentPack_0
+      name: Smite_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
-        width: 25
-        height: 32
+        y: 138
+        width: 15
+        height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9a4a7566cea82047af20ff00282bcd0
-      internalID: 1355969626
+      spriteID: cd9aaa2f235d5e84aab54f8d823edd95
+      internalID: -2007509740
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AugmentPack_1
+      name: Smite_1
       rect:
         serializedVersion: 2
-        x: 25
-        y: 64
-        width: 25
-        height: 32
+        x: 15
+        y: 138
+        width: 15
+        height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be91d76084f07714c86f1054ab36ce40
-      internalID: -170499919
+      spriteID: 7701db09434aec249a6b6dafec28934b
+      internalID: -1982326244
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AugmentPack_2
+      name: Smite_2
       rect:
         serializedVersion: 2
-        x: 50
-        y: 64
-        width: 25
-        height: 32
+        x: 30
+        y: 138
+        width: 15
+        height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +166,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb72f356ff138d340b8f748f7f6c581c
-      internalID: 248517702
+      spriteID: cfc3aa3a228b1524283331b6e5c36e99
+      internalID: 1068710362
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AugmentPack_3
+      name: Smite_3
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 138
+        width: 15
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efd5cd950cd057f4aa758c56603d8daf
+      internalID: -1182197646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smite_4
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
-        width: 25
-        height: 32
+        y: 92
+        width: 15
+        height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +208,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 328b808a50970a04b9b13f14e0fe8a54
-      internalID: 632578627
+      spriteID: cbde565fd8f92494992544d307b699d8
+      internalID: -44725644
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AugmentPack_4
+      name: Smite_5
       rect:
         serializedVersion: 2
-        x: 25
-        y: 32
-        width: 25
-        height: 32
+        x: 15
+        y: 92
+        width: 15
+        height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +229,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5cc0bb12eede28642a42a2c64160db53
-      internalID: 1754732057
+      spriteID: 21d93cf716a367e469caebe81f8c5895
+      internalID: -1528792268
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AugmentPack_5
+      name: Smite_6
       rect:
         serializedVersion: 2
-        x: 50
-        y: 32
-        width: 25
-        height: 32
+        x: 30
+        y: 92
+        width: 15
+        height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -229,20 +250,125 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44cd8de81dfea3c4bb61103cf259f585
-      internalID: 532321213
+      spriteID: 0ac785dbfb06c274e85e24d726a8225f
+      internalID: 385516955
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AugmentPack_6
+      name: Smite_7
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 92
+        width: 15
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79aeb341440782c4996221a317415e21
+      internalID: 936292867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smite_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 46
+        width: 15
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33b91ceeced5d4440acc97257432b35f
+      internalID: 296510932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smite_9
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 46
+        width: 15
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cfbeb7faf4a148439e631bc83597c05
+      internalID: -155746044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smite_10
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 46
+        width: 15
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b5fa7f594383f3458520d723249f06e
+      internalID: -153422887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smite_11
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 46
+        width: 15
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e97bcd6aa5567e4fa402fd92adc5871
+      internalID: 1671488509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smite_12
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 25
-        height: 32
+        width: 15
+        height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,20 +376,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3eb29d25d296d304c8f456e2252caa92
-      internalID: -1354272892
+      spriteID: cf291c5b92a6cd146aa0a6423a3ce430
+      internalID: 897468408
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AugmentPack_7
+      name: Smite_13
       rect:
         serializedVersion: 2
-        x: 25
+        x: 15
         y: 0
-        width: 25
-        height: 32
+        width: 15
+        height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -271,20 +397,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed19e729aa0cb414db1a9bde8798bb46
-      internalID: -1916838219
+      spriteID: 409c8d002727356468b7d0b36a83ce63
+      internalID: 1609344718
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AugmentPack_8
+      name: Smite_14
       rect:
         serializedVersion: 2
-        x: 50
+        x: 30
         y: 0
-        width: 25
-        height: 32
+        width: 15
+        height: 46
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -292,8 +418,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0736a40494b9ea46af3eb673178e17f
-      internalID: -824540571
+      spriteID: 9fd76a55c02f373418b65e1c8b4adc78
+      internalID: 1265596092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Smite_15
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 0
+        width: 15
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f5c63b488cce8347a6b8da7355fa4fb
+      internalID: -1795504179
       vertices: []
       indices: 
       edges: []
@@ -309,15 +456,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      AugmentPack_0: 1355969626
-      AugmentPack_1: -170499919
-      AugmentPack_2: 248517702
-      AugmentPack_3: 632578627
-      AugmentPack_4: 1754732057
-      AugmentPack_5: 532321213
-      AugmentPack_6: -1354272892
-      AugmentPack_7: -1916838219
-      AugmentPack_8: -824540571
+      Smite_0: -2007509740
+      Smite_1: -1982326244
+      Smite_10: -153422887
+      Smite_11: 1671488509
+      Smite_12: 897468408
+      Smite_13: 1609344718
+      Smite_14: 1265596092
+      Smite_15: -1795504179
+      Smite_2: 1068710362
+      Smite_3: -1182197646
+      Smite_4: -44725644
+      Smite_5: -1528792268
+      Smite_6: 385516955
+      Smite_7: 936292867
+      Smite_8: 296510932
+      Smite_9: -155746044
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

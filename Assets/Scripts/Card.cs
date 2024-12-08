@@ -5,17 +5,56 @@ using UnityEngine;
 
 public abstract class Card : MonoBehaviour
 {
+    public static bool isCardSelected = false;
     public GameObject spawnable;
     public int towerIndex;
     public int tier;
     private bool selected = false;
     private Vector3 handPos;
-    public float hitboxRadius;
-    
+    public float hitboxRadius;    
+
+    // for scaling
+    private float intensity = 0.1f;
+    private float threshold = 3;
+    private bool wasAbove = true;
 
     public virtual void Start()
     {
         GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("CardPack")[towerIndex * 5 + tier - 1];
+    }
+
+    private void Update()
+    {
+        if (StageController.stageIndex == 1)
+        {
+            float mouseY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
+            if (mouseY > 5)
+                mouseY = 5;
+            float scaleConstant = -mouseY - threshold;
+
+            if (scaleConstant < 0)
+            {
+                scaleConstant = 0;
+                if (!wasAbove)
+                {
+                    wasAbove = true;
+                    threshold = threshold == 3 ? 1 : 3;
+                }
+            }
+            else
+            {
+                wasAbove = false;
+            }
+
+            transform.localScale = (intensity * scaleConstant + 1) * 1.5f * Vector3.one;
+            transform.localPosition = handPos + Vector3.up * scaleConstant * intensity + (handPos.x) * scaleConstant * intensity * Vector3.right;
+            UpdateFX();
+        }
+    }
+
+    public virtual void UpdateFX()
+    {
+
     }
 
     public abstract GameObject OnPlay();
@@ -25,6 +64,7 @@ public abstract class Card : MonoBehaviour
         if (StageController.stageIndex == 1 && !Spawner.main.IsStageComplete())
         {
             selected = true;
+            isCardSelected = true;
             transform.localScale = Vector3.one * 0.5f;
             SetHandPos();
             Main.hitboxReticle_.transform.localScale = 2 * hitboxRadius * Vector3.one;
@@ -38,6 +78,7 @@ public abstract class Card : MonoBehaviour
     private void OnMouseUp()
     {
         selected = false;
+        isCardSelected = false;
         Main.hitboxReticle_.transform.position = new Vector3(2, 10, 0);
         if (spawnable.TryGetComponent(out Tower _))
         {
@@ -57,13 +98,13 @@ public abstract class Card : MonoBehaviour
             }
             else
             {
-                transform.position = handPos;
+                transform.localPosition = handPos;
                 transform.localScale = Vector3.one * 1.5f;
             }
         }
         else
         {
-            transform.position = handPos;
+            transform.localPosition = handPos;
             transform.localScale = Vector3.one * 1.5f;
         }
     }
@@ -88,6 +129,6 @@ public abstract class Card : MonoBehaviour
 
     public void SetHandPos()
     {
-        handPos = transform.position;
+        handPos = transform.localPosition;
     }
 }

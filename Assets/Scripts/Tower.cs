@@ -19,7 +19,7 @@ public abstract class Tower : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (!Spawner.main.IsStageComplete())
+        if (!Card.isCardSelected && !Spawner.main.IsStageComplete())
         {
             Main.towerRangeReticle_.transform.position = transform.position;
             Main.towerRangeReticle_.transform.localScale = range * 2 * Vector3.one + Vector3.forward * -6;
@@ -28,7 +28,10 @@ public abstract class Tower : MonoBehaviour
 
     private void OnMouseExit()
     {
-        Main.towerRangeReticle_.transform.position = new Vector3(4, 10, 0);
-        Main.towerRangeReticle_.transform.localScale = Vector2.one;
+        if (!Card.isCardSelected)
+        {
+            Main.towerRangeReticle_.transform.position = new Vector3(4, 10, 0);
+            Main.towerRangeReticle_.transform.localScale = Vector2.one;
+        }
     }
 }

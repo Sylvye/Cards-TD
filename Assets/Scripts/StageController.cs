@@ -69,11 +69,9 @@ public class StageController : MonoBehaviour
                 stageIndex = 0;
                 break;
             case "Defense":
-                Hand.Deal();
                 cameraDestination = new Vector3(0, 0, -10);
                 stageIndex = 1;
-                Spawner.main.complete = false;
-                battleButton.GetComponent<BattleButton>().SetActive(true);
+                SetupBattle();
                 break;
             case "Shop":
                 cameraDestination = new Vector3(0, -20, -10);
@@ -93,6 +91,15 @@ public class StageController : MonoBehaviour
                 break;
         }
     }
+
+    public static void SetupBattle()
+    {
+        Hand.Deal();
+        Spawner.main.complete = false;
+        battleButton.GetComponent<BattleButton>().SetActive(true);
+    }
+
+
     public static void SetupShop()
     {
         for (int i = 0; i < 3; i++)

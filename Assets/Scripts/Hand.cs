@@ -110,7 +110,7 @@ public class Hand : MonoBehaviour
         for (int i=0; i<Size(); i++)
         {
             Card card = Get(i);
-            card.transform.position = main.transform.position + 1.2f * i * Vector3.right + Vector3.forward * -5;
+            card.transform.localPosition = 1.2f * i * Vector3.right + Vector3.forward * -5;
             card.SetHandPos();
         }
     }
