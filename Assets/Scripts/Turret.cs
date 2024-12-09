@@ -10,7 +10,6 @@ public abstract class Turret : Tower
     public int projectiles = 1;
     public float spread = 10;
     public int pierceBoost = 0;
-    public float explosionRadiusBoost = 0;
     public float projectileSpeedMultiplier = 1;
     public float homingSpeed = 0;
     public GameObject projectile;
@@ -55,7 +54,7 @@ public abstract class Turret : Tower
         p.damage += damage;
         p.damage = (int)(p.damage * damageMultiplier);
         p.pierce += pierceBoost;
-        p.explosionRadius += explosionRadiusBoost;
+        p.explosionRadius += explosionRadius;
         p.parentTower = gameObject;
         if (homingSpeed > 0)
             p.homingSpeed = homingSpeed;

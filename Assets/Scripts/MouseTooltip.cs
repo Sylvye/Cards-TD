@@ -12,11 +12,13 @@ public class MouseTooltip : MonoBehaviour
     private Canvas canvas;
     private TMPLabel label;
     private TextMeshProUGUI tmp;
+    private static RectTransform highlight;
 
     // Start is called before the first frame update
     void Start()
     {
         main = this;
+        highlight = GameObject.Find("Mouse Highlight").GetComponent<RectTransform>();
         canvas = GetComponentInParent<Canvas>();
         label = GetComponent<TMPLabel>();
         tmp = GetComponent<TextMeshProUGUI>();
@@ -31,7 +33,9 @@ public class MouseTooltip : MonoBehaviour
         {
             Vector2 pos;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, Input.mousePosition, canvas.worldCamera, out pos);
-            transform.position = canvas.transform.TransformPoint(pos);
+            Vector2 dest = canvas.transform.TransformPoint(pos);
+            transform.position = dest;
+            highlight.position = dest;
         }
     }
 
@@ -48,5 +52,6 @@ public class MouseTooltip : MonoBehaviour
     public static void SetVisible(bool visible)
     {
         main.tmp.enabled = visible;
+        highlight.gameObject.SetActive(visible);
     }
 }

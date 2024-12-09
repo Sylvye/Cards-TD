@@ -13,6 +13,7 @@ public class Augment : MonoBehaviour
     public float projectileSpeedMult; // ADDITIVE
     public float homingSpeed;
     public float spread;
+    public float explosionRadius;
 
     public void ApplyEffect(TowerCard c)
     {
@@ -24,5 +25,6 @@ public class Augment : MonoBehaviour
         c.projectiles += projectiles;
         c.projectileSpeedMult += projectileSpeedMult;
         c.pierce += pierce;
+        c.explosionRadius += explosionRadius;
     }
 }

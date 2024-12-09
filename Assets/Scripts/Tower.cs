@@ -9,6 +9,7 @@ public abstract class Tower : MonoBehaviour
     public float attackSpeed;
     public float damageMultiplier;
     public float range;
+    public float explosionRadius;
 
     public void LoadSprite(int towerIndex)
     {

@@ -23,7 +23,7 @@ public class RocketTurret : Turret
         if (tier >= 5)
         {
             pierceBoost++;
-            explosionRadiusBoost += 0.25f;
+            explosionRadius += 0.25f;
             attackSpeed *= 1.5f;
             damage += 3;
         }

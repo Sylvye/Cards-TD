@@ -138,10 +138,10 @@ MonoBehaviour:
   attackSpeed: 2
   damageMultiplier: 1
   range: 1.2
+  explosionRadius: 0
   projectiles: 2
   spread: 20
-  pierceBoost: 6
-  explosionRadiusBoost: 0
+  pierceBoost: 0
   projectileSpeedMultiplier: 1
   homingSpeed: 0
   projectile: {fileID: 265608084915569301, guid: e98d3ed888d12e0459d3a3f5efaa149f, type: 3}

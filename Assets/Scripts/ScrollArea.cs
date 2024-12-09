@@ -11,7 +11,6 @@ public class ScrollArea : MonoBehaviour
     public float scrolledAmt = 0;
     public float scrollPower = 0.5f;
     public int layer;
-    public bool hovered = false;
     private List<GameObject> inventory = new List<GameObject>();
 
     // Start is called before the first frame update
@@ -83,12 +82,16 @@ public class ScrollArea : MonoBehaviour
         }
     }
 
-    private void OnMouseEnter()
+    public void ClearClaimed()
     {
-        hovered = true;
-    }
-    private void OnMouseExit()
-    {
-        hovered = false;
+        for (int i=inventory.Count-1; i>=0; i--)
+        {
+            GameObject obj = inventory[i];
+            if (obj.TryGetComponent(out LootItem li) && li.claimed)
+            {
+                Destroy(obj);
+                inventory.RemoveAt(i);
+            }
+        }
     }
 }

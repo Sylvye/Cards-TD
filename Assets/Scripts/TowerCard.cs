@@ -15,6 +15,7 @@ public class TowerCard : Card
     public float projectileSpeedMult;
     public float homingSpeed;
     public float spread;
+    public float explosionRadius;
 
     public override void Start()
     {
@@ -36,6 +37,7 @@ public class TowerCard : Card
             turret.projectiles += projectiles;
             turret.projectileSpeedMultiplier += projectileSpeedMult;
             turret.pierceBoost += pierce;
+            turret.explosionRadius += explosionRadius;
         } else if (obj.TryGetComponent(out TaserTurret taserTurret))
         {
             taserTurret.projectiles += projectiles;

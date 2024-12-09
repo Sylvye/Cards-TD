@@ -22,7 +22,7 @@ public class AssaultTurret : Turret
         if (tier >= 5)
         {
             damage++;
-            explosionRadiusBoost += 0.25f;
+            explosionRadius += 0.25f;
         }
     }
 

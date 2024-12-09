@@ -55,6 +55,7 @@ public class BattleButton : Button
                     spriteDown = startDown;
                     UpdateSprite();
                     Hand.Clear();
+                    StageController.inventoryLootScrollArea.ClearClaimed();
                 }
             }
         }

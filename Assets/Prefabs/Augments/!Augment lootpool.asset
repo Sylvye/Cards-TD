@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d08cc902fe661614a917cb17aa98bf2a, type: 3}
-  m_Name: Augment lootpool
+  m_Name: '!Augment lootpool'
   m_EditorClassIdentifier: 
   objects:
   - {fileID: 183066773122249344, guid: 38376354ca5b97949a722708b0ba02b5, type: 3}

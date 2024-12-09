@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4984996326214199042}
   - component: {fileID: 6994004999299769164}
-  - component: {fileID: 1821850310886029261}
-  - component: {fileID: 8923372696656292134}
+  - component: {fileID: 5043461548880334836}
+  - component: {fileID: -7982867231245743814}
   m_Layer: 0
-  m_Name: Barrage Turret Card Item T3
+  m_Name: Augment 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,18 +75,18 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -312073280, guid: 51bbbeec59dcbd24b880c26bdd461b46, type: 3}
+  m_Sprite: {fileID: -1916838219, guid: dc1152ea8c4859e498e1db1ac64967c0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.65, y: 1}
+  m_Size: {x: 0.71428573, y: 0.9142857}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1821850310886029261
+--- !u!114 &5043461548880334836
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,18 +95,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8027126686543341126}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66bfd3aeb11534949b61d3d175bad1e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ef9494500c6fdf44bdf2d1859927ded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   draggableDestinations: []
-  id: Barrage Turret T
+  id: Spread
   draggable: 0
   snapDist: 1
   state: 0
   claimed: 0
-  cardReference: {fileID: -6612765135822769905, guid: bbed92b32139ec642878e347d427052e, type: 3}
-  tier: 3
---- !u!61 &8923372696656292134
+  augment: {fileID: 6280387633327717232, guid: 3f5710509504eda46bcd2f9a7ab0247c, type: 3}
+--- !u!61 &-7982867231245743814
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,8 +141,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.71428573, y: 1}
-    newSize: {x: 0.71428573, y: 1}
+    oldSize: {x: 0.71428573, y: 0.9142857}
+    newSize: {x: 0.71428573, y: 0.9142857}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
