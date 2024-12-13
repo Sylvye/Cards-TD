@@ -25,7 +25,8 @@ public class TowerCard : Card
 
     public override GameObject OnPlay()
     {
-        GameObject obj = Instantiate(spawnable, new Vector3(transform.position.x, transform.position.y, -2), Quaternion.identity);
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        GameObject obj = Instantiate(spawnable, new Vector3(mousePos.x, mousePos.y, -2), Quaternion.identity);
         Tower tower = obj.GetComponent<Tower>();
         tower.range += range;
         tower.damage += flatDamage;
@@ -48,5 +49,10 @@ public class TowerCard : Card
     public override float GetReticleRadius()
     {
         return prefabTower.GetRange(tier) + range;
+    }
+
+    public string GetName()
+    {
+        return prefabTower.name + " T" + tier;
     }
 }

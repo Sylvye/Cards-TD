@@ -136,6 +136,7 @@ public class StageController : MonoBehaviour
             item.draggable = true;
             item.draggableDestinations.Add(cardDestination);
             item.reference = c.gameObject;
+            item.id = item.reference.GetComponent<TowerCard>().GetName();
         }
         for (int i = 0; i < Cards.AugmentSize(); i++) // places augments in augment scroll area
         {
@@ -149,6 +150,7 @@ public class StageController : MonoBehaviour
             item.draggable = true;
             item.draggableDestinations.Add(augmentDestination);
             item.reference = a.gameObject;
+            item.id = item.reference.GetComponent<Augment>().type;
         }
     }
 }
