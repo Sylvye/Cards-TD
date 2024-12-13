@@ -23,8 +23,8 @@ public class AugmentTable : MonoBehaviour
 
     public static void Merge() // combines an augment with a card, destroying the augment
     {
-        ReferenceItem augment = main.transform.GetChild(0).GetComponentInChildren<ReferenceItem>();
-        ReferenceItem card = main.transform.GetChild(1).GetComponentInChildren<ReferenceItem>();
+        AugmentSceneScrollAreaItem augment = main.transform.GetChild(0).GetComponentInChildren<AugmentSceneScrollAreaItem>();
+        AugmentSceneScrollAreaItem card = main.transform.GetChild(1).GetComponentInChildren<AugmentSceneScrollAreaItem>();
         Augment a = augment.reference.GetComponent<Augment>();
         TowerCard c = card.reference.GetComponent<TowerCard>();
 

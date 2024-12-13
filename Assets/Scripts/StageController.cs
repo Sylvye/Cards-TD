@@ -128,12 +128,11 @@ public class StageController : MonoBehaviour
         {
             GameObject itemObj = Instantiate(cardItem_, Vector3.one, Quaternion.identity);
             SpriteRenderer sr = itemObj.GetComponent<SpriteRenderer>();
-            ReferenceItem item = itemObj.GetComponent<ReferenceItem>();
+            AugmentSceneScrollAreaItem item = itemObj.GetComponent<AugmentSceneScrollAreaItem>();
             Card c = Cards.GetFromDeck(i);
             sr.sortingOrder = 0;
             sr.sprite = c.GetComponent<SpriteRenderer>().sprite;
             cardScrollArea.AddToInventory(itemObj);
-            item.draggable = true;
             item.draggableDestinations.Add(cardDestination);
             item.reference = c.gameObject;
             item.id = item.reference.GetComponent<TowerCard>().GetName();
@@ -142,12 +141,11 @@ public class StageController : MonoBehaviour
         {
             GameObject itemObj = Instantiate(cardItem_, Vector3.one, Quaternion.identity);
             SpriteRenderer sr = itemObj.GetComponent<SpriteRenderer>();
-            ReferenceItem item = itemObj.GetComponent<ReferenceItem>();
+            AugmentSceneScrollAreaItem item = itemObj.GetComponent<AugmentSceneScrollAreaItem>();
             Augment a = Cards.GetFromAugments(i);
             sr.sortingOrder = 1;
             sr.sprite = a.GetComponent<SpriteRenderer>().sprite;
             augmentScrollArea.AddToInventory(itemObj);
-            item.draggable = true;
             item.draggableDestinations.Add(augmentDestination);
             item.reference = a.gameObject;
             item.id = item.reference.GetComponent<Augment>().type;

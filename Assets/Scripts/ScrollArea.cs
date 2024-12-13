@@ -76,7 +76,7 @@ public class ScrollArea : MonoBehaviour
     {
         inventory.Remove(item);
         item.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.None;
-        if (TryGetComponent(out ScrollAreaItem sai))
+        if (TryGetComponent(out DraggableScrollAreaItem sai))
         {
             item.transform.localScale = sai.ogScale;
         }
