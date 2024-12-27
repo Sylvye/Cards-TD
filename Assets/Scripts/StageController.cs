@@ -103,7 +103,7 @@ public class StageController : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            GameObject cardOptionObj = Instantiate(cardOption_, new Vector2(-5 + i * 5, -20), Quaternion.identity);
+            GameObject cardOptionObj = Instantiate(cardOption_, new Vector2(-5 + i * 2, -20), Quaternion.identity);
             ShopCard co = cardOptionObj.GetComponent<ShopCard>();
             co.card = Instantiate(cardProbs_.GetRandom().GetComponent<Card>(), new Vector2(0, 10), Quaternion.identity);
             co.card.tier = WeightedRandom.SelectWeightedIndex(new List<float>(rarityWeights_)) + 1;
