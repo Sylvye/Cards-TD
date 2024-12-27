@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using UnityEngine.XR;
-using static UnityEditor.Progress;
 
 public class StageController : MonoBehaviour
 {

@@ -94,7 +94,7 @@ public abstract class Card : MonoBehaviour
             }
             if (StageController.stageIndex == 1)
             {
-                if (transform.position.y > -2.5 && Physics2D.OverlapCircle(transform.position, hitboxRadius, Main.placementLayerMask_) == null)
+                if (transform.position.y > -2.5 && Physics2D.OverlapCircle(Camera.main.ScreenToWorldPoint(Input.mousePosition), hitboxRadius, Main.placementLayerMask_) == null)
                 {
                     GameObject obj = OnPlay();
                     if (obj != null && obj.TryGetComponent(out Tower t))
@@ -129,7 +129,7 @@ public abstract class Card : MonoBehaviour
             Main.hitboxReticle_.transform.position = new Vector3(target.x, target.y, -3);
             if (spawnable.TryGetComponent(out Tower _))
                 Main.towerRangeReticle_.transform.position = new Vector3(target.x, target.y, -3);
-            if (Physics2D.OverlapCircle(transform.position, hitboxRadius, Main.placementLayerMask_) == null)
+            if (Physics2D.OverlapCircle(target, hitboxRadius, Main.placementLayerMask_) == null)
                 Main.hitboxReticle_.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
             else
                 Main.hitboxReticle_.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.5f);

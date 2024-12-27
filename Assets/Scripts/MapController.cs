@@ -53,6 +53,7 @@ public class MapController : MonoBehaviour
         nodeAugmentLight= sprites[13];
         nodeBossDark= sprites[14];
         nodeBossLight= sprites[15];
+        Screen.SetResolution(2560, 1080, true);
     }
 
     public static void GenerateMap(int length)
