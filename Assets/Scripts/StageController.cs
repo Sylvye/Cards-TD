@@ -4,43 +4,41 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
-using UnityEngine.XR;
 
 public class StageController : MonoBehaviour
 {
+    [Header("General")]
+    public static StageController main;
     public static int stageIndex = 0;
     private static Vector3 cameraDestination = new(0, -10, -10);
     [Header("Shop")]
+    public Transform shopCardSpawn;
+    public Transform shopAugmentSpawn;
+    public static int cardCount;
+    public static int augmentCount;
     public GameobjectLootpool cardProbs;
-    public GameObject cardOption;
+    public GameObject purchaseable;
     public float[] rarityWeights = { 78, 12, 6, 3, 1 };
-    public static float[] rarityWeights_;
-    private static GameobjectLootpool cardProbs_;
-    private static GameObject cardOption_;
     private static GameObject[] shopCards = new GameObject[3];
+    [Header("Battle")]
     public static GameObject battleButton;
     public static GameObject inventoryOverlay;
     public static GameObject inventoryUI;
     public static ScrollArea inventoryLootScrollArea;
-
     [Header("Upgrade")]
     public int test2 = 10;
     [Header("Augment")]
     public GameObject cardItem;
-    public static GameObject cardItem_;
 
     private void Start()
     {
-        rarityWeights_ = new float[3];
-        cardProbs_ = cardProbs;
-        cardOption_ = cardOption;
-        cardItem_ = cardItem;
         battleButton = GameObject.Find("Battle Button");
         inventoryOverlay = GameObject.Find("Inventory Overlay");
         inventoryOverlay.SetActive(false);
         inventoryUI = GameObject.Find("Inventory UI");
         inventoryUI.SetActive(false);
         inventoryLootScrollArea = inventoryOverlay.GetComponentInChildren<ScrollArea>();
+        main = this;
     }
     private void Update()
     {
@@ -70,17 +68,17 @@ public class StageController : MonoBehaviour
             case "Defense":
                 cameraDestination = new Vector3(0, 0, -10);
                 stageIndex = 1;
-                SetupBattle();
+                main.SetupBattle();
                 break;
             case "Shop":
                 cameraDestination = new Vector3(0, -20, -10);
                 stageIndex = 2;
-                SetupShop();
+                main.SetupShop();
                 break;
             case "Augment":
                 cameraDestination = new Vector3(-25, -10, -10);
                 stageIndex = 3;
-                SetupAugment();
+                main.SetupAugment();
                 break;
             case "Upgrade":
                 cameraDestination = new Vector3(25, -10, -10);
@@ -91,7 +89,7 @@ public class StageController : MonoBehaviour
         }
     }
 
-    public static void SetupBattle()
+    public void SetupBattle()
     {
         Hand.Deal();
         Spawner.main.complete = false;
@@ -99,25 +97,26 @@ public class StageController : MonoBehaviour
     }
 
 
-    public static void SetupShop()
+    public void SetupShop()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i<cardCount; i++)
         {
-            GameObject cardOptionObj = Instantiate(cardOption_, new Vector2(-5 + i * 2, -20), Quaternion.identity);
-            ShopCard co = cardOptionObj.GetComponent<ShopCard>();
-            co.card = Instantiate(cardProbs_.GetRandom().GetComponent<Card>(), new Vector2(0, 10), Quaternion.identity);
-            co.card.tier = WeightedRandom.SelectWeightedIndex(new List<float>(rarityWeights_)) + 1;
-            cardOptionObj.GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("CardPack")[co.card.towerIndex * 5 + co.card.tier - 1];
-            shopCards[i] = cardOptionObj;
+            float scale = 2;
+            Instantiate(purchaseable, shopCardSpawn.position + i * scale * Vector3.right - cardCount * scale / 2f * Vector3.right, Quaternion.identity);
+        }
+        for (int i = 0; i < augmentCount; i++)
+        {
+            float scale = 2;
+            Instantiate(purchaseable, shopAugmentSpawn.position + i * scale * Vector3.right - augmentCount * scale / 2f * Vector3.right, Quaternion.identity);
         }
     }
 
-    public static void SetupUpgrade()
+    public void SetupUpgrade()
     {
 
     }
 
-    public static void SetupAugment()
+    public void SetupAugment()
     {
         ScrollArea cardScrollArea = GameObject.Find("Augment Deck Scroll Area").GetComponent<ScrollArea>();
         ScrollArea augmentScrollArea = GameObject.Find("Augment Scroll Area").GetComponent<ScrollArea>();
@@ -125,7 +124,7 @@ public class StageController : MonoBehaviour
         GameObject augmentDestination = GameObject.Find("Augment Slot");
         for (int i=0; i<Cards.DeckSize(); i++) // places cards in deck scroll area
         {
-            GameObject itemObj = Instantiate(cardItem_, Vector3.one, Quaternion.identity);
+            GameObject itemObj = Instantiate(cardItem, Vector3.one, Quaternion.identity);
             SpriteRenderer sr = itemObj.GetComponent<SpriteRenderer>();
             AugmentSceneScrollAreaItem item = itemObj.GetComponent<AugmentSceneScrollAreaItem>();
             Card c = Cards.GetFromDeck(i);
@@ -138,7 +137,7 @@ public class StageController : MonoBehaviour
         }
         for (int i = 0; i < Cards.AugmentSize(); i++) // places augments in augment scroll area
         {
-            GameObject itemObj = Instantiate(cardItem_, Vector3.one, Quaternion.identity);
+            GameObject itemObj = Instantiate(cardItem, Vector3.one, Quaternion.identity);
             SpriteRenderer sr = itemObj.GetComponent<SpriteRenderer>();
             AugmentSceneScrollAreaItem item = itemObj.GetComponent<AugmentSceneScrollAreaItem>();
             Augment a = Cards.GetFromAugments(i);
