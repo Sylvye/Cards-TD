@@ -9,8 +9,8 @@ using UnityEngine.UI;
 
 public class Main : MonoBehaviour
 {
-    public int lives = 100;
-    public int currency = 0; // rename this later
+    public static int lives = 100;
+    public static int currency = 0; // rename this later
     public int[] packs = { 0, 0, 0 }; // artisan, fighter, hoarder
 
     public int mapLength;
@@ -45,10 +45,10 @@ public class Main : MonoBehaviour
 
     public static bool Damage(int amount)
     {
-        main.lives -= amount;
-        if (main.lives <= 0)
+        lives -= amount;
+        if (lives <= 0)
         {
-            main.lives = 0;
+            lives = 0;
             return true;
         }
         return false;
@@ -56,10 +56,10 @@ public class Main : MonoBehaviour
 
     public static void Earn(int amount)
     {
-        main.currency += amount;
-        if (main.currency < 0) // shouldn't happen ever, but just in case.
+        currency += amount;
+        if (currency < 0) // shouldn't happen ever, but just in case.
         {
-            main.currency = 0;
+            currency = 0;
         }
     }
 

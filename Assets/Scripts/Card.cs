@@ -18,7 +18,7 @@ public abstract class Card : MonoBehaviour
 
     public virtual void Start()
     {
-        GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("CardPack")[towerIndex * 5 + tier - 1];
+        GetComponent<SpriteRenderer>().sprite = GetSprite();
     }
 
     private void Update()
@@ -143,5 +143,10 @@ public abstract class Card : MonoBehaviour
         handPos = (Vector2)transform.parent.position + Hand.GetIndexOf(this) * 2f * Vector2.right;
         handPos.z = -5;
         lerpPos = handPos;
+    }
+
+    public Sprite GetSprite()
+    {
+        return Resources.LoadAll<Sprite>("CardPack")[towerIndex * 5 + tier - 1];
     }
 }

@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Button : MonoBehaviour
 {
+    [NonSerialized]
     public Vector3 startScale;
     public Sprite spriteUp;
     public Sprite spriteDown;

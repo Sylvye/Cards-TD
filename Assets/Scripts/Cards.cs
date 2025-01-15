@@ -58,6 +58,8 @@ public class Cards : MonoBehaviour
 
     public static Card RemoveFromDeck(int index)
     {
+        if (index >= DeckSize())
+            return null;
         Card output = main.deck[index];
         main.deck.RemoveAt(index);
         return output;

@@ -14,12 +14,8 @@ public class StageController : MonoBehaviour
     [Header("Shop")]
     public Transform shopCardSpawn;
     public Transform shopAugmentSpawn;
-    public static int cardCount;
-    public static int augmentCount;
     public GameobjectLootpool cardProbs;
-    public GameObject purchaseable;
     public float[] rarityWeights = { 78, 12, 6, 3, 1 };
-    private static GameObject[] shopCards = new GameObject[3];
     [Header("Battle")]
     public static GameObject battleButton;
     public static GameObject inventoryOverlay;
@@ -50,15 +46,6 @@ public class StageController : MonoBehaviour
 
     public static void SwitchStage(string name)
     {
-        foreach (GameObject obj in shopCards) // clears card options on scene change
-        {
-            if (obj != null)
-            {
-                Destroy(obj);
-                Destroy(obj.GetComponent<ShopCard>().card.gameObject);
-            }
-        }
-
         switch (name)
         {
             case "Map":
@@ -99,15 +86,17 @@ public class StageController : MonoBehaviour
 
     public void SetupShop()
     {
-        for (int i = 0; i<cardCount; i++)
+        for (int i = 0; i<Shop.main.cardCount; i++)
         {
             float scale = 2;
-            Instantiate(purchaseable, shopCardSpawn.position + i * scale * Vector3.right - cardCount * scale / 2f * Vector3.right, Quaternion.identity);
+            GameObject card = Shop.MakeCard(shopCardSpawn.position + i * scale * Vector3.right - Shop.main.cardCount * scale / 2f * Vector3.right);
+            card.transform.parent = shopCardSpawn;
         }
-        for (int i = 0; i < augmentCount; i++)
+        for (int i = 0; i < Shop.main.augmentCount; i++)
         {
             float scale = 2;
-            Instantiate(purchaseable, shopAugmentSpawn.position + i * scale * Vector3.right - augmentCount * scale / 2f * Vector3.right, Quaternion.identity);
+            GameObject augment = Shop.MakeAugment(shopAugmentSpawn.position + i * scale * Vector3.right - Shop.main.augmentCount * scale / 2f * Vector3.right);
+            augment.transform.parent = shopAugmentSpawn;
         }
     }
 

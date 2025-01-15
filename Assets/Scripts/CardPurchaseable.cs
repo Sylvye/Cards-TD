@@ -2,15 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardPurchaseable : Button, Purchaseable
+public class CardPurchaseable : MonoBehaviour, Purchaseable
 {
-    public override void Action()
+    public Card card;
+
+    // Start is called before the first frame update
+    void Start()
     {
-        Claim();
-        throw new System.NotImplementedException(); // SEE SCOPE CREEP EXTRAVAGANZA DOCUMENT FOR INSIGHTS
+        
     }
+
+    public Sprite GetSprite()
+    {
+        return card.GetSprite();
+    }
+
     public void Claim()
     {
-
+        Cards.AddToDeck(card);
+        card.transform.position = new Vector3(0, 10, -2);
     }
 }
