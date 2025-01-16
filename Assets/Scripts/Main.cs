@@ -84,6 +84,12 @@ public class Main : MonoBehaviour
             Spawner.main.Send(4);
         if (Input.GetKeyUp(KeyCode.Alpha5))
             Spawner.main.Send(5);
+        if (Input.GetKeyUp(KeyCode.Alpha6))
+            Spawner.main.Send(6);
+        if (Input.GetKeyUp(KeyCode.M))
+            Earn(100);
+        if (Input.GetKeyUp(KeyCode.B))
+            Debug.Log("You have: " + currency + " coins");
     }
 
     private IEnumerator SetupMap() // waits a frame because im lazy and didnt want to reassign script execution order.

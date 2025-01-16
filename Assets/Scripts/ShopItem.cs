@@ -1,13 +1,15 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class ShopItem : Button
+public abstract class ShopItem : Button
 {
-    public Purchaseable item;
     public int price;
     public float discount = 0;
+    private Purchaseable p;
 
     //SpriteRenderer sr = GetComponent<SpriteRenderer>();
     //sr.sprite = item.GetSprite();
@@ -15,12 +17,22 @@ public class ShopItem : Button
     // CODE ABOVE SETS SPRITE, FIND OUT HOW TO INCORPERATE WITH THE BUTTON CLASS
 
     // player buys the item
+
+    public override void Start()
+    {
+        base.Start();
+        p = GetComponent<Purchaseable>();
+        spriteUp = p.GetSprite();
+        spriteDown = p.GetSprite();
+    }
+
     public override void Action()
     {
         if (Main.currency >= price * discount)
         {
             Main.currency -= price;
-            item.Claim();
+            p.Claim();
+            SetActive(false);
         }
     }
 }

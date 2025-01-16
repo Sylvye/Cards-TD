@@ -106,3 +106,4 @@ MonoBehaviour:
   projectileSpeedMult: 0
   homingSpeed: 0
   spread: 0
+  explosionRadius: 0

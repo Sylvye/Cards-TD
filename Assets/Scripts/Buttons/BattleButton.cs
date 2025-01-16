@@ -7,8 +7,9 @@ public class BattleButton : Button
     public Sprite exitUp;
     public Sprite exitDown;
 
-    private void Start()
+    public override void Start()
     {
+        base.Start();
         startScale = transform.localScale;
         startUp = spriteUp;
         startDown = spriteDown;

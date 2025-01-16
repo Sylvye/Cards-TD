@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardPurchaseable : MonoBehaviour, Purchaseable
+public class CardPurchaseable : ShopItem, Purchaseable
 {
     public Card card;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        
+        base.Start();
+        GetComponent<SpriteRenderer>().sprite = GetSprite();
     }
 
     public Sprite GetSprite()
@@ -19,7 +20,8 @@ public class CardPurchaseable : MonoBehaviour, Purchaseable
 
     public void Claim()
     {
-        Cards.AddToDeck(card);
+        Card newCard = Instantiate(card, new Vector3(0, 10, 0), Quaternion.identity);
+        Cards.AddToDeck(newCard);
         card.transform.position = new Vector3(0, 10, -2);
     }
 }

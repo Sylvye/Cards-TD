@@ -15,7 +15,7 @@ public abstract class Button : MonoBehaviour
     private bool active = true; // whether button can be clicked or not
 
     // Start is called before the first frame update
-    private void Start()
+    public virtual void Start()
     {
         startScale = transform.localScale;
     }
