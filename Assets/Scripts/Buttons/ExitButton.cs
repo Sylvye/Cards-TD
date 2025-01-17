@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AugmentExitButton : Button
+public class ExitButton : Button
 {
     public override void Action()
     {
-        StageController.SwitchStage("Map");
+        StageController.SwitchStage(StageController.Stage.Map);
     }
 }

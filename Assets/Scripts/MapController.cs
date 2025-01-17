@@ -53,6 +53,7 @@ public class MapController : MonoBehaviour
         nodeAugmentLight= sprites[13];
         nodeBossDark= sprites[14];
         nodeBossLight= sprites[15];
+
         Screen.SetResolution(2560, 1080, true);
     }
 
@@ -125,7 +126,7 @@ public class MapController : MonoBehaviour
         bossNode.SetSprite(nodeBossDark);
         bossNode.spriteLight = nodeBossLight;
         bossNode.spriteDark = nodeBossDark;
-        bossNode.type = "Boss";
+        bossNode.stage = StageController.Stage.Battle;
         bossNode.displayName = "Stage Boss";
 
         // assigns nodes their possible exits & sprites
@@ -141,7 +142,7 @@ public class MapController : MonoBehaviour
                 n.spriteDark = nodeBattleDark;
                 n.SetSprite(nodeBattleDark);
                 n.displayName = "Defense";
-                n.type = "Defense";
+                n.stage = StageController.Stage.Battle;
             }
             else
             {
@@ -154,21 +155,21 @@ public class MapController : MonoBehaviour
                         n.spriteDark = nodeShopDark;
                         n.SetSprite(nodeShopDark);
                         n.displayName = "Shop";
-                        n.type = "Shop";
+                        n.stage = StageController.Stage.Shop;
                         break;
                     case 1:
                         n.spriteLight = nodeUpgradeLight;
                         n.spriteDark = nodeUpgradeDark;
                         n.SetSprite(nodeUpgradeDark);
                         n.displayName = "Upgrade";
-                        n.type = "Upgrade";
+                        n.stage = StageController.Stage.Upgrade;
                         break;
                     case 2:
                         n.spriteLight = nodeAugmentLight;
                         n.spriteDark = nodeAugmentDark;
                         n.SetSprite(nodeAugmentDark);
                         n.displayName = "Augment";
-                        n.type = "Augment";
+                        n.stage = StageController.Stage.Augment;
                         break;
                     default:
                         if (Random.Range(0, 1 + n.column/2) == 0)
@@ -177,7 +178,7 @@ public class MapController : MonoBehaviour
                             n.spriteDark = nodeBattleDark;
                             n.SetSprite(nodeBattleDark);
                             n.displayName = "Defense";
-                            n.type = "Defense";
+                            n.stage = StageController.Stage.Battle;
                             break;
                         }
                         else
@@ -186,7 +187,7 @@ public class MapController : MonoBehaviour
                             n.spriteDark = nodeMinibossDark;
                             n.SetSprite(nodeMinibossDark);
                             n.displayName = "Miniboss";
-                            n.type = "Defense";
+                            n.stage = StageController.Stage.Battle;
                             break;
                         }
                 }
@@ -212,7 +213,7 @@ public class MapController : MonoBehaviour
         nodes[0].GetComponentInParent<SpriteRenderer>().sprite = nodeCurrentDark;
         startNode.spriteLight = nodeCurrentLight;
         startNode.spriteDark = nodeCurrentDark;
-        startNode.type = "Start";
+        startNode.stage = StageController.Stage.None;
         startNode.displayName = "Start";
 
         currentNode = startNode;
@@ -244,6 +245,8 @@ public class MapController : MonoBehaviour
                     objNode.SetSprite(nodeX);
                     objNode.spriteLight = nodeX;
                     objNode.spriteDark = nodeX;
+                    objNode.stage = StageController.Stage.None;
+                    objNode.displayName = "Unreachable";
                 }
             }
             else if (reachedColumn)

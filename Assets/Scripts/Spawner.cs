@@ -65,7 +65,7 @@ public class Spawner : MonoBehaviour
 
     public bool IsStageComplete()
     {
-        return StageController.stageIndex == 1 && complete && spawnedEnemies.Count == 0;
+        return StageController.currentStage == StageController.Stage.Battle && complete && spawnedEnemies.Count == 0;
     }
 
     public void Send(int tier)

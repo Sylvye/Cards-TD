@@ -145,8 +145,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteUp: {fileID: 0}
   spriteDown: {fileID: 0}
-  scaleAmount: 0.9
+  scaleAmount: 1.1
   active: 1
   price: 40
-  discount: 0
+  discount: 1
   card: {fileID: 8857968249970093843, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}

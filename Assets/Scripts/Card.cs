@@ -23,7 +23,7 @@ public abstract class Card : MonoBehaviour
 
     private void Update()
     {
-        if (StageController.stageIndex == 1 && Hand.GetIndexOf(this) != -1)
+        if (StageController.currentStage == StageController.Stage.Battle && Hand.GetIndexOf(this) != -1)
         {
             float mouseY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
             float mouseX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
@@ -66,7 +66,7 @@ public abstract class Card : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (StageController.stageIndex == 1 && !Spawner.main.IsStageComplete() && areCardsBeingHovered)
+        if (StageController.currentStage == StageController.Stage.Battle && !Spawner.main.IsStageComplete() && areCardsBeingHovered)
         {
             selected = true;
             isCardSelected = true;
@@ -92,7 +92,7 @@ public abstract class Card : MonoBehaviour
                 Main.towerRangeReticle_.transform.position = new Vector3(4, 10, 0);
                 Main.towerRangeReticle_.transform.localScale = Vector2.one;
             }
-            if (StageController.stageIndex == 1)
+            if (StageController.currentStage == StageController.Stage.Battle)
             {
                 if (transform.position.y > -2.5 && Physics2D.OverlapCircle(Camera.main.ScreenToWorldPoint(Input.mousePosition), hitboxRadius, Main.placementLayerMask_) == null)
                 {
@@ -122,7 +122,7 @@ public abstract class Card : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        if (selected && StageController.stageIndex == 1)
+        if (selected && StageController.currentStage == StageController.Stage.Battle)
         {
             Vector3 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector3(target.x+Main.hitboxReticle_.transform.localScale.x, target.y, -6);

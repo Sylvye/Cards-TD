@@ -51,7 +51,7 @@ public class BattleButton : Button
                 {
                     StageController.inventoryOverlay.SetActive(false);
                     StageController.inventoryUI.SetActive(false);
-                    StageController.SwitchStage("Map");
+                    StageController.SwitchStage(StageController.Stage.Map);
                     spriteUp = startUp;
                     spriteDown = startDown;
                     UpdateSprite();

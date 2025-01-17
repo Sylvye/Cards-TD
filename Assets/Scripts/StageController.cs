@@ -7,14 +7,24 @@ using UnityEngine.UIElements;
 
 public class StageController : MonoBehaviour
 {
+    public enum Stage
+    {
+        None,
+        Map,
+        Battle,
+        Augment,
+        Shop,
+        Upgrade
+    }
     [Header("General")]
     public static StageController main;
-    public static int stageIndex = 0;
+    public static Stage currentStage = Stage.Map;
     private static Vector3 cameraDestination = new(0, -10, -10);
     [Header("Shop")]
     public Transform shopCardSpawn;
     public Transform shopAugmentSpawn;
     public GameobjectLootpool cardProbs;
+    public Transform textParent;
     public float[] rarityWeights = { 78, 12, 6, 3, 1 };
     [Header("Battle")]
     public static GameObject battleButton;
@@ -44,32 +54,37 @@ public class StageController : MonoBehaviour
             Camera.main.transform.position = cameraDestination;
     }
 
-    public static void SwitchStage(string name)
+    public static void SwitchStage(Stage stage)
     {
-        switch (name)
+        if (currentStage == Stage.Shop)
         {
-            case "Map":
+            Shop.ClearShop();
+        }
+
+        switch (stage)
+        {
+            case Stage.Map:
                 cameraDestination = new Vector3(0, -10, -10);
-                stageIndex = 0;
+                currentStage = Stage.Map;
                 break;
-            case "Defense":
+            case Stage.Battle:
                 cameraDestination = new Vector3(0, 0, -10);
-                stageIndex = 1;
+                currentStage = Stage.Battle;
                 main.SetupBattle();
                 break;
-            case "Shop":
+            case Stage.Shop:
                 cameraDestination = new Vector3(0, -20, -10);
-                stageIndex = 2;
+                currentStage = Stage.Shop;
                 main.SetupShop();
                 break;
-            case "Augment":
+            case Stage.Augment:
                 cameraDestination = new Vector3(-25, -10, -10);
-                stageIndex = 3;
+                currentStage = Stage.Augment;
                 main.SetupAugment();
                 break;
-            case "Upgrade":
+            case Stage.Upgrade:
                 cameraDestination = new Vector3(25, -10, -10);
-                stageIndex = 4;
+                currentStage = Stage.Upgrade;
                 break;
             default:
                 break;
@@ -86,17 +101,25 @@ public class StageController : MonoBehaviour
 
     public void SetupShop()
     {
-        for (int i = 0; i<Shop.main.cardCount; i++)
+        for (int i = 0; i<Shop.main.cardCount; i++) // cards
         {
             float scale = 2;
-            GameObject card = Shop.MakeCard(shopCardSpawn.position + i * scale * Vector3.right - Shop.main.cardCount * scale / 2f * Vector3.right);
-            card.transform.parent = shopCardSpawn;
+            Vector3 pos = shopCardSpawn.position + i * scale * Vector3.right - Shop.main.cardCount * scale / 2f * Vector3.right;
+            GameObject cardObj = Shop.MakeCard(pos);
+            ShopItem cardItem = cardObj.GetComponent<ShopItem>();
+            cardObj.transform.parent = shopCardSpawn;
+            GameObject label = Shop.MakeLabel(pos + Vector3.down, cardItem.GetPrice() + "c");
+            label.transform.SetParent(textParent, true);
         }
-        for (int i = 0; i < Shop.main.augmentCount; i++)
+        for (int i = 0; i < Shop.main.augmentCount; i++) // augments
         {
             float scale = 2;
-            GameObject augment = Shop.MakeAugment(shopAugmentSpawn.position + i * scale * Vector3.right - Shop.main.augmentCount * scale / 2f * Vector3.right);
-            augment.transform.parent = shopAugmentSpawn;
+            Vector3 pos = shopAugmentSpawn.position + i * scale * Vector3.right - Shop.main.augmentCount * scale / 2f * Vector3.right;
+            GameObject augmentObj = Shop.MakeAugment(pos);
+            ShopItem augmentItem = augmentObj.GetComponent<ShopItem>();
+            augmentObj.transform.parent = shopAugmentSpawn;
+            GameObject label = Shop.MakeLabel(pos + Vector3.down, augmentItem.GetPrice() + "c");
+            label.transform.SetParent(textParent, true);
         }
     }
 

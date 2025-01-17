@@ -12,11 +12,11 @@ public class MapNode : MonoBehaviour
     public Sprite spriteDark;
 
     public string displayName;
-    public string type;
+    public StageController.Stage stage;
 
     private void OnMouseDown()
     {
-        if (spriteDark != spriteLight && StageController.stageIndex == 0)
+        if (spriteDark != spriteLight && StageController.currentStage == StageController.Stage.Map)
         {
             transform.localScale = new Vector3(0.4f, 0.4f, 1);
             SetSprite(spriteLight);
@@ -30,9 +30,8 @@ public class MapNode : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        if (StageController.stageIndex == 0)
+        if (StageController.currentStage == StageController.Stage.Map)
         {
-            string output = type;
             if (spriteDark != spriteLight && column == MapController.currentNode.column + 1 && ((MapController.currentNode.exits[0] != null && MapController.currentNode.exits[0].Equals(this)) || MapController.currentNode.exits[1] != null && MapController.currentNode.exits[1].Equals(this)))
             {
                 MapController.EliminateColumn(this);
@@ -43,11 +42,11 @@ public class MapNode : MonoBehaviour
                 SetSprite(MapController.nodeCurrentDark);
                 spriteDark = MapController.nodeCurrentDark;
                 spriteLight = MapController.nodeCurrentLight;
-                type = "Your Location";
+                displayName = "Your Location";
             }
             if (Equals(MapController.currentNode))
             {
-                StageController.SwitchStage(output);
+                StageController.SwitchStage(stage);
             }
         }
     }
