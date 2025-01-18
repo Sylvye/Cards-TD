@@ -34,7 +34,8 @@ public class StageController : MonoBehaviour
     [Header("Upgrade")]
     public int test2 = 10;
     [Header("Augment")]
-    public GameObject cardItem;
+    public GameObject cardSAI;
+    public GameObject augmentSAI;
 
     private void Start()
     {
@@ -85,6 +86,7 @@ public class StageController : MonoBehaviour
             case Stage.Upgrade:
                 cameraDestination = new Vector3(25, -10, -10);
                 currentStage = Stage.Upgrade;
+                main.SetupUpgrade();
                 break;
             default:
                 break;
@@ -101,6 +103,9 @@ public class StageController : MonoBehaviour
 
     public void SetupShop()
     {
+        ScrollArea cardScrollArea = GameObject.Find("Shop Deck Scroll Area").GetComponent<ScrollArea>();
+        cardScrollArea.FillWithCards(cardSAI, transform, 0); // FIX THIS LINE OF CODE !!!!!!!!                             MAKE A NON DRAGGABLE VERSION OF THE SCROLL AREA ITEM CARD CLASS
+
         for (int i = 0; i<Shop.main.cardCount; i++) // cards
         {
             float scale = 2;
@@ -125,40 +130,21 @@ public class StageController : MonoBehaviour
 
     public void SetupUpgrade()
     {
+        UpgradeTable.upgrades = 0;
 
+        ScrollArea cardScrollArea = GameObject.Find("Upgrade Deck Scroll Area").GetComponent<ScrollArea>();
+        Transform cardDestination = UpgradeTable.main.transform.GetChild(0);
+        cardScrollArea.FillWithCards(cardSAI, cardDestination, 0);
     }
 
     public void SetupAugment()
     {
         ScrollArea cardScrollArea = GameObject.Find("Augment Deck Scroll Area").GetComponent<ScrollArea>();
         ScrollArea augmentScrollArea = GameObject.Find("Augment Scroll Area").GetComponent<ScrollArea>();
-        GameObject cardDestination = GameObject.Find("Card Slot");
-        GameObject augmentDestination = GameObject.Find("Augment Slot");
-        for (int i=0; i<Cards.DeckSize(); i++) // places cards in deck scroll area
-        {
-            GameObject itemObj = Instantiate(cardItem, Vector3.one, Quaternion.identity);
-            SpriteRenderer sr = itemObj.GetComponent<SpriteRenderer>();
-            AugmentSceneScrollAreaItem item = itemObj.GetComponent<AugmentSceneScrollAreaItem>();
-            Card c = Cards.GetFromDeck(i);
-            sr.sortingOrder = 0;
-            sr.sprite = c.GetComponent<SpriteRenderer>().sprite;
-            cardScrollArea.AddToInventory(itemObj);
-            item.draggableDestinations.Add(cardDestination);
-            item.reference = c.gameObject;
-            item.id = item.reference.GetComponent<TowerCard>().GetName();
-        }
-        for (int i = 0; i < Cards.AugmentSize(); i++) // places augments in augment scroll area
-        {
-            GameObject itemObj = Instantiate(cardItem, Vector3.one, Quaternion.identity);
-            SpriteRenderer sr = itemObj.GetComponent<SpriteRenderer>();
-            AugmentSceneScrollAreaItem item = itemObj.GetComponent<AugmentSceneScrollAreaItem>();
-            Augment a = Cards.GetFromAugments(i);
-            sr.sortingOrder = 1;
-            sr.sprite = a.GetComponent<SpriteRenderer>().sprite;
-            augmentScrollArea.AddToInventory(itemObj);
-            item.draggableDestinations.Add(augmentDestination);
-            item.reference = a.gameObject;
-            item.id = item.reference.GetComponent<Augment>().type;
-        }
+        Transform cardDestination = AugmentTable.main.transform.GetChild(1);
+        Transform augmentDestination = AugmentTable.main.transform.GetChild(0);
+
+        cardScrollArea.FillWithCards(cardSAI, cardDestination, 0);
+        augmentScrollArea.FillWithCards(augmentSAI, augmentDestination, 1);
     }
 }

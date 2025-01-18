@@ -10,7 +10,7 @@ public class DraggableScrollAreaItem : ScrollAreaItem
         Home, Moving, Positioned
     }
     [Header("Draggableness")]
-    public List<GameObject> draggableDestinations = new();
+    public List<Transform> draggableDestinations = new();
     public float snapDist = 1;
     public State state = State.Home;
     private Transform p;
@@ -77,12 +77,12 @@ public class DraggableScrollAreaItem : ScrollAreaItem
         {
             transform.localScale = scale;
 
-            GameObject closest = GetViableDestination(snapDist);
+            Transform closest = GetViableDestination(snapDist);
             if (closest != null)
             {
-                transform.parent = closest.transform;
-                transform.localScale = closest.transform.localScale;
-                transform.position = closest.transform.position + Vector3.back;
+                transform.parent = closest;
+                transform.localScale = closest.localScale;
+                transform.position = closest.position + Vector3.back;
                 scale = transform.localScale;
                 state = State.Positioned;
             }
@@ -116,25 +116,25 @@ public class DraggableScrollAreaItem : ScrollAreaItem
     }
 
     // returns the destination it can snap to if within range
-    private GameObject GetViableDestination(float range)
+    private Transform GetViableDestination(float range)
     {
         if (draggableDestinations.Count == 0)
             return null;
 
-        GameObject closest = null;
+        Transform closest = null;
         float dist = float.MaxValue;
 
         for (int i = 0; i < draggableDestinations.Count; i++)
         {
-            GameObject o = draggableDestinations[i];
-            float d = Vector2.Distance(o.transform.position, lerpPos);
-            if (d < dist && o.transform.childCount == 0)
+            Transform o = draggableDestinations[i];
+            float d = Vector2.Distance(o.position, lerpPos);
+            if (d < dist && o.childCount == 0)
             {
                 closest = o;
                 dist = d;
             }
         }
 
-        return closest != null && Vector2.Distance(closest.transform.position, transform.position) < range ? closest : null; // if within range, return closest, otherwise return null
+        return closest != null && Vector2.Distance(closest.position, transform.position) < range ? closest : null; // if within range, return closest, otherwise return null
     }
 }

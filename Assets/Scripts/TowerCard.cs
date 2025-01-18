@@ -6,6 +6,8 @@ using UnityEngine;
 public class TowerCard : Card
 {
     private Tower prefabTower;
+    public int towerIndex;
+    public float hitboxRadius;
     [Header("Augmented Stats")]
     public int flatDamage;
     public float attackSpeed;
@@ -28,6 +30,7 @@ public class TowerCard : Card
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         GameObject obj = Instantiate(spawnable, new Vector3(mousePos.x, mousePos.y, -2), Quaternion.identity);
         Tower tower = obj.GetComponent<Tower>();
+        tower.tier = tier;
         tower.range += range;
         tower.damage += flatDamage;
         tower.attackSpeed += attackSpeed;
@@ -46,13 +49,18 @@ public class TowerCard : Card
         return obj;
     }
 
-    public override float GetReticleRadius()
+    public float GetReticleRadius()
     {
         return prefabTower.GetRange(tier) + range;
     }
 
-    public string GetName()
+    public override string GetName()
     {
         return prefabTower.name + " T" + tier;
+    }
+
+    public override Sprite GetSprite()
+    {
+        return Resources.LoadAll<Sprite>("CardPack")[towerIndex * 5 + tier - 1];
     }
 }

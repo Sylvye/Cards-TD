@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Augment : MonoBehaviour
+public class Augment : MonoBehaviour, CardInterface
 {
     public string type;
     public int flatDamage;
@@ -26,5 +26,30 @@ public class Augment : MonoBehaviour
         c.projectileSpeedMult += projectileSpeedMult;
         c.pierce += pierce;
         c.explosionRadius += explosionRadius;
+    }
+
+    public string GetName()
+    {
+        return type;
+    }
+
+    public Sprite GetSprite()
+    {
+        return GetComponent<SpriteRenderer>().sprite;
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
+
+    public CardInterface FindReference(int index)
+    {
+        return Cards.GetFromAugments(index);
+    }
+
+    public int GetReferenceListLength()
+    {
+        return Cards.AugmentSize();
     }
 }

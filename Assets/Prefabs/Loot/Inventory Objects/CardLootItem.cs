@@ -9,7 +9,7 @@ public class CardLootItem : LootItem
 
     public override void Start()
     {
-        GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("CardPack")[cardReference.towerIndex * 5 + tier - 1];
+        GetComponent<SpriteRenderer>().sprite = cardReference.GetSprite();
     }
 
     public override void Claim()

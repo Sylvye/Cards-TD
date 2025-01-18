@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
+using static UnityEditor.Progress;
+using static UnityEditor.Timeline.Actions.MenuPriority;
 
 public class ScrollArea : MonoBehaviour
 {
@@ -91,6 +93,46 @@ public class ScrollArea : MonoBehaviour
             {
                 Destroy(obj);
                 inventory.RemoveAt(i);
+            }
+        }
+    }
+
+    public void FillWithCards(GameObject prefabObj, Transform destination, int sortingOrder)
+    {
+        CardInterface cardPrefab = prefabObj.GetComponent<CardInterface>();
+
+        for (int i = 0; i < cardPrefab.GetReferenceListLength(); i++) // places cards in deck scroll area
+        {
+            GameObject itemObj = Instantiate(prefabObj, Vector3.one, Quaternion.identity);
+            AddToInventory(itemObj);
+
+            SpriteRenderer sr = itemObj.GetComponent<SpriteRenderer>();
+            CardInterface cardPrefabReference = itemObj.GetComponent<CardInterface>().FindReference(i); // finds reference to the card with index i in Cards.deck
+            sr.sortingOrder = sortingOrder;
+            sr.sprite = cardPrefabReference.GetSprite();
+
+            ScrollAreaItemCard item = itemObj.GetComponent<ScrollAreaItemCard>();
+            item.draggableDestinations.Add(destination);
+            item.prefabReference = cardPrefabReference.GetGameObject();
+            item.id = cardPrefabReference.GetName();
+        }
+    }
+
+    public void FillWithList(List<ScrollAreaItem> list, Transform destination, int sortingOrder)
+    {
+        for (int i = 0; i < list.Count; i++) // places items in deck scroll area
+        {
+            GameObject prefab = list[i].gameObject;
+            GameObject itemObj = Instantiate(prefab, Vector3.one, Quaternion.identity);
+            AddToInventory(itemObj);
+
+            SpriteRenderer sr = itemObj.GetComponent<SpriteRenderer>();
+            ScrollAreaItem sai = itemObj.GetComponent<ScrollAreaItem>();
+            sr.sortingOrder = sortingOrder;
+
+            if (itemObj.TryGetComponent(out DraggableScrollAreaItem dsai))
+            {
+                dsai.draggableDestinations.Add(destination);
             }
         }
     }

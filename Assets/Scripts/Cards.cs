@@ -6,6 +6,11 @@ using UnityEngine;
 
 public class Cards : MonoBehaviour
 {
+    public enum CardType
+    {
+        Card,
+        Augment
+    }
     public static Cards main;
     private List<Card> deck = new();
     private List<Augment> augments = new();

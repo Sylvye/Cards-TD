@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public abstract class Card : MonoBehaviour
+public class Card : MonoBehaviour, CardInterface
 {
     public static bool isCardSelected = false;
+    public string type;
     public GameObject spawnable;
-    public int towerIndex;
     public int tier;
     private bool selected = false;
     private Vector3 handPos;
-    public float hitboxRadius;
     private Vector3 lerpPos;
     bool areCardsBeingHovered = false;
 
@@ -62,7 +62,10 @@ public abstract class Card : MonoBehaviour
 
     }
 
-    public abstract GameObject OnPlay();
+    public virtual GameObject OnPlay()
+    {
+        return null;
+    }
 
     private void OnMouseDown()
     {
@@ -72,10 +75,10 @@ public abstract class Card : MonoBehaviour
             isCardSelected = true;
             transform.localScale = Vector3.one * 1.5f;
             SetHandPos();
-            Main.hitboxReticle_.transform.localScale = 2 * hitboxRadius * Vector3.one;
-            if (spawnable.TryGetComponent(out Tower t))
+            if (TryGetComponent(out TowerCard tc))
             {
-                Main.towerRangeReticle_.transform.localScale = GetReticleRadius() * 2 * Vector3.one + Vector3.forward * -6;
+                Main.hitboxReticle_.transform.localScale = 2 * tc.hitboxRadius * Vector3.one;
+                Main.towerRangeReticle_.transform.localScale = tc.GetReticleRadius() * 2 * Vector3.one + Vector3.forward * -6;
             }
         }
     }
@@ -86,30 +89,26 @@ public abstract class Card : MonoBehaviour
         {
             selected = false;
             isCardSelected = false;
-            Main.hitboxReticle_.transform.position = new Vector3(2, 10, 0);
-            if (spawnable.TryGetComponent(out Tower _))
-            {
-                Main.towerRangeReticle_.transform.position = new Vector3(4, 10, 0);
-                Main.towerRangeReticle_.transform.localScale = Vector2.one;
-            }
             if (StageController.currentStage == StageController.Stage.Battle)
             {
-                if (transform.position.y > -2.5 && Physics2D.OverlapCircle(Camera.main.ScreenToWorldPoint(Input.mousePosition), hitboxRadius, Main.placementLayerMask_) == null)
+                if (TryGetComponent(out TowerCard tc))
                 {
-                    GameObject obj = OnPlay();
-                    if (obj != null && obj.TryGetComponent(out Tower t))
+                    Main.hitboxReticle_.transform.position = new Vector3(2, 10, 0);
+                    Main.towerRangeReticle_.transform.position = new Vector3(4, 10, 0);
+                    Main.towerRangeReticle_.transform.localScale = Vector2.one;
+
+                    if (transform.position.y > -2.5 && Physics2D.OverlapCircle(Camera.main.ScreenToWorldPoint(Input.mousePosition), tc.hitboxRadius, Main.placementLayerMask_) == null)
                     {
-                        t.tier = tier;
-                        t.LoadSprite(towerIndex);
+                        GameObject obj = OnPlay();
+                        Hand.Remove(this);
+                        gameObject.transform.position = Vector3.up * 10;
+                        gameObject.transform.localScale = Vector3.one * 1.5f;
                     }
-                    Hand.Remove(this);
-                    gameObject.transform.position = Vector3.up * 10;
-                    gameObject.transform.localScale = Vector3.one * 1.5f;
-                }
-                else
-                {
-                    transform.position = handPos;
-                    transform.localScale = Vector3.one * 1.5f;
+                    else
+                    {
+                        transform.position = handPos;
+                        transform.localScale = Vector3.one * 1.5f;
+                    }
                 }
             }
             else
@@ -125,18 +124,22 @@ public abstract class Card : MonoBehaviour
         if (selected && StageController.currentStage == StageController.Stage.Battle)
         {
             Vector3 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = new Vector3(target.x+Main.hitboxReticle_.transform.localScale.x, target.y, -6);
-            Main.hitboxReticle_.transform.position = new Vector3(target.x, target.y, -3);
-            if (spawnable.TryGetComponent(out Tower _))
+            if (TryGetComponent(out TowerCard tc))
+            {
+                transform.position = new Vector3(target.x + Main.hitboxReticle_.transform.localScale.x, target.y, -6);
+                Main.hitboxReticle_.transform.position = new Vector3(target.x, target.y, -3);
                 Main.towerRangeReticle_.transform.position = new Vector3(target.x, target.y, -3);
-            if (Physics2D.OverlapCircle(target, hitboxRadius, Main.placementLayerMask_) == null)
-                Main.hitboxReticle_.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+                if (Physics2D.OverlapCircle(target, tc.hitboxRadius, Main.placementLayerMask_) == null)
+                    Main.hitboxReticle_.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+                else
+                    Main.hitboxReticle_.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.5f);
+            }
             else
-                Main.hitboxReticle_.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.5f);
+            {
+                transform.position = new Vector3(target.x, target.y, -6);
+            }
         }
     }
-
-    public abstract float GetReticleRadius();
 
     public void SetHandPos()
     {
@@ -145,8 +148,28 @@ public abstract class Card : MonoBehaviour
         lerpPos = handPos;
     }
 
-    public Sprite GetSprite()
+    public virtual string GetName()
     {
-        return Resources.LoadAll<Sprite>("CardPack")[towerIndex * 5 + tier - 1];
+        return type;
+    }
+
+    public CardInterface FindReference(int index)
+    {
+        return Cards.GetFromDeck(index);
+    }
+
+    public int GetReferenceListLength()
+    {
+        return Cards.DeckSize();
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
+
+    public virtual Sprite GetSprite()
+    {
+        return GetComponent<SpriteRenderer>().sprite;
     }
 }
