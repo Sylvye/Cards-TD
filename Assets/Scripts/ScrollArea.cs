@@ -97,17 +97,28 @@ public class ScrollArea : MonoBehaviour
         }
     }
 
-    public void FillWithCards(GameObject prefabObj, Transform destination, int sortingOrder)
+    public void FillWithCards(GameObject prefabObj, Transform destination, int sortingOrder, Cards.CardType type)
     {
-        CardInterface cardPrefab = prefabObj.GetComponent<CardInterface>();
+        var numCards = type switch
+        {
+            Cards.CardType.Card => Cards.DeckSize(),
+            Cards.CardType.Augment => Cards.AugmentSize(),
+            _ => 0,
+        };
 
-        for (int i = 0; i < cardPrefab.GetReferenceListLength(); i++) // places cards in deck scroll area
+
+        for (int i = 0; i < numCards; i++) // places cards in deck scroll area
         {
             GameObject itemObj = Instantiate(prefabObj, Vector3.one, Quaternion.identity);
             AddToInventory(itemObj);
 
             SpriteRenderer sr = itemObj.GetComponent<SpriteRenderer>();
-            CardInterface cardPrefabReference = itemObj.GetComponent<CardInterface>().FindReference(i); // finds reference to the card with index i in Cards.deck
+            CardInterface cardPrefabReference = type switch
+            {
+                Cards.CardType.Card => Cards.GetFromDeck(i),
+                Cards.CardType.Augment => Cards.GetFromDeck(i),
+                _ => null,
+            };
             sr.sortingOrder = sortingOrder;
             sr.sprite = cardPrefabReference.GetSprite();
 

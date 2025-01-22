@@ -104,7 +104,7 @@ public class StageController : MonoBehaviour
     public void SetupShop()
     {
         ScrollArea cardScrollArea = GameObject.Find("Shop Deck Scroll Area").GetComponent<ScrollArea>();
-        cardScrollArea.FillWithCards(cardSAI, transform, 0); // FIX THIS LINE OF CODE !!!!!!!!                             MAKE A NON DRAGGABLE VERSION OF THE SCROLL AREA ITEM CARD CLASS
+        cardScrollArea.FillWithCards(cardSAI, transform, 0, Cards.CardType.Card);
 
         for (int i = 0; i<Shop.main.cardCount; i++) // cards
         {
@@ -134,7 +134,7 @@ public class StageController : MonoBehaviour
 
         ScrollArea cardScrollArea = GameObject.Find("Upgrade Deck Scroll Area").GetComponent<ScrollArea>();
         Transform cardDestination = UpgradeTable.main.transform.GetChild(0);
-        cardScrollArea.FillWithCards(cardSAI, cardDestination, 0);
+        cardScrollArea.FillWithCards(cardSAI, cardDestination, 0, Cards.CardType.Card);
     }
 
     public void SetupAugment()
@@ -144,7 +144,7 @@ public class StageController : MonoBehaviour
         Transform cardDestination = AugmentTable.main.transform.GetChild(1);
         Transform augmentDestination = AugmentTable.main.transform.GetChild(0);
 
-        cardScrollArea.FillWithCards(cardSAI, cardDestination, 0);
-        augmentScrollArea.FillWithCards(augmentSAI, augmentDestination, 1);
+        cardScrollArea.FillWithCards(cardSAI, cardDestination, 0, Cards.CardType.Card);
+        augmentScrollArea.FillWithCards(augmentSAI, augmentDestination, 1, Cards.CardType.Augment);
     }
 }

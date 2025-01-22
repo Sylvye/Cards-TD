@@ -38,6 +38,7 @@ public class DraggableScrollAreaItem : ScrollAreaItem
                 break;
             case State.Moving:
                 pos = Vector3.Lerp(transform.position, lerpPos, Time.deltaTime * 50);
+                Debug.DrawLine(transform.position, pos, Color.yellow, 10);
                 transform.position = new Vector3(pos.x, pos.y, -2);
                 break;
             case State.Positioned:
@@ -82,7 +83,7 @@ public class DraggableScrollAreaItem : ScrollAreaItem
             {
                 transform.parent = closest;
                 transform.localScale = closest.localScale;
-                transform.position = closest.position + Vector3.back;
+                transform.localPosition = Vector3.zero;
                 scale = transform.localScale;
                 state = State.Positioned;
             }
