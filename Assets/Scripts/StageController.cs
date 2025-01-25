@@ -59,7 +59,7 @@ public class StageController : MonoBehaviour
     {
         if (currentStage == Stage.Shop)
         {
-            Shop.ClearShop();
+            Shop.ResetShop();
         }
 
         switch (stage)

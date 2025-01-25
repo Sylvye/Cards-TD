@@ -46,6 +46,9 @@ public class TowerCard : Card
         {
             taserTurret.projectiles += projectiles;
         }
+
+        tower.LoadSprite(towerIndex);
+
         return obj;
     }
 

@@ -14,6 +14,7 @@ public class Shop : MonoBehaviour
     public int augmentCount;
     public GameobjectLootpool cardLootpool;
     public GameobjectLootpool augmentLootpool;
+    public ScrollArea shopScrollArea;
 
     private static List<GameObject> shopStuff = new List<GameObject>();
 
@@ -21,6 +22,7 @@ public class Shop : MonoBehaviour
     void Start()
     {
         main = this;
+        shopScrollArea = GameObject.Find("Shop Deck Scroll Area").GetComponent<ScrollArea>();
     }
 
     // Update is called once per frame
@@ -74,8 +76,10 @@ public class Shop : MonoBehaviour
         return output;
     }
 
-    public static void ClearShop()
+    public static void ResetShop()
     {
+        main.shopScrollArea.ClearInventory();
+
         foreach (GameObject obj in shopStuff)
         {
             Destroy(obj);

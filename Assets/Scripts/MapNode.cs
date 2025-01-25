@@ -34,6 +34,8 @@ public class MapNode : MonoBehaviour
         {
             if (spriteDark != spriteLight && column == MapController.currentNode.column + 1 && ((MapController.currentNode.exits[0] != null && MapController.currentNode.exits[0].Equals(this)) || MapController.currentNode.exits[1] != null && MapController.currentNode.exits[1].Equals(this)))
             {
+                StageController.SwitchStage(stage);
+
                 MapController.EliminateColumn(this);
                 MapController.currentNode.SetSprite(MapController.nodeCompleted);
                 MapController.currentNode.spriteLight = MapController.nodeCompleted;
@@ -43,10 +45,6 @@ public class MapNode : MonoBehaviour
                 spriteDark = MapController.nodeCurrentDark;
                 spriteLight = MapController.nodeCurrentLight;
                 displayName = "Your Location";
-            }
-            if (Equals(MapController.currentNode))
-            {
-                StageController.SwitchStage(stage);
             }
         }
     }
