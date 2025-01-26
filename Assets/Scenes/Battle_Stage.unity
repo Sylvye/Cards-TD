@@ -5359,6 +5359,7 @@ MonoBehaviour:
   augmentCount: 4
   cardLootpool: {fileID: 11400000, guid: 8c35a6c4cd076c24a8edd87b7f79db56, type: 2}
   augmentLootpool: {fileID: 11400000, guid: bfb1dc40dbe26a64d91527bd18e805ea, type: 2}
+  shopScrollArea: {fileID: 0}
 --- !u!1 &1700930360
 GameObject:
   m_ObjectHideFlags: 0
