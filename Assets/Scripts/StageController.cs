@@ -28,7 +28,7 @@ public class StageController : MonoBehaviour
     public float[] rarityWeights = { 78, 12, 6, 3, 1 };
     [Header("Battle")]
     public static GameObject battleButton;
-    public static GameObject inventoryOverlay;
+    public static GameObject screenDim;
     public static GameObject inventoryUI;
     public static ScrollArea inventoryLootScrollArea;
     [Header("Upgrade")]
@@ -40,11 +40,11 @@ public class StageController : MonoBehaviour
     private void Start()
     {
         battleButton = GameObject.Find("Battle Button");
-        inventoryOverlay = GameObject.Find("Inventory Overlay");
-        inventoryOverlay.SetActive(false);
+        screenDim = GameObject.Find("Screen dim");
+        screenDim.SetActive(false);
         inventoryUI = GameObject.Find("Inventory UI");
         inventoryUI.SetActive(false);
-        inventoryLootScrollArea = inventoryOverlay.GetComponentInChildren<ScrollArea>();
+        inventoryLootScrollArea = screenDim.GetComponentInChildren<ScrollArea>();
         main = this;
     }
     private void Update()

@@ -41,15 +41,15 @@ public class BattleButton : Button
         {
             if (Spawner.main.IsStageComplete())
             {
-                if (!StageController.inventoryOverlay.activeSelf) // opens inventory screen
+                if (!StageController.screenDim.activeSelf) // opens inventory screen
                 {
-                    StageController.inventoryOverlay.SetActive(true);
+                    StageController.screenDim.SetActive(true);
                     StageController.inventoryUI.SetActive(true);
                     Main.UpdatePackLabels();
                 }
                 else // leaves battle stage
                 {
-                    StageController.inventoryOverlay.SetActive(false);
+                    StageController.screenDim.SetActive(false);
                     StageController.inventoryUI.SetActive(false);
                     StageController.SwitchStage(StageController.Stage.Map);
                     spriteUp = startUp;

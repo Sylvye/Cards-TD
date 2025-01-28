@@ -20,7 +20,7 @@ public abstract class Button : MonoBehaviour
         startScale = transform.localScale;
     }
 
-    private void OnMouseEnter()
+    public virtual void OnMouseEnter()
     {
         if (active)
         {
@@ -28,7 +28,7 @@ public abstract class Button : MonoBehaviour
         }
     }
 
-    public void OnMouseExit()
+    public virtual void OnMouseExit()
     {
         if (active)
         {
@@ -58,7 +58,8 @@ public abstract class Button : MonoBehaviour
 
     public void UpdateSprite()
     {
-        GetComponent<SpriteRenderer>().sprite = spriteUp;
+        if (spriteUp != null)
+            GetComponent<SpriteRenderer>().sprite = spriteUp;
     }
 
     public void SetActive(bool a)

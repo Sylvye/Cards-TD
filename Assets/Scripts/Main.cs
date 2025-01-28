@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,6 +13,9 @@ public class Main : MonoBehaviour
     public static int lives = 100;
     public static int currency = 0; // rename this later
     public int[] packs = { 0, 0, 0 }; // artisan, fighter, hoarder
+
+    public static Stats playerStats = new Stats();
+    public static Stats enemyStats = new Stats();
 
     public int mapLength;
     public static int mapLength_;
@@ -41,6 +45,9 @@ public class Main : MonoBehaviour
         mapLength_ = mapLength;
         StartCoroutine(SetupMap());
         Cards.AddAllChildren(); // adds cards to deck
+
+        InitEnemyStats();
+        InitPlayerStats();
     }
 
     public static bool Damage(int amount)
@@ -96,5 +103,17 @@ public class Main : MonoBehaviour
     {
         yield return null;
         MapController.GenerateMap(mapLength_);
+    }
+
+    public void InitPlayerStats()
+    {
+        playerStats.ClearStats();
+        playerStats.AddStat("flat_damage", 0);
+        //etc.
+    }
+
+    public void InitEnemyStats()
+    {
+
     }
 }
