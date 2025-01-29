@@ -47,7 +47,7 @@ public class TaserTurret : Tower
 
                 if (stunTime > 0)
                     e.Stun(stunTime);
-                e.Damage((int)(damage * damageMultiplier));
+                e.Damage(GetDamage());
             }
         }
 

@@ -108,12 +108,26 @@ public class Main : MonoBehaviour
     public void InitPlayerStats()
     {
         playerStats.ClearStats();
+        playerStats.AddStat("base_damage", 0);
         playerStats.AddStat("flat_damage", 0);
-        //etc.
+        playerStats.AddStat("mult_damage", 1);
+        playerStats.AddStat("energy_base_damage", 0);
+        playerStats.AddStat("kinetic_base_damage", 0);
+        playerStats.AddStat("energy_mult_damage", 1);
+        playerStats.AddStat("kinetic_mult_damage", 1);
+        playerStats.AddStat("pierce", 0);
+        playerStats.AddStat("kinetic_pierce", 0);
+        playerStats.AddStat("energy_pierce", 0);
+        playerStats.AddStat("min_shop_disc", 0);
+        playerStats.AddStat("double_boon", 0);
     }
 
     public void InitEnemyStats()
     {
-
+        enemyStats.AddStat("resistance", 1);
+        enemyStats.AddStat("regeneration", 0);
+        enemyStats.AddStat("loot_chance", 1);
+        enemyStats.AddStat("desperate", 0); // under 40% = move #% faster
+        enemyStats.AddStat("triple_curse", 0);
     }
 }

@@ -134,10 +134,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tier: 1
+  type: 1
   damage: 1
   attackSpeed: 1
   damageMultiplier: 1
   range: 5
+  explosionRadius: 0
   laser: {fileID: 6254124567953751875, guid: 61cb3435ca5d60a4e857f925901aef26, type: 3}
   projectiles: 3
   lastShot: -999

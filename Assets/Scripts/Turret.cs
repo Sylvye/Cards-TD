@@ -50,8 +50,7 @@ public abstract class Turret : Tower
         Projectile p = projectile.GetComponent<Projectile>();
         p.angle = AngleHelper.VectorToDegrees(dir.normalized);
         p.speed *= projectileSpeedMultiplier;
-        p.damage += damage;
-        p.damage = (int)(p.damage * damageMultiplier);
+        p.damage = GetDamage();
         p.pierce += pierceBoost;
         p.explosionRadius += explosionRadius;
         p.parentTower = gameObject;

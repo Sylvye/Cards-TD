@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Statistics", menuName = "Statistics", order = 2)]
-public class Stats : MonoBehaviour
+public class Stats
 {
     private Dictionary<string, float> stats = new Dictionary<string, float>();
 
@@ -12,9 +11,14 @@ public class Stats : MonoBehaviour
         stats.Add(name, value);
     }
 
-    public void EditStat(string name, float value)
+    public void SetStat(string name, float value)
     {
         stats[name] = value;
+    }
+
+    public void AddToStat(string name, float value)
+    {
+        stats[name] += value;
     }
 
     public float GetStat(string name)

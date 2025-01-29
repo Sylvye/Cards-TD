@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RiskReward : Button
 {
+    public bool player;
     public GameObject outline;
+    public Dictionary<string, float> stats;
 
     public override void OnMouseEnter()
     {
@@ -17,10 +20,14 @@ public class RiskReward : Button
     {
         base.OnMouseExit();
         outline.SetActive(false);
-    }
+    }e
 
     public override void Action()
     {
-        Debug.Log("clicked");
+        Stats toEdit = player ? Main.playerStats : Main.enemyStats;
+        for (int i = 0; i < stats.Count; i++)
+        {
+            toEdit.AddToStat(stats.Keys.ElementAt(i), stats[stats.Keys.ElementAt(i)]);
+        }
     }
 }

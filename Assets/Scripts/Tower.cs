@@ -4,7 +4,13 @@ using UnityEngine;
 
 public abstract class Tower : MonoBehaviour
 {
+    public enum Type
+    {
+        Kinetic,
+        Energy
+    }
     public int tier = 1;
+    public Type type = Type.Kinetic;
     public int damage;
     public float attackSpeed;
     public float damageMultiplier;
@@ -39,5 +45,12 @@ public abstract class Tower : MonoBehaviour
             Main.towerRangeReticle_.transform.position = new Vector3(4, 10, 0);
             Main.towerRangeReticle_.transform.localScale = Vector2.one;
         }
+    }
+
+    public virtual int GetDamage()
+    {
+        float typeDamage = type == Type.Kinetic ? Main.playerStats.GetStat("kinetic_base_damage") : Main.playerStats.GetStat("energy_base_damage");
+        float multipliedDamage = (damage + Main.playerStats.GetStat("base_damage") + typeDamage) * Main.playerStats.GetStat("mult_damage") * damageMultiplier;
+        return Mathf.RoundToInt(multipliedDamage + Main.playerStats.GetStat("flat_damage"));
     }
 }
