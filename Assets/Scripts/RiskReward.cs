@@ -20,7 +20,7 @@ public class RiskReward : Button
     {
         base.OnMouseExit();
         outline.SetActive(false);
-    }e
+    }
 
     public override void Action()
     {
