@@ -32,7 +32,7 @@ public class BattleButton : Button
                 Spawner.main.active = true;
                 spriteUp = exitUp;
                 spriteDown = exitDown;
-                UpdateSprite();
+                SetSpriteUp();
                 OnMouseExit();
                 SetActive(false);
             }
@@ -54,7 +54,7 @@ public class BattleButton : Button
                     StageController.SwitchStage(StageController.Stage.Map);
                     spriteUp = startUp;
                     spriteDown = startDown;
-                    UpdateSprite();
+                    SetSpriteUp();
                     Hand.Clear();
                     StageController.inventoryLootScrollArea.ClearClaimed();
                 }

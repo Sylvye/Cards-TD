@@ -4,25 +4,16 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class Button : MonoBehaviour
+public abstract class Button : CustomUIElement
 {
-    [NonSerialized]
-    public Vector3 startScale;
     public Sprite spriteUp;
     public Sprite spriteDown;
     public float scaleAmount = 0.9f;
-    [SerializeField]
-    private bool active = true; // whether button can be clicked or not
 
-    // Start is called before the first frame update
-    public virtual void Start()
-    {
-        startScale = transform.localScale;
-    }
 
     public virtual void OnMouseEnter()
     {
-        if (active)
+        if (GetActive())
         {
             transform.localScale = startScale * scaleAmount;
         }
@@ -30,7 +21,7 @@ public abstract class Button : MonoBehaviour
 
     public virtual void OnMouseExit()
     {
-        if (active)
+        if (GetActive())
         {
             transform.localScale = startScale;
         }
@@ -38,7 +29,7 @@ public abstract class Button : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (active && spriteDown != null)
+        if (GetActive() && spriteDown != null)
         {
             GetComponent<SpriteRenderer>().sprite = spriteDown;
         }
@@ -46,7 +37,7 @@ public abstract class Button : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        if (active)
+        if (GetActive())
         {
             if (spriteUp != null)
                 GetComponent<SpriteRenderer>().sprite = spriteUp;
@@ -54,29 +45,15 @@ public abstract class Button : MonoBehaviour
         }
     }
 
-    public abstract void Action();
-
-    public void UpdateSprite()
+    public void SetSpriteUp()
     {
         if (spriteUp != null)
             GetComponent<SpriteRenderer>().sprite = spriteUp;
     }
 
-    public void SetActive(bool a)
+    public void SetSpriteDown()
     {
-        active = a;
-        if (a)
-        {
-            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-        }
-        else
-        {
-            GetComponent<SpriteRenderer>().color = new Color(0.75f, 0.75f, 0.75f, 0.75f);
-        }
-    }
-
-    public bool GetActive()
-    {
-        return active;
+        if (spriteUp != null)
+            GetComponent<SpriteRenderer>().sprite = spriteDown;
     }
 }

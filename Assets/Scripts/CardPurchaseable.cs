@@ -13,7 +13,7 @@ public class CardPurchaseable : ShopItem, Purchaseable
         GetComponent<SpriteRenderer>().sprite = GetSprite();
     }
 
-    public Sprite GetSprite()
+    public override Sprite GetSprite()
     {
         return card.GetSprite();
     }

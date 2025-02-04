@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d08cc902fe661614a917cb17aa98bf2a, type: 3}
+  m_Name: '!Curse Lootpool'
+  m_EditorClassIdentifier: 
+  objects:
+  - {fileID: 2226533950621865980, guid: 89d063d1ab2aae5488c8aacc6ae60485, type: 3}
+  - {fileID: 2226533950621865980, guid: 59cad4e457fce4d47a89031a0b444d6c, type: 3}
+  - {fileID: 2226533950621865980, guid: 6490271d6e4d48e499631df85c5d6491, type: 3}
+  - {fileID: 2226533950621865980, guid: 4cda6f79442204f438f0deb2868f25e4, type: 3}
+  - {fileID: 2226533950621865980, guid: 5b0deae9486432142b8f616ec8118798, type: 3}
+  - {fileID: 2226533950621865980, guid: c3e78227c50f71b46af49e3535b1bdb8, type: 3}
+  - {fileID: 2226533950621865980, guid: db16076317e29194082bded8c47070ae, type: 3}
+  - {fileID: 2226533950621865980, guid: 68eb0ef0207faed4fb55000b8f756e11, type: 3}
+  - {fileID: 2226533950621865980, guid: 75aea22b54f99a248a5edad5bcc538b2, type: 3}
+  weights:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1

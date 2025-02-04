@@ -13,7 +13,7 @@ public class AugmentPurchaseable : ShopItem, Purchaseable
         GetComponent<SpriteRenderer>().sprite = GetSprite();
     }
 
-    public Sprite GetSprite()
+    public override Sprite GetSprite()
     {
         return augment.GetComponent<SpriteRenderer>().sprite;
     }
