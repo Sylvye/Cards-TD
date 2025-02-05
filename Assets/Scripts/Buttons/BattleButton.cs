@@ -4,8 +4,8 @@ public class BattleButton : Button
 {
     public static BattleButton main;
     public static int phase = 0;
-    private Sprite startUp;
-    private Sprite startDown;
+    public Sprite startUp;
+    public Sprite startDown;
     public Sprite nextUp;
     public Sprite nextDown;
 

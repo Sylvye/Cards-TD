@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization.Json;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class RiskReward : CustomUIElement
     public static RiskReward lastBoon;
     public static RiskReward lastCurse;
     public bool boon;
+    public bool clone = false;
     public string description;
     public List<string> statNames;
     public List<float> statValues;
@@ -30,15 +32,23 @@ public class RiskReward : CustomUIElement
         statNames = prefab.statNames;
         statValues = prefab.statValues;
         description = prefab.description;
+        clone = prefab.clone;
         GetComponent<SpriteRenderer>().sprite = prefab.GetSprite();
 
         // for x2 and x3
-        if (statNames.Count == 0 )
+        if (clone)
         {
             RiskReward last = boon ? lastBoon : lastCurse;
-            statNames = last.statNames;
-            statValues = last.statValues;
-            description += "\n\n" + last.description;
+            if (last == null) // if there hasn't been a boon/curse selected yet
+            {
+                Refresh();
+            }
+            else
+            {
+                statNames = last.statNames;
+                statValues = last.statValues;
+                description += "\n\n" + last.description;
+            }
         }
     }
 
@@ -75,25 +85,27 @@ public class RiskReward : CustomUIElement
 
     public override void Action()
     {
+        if (!clone)
+        {
+            if (boon)
+            {
+                lastBoon = prefab;
+            }
+            else
+            {
+                lastCurse = prefab;
+            }
+        }
         Stats toEdit = boon ? Main.playerStats : Main.enemyStats;
         for (int i = 0; i < statNames.Count; i++)
         {
             float val = statValues[i];
-            if (statNames.Count == 0)
+            if (clone)
             {
-                val += boon ? 2 : 3;
+                val *= boon ? 2 : 3;
             }
             toEdit.AddToStat(statNames[i], val);
         }
-
-        if (boon)
-        {
-            lastBoon = prefab;
-        } else
-        {
-            lastCurse = prefab;
-        }
-
     }
 }
 

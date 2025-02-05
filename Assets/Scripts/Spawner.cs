@@ -11,12 +11,11 @@ public class Spawner : MonoBehaviour
     public static List<GameObject> spawnedEnemies = new List<GameObject>();
     public List<GameObject> enemies;
     public List<GameObject> wave;
-    public float density = 1;
+    public int waveIndex = 0;
     public bool active = true;
     public bool complete = false;
     private int spawned; // how many enemies spawned this wave
     private float cooldown = 0;
-    [SerializeField]
     private bool freebie = false;
 
     private void Start()
@@ -29,21 +28,20 @@ public class Spawner : MonoBehaviour
     {
         if (active)
         {
-            if (wave.Count > 0)
+            if (waveIndex < wave.Count)
             {
                 cooldown -= Time.deltaTime;
 
                 if (cooldown <= 0)
                 {
-                    if (wave[0] != null)
+                    if (wave[waveIndex] != null)
                     {
-                        cooldown = 1 / density;
-                        Spawn(wave[0], transform.position, wave[0].transform.rotation);
-                        wave.RemoveAt(0);
+                        cooldown = 1 / Main.enemyStats.GetStat("wave_density");
+                        Spawn(wave[waveIndex], transform.position, wave[waveIndex++].transform.rotation);
                     }
                     else
                     {
-                        cooldown = 1 / density; // later, will make a "wait" class that stores a value that is added to the cooldown.
+                        cooldown = 1 / Main.enemyStats.GetStat("wave_density");
                     }
                 }
             }
@@ -61,6 +59,7 @@ public class Spawner : MonoBehaviour
         freebie = false;
         cooldown = 0;
         spawned = 0;
+        waveIndex = 0;
     }
 
     public bool IsStageComplete()
@@ -76,7 +75,7 @@ public class Spawner : MonoBehaviour
     public GameObject Spawn(GameObject obj, Vector3 pos, Quaternion rot)
     {
         GameObject o = Instantiate(obj, pos + 0.001f * spawned * Vector3.forward, rot);
-        if (!freebie && wave.Count == 1)
+        if (!freebie && waveIndex == wave.Count)
         {
             o.GetComponent<Enemy>().dropWeights[0] = 0;
             freebie = true;

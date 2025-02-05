@@ -54,6 +54,8 @@ public class RiskRewardPair : Button
         Hand.Clear();
         StageController.inventoryLootScrollArea.ClearClaimed();
         StageController.boonCurse.SetActive(false);
+        BattleButton.main.spriteUp = BattleButton.main.startUp;
+        BattleButton.main.spriteDown = BattleButton.main.startDown;
     }
 
     public static void Refresh()

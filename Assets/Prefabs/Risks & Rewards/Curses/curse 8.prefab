@@ -146,7 +146,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   boon: 0
-  description: Triples last curse
+  clone: 1
+  description: 'Triple the effect of the last curse taken:'
   statNames: []
   statValues: []
   lootpool: {fileID: 11400000, guid: 1b3161b2815a3604fa8c823f046620e2, type: 2}

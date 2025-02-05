@@ -123,9 +123,19 @@ public class Main : MonoBehaviour
 
     public void InitEnemyStats()
     {
+        enemyStats.AddStat("small_enemies", 5);
+        enemyStats.AddStat("medium_enemies", 0);
+        enemyStats.AddStat("large_enemies", 0);
+        enemyStats.AddStat("small_enemy_speed", 2);
+        enemyStats.AddStat("medium_enemy_speed", 1.5f);
+        enemyStats.AddStat("large_enemy_speed", 1);
+        enemyStats.AddStat("small_enemy_hp_mult", 1);
+        enemyStats.AddStat("medium_enemy_hp_mult", 1);
+        enemyStats.AddStat("large_enemy_hp_mult", 1);
+        enemyStats.AddStat("wave_density", 1);
+        enemyStats.AddStat("shields", 0);
+        enemyStats.AddStat("desperation", 0); // under 50% = move #% faster
         enemyStats.AddStat("resistance", 1);
         enemyStats.AddStat("regeneration", 0);
-        enemyStats.AddStat("loot_chance", 1);
-        enemyStats.AddStat("desperate", 0); // under 50% = move #% faster
     }
 }
