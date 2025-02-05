@@ -114,6 +114,27 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
+        y: 96
+        width: 96
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acee90864bd9c8748a1b7f77bbb9443f
+      internalID: -722308507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: riskReward_1
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 48
         width: 96
         height: 48
@@ -124,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0fbb32e9260d8eb45953ef43f7bead09
-      internalID: -11365300
+      spriteID: 6ef847c2ea3a02149834f23687469ab1
+      internalID: 904051469
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: riskReward_1
+      name: riskReward_2
       rect:
         serializedVersion: 2
         x: 0
@@ -145,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36e05c99ae1f1e547b12f2b4874b8e34
-      internalID: -2017130274
+      spriteID: 3c8562369acd1a34f9413d63329c250a
+      internalID: 1047774070
       vertices: []
       indices: 
       edges: []
@@ -162,8 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      riskReward_0: -11365300
-      riskReward_1: -2017130274
+      riskReward_0: -722308507
+      riskReward_1: 904051469
+      riskReward_2: 1047774070
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

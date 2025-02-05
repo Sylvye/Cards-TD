@@ -2,14 +2,16 @@ using UnityEngine;
 
 public class BattleButton : Button
 {
+    public static BattleButton main;
+    public static int phase = 0;
     private Sprite startUp;
     private Sprite startDown;
-    public Sprite exitUp;
-    public Sprite exitDown;
+    public Sprite nextUp;
+    public Sprite nextDown;
 
-    public override void Start()
+    private void Awake()
     {
-        base.Start();
+        main = this;
         startScale = transform.localScale;
         startUp = spriteUp;
         startDown = spriteDown;
@@ -25,40 +27,29 @@ public class BattleButton : Button
 
     public override void Action()
     {
-        if (spriteUp.Equals(startUp))
+        switch (phase)
         {
-            if (GetActive())
-            {
+            case 0:
                 Spawner.main.active = true;
-                spriteUp = exitUp;
-                spriteDown = exitDown;
+                spriteUp = nextUp;
+                spriteDown = nextDown;
                 SetSpriteUp();
                 OnMouseExit();
                 SetActive(false);
-            }
+                break;
+            case 1:
+                StageController.inventoryUI.SetActive(true);
+                StageController.inventoryLabels.SetActive(true);
+                Main.UpdatePackLabels();
+                break;
+            case 2:
+                StageController.inventoryUI.SetActive(false);
+                StageController.inventoryLabels.SetActive(false);
+                StageController.boonCurse.SetActive(true);
+                RiskRewardPair.Refresh();
+                SetActive(false);
+                break;
         }
-        else
-        {
-            if (Spawner.main.IsStageComplete())
-            {
-                if (!StageController.screenDim.activeSelf) // opens inventory screen
-                {
-                    StageController.screenDim.SetActive(true);
-                    StageController.inventoryUI.SetActive(true);
-                    Main.UpdatePackLabels();
-                }
-                else // leaves battle stage
-                {
-                    StageController.screenDim.SetActive(false);
-                    StageController.inventoryUI.SetActive(false);
-                    StageController.SwitchStage(StageController.Stage.Map);
-                    spriteUp = startUp;
-                    spriteDown = startDown;
-                    SetSpriteUp();
-                    Hand.Clear();
-                    StageController.inventoryLootScrollArea.ClearClaimed();
-                }
-            }
-        }
+        phase = ++phase % 3;
     }
 }

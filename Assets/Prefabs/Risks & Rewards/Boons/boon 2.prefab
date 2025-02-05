@@ -144,11 +144,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c5b37f45e13f9342b8c23113def28bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteUp: {fileID: 0}
-  spriteDown: {fileID: 0}
-  scaleAmount: 1
   active: 1
   boon: 1
+  description: Energy attacks deal +35% damage
+  statNames:
+  - energy_mult_damage
+  statValues:
+  - 0.35
   lootpool: {fileID: 11400000, guid: 996dccbf9002bae4ca136fa1d1d6b28b, type: 2}
 --- !u!1001 &8256731650161864892
 PrefabInstance:

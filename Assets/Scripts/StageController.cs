@@ -28,24 +28,34 @@ public class StageController : MonoBehaviour
     public float[] rarityWeights = { 78, 12, 6, 3, 1 };
     [Header("Battle")]
     public static GameObject battleButton;
-    public static GameObject screenDim;
+    public static GameObject inventoryLabels;
     public static GameObject inventoryUI;
     public static ScrollArea inventoryLootScrollArea;
+    public static GameObject boonCurse;
+    public static GameObject riskRewardTextbox;
     [Header("Upgrade")]
     public int test2 = 10;
     [Header("Augment")]
     public GameObject cardSAI;
     public GameObject augmentSAI;
 
+    private void Awake()
+    {
+        main = this;
+        battleButton = GameObject.Find("Battle Button");
+        inventoryLabels = GameObject.Find("Inventory Labels");
+        inventoryUI = GameObject.Find("Inventory UI");
+        boonCurse = GameObject.Find("Boon-curse");
+        riskRewardTextbox = GameObject.Find("Risk-Reward Textbox");
+        inventoryLootScrollArea = inventoryUI.GetComponentInChildren<ScrollArea>();
+    }
+
     private void Start()
     {
-        battleButton = GameObject.Find("Battle Button");
-        screenDim = GameObject.Find("Screen dim");
-        screenDim.SetActive(false);
-        inventoryUI = GameObject.Find("Inventory UI");
+        inventoryLabels.SetActive(false);
         inventoryUI.SetActive(false);
-        inventoryLootScrollArea = screenDim.GetComponentInChildren<ScrollArea>();
-        main = this;
+        boonCurse.SetActive(false);
+        riskRewardTextbox.SetActive(false);
     }
     private void Update()
     {

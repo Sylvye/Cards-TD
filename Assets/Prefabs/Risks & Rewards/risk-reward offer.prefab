@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -11365300, guid: a83814722d1f0cb4d9d0e6f80f66f23c, type: 3}
+  m_Sprite: {fileID: -722308507, guid: a83814722d1f0cb4d9d0e6f80f66f23c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -145,10 +145,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79e2528617feed649889c4d92ad94d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteUp: {fileID: -11365300, guid: a83814722d1f0cb4d9d0e6f80f66f23c, type: 3}
-  spriteDown: {fileID: -2017130274, guid: a83814722d1f0cb4d9d0e6f80f66f23c, type: 3}
-  scaleAmount: 1
   active: 1
+  scaleAmount: 1
+  spriteUp: {fileID: -722308507, guid: a83814722d1f0cb4d9d0e6f80f66f23c, type: 3}
+  spriteDown: {fileID: 1047774070, guid: a83814722d1f0cb4d9d0e6f80f66f23c, type: 3}
+  outline: {fileID: 904051469, guid: a83814722d1f0cb4d9d0e6f80f66f23c, type: 3}
 --- !u!1001 &778442422187150295
 PrefabInstance:
   m_ObjectHideFlags: 0

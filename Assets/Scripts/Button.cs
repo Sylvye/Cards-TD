@@ -6,9 +6,9 @@ using UnityEngine;
 
 public abstract class Button : CustomUIElement
 {
+    public float scaleAmount = 0.9f;
     public Sprite spriteUp;
     public Sprite spriteDown;
-    public float scaleAmount = 0.9f;
 
 
     public virtual void OnMouseEnter()
@@ -27,7 +27,7 @@ public abstract class Button : CustomUIElement
         }
     }
 
-    private void OnMouseDown()
+    public virtual void OnMouseDown()
     {
         if (GetActive() && spriteDown != null)
         {
@@ -35,7 +35,7 @@ public abstract class Button : CustomUIElement
         }
     }
 
-    private void OnMouseUpAsButton()
+    public virtual void OnMouseUpAsButton()
     {
         if (GetActive())
         {

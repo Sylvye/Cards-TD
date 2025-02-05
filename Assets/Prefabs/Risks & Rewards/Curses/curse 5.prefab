@@ -144,11 +144,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c5b37f45e13f9342b8c23113def28bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteUp: {fileID: 0}
-  spriteDown: {fileID: 0}
-  scaleAmount: 1
   active: 1
   boon: 0
+  description: Enemies under 50% hp move +15% faster
+  statNames:
+  - desperation
+  statValues:
+  - 0.15
   lootpool: {fileID: 11400000, guid: 1b3161b2815a3604fa8c823f046620e2, type: 2}
 --- !u!1001 &8525653772707890441
 PrefabInstance:

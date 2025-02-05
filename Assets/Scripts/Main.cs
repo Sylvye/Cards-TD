@@ -74,7 +74,7 @@ public class Main : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            StageController.inventoryUI.transform.GetChild(i+1).GetComponent<TMPLabel>().SetText("" + main.packs[i]);
+            StageController.inventoryLabels.transform.GetChild(i+1).GetComponent<TMPLabel>().SetText("" + main.packs[i]);
         }
     }
 
@@ -118,8 +118,7 @@ public class Main : MonoBehaviour
         playerStats.AddStat("pierce", 0);
         playerStats.AddStat("kinetic_pierce", 0);
         playerStats.AddStat("energy_pierce", 0);
-        playerStats.AddStat("min_shop_disc", 0);
-        playerStats.AddStat("double_boon", 0);
+        playerStats.AddStat("base_discount", 0);
     }
 
     public void InitEnemyStats()
@@ -127,7 +126,6 @@ public class Main : MonoBehaviour
         enemyStats.AddStat("resistance", 1);
         enemyStats.AddStat("regeneration", 0);
         enemyStats.AddStat("loot_chance", 1);
-        enemyStats.AddStat("desperate", 0); // under 40% = move #% faster
-        enemyStats.AddStat("triple_curse", 0);
+        enemyStats.AddStat("desperate", 0); // under 50% = move #% faster
     }
 }

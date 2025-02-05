@@ -5,19 +5,27 @@ using UnityEngine.UI;
 
 public class RiskRewardPair : Button
 {
-    private Textbox textbox;
+    public static RiskRewardPair[] riskRewards;
+    public Sprite outline;
 
+    private void Awake()
+    {
+        riskRewards = new RiskRewardPair[2];
+    }
 
     public override void Start()
     {
         base.Start();
-        textbox = GameObject.Find("Risk-Reward Textbox").GetComponent<Textbox>();
+        if (riskRewards[0] == null)
+            riskRewards[0] = this;
+        else
+            riskRewards[1] = this;
     }
 
     public override void OnMouseEnter()
     {
         base.OnMouseEnter();
-        GetComponent<SpriteRenderer>().sprite = spriteDown;
+        GetComponent<SpriteRenderer>().sprite = outline;
     }
 
     public override void OnMouseExit()
@@ -37,5 +45,22 @@ public class RiskRewardPair : Button
             RiskReward rr = obj.GetComponent<RiskReward>();
             rr.Action();
         }
+
+        // switches away from battle scene
+        StageController.inventoryUI.SetActive(false);
+        StageController.inventoryLabels.SetActive(false);
+        StageController.SwitchStage(StageController.Stage.Map);
+        SetSpriteUp();
+        Hand.Clear();
+        StageController.inventoryLootScrollArea.ClearClaimed();
+        StageController.boonCurse.SetActive(false);
+    }
+
+    public static void Refresh()
+    {
+        riskRewards[0].transform.GetChild(0).GetComponent<RiskReward>().Refresh();
+        riskRewards[0].transform.GetChild(1).GetComponent<RiskReward>().Refresh();
+        riskRewards[1].transform.GetChild(0).GetComponent<RiskReward>().Refresh();
+        riskRewards[1].transform.GetChild(1).GetComponent<RiskReward>().Refresh();
     }
 }
