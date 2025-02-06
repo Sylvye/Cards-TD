@@ -15,8 +15,11 @@ public abstract class Turret : Tower
     public float lastShot = -999;
     public GameObject targetEnemy;
 
-    private void Start()
+    private void Awake()
     {
+        stats.AddStat("pierce", pierceBoost);
+        stats.AddStat("mult_speed", projectileSpeedMultiplier);
+        stats.AddStat("homing", homingSpeed);
         InitTierEffects();
     }
 
@@ -49,13 +52,8 @@ public abstract class Turret : Tower
         GameObject projectile = Instantiate(obj, spawnPos, Quaternion.LookRotation(Vector3.forward, dir));
         Projectile p = projectile.GetComponent<Projectile>();
         p.angle = AngleHelper.VectorToDegrees(dir.normalized);
-        p.speed *= projectileSpeedMultiplier;
-        p.damage = GetDamage();
-        p.pierce += pierceBoost;
-        p.explosionRadius += explosionRadius;
+        stats.AddToStats(p.stats); // adds all applicable stats over to the projectile
         p.parentTower = gameObject;
-        if (homingSpeed > 0)
-            p.homingSpeed = homingSpeed;
         return projectile;
     }
 

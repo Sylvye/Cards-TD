@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class Spawner : MonoBehaviour
 {
     public static Spawner main;
-    public static List<GameObject> spawnedEnemies = new List<GameObject>();
+    public static List<GameObject> spawnedEnemies = new();
     public List<GameObject> enemies;
     public List<GameObject> wave;
     public int waveIndex = 0;

@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
+using static UnityEditor.Timeline.Actions.MenuPriority;
 
 public class StageController : MonoBehaviour
 {
@@ -69,7 +70,7 @@ public class StageController : MonoBehaviour
     {
         if (currentStage == Stage.Shop)
         {
-            Shop.ResetShop();
+            ShopController.ResetShop();
         }
 
         switch (stage)
@@ -116,24 +117,32 @@ public class StageController : MonoBehaviour
         ScrollArea cardScrollArea = GameObject.Find("Shop Deck Scroll Area").GetComponent<ScrollArea>();
         cardScrollArea.FillWithCards(cardSAI, transform, 0, Cards.CardType.Card);
 
-        for (int i = 0; i<Shop.main.cardCount; i++) // cards
+        for (int i = 0; i<ShopController.main.cardCount; i++) // cards
         {
             float scale = 2;
-            Vector3 pos = shopCardSpawn.position + i * scale * Vector3.right - Shop.main.cardCount * scale / 2f * Vector3.right;
-            GameObject cardObj = Shop.MakeCard(pos);
+            Vector3 pos = shopCardSpawn.position + i * scale * Vector3.right - ShopController.main.cardCount * scale / 2f * Vector3.right;
+            GameObject cardObj = ShopController.MakeCard(pos);
             ShopItem cardItem = cardObj.GetComponent<ShopItem>();
             cardObj.transform.parent = shopCardSpawn;
-            GameObject label = Shop.MakeLabel(pos + Vector3.down, cardItem.GetPrice() + "c");
+            GameObject label = ShopController.MakeLabel(pos + Vector3.down, cardItem.GetPrice() + "c");
+            if (cardItem.GetDiscount() > 0)
+            {
+                label.GetComponent<TMPLabel>().SetText(label.GetComponent<TMPLabel>().GetText() + " (-" + cardItem.GetDiscount() + "%)");
+            }
             label.transform.SetParent(textParent, true);
         }
-        for (int i = 0; i < Shop.main.augmentCount; i++) // augments
+        for (int i = 0; i < ShopController.main.augmentCount; i++) // augments
         {
             float scale = 2;
-            Vector3 pos = shopAugmentSpawn.position + i * scale * Vector3.right - Shop.main.augmentCount * scale / 2f * Vector3.right;
-            GameObject augmentObj = Shop.MakeAugment(pos);
+            Vector3 pos = shopAugmentSpawn.position + i * scale * Vector3.right - ShopController.main.augmentCount * scale / 2f * Vector3.right;
+            GameObject augmentObj = ShopController.MakeAugment(pos);
             ShopItem augmentItem = augmentObj.GetComponent<ShopItem>();
             augmentObj.transform.parent = shopAugmentSpawn;
-            GameObject label = Shop.MakeLabel(pos + Vector3.down, augmentItem.GetPrice() + "c");
+            GameObject label = ShopController.MakeLabel(pos + Vector3.down, augmentItem.GetPrice() + "c");
+            if (augmentItem.GetDiscount() > 0)
+            {
+                label.GetComponent<TMPLabel>().SetText(label.GetComponent<TMPLabel>().GetText() + " (-" + augmentItem.GetDiscount() + "%)");
+            }
             label.transform.SetParent(textParent, true);
         }
     }

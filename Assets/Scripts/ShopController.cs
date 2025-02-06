@@ -4,9 +4,9 @@ using System.Net.NetworkInformation;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Shop : MonoBehaviour
+public class ShopController : MonoBehaviour
 {
-    public static Shop main;
+    public static ShopController main;
     public GameObject cardPrefab;
     public GameObject augmentPrefab;
     public GameObject labelPrefab;
@@ -16,19 +16,13 @@ public class Shop : MonoBehaviour
     public GameobjectLootpool augmentLootpool;
     public ScrollArea shopScrollArea;
 
-    private static List<GameObject> shopStuff = new List<GameObject>();
+    private static List<GameObject> shopStuff = new();
 
     // Start is called before the first frame update
     void Start()
     {
         main = this;
         shopScrollArea = GameObject.Find("Shop Deck Scroll Area").GetComponent<ScrollArea>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public static GameObject MakeCard()
@@ -72,7 +66,7 @@ public class Shop : MonoBehaviour
         GameObject output = Instantiate(main.labelPrefab, spawn, Quaternion.identity);
 
         output.GetComponent<TMPLabel>().SetText(text);
-        shopStuff.Add(output.gameObject);
+        shopStuff.Add(output);
         return output;
     }
 

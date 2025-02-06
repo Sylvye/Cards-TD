@@ -7,40 +7,45 @@ using UnityEngine.U2D.IK;
 public class Projectile : MonoBehaviour
 {
     public GameObject parentTower;
-    public int damage;
-    public float speed;
-    public float lifetime = 1;
-    public int pierce = 0;
-    public float explosionRadius = 0;
+    public Stats stats;
     public bool combo = false;
     public bool curse = false;
     public bool randomFX = true;
-    public float homingSpeed = 0;
     public GameObject[] deathFX;
     public GameObject[] despawnFX;
     public float angle;
     private Rigidbody2D rb;
 
+    private void Awake()
+    {
+        stats.AddStat("damage", 0);
+        stats.AddStat("speed", 0);
+        stats.AddStat("lifetime", 1);
+        stats.AddStat("pierce", 0);
+        stats.AddStat("explosionRadius", 0);
+        stats.AddStat("homing", 0);
+    }
+
     // Start is called before the first frame update
     private void Start()
     {
-        StartCoroutine(Despawn(lifetime));
+        StartCoroutine(Despawn(stats.GetStat("lifetime")));
         rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-        if (homingSpeed > 0)
+        if (stats.GetStat("homing") > 0)
         {
             GameObject target = parentTower.GetComponent<Turret>().targetEnemy;
             if (target != null)
             {
                 float angleToTarget = AngleHelper.VectorToDegrees(target.transform.position - transform.position);
-                angle = Mathf.LerpAngle(angle, angleToTarget, Time.deltaTime * homingSpeed);
+                angle = Mathf.LerpAngle(angle, angleToTarget, Time.deltaTime * stats.GetStat("homing"));
             }
         }
 
-        rb.velocity = speed * AngleHelper.DegreesToVector(angle);
+        rb.velocity = stats.GetStat("speed") * AngleHelper.DegreesToVector(angle);
 
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, AngleHelper.VectorToDegrees(rb.velocity.normalized)-90));
     }
@@ -55,20 +60,21 @@ public class Projectile : MonoBehaviour
 
     public void Hit(GameObject target)
     {
-        if (--pierce <= -1)
+        stats.AddToStat("pierce", -1);
+        if (stats.GetStat("pierce") <= -1)
             Destroy(gameObject);
-        if (pierce < -1)
+        if (stats.GetStat("pierce") < -1)
             return;
 
         bool hitSuccessfully = false;
 
-        if (explosionRadius == 0) // contact damage
+        if (stats.GetStat("explosionRadius") == 0) // contact damage
         {
             if (target.GetComponent<Enemy>().parentKiller == null)
                 hitSuccessfully = true;
             else if (!target.GetComponent<Enemy>().parentKiller.Equals(this))
                 hitSuccessfully = true;
-            if (target.GetComponent<Enemy>().Damage(damage, this)) // deals damage & checks for combo
+            if (target.GetComponent<Enemy>().Damage(Mathf.RoundToInt(stats.GetStat("damage")), this)) // deals damage & checks for combo
             {
                 if (combo)
                 {
@@ -79,7 +85,7 @@ public class Projectile : MonoBehaviour
         }
         else // explosion damage
         {
-            RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, explosionRadius, Vector2.zero, 0, Main.enemyLayerMask_);
+            RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, stats.GetStat("explosionRadius"), Vector2.zero, 0, Main.enemyLayerMask_);
             foreach (RaycastHit2D rcH2d in hit)
             {
                 GameObject obj = rcH2d.collider.gameObject;
@@ -87,7 +93,7 @@ public class Projectile : MonoBehaviour
                     hitSuccessfully = true;
                 else if (!obj.GetComponent<Enemy>().parentKiller.Equals(this))
                     hitSuccessfully = true;
-                if (obj.GetComponent<Enemy>().Damage(damage, this)) // deals damage & checks for combo
+                if (obj.GetComponent<Enemy>().Damage(Mathf.RoundToInt(stats.GetStat("damage")), this)) // deals damage & checks for combo
                 {
                     if (combo)
                     {
@@ -101,7 +107,7 @@ public class Projectile : MonoBehaviour
         
         if (hitSuccessfully)
         {
-            homingSpeed = 0;
+            stats.SetStat("homing", 0);
             if (deathFX != null) // spawns FX
             {
                 int spawnCount = deathFX.Length;
@@ -113,16 +119,16 @@ public class Projectile : MonoBehaviour
                     if (randomFX)
                         objIndex = Random.Range(0, deathFX.Length);
                     GameObject fx = Instantiate(deathFX[objIndex], transform.position + Vector3.back, Quaternion.identity);
-                    if (explosionRadius > 0)
+                    if (stats.GetStat("explosionRadius") > 0)
                     {
-                        fx.transform.localScale = explosionRadius * 2 * Vector2.one;
+                        fx.transform.localScale = stats.GetStat("explosionRadius") * 2 * Vector2.one;
                     }
                 }
             }
         }
         else
         {
-            pierce++;
+            stats.AddToStat("pierce", 1);
         }
     }
 

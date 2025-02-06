@@ -9,6 +9,7 @@ public abstract class Tower : MonoBehaviour
         Kinetic,
         Energy
     }
+    public Stats stats = new();
     public int tier = 1;
     public Type type = Type.Kinetic;
     public int damage;

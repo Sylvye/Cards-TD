@@ -8,10 +8,8 @@ using UnityEngine;
 public abstract class ShopItem : Button
 {
     public int price;
-    public float discount = 1;
+    private float discount = 0;
     private Purchaseable p;
-
-    
 
     //SpriteRenderer sr = GetComponent<SpriteRenderer>();
     //sr.sprite = item.GetSprite();
@@ -30,9 +28,9 @@ public abstract class ShopItem : Button
 
     public override void Action()
     {
-        if (Main.currency >= GetPrice())
+        if (Main.playerStats.GetStat("currency") >= GetPrice())
         {
-            Main.currency -= GetPrice();
+            Main.playerStats.AddToStat("currency", -GetPrice());
             p.Claim();
             SetActive(false);
         }
@@ -40,6 +38,11 @@ public abstract class ShopItem : Button
 
     public int GetPrice()
     {
-        return Mathf.RoundToInt(price * discount);
+        return Mathf.RoundToInt(price * GetDiscount());
+    }
+
+    public float GetDiscount()
+    {
+        return Mathf.Max(1-Main.playerStats.GetStat("base_discount"), 1-discount);
     }
 }

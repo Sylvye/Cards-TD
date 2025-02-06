@@ -11,11 +11,10 @@ using UnityEngine.UI;
 public class Main : MonoBehaviour
 {
     public static int lives = 100;
-    public static int currency = 0; // rename this later
     public int[] packs = { 0, 0, 0 }; // artisan, fighter, hoarder
 
-    public static Stats playerStats = new Stats();
-    public static Stats enemyStats = new Stats();
+    public static Stats playerStats = new();
+    public static Stats enemyStats = new();
 
     public int mapLength;
     public static int mapLength_;
@@ -63,10 +62,10 @@ public class Main : MonoBehaviour
 
     public static void Earn(int amount)
     {
-        currency += amount;
-        if (currency < 0) // shouldn't happen ever, but just in case.
+        playerStats.AddToStat("currency", amount);
+        if (playerStats.GetStat("currency") < 0) // shouldn't happen ever, but just in case.
         {
-            currency = 0;
+            playerStats.SetStat("currency", 0);
         }
     }
 
@@ -96,7 +95,7 @@ public class Main : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.M))
             Earn(100);
         if (Input.GetKeyUp(KeyCode.B))
-            Debug.Log("You have: " + currency + " coins");
+            Debug.Log("You have: " + playerStats.GetStat("currency") + " coins");
     }
 
     private IEnumerator SetupMap() // waits a frame because im lazy and didnt want to reassign script execution order.
@@ -108,6 +107,7 @@ public class Main : MonoBehaviour
     public void InitPlayerStats()
     {
         playerStats.ClearStats();
+        playerStats.AddStat("currency", 0);
         playerStats.AddStat("base_damage", 0);
         playerStats.AddStat("flat_damage", 0);
         playerStats.AddStat("mult_damage", 1);
