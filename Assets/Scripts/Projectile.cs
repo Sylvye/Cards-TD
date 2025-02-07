@@ -18,11 +18,13 @@ public class Projectile : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log(name + " Awakened");
+        stats = new();
         stats.AddStat("damage", 0);
-        stats.AddStat("speed", 0);
+        stats.AddStat("speed", 1);
         stats.AddStat("lifetime", 1);
         stats.AddStat("pierce", 0);
-        stats.AddStat("explosionRadius", 0);
+        stats.AddStat("explosion_radius", 0);
         stats.AddStat("homing", 0);
     }
 
@@ -68,7 +70,7 @@ public class Projectile : MonoBehaviour
 
         bool hitSuccessfully = false;
 
-        if (stats.GetStat("explosionRadius") == 0) // contact damage
+        if (stats.GetStat("explosion_radius") == 0) // contact damage
         {
             if (target.GetComponent<Enemy>().parentKiller == null)
                 hitSuccessfully = true;
@@ -85,7 +87,7 @@ public class Projectile : MonoBehaviour
         }
         else // explosion damage
         {
-            RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, stats.GetStat("explosionRadius"), Vector2.zero, 0, Main.enemyLayerMask_);
+            RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, stats.GetStat("explosion_radius"), Vector2.zero, 0, Main.enemyLayerMask_);
             foreach (RaycastHit2D rcH2d in hit)
             {
                 GameObject obj = rcH2d.collider.gameObject;
@@ -119,9 +121,9 @@ public class Projectile : MonoBehaviour
                     if (randomFX)
                         objIndex = Random.Range(0, deathFX.Length);
                     GameObject fx = Instantiate(deathFX[objIndex], transform.position + Vector3.back, Quaternion.identity);
-                    if (stats.GetStat("explosionRadius") > 0)
+                    if (stats.GetStat("explosion_radius") > 0)
                     {
-                        fx.transform.localScale = stats.GetStat("explosionRadius") * 2 * Vector2.one;
+                        fx.transform.localScale = stats.GetStat("explosion_radius") * 2 * Vector2.one;
                     }
                 }
             }

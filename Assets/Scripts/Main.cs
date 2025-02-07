@@ -110,11 +110,11 @@ public class Main : MonoBehaviour
         playerStats.AddStat("currency", 0);
         playerStats.AddStat("base_damage", 0);
         playerStats.AddStat("flat_damage", 0);
-        playerStats.AddStat("mult_damage", 1);
+        playerStats.AddStat("damage_mult", 1);
         playerStats.AddStat("energy_base_damage", 0);
         playerStats.AddStat("kinetic_base_damage", 0);
-        playerStats.AddStat("energy_mult_damage", 1);
-        playerStats.AddStat("kinetic_mult_damage", 1);
+        playerStats.AddStat("energy_damage_mult", 1);
+        playerStats.AddStat("kinetic_damage_mult", 1);
         playerStats.AddStat("pierce", 0);
         playerStats.AddStat("kinetic_pierce", 0);
         playerStats.AddStat("energy_pierce", 0);

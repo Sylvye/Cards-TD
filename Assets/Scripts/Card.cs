@@ -15,10 +15,18 @@ public class Card : MonoBehaviour, CardInterface
     private Vector3 handPos;
     private Vector3 lerpPos;
     bool areCardsBeingHovered = false;
+    public Stats stats;
+
+    public virtual void Awake()
+    {
+        stats = new();
+        stats.AddStat("tier", tier);
+        GetComponent<SpriteRenderer>().sprite = GetSprite();
+    }
 
     public virtual void Start()
     {
-        GetComponent<SpriteRenderer>().sprite = GetSprite();
+        
     }
 
     private void Update()

@@ -15,17 +15,26 @@ public class Augment : MonoBehaviour, CardInterface
     public float spread;
     public float explosionRadius;
 
+    public Stats stats;
+
+    private void Awake()
+    {
+        Debug.Log(name + " Awakened");
+        stats = new();
+        stats.AddStat("flatDamage", flatDamage);
+        stats.AddStat("attack_speed", attackSpeed);
+        stats.AddStat("range", range);
+        stats.AddStat("pierce", pierce);
+        stats.AddStat("projectiles", projectiles);
+        stats.AddStat("mult_speed", projectileSpeedMult);
+        stats.AddStat("homing", homingSpeed);
+        stats.AddStat("spread", spread);
+        stats.AddStat("explosion_radius", explosionRadius);
+    }
+
     public void ApplyEffect(TowerCard c)
     {
-        c.range += range;
-        c.flatDamage += flatDamage;
-        c.attackSpeed += attackSpeed;
-        c.spread -= spread;
-        c.homingSpeed += homingSpeed;
-        c.projectiles += projectiles;
-        c.projectileSpeedMult += projectileSpeedMult;
-        c.pierce += pierce;
-        c.explosionRadius += explosionRadius;
+        stats.AddToStats(c.stats);
     }
 
     public string GetName()

@@ -5,29 +5,30 @@ using UnityEngine;
 
 public class AssaultTurret : Turret
 {
-    public override void InitTierEffects()
+    public override void ApplyTierEffects()
     {
-        if (tier >= 2)
+        int t = (int)stats.GetStat("tier");
+        if (t >= 2)
         {
-            range++;
+            stats.AddToStat("range", 1);
         }
-        if (tier >= 3)
+        if (t >= 3)
         {
-            damage++;
+            stats.AddToStat("base_damage", 1);
         }
-        if (tier >= 4)
+        if (t >= 4)
         {
-            attackSpeed *= 2;
+            stats.AddToStat("attack_speed", 3);
         }
-        if (tier >= 5)
+        if (t >= 5)
         {
-            damage++;
-            explosionRadius += 0.25f;
+            stats.AddToStat("base_damage", 1);
+            stats.AddToStat("explosion_radius", 0.25f);
         }
     }
 
     public override float GetRange(int t)
     {
-        return t >= 2 ? range + 1 : range;
+        return t >= 2 ? stats.GetStat("range") + 1 : stats.GetStat("range");
     }
 }

@@ -9,20 +9,30 @@ public class TowerCard : Card
     public int towerIndex;
     public float hitboxRadius;
     [Header("Augmented Stats")]
-    public int flatDamage;
-    public float attackSpeed;
-    public int pierce;
-    public float range;
     public int projectiles;
+    public float spread;
+    public float range;
+    public float attackSpeed;
+    public int baseDamage;
+    public int pierce;
     public float projectileSpeedMult;
     public float homingSpeed;
-    public float spread;
     public float explosionRadius;
 
-    public override void Start()
+    public override void Awake()
     {
-        base.Start();
+        base.Awake();
+        Debug.Log(name + " Awakened");
         prefabTower = spawnable.GetComponent<Tower>();
+        stats.AddStat("base_damage", baseDamage);
+        stats.AddStat("attack_speed", attackSpeed);
+        stats.AddStat("pierce", pierce);
+        stats.AddStat("range", range);
+        stats.AddStat("projectiles", projectiles);
+        stats.AddStat("mult_speed", projectileSpeedMult);
+        stats.AddStat("homing", homingSpeed);
+        stats.AddStat("spread", spread);
+        stats.AddStat("explosion_radius", explosionRadius);
     }
 
     public override GameObject OnPlay()
@@ -30,22 +40,17 @@ public class TowerCard : Card
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         GameObject obj = Instantiate(spawnable, new Vector3(mousePos.x, mousePos.y, -2), Quaternion.identity);
         Tower tower = obj.GetComponent<Tower>();
-        tower.tier = tier;
-        tower.range += range;
-        tower.damage += flatDamage;
-        tower.attackSpeed += attackSpeed;
-        if (obj.TryGetComponent(out Turret turret))
-        {
-            turret.spread -= spread;
-            turret.homingSpeed += homingSpeed;
-            turret.projectiles += projectiles;
-            turret.projectileSpeedMultiplier += projectileSpeedMult;
-            turret.pierceBoost += pierce;
-            turret.explosionRadius += explosionRadius;
-        } else if (obj.TryGetComponent(out TaserTurret taserTurret))
-        {
-            taserTurret.projectiles += projectiles;
-        }
+        stats.AddToStats(tower.stats);
+        tower.stats.SetStat("tier", stats.GetStat("tier"));
+        //if (obj.TryGetComponent(out Turret turret))
+        //{
+        //    turret.spread -= spread;
+        //    turret.projectiles += projectiles;
+        //    turret.explosionRadius += explosionRadius;
+        //} else if (obj.TryGetComponent(out TaserTurret taserTurret))
+        //{
+        //    taserTurret.projectiles += projectiles;
+        //}
 
         tower.LoadSprite(towerIndex);
 
@@ -54,16 +59,18 @@ public class TowerCard : Card
 
     public float GetReticleRadius()
     {
-        return prefabTower.GetRange(tier) + range;
+        // PREFAB!! do NOT replace with a GetStat()!!!
+        // base range + augmented range
+        return prefabTower.GetRange((int)stats.GetStat("tier")) + stats.GetStat("range");
     }
 
     public override string GetName()
     {
-        return prefabTower.name + " T" + tier;
+        return prefabTower.name + " T" + stats.GetStat("tier");
     }
 
     public override Sprite GetSprite()
     {
-        return Resources.LoadAll<Sprite>("CardPack")[towerIndex * 5 + tier - 1];
+        return Resources.LoadAll<Sprite>("CardPack")[towerIndex * 5 + (int)stats.GetStat("tier") - 1];
     }
 }

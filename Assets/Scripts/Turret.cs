@@ -6,6 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public abstract class Turret : Tower
 {
+    // checked!
     public int projectiles = 1;
     public float spread = 10;
     public int pierceBoost = 0;
@@ -15,17 +16,24 @@ public abstract class Turret : Tower
     public float lastShot = -999;
     public GameObject targetEnemy;
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
+        stats.AddStat("projectiles", projectiles);
+        stats.AddStat("spread", spread);
         stats.AddStat("pierce", pierceBoost);
         stats.AddStat("mult_speed", projectileSpeedMultiplier);
         stats.AddStat("homing", homingSpeed);
-        InitTierEffects();
+    }
+
+    public void Start()
+    {
+        ApplyTierEffects();
     }
 
     private void Update()
     {
-        if (lastShot + 1 / attackSpeed <= Time.time)
+        if (lastShot + 1 / stats.GetStat("attack_speed") <= Time.time)
         {
             if (Shoot())
             {
@@ -34,14 +42,14 @@ public abstract class Turret : Tower
         }
     }
 
-    public void ShootSpread(GameObject projectile, Vector2 direction, int count, float spread) // spawns across an arc
+    public void ShootSpread(GameObject projectile, Vector2 direction, int count, float sprd) // spawns across an arc
     {
         float degrees = AngleHelper.VectorToDegrees(direction);
-        float startDegrees = degrees + (-spread * (count - 1) * 0.5f);
+        float startDegrees = degrees + (-sprd * (count - 1) * 0.5f);
 
         for (int i = 0; i < count; i++)
         {
-            float spawnRads = (startDegrees + i * spread) * Mathf.Deg2Rad;
+            float spawnRads = (startDegrees + i * sprd) * Mathf.Deg2Rad;
             Vector2 shootDirection = new(Mathf.Cos(spawnRads), Mathf.Sin(spawnRads));
             Launch(projectile, (Vector2)transform.position + shootDirection * 0.8f, shootDirection);
         }
@@ -53,6 +61,7 @@ public abstract class Turret : Tower
         Projectile p = projectile.GetComponent<Projectile>();
         p.angle = AngleHelper.VectorToDegrees(dir.normalized);
         stats.AddToStats(p.stats); // adds all applicable stats over to the projectile
+        p.stats.SetStat("damage", GetDamage());
         p.parentTower = gameObject;
         return projectile;
     }
@@ -64,7 +73,7 @@ public abstract class Turret : Tower
         if (target != null)
         {
             Vector2 dir = target.transform.position - transform.position;
-            ShootSpread(projectile, dir, projectiles, spread);
+            ShootSpread(projectile, dir, (int)stats.GetStat("projectiles"), stats.GetStat("spread"));
             transform.rotation = Quaternion.Euler(0, 0, AngleHelper.VectorToDegrees(dir.normalized)-90);
             return true;
         }
@@ -73,7 +82,7 @@ public abstract class Turret : Tower
 
     public GameObject GetFirstEnemy()
     {
-        RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, range, Vector2.zero, 0, Main.enemyLayerMask_);
+        RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, stats.GetStat("range"), Vector2.zero, 0, Main.enemyLayerMask_);
         if (hit.Length > 0 )
         {
             int firstIndex = 0;

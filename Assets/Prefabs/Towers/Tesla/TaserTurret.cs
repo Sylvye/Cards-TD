@@ -7,21 +7,28 @@ using static UnityEngine.GraphicsBuffer;
 
 public class TaserTurret : Tower
 {
+    // checked!
     public GameObject laser;
     public int projectiles = 1;
-    public float lastShot = -999;
-    public GameObject FX;
-
     public float stunTime = 0;
+    public GameObject FX;
+    private float lastShot = -999;
+
+    public override void Awake()
+    {
+        base.Awake();
+        stats.AddStat("projectiles", projectiles);
+        stats.AddStat("stun", stunTime);
+    }
 
     private void Start()
     {
-        InitTierEffects();
+        ApplyTierEffects();
     }
 
     private void Update()
     {
-        if (lastShot + 1 / attackSpeed <= Time.time)
+        if (lastShot + 1 / stats.GetStat("attack_speed") <= Time.time)
         {
             Shoot();
         }
@@ -45,8 +52,8 @@ public class TaserTurret : Tower
                 Vector3 randomOffset = new(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f), -1);
                 Instantiate(FX, target.transform.position + randomOffset, Quaternion.identity); // spawns spark effect
 
-                if (stunTime > 0)
-                    e.Stun(stunTime);
+                if (stats.GetStat("stun") > 0)
+                    e.Stun(stats.GetStat("stun"));
                 e.Damage(GetDamage());
             }
         }
@@ -56,10 +63,10 @@ public class TaserTurret : Tower
 
     public GameObject[] GetTargets()
     {
-        List<RaycastHit2D> hit = new(Physics2D.CircleCastAll(transform.position, range, Vector2.zero, 0, Main.enemyLayerMask_));
+        List<RaycastHit2D> hit = new(Physics2D.CircleCastAll(transform.position, stats.GetStat("range"), Vector2.zero, 0, Main.enemyLayerMask_));
         List<GameObject> output = new();
 
-        for (int i=0; i<projectiles; i++)
+        for (int i=0; i< stats.GetStat("projectiles"); i++)
         {
             if (hit.Count > 0)
             {
@@ -79,34 +86,35 @@ public class TaserTurret : Tower
         return output.ToArray();
     }
 
-    public override void InitTierEffects()
+    public override void ApplyTierEffects()
     {
-        if (tier >= 2)
+        int t = (int)stats.GetStat("tier");
+        if (t >= 2)
         {
-            projectiles += 2;
-            stunTime += 0.2f;
+            stats.AddToStat("projectiles", 2);
+            stats.AddToStat("stun", 0.2f);
         }
-        if (tier >= 3)
+        if (t >= 3)
         {
-            projectiles += 2;
-            attackSpeed *= 1.66f;
+            stats.AddToStat("projectiles", 2);
+            stats.AddToStat("attack_speed", 0.6f);
         }
-        if (tier >= 4)
+        if (t >= 4)
         {
-            projectiles += 2;
-            damage++;
+            stats.AddToStat("projectiles", 2);
+            stats.AddToStat("base_damage", 1);
         }
-        if (tier >= 5)
+        if (t >= 5)
         {
-            projectiles += 2;
-            damage++;
-            stunTime += 0.1f;
-            range += 3;
+            stats.AddToStat("projectiles", 2);
+            stats.AddToStat("base_damage", 1);
+            stats.AddToStat("stun", 1);
+            stats.AddToStat("range", 3);
         }
     }
 
     public override float GetRange(int t)
     {
-        return t >= 5 ? range + 3 : range;
+        return t >= 5 ? stats.GetStat("range") + 3 : stats.GetStat("range");
     }
 }

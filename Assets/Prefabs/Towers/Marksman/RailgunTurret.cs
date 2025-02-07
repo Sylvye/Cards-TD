@@ -4,31 +4,32 @@ using UnityEngine;
 
 public class RailgunTurret : Turret
 {
-    public override void InitTierEffects()
+    public override void ApplyTierEffects()
     {
-        if (tier >= 2)
+        int t = (int)stats.GetStat("tier");
+        if (t >= 2)
         {
-            attackSpeed *= 1.5f;
+            stats.AddToStat("attack_speed", 1);
         }
-        if (tier >= 3)
+        if (t >= 3)
         {
-            pierceBoost += 2;
-            range += 2;
+            stats.AddToStat("pierce", 2);
+            stats.AddToStat("range", 2);
         }
-        if (tier >= 4)
+        if (t >= 4)
         {
-            projectileSpeedMultiplier *= 2f;
-            damage += 3;
+            stats.AddToStat("mult_speed", 2);
+            stats.AddToStat("base_damage", 3);
         }
-        if (tier >= 5)
+        if (t >= 5)
         {
-            pierceBoost += 7;
-            damage += 4;
+            stats.AddToStat("pierce", 7);
+            stats.AddToStat("base_damage", 4);
         }
     }
 
     public override float GetRange(int t)
     {
-        return t >= 3 ? range + 2 : range;
+        return t >= 3 ? stats.GetStat("range") + 2 : stats.GetStat("range");
     }
 }

@@ -4,33 +4,34 @@ using UnityEngine;
 
 public class RocketTurret : Turret
 {
-    public override void InitTierEffects()
+    public override void ApplyTierEffects()
     {
-        if (tier >= 2)
+        int t = (int)stats.GetStat("tier");
+        if (t >= 2)
         {
-            range++;
-            damage++;
+            stats.AddToStat("range", 1);
+            stats.AddToStat("base_damage", 1);
         }
-        if (tier >= 3)
+        if (t >= 3)
         {
-            projectileSpeedMultiplier *= 2;
+            stats.AddToStat("mult_speed", 1);
         }
-        if (tier >= 4)
+        if (t >= 4)
         {
-            attackSpeed *= 1.5f;
-            projectileSpeedMultiplier *= 1.5f;
+            stats.AddToStat("attack_speed", 0.2f);
+            stats.AddToStat("mult_speed", 1);
         }
-        if (tier >= 5)
+        if (t >= 5)
         {
-            pierceBoost++;
-            explosionRadius += 0.25f;
-            attackSpeed *= 1.5f;
-            damage += 3;
+            stats.AddToStat("pierce", 1);
+            stats.AddToStat("explosion_radius", 0.25f);
+            stats.AddToStat("attack_speed", 0.3f);
+            stats.AddToStat("base_damage", 3);
         }
     }
 
     public override float GetRange(int t)
     {
-        return t >= 2 ? range + 1 : range;
+        return t >= 2 ? stats.GetStat("range") + 1 : stats.GetStat("range");
     }
 }
