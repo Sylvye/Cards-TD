@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -5,7 +6,7 @@ using UnityEngine;
 
 public class Textbox : MonoBehaviour
 {
-    [DoNotSerialize]
+    [NonSerialized]
     public TMPLabel text;
 
     // Start is called before the first frame update

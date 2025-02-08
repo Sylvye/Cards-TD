@@ -38,7 +38,6 @@ public class StageController : MonoBehaviour
     public int test2 = 10;
     [Header("Augment")]
     public GameObject cardSAI;
-    public GameObject augmentSAI;
 
     private void Awake()
     {
@@ -125,9 +124,9 @@ public class StageController : MonoBehaviour
             ShopItem cardItem = cardObj.GetComponent<ShopItem>();
             cardObj.transform.parent = shopCardSpawn;
             GameObject label = ShopController.MakeLabel(pos + Vector3.down, cardItem.GetPrice() + "c");
-            if (cardItem.GetDiscount() > 0)
+            if (cardItem.GetDiscount() != 1)
             {
-                label.GetComponent<TMPLabel>().SetText(label.GetComponent<TMPLabel>().GetText() + " (-" + cardItem.GetDiscount() + "%)");
+                label.GetComponent<TMPLabel>().SetText(label.GetComponent<TMPLabel>().GetText() + " (-" + cardItem.GetDiscount()*100 + "%)");
             }
             label.transform.SetParent(textParent, true);
         }
@@ -139,9 +138,9 @@ public class StageController : MonoBehaviour
             ShopItem augmentItem = augmentObj.GetComponent<ShopItem>();
             augmentObj.transform.parent = shopAugmentSpawn;
             GameObject label = ShopController.MakeLabel(pos + Vector3.down, augmentItem.GetPrice() + "c");
-            if (augmentItem.GetDiscount() > 0)
+            if (augmentItem.GetDiscount() != 1)
             {
-                label.GetComponent<TMPLabel>().SetText(label.GetComponent<TMPLabel>().GetText() + " (-" + augmentItem.GetDiscount() + "%)");
+                label.GetComponent<TMPLabel>().SetText(label.GetComponent<TMPLabel>().GetText() + " (-" + augmentItem.GetDiscount()*100 + "%)");
             }
             label.transform.SetParent(textParent, true);
         }
@@ -164,6 +163,6 @@ public class StageController : MonoBehaviour
         Transform augmentDestination = AugmentTable.main.transform.GetChild(0);
 
         cardScrollArea.FillWithCards(cardSAI, cardDestination, 0, Cards.CardType.Card);
-        augmentScrollArea.FillWithCards(augmentSAI, augmentDestination, 1, Cards.CardType.Augment);
+        augmentScrollArea.FillWithCards(cardSAI, augmentDestination, 1, Cards.CardType.Augment);
     }
 }

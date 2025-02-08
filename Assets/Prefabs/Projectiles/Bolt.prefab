@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2966944484104874402}
   - component: {fileID: -5571696489812159382}
   - component: {fileID: 7326664043114705390}
+  - component: {fileID: -5709807618706634994}
   m_Layer: 8
   m_Name: Bolt
   m_TagString: Projectile
@@ -164,15 +165,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentTower: {fileID: 0}
-  damage: 3
-  speed: 15
-  lifetime: 3
-  pierce: 2
-  explosionRadius: 0
+  stats: {fileID: 0}
   combo: 0
   curse: 1
   randomFX: 1
-  homingSpeed: 0
   deathFX:
   - {fileID: 6445468403267832974, guid: af82e636ff8d2ce49b3460a8d6333316, type: 3}
   despawnFX:
@@ -212,3 +208,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomRotation: []
+--- !u!114 &-5709807618706634994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265608084915569301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 120fee790d013ae46a3af3417b801ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+    _serializedList:
+    - Key: damage
+      Value: 0
+    - Key: speed
+      Value: 1
+    - Key: lifetime
+      Value: 1
+    - Key: pierce
+      Value: 0
+    - Key: homing
+      Value: 0
+    - Key: explosion_radius
+      Value: 0

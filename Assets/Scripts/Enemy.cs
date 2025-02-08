@@ -9,8 +9,6 @@ public class Enemy : MonoBehaviour
     public int hp;
     public int maxhp;
     public float speed;
-    public Projectile parentKiller;
-    public GameObject[] children;
     [Header("Drops")]
     public int deathDropPulls;
     public List<GameObject> drops;
@@ -35,39 +33,8 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
             Spawner.spawnedEnemies.Remove(gameObject);
-            if (children.Length > 0)
-            {
-                float spawnOffset = 0;
-                for (int i = 0; i < children.Length; i++)
-                {
-                    GameObject obj = children[i];
-                    Vector3 spawnPos = transform.position;
-                    if (obj.CompareTag("Enemy"))
-                    {
-                        spawnPos += Vector3.left * spawnOffset;
-                        spawnOffset += 0.5f;
-                    }
-                    GameObject instance = Instantiate(obj, spawnPos, obj.transform.rotation);
-                    Enemy child = instance.GetComponent<Enemy>();
-                    if (i == 0)
-                    {
-                        child.drops = drops;
-                        child.dropWeights = dropWeights;
-                    }
-                    else
-                    {
-                        child.drops = new List<GameObject>();
-                        child.dropWeights = new List<float>();
-                    }
-                    child.Damage(-hp / children.Length);
-                    
-                }
-            }
-            else
-            {
-                PerformDeathDrops(deathDropPulls);
-                return true;
-            }
+            PerformDeathDrops(deathDropPulls);
+            return true;
         }
         return false;
     }
@@ -75,57 +42,13 @@ public class Enemy : MonoBehaviour
     //returns true if the attack killed the enemy
     public bool Damage(int amount, Projectile reference)
     {
-        if (parentKiller != reference)
+        hp -= amount;
+        if (hp <= 0) // if died
         {
-            hp -= amount;
-            if (hp <= 0) // if died
-            {
-                Destroy(gameObject);
-                Spawner.spawnedEnemies.Remove(gameObject);
-                if (children.Length > 0) // if this enemy has children
-                {
-                    float spawnOffset = 0.5f;
-                    bool output = false;
-                    for (int i=0; i<children.Length; i++)
-                    {
-                        GameObject obj = children[i];
-                        Vector3 spawnPos = transform.position;
-                        if (obj.CompareTag("Enemy"))
-                        {
-                            spawnPos += Vector3.left * spawnOffset++ / 2;
-                        }
-                        GameObject instance = Instantiate(obj, spawnPos, obj.transform.rotation);
-                        Enemy child = instance.GetComponent<Enemy>();
-                        child.parentKiller = reference;
-                        if (i == 0)
-                        {
-                            child.drops = drops;
-                            child.dropWeights = dropWeights;
-                        }
-                        else
-                        {
-                            child.drops = new List<GameObject>();
-                            child.dropWeights = new List<float>();
-                        }
-                        if (speed == 0)
-                        {
-                            child.Stun(0.1f);
-                        }
-                        if (child.Damage(-hp / children.Length, reference))
-                        {
-                            output = true;
-                            hp -= child.hp; // this makes overflow damage spread across enemies without creating extra damage
-                            if (hp > 0) hp = 0; // prevents healing subsequent children
-                        }
-                    }
-                    return output;
-                }
-                else
-                {
-                    PerformDeathDrops(deathDropPulls, AngleHelper.DegreesToVector(reference.angle));
-                    return true;
-                }
-            }
+            Destroy(gameObject);
+            Spawner.spawnedEnemies.Remove(gameObject);
+            PerformDeathDrops(deathDropPulls, AngleHelper.DegreesToVector(reference.angle));
+            return true;
         }
         return false;
     }

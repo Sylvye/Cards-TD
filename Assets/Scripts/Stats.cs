@@ -1,3 +1,4 @@
+using AYellowpaper.SerializedCollections;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,9 +8,11 @@ using System.Numerics;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Stats
+public class Stats : MonoBehaviour
 {
-    private Dictionary<string, float> stats = new();
+    //private Dictionary<string, float> stats = new();
+    [SerializedDictionary("Name", "Value")]
+    public SerializedDictionary<string, float> stats = new();
 
     // returns true if successful
     public bool AddStat(string name, float value)
@@ -49,7 +52,12 @@ public class Stats
             return val;
         }
         Debug.LogWarning("Couldn't GET stat \"" + name + "\"");
-        return Int32.MinValue;
+        return float.MinValue;
+    }
+
+    public int GetLength()
+    {
+        return stats.Count;
     }
 
     public void ClearStats()
@@ -64,25 +72,28 @@ public class Stats
         {
             string key = stats.ElementAt(i).Key;
             float val = stats.ElementAt(i).Value;
-            // if other doesnt contain the key, and the key starts with "mult_", then multiply instead of adding 
-            if (!other.stats.ContainsKey(key) && key.Length > 5 && key.Substring(0, 5).Equals("mult_")) { // multiply if there is not an exact match and it starts with mult_
-                string newKey = key.Substring(5);
-                float preVal = other.GetStat(newKey);
-                other.SetStat(newKey, other.GetStat(newKey) * val); // multiplies the key in other (without the mult_) by val (ex. mult_speed would multiply speed by its value) 
-                Debug.Log("Multiplying \"" + newKey + "\" (" + preVal + ") by " + val + " to get " + other.GetStat(newKey));
-            }
-            else // add
-            {
-                other.AddToStat(key, val);
-                Debug.Log("Adding " + val + " to \"" + key + "\", got " + other.GetStat(key));
-            }
+            float preVal = other.GetStat(key);
 
-            if (!successful && stats.ContainsKey(key))
+            bool s = other.AddToStat(key, val);
+            //if (s)
+            //    Debug.Log("[" + name + " -> " + other.name + "] Adding " + val + " to \"" + key + "\" (" + preVal + "), got " + other.GetStat(key));
+
+            if (s) // if we successfully added the stat
             {
                 successful = true;
             }
         }
 
         return successful;
+    }
+
+    public override string ToString()
+    {
+        string message = "";
+        for (int i=0; i<stats.Count; i++)
+        {
+            message += stats.Keys.ElementAt(i) + " = " + stats.Values.ElementAt(i) + "\n";
+        }
+        return message;
     }
 }

@@ -11,13 +11,6 @@ public abstract class ShopItem : Button
     private float discount = 0;
     private Purchaseable p;
 
-    //SpriteRenderer sr = GetComponent<SpriteRenderer>();
-    //sr.sprite = item.GetSprite();
-
-    // CODE ABOVE SETS SPRITE, FIND OUT HOW TO INCORPERATE WITH THE BUTTON CLASS
-
-    // player buys the item
-
     public override void Start()
     {
         base.Start();
@@ -38,11 +31,15 @@ public abstract class ShopItem : Button
 
     public int GetPrice()
     {
-        return Mathf.RoundToInt(price * GetDiscount());
+        return Mathf.RoundToInt(price * 1-GetDiscount());
     }
 
     public float GetDiscount()
     {
-        return Mathf.Max(1-Main.playerStats.GetStat("base_discount"), 1-discount);
+        float disc = Mathf.Max(Main.playerStats.GetStat("base_discount"), discount);
+        if (disc > 1) disc = 1;
+        else if (disc > 0.9) disc = 0.9f;
+        else if (disc < 0) disc = 0;
+        return disc;
     }
 }

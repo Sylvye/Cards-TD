@@ -116,7 +116,7 @@ public class ScrollArea : MonoBehaviour
             CardInterface cardPrefabReference = type switch
             {
                 Cards.CardType.Card => Cards.GetFromDeck(i),
-                Cards.CardType.Augment => Cards.GetFromDeck(i),
+                Cards.CardType.Augment => Cards.GetFromAugments(i),
                 _ => null,
             };
             sr.sortingOrder = sortingOrder;

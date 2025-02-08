@@ -44,9 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e89f86765a5676843975bcbe3685e1cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 1
+  scaleAmount: 0.9
   spriteUp: {fileID: 0}
   spriteDown: {fileID: 0}
-  scaleAmount: 0.9
-  active: 1
   price: 0
-  discount: 0

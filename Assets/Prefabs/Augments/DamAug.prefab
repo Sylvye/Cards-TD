@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9092517743045754295}
   - component: {fileID: 6765609515775237068}
   - component: {fileID: 6280387633327717232}
+  - component: {fileID: 2678190024770773503}
   m_Layer: 0
   m_Name: DamAug
   m_TagString: Untagged
@@ -107,3 +108,36 @@ MonoBehaviour:
   homingSpeed: 0
   spread: 0
   explosionRadius: 0
+  stats: {fileID: 0}
+--- !u!114 &2678190024770773503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183066773122249344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 120fee790d013ae46a3af3417b801ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+    _serializedList:
+    - Key: base_damage
+      Value: 1
+    - Key: attack_speed
+      Value: 0
+    - Key: range
+      Value: 0
+    - Key: pierce
+      Value: 0
+    - Key: projectiles
+      Value: 0
+    - Key: speed
+      Value: 0
+    - Key: homing
+      Value: 0
+    - Key: spread
+      Value: 0
+    - Key: explosion_radius
+      Value: 0

@@ -13,8 +13,8 @@ public class Main : MonoBehaviour
     public static int lives = 100;
     public int[] packs = { 0, 0, 0 }; // artisan, fighter, hoarder
 
-    public static Stats playerStats = new();
-    public static Stats enemyStats = new();
+    public static Stats playerStats;
+    public static Stats enemyStats;
 
     public int mapLength;
     public static int mapLength_;
@@ -33,8 +33,7 @@ public class Main : MonoBehaviour
 
     public static Main main;
 
-    // Start is called before the first frame update
-    private void Start()
+    private void Awake()
     {
         main = this;
         placementLayerMask_ = placementLayerMask;
@@ -42,11 +41,15 @@ public class Main : MonoBehaviour
         towerRangeReticle_ = towerRangeReticle;
         enemyLayerMask_ = enemyLayerMask;
         mapLength_ = mapLength;
+        playerStats = GetComponent<Stats>();
+    }
+
+    // Start is called before the first frame update
+    private void Start()
+    {
+        enemyStats = Spawner.main.stats;
         StartCoroutine(SetupMap());
         Cards.AddAllChildren(); // adds cards to deck
-
-        InitEnemyStats();
-        InitPlayerStats();
     }
 
     public static bool Damage(int amount)
@@ -96,46 +99,16 @@ public class Main : MonoBehaviour
             Earn(100);
         if (Input.GetKeyUp(KeyCode.B))
             Debug.Log("You have: " + playerStats.GetStat("currency") + " coins");
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            Debug.Log("Player Stats:\n" + playerStats);
+            Debug.Log("Enemy Stats:\n" + enemyStats);
+        }
     }
 
     private IEnumerator SetupMap() // waits a frame because im lazy and didnt want to reassign script execution order.
     {
         yield return null;
-        MapController.GenerateMap(mapLength_);
-    }
-
-    public void InitPlayerStats()
-    {
-        playerStats.ClearStats();
-        playerStats.AddStat("currency", 0);
-        playerStats.AddStat("base_damage", 0);
-        playerStats.AddStat("flat_damage", 0);
-        playerStats.AddStat("damage_mult", 1);
-        playerStats.AddStat("energy_base_damage", 0);
-        playerStats.AddStat("kinetic_base_damage", 0);
-        playerStats.AddStat("energy_damage_mult", 1);
-        playerStats.AddStat("kinetic_damage_mult", 1);
-        playerStats.AddStat("pierce", 0);
-        playerStats.AddStat("kinetic_pierce", 0);
-        playerStats.AddStat("energy_pierce", 0);
-        playerStats.AddStat("base_discount", 0);
-    }
-
-    public void InitEnemyStats()
-    {
-        enemyStats.AddStat("small_enemies", 5);
-        enemyStats.AddStat("medium_enemies", 0);
-        enemyStats.AddStat("large_enemies", 0);
-        enemyStats.AddStat("small_enemy_speed", 2);
-        enemyStats.AddStat("medium_enemy_speed", 1.5f);
-        enemyStats.AddStat("large_enemy_speed", 1);
-        enemyStats.AddStat("small_enemy_hp_mult", 1);
-        enemyStats.AddStat("medium_enemy_hp_mult", 1);
-        enemyStats.AddStat("large_enemy_hp_mult", 1);
-        enemyStats.AddStat("wave_density", 1);
-        enemyStats.AddStat("shields", 0);
-        enemyStats.AddStat("desperation", 0); // under 50% = move #% faster
-        enemyStats.AddStat("resistance", 1);
-        enemyStats.AddStat("regeneration", 0);
+        MapController.GenerateMap(mapLength);
     }
 }

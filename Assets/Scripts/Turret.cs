@@ -7,11 +7,6 @@ using static UnityEngine.GraphicsBuffer;
 public abstract class Turret : Tower
 {
     // checked!
-    public int projectiles = 1;
-    public float spread = 10;
-    public int pierceBoost = 0;
-    public float projectileSpeedMultiplier = 1;
-    public float homingSpeed = 0;
     public GameObject projectile;
     public float lastShot = -999;
     public GameObject targetEnemy;
@@ -19,11 +14,6 @@ public abstract class Turret : Tower
     public override void Awake()
     {
         base.Awake();
-        stats.AddStat("projectiles", projectiles);
-        stats.AddStat("spread", spread);
-        stats.AddStat("pierce", pierceBoost);
-        stats.AddStat("mult_speed", projectileSpeedMultiplier);
-        stats.AddStat("homing", homingSpeed);
     }
 
     public void Start()
@@ -35,7 +25,7 @@ public abstract class Turret : Tower
     {
         if (lastShot + 1 / stats.GetStat("attack_speed") <= Time.time)
         {
-            if (Shoot())
+            if (Action())
             {
                 lastShot = Time.time;
             }
@@ -51,11 +41,11 @@ public abstract class Turret : Tower
         {
             float spawnRads = (startDegrees + i * sprd) * Mathf.Deg2Rad;
             Vector2 shootDirection = new(Mathf.Cos(spawnRads), Mathf.Sin(spawnRads));
-            Launch(projectile, (Vector2)transform.position + shootDirection * 0.8f, shootDirection);
+            ShootProjectile(projectile, (Vector2)transform.position + shootDirection * 0.8f, shootDirection);
         }
     }
 
-    private GameObject Launch(GameObject obj, Vector2 spawnPos, Vector2 dir)
+    private GameObject ShootProjectile(GameObject obj, Vector2 spawnPos, Vector2 dir)
     {
         GameObject projectile = Instantiate(obj, spawnPos, Quaternion.LookRotation(Vector3.forward, dir));
         Projectile p = projectile.GetComponent<Projectile>();
@@ -66,8 +56,8 @@ public abstract class Turret : Tower
         return projectile;
     }
 
-    // returns true if it successfully shoots at a target, false if there are no targets in sight
-    public virtual bool Shoot()
+    // returns true if it successfully locates at a target, false if there are no targets in sight
+    public virtual bool Action()
     {
         GameObject target = GetFirstEnemy();
         if (target != null)

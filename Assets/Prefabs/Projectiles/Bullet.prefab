@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 139810597533824460}
   - component: {fileID: 4069190805031501668}
   - component: {fileID: 2966944484104874402}
+  - component: {fileID: 6663015170093445381}
   m_Layer: 8
   m_Name: Bullet
   m_TagString: Projectile
@@ -120,20 +121,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentTower: {fileID: 0}
-  damage: 1
-  speed: 10
-  lifetime: 0.5
-  pierce: 0
-  explosionRadius: 0
+  stats: {fileID: 0}
   combo: 0
+  curse: 0
   randomFX: 1
-  homingSpeed: 0
   deathFX:
   - {fileID: 8211478965151924206, guid: c8f6ca4450e4a454aab28291389de7da, type: 3}
   - {fileID: 7715439341541856561, guid: 0ddbaac4ffff5884da5685cc55b76a14, type: 3}
   despawnFX:
   - {fileID: 6445468403267832974, guid: af82e636ff8d2ce49b3460a8d6333316, type: 3}
   angle: 0
+--- !u!114 &6663015170093445381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265608084915569301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 120fee790d013ae46a3af3417b801ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+    _serializedList:
+    - Key: damage
+      Value: 0
+    - Key: speed
+      Value: 1
+    - Key: lifetime
+      Value: 1
+    - Key: pierce
+      Value: 0
+    - Key: homing
+      Value: 0
+    - Key: explosion_radius
+      Value: 0
 --- !u!1 &6857262720756653503
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,7 +276,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88de207af10b2624a9d0bcd5c0bf1adb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path: BulletAnimation
-  killAfterComplete: 0
-  randomFirstFrame: 1
   randomRotation: []

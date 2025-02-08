@@ -10,7 +10,7 @@ public class Spawner : MonoBehaviour
     public static Spawner main;
     public static List<GameObject> spawnedEnemies = new();
     public List<GameObject> enemies;
-    public List<GameObject> wave;
+    public List<int> wave;
     public int waveIndex = 0;
     public bool active = true;
     public bool complete = false;
@@ -18,9 +18,13 @@ public class Spawner : MonoBehaviour
     private float cooldown = 0;
     private bool freebie = false;
 
-    private void Start()
+    [NonSerialized]
+    public Stats stats;
+
+    private void Awake()
     {
         main = this;
+        stats = GetComponent<Stats>();
     }
 
     // Update is called once per frame
@@ -34,10 +38,10 @@ public class Spawner : MonoBehaviour
 
                 if (cooldown <= 0)
                 {
-                    if (wave[waveIndex] != null)
+                    if (enemies[wave[waveIndex]] != null)
                     {
                         cooldown = 1 / Main.enemyStats.GetStat("wave_density");
-                        Spawn(wave[waveIndex], transform.position, wave[waveIndex++].transform.rotation);
+                        Spawn(enemies[wave[waveIndex]], transform.position, enemies[wave[waveIndex++]].transform.rotation);
                     }
                     else
                     {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -15,12 +16,12 @@ public class Card : MonoBehaviour, CardInterface
     private Vector3 handPos;
     private Vector3 lerpPos;
     bool areCardsBeingHovered = false;
+    [NonSerialized]
     public Stats stats;
 
     public virtual void Awake()
     {
-        stats = new();
-        stats.AddStat("tier", tier);
+        stats = GetComponent<Stats>();
         GetComponent<SpriteRenderer>().sprite = GetSprite();
     }
 

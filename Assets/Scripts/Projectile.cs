@@ -1,12 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.NetworkInformation;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.U2D.IK;
 
 public class Projectile : MonoBehaviour
 {
     public GameObject parentTower;
+    [NonSerialized]
     public Stats stats;
     public bool combo = false;
     public bool curse = false;
@@ -18,8 +21,7 @@ public class Projectile : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log(name + " Awakened");
-        stats = new();
+        stats = GetComponent<Stats>();
         stats.AddStat("damage", 0);
         stats.AddStat("speed", 1);
         stats.AddStat("lifetime", 1);
@@ -47,7 +49,7 @@ public class Projectile : MonoBehaviour
             }
         }
 
-        rb.velocity = stats.GetStat("speed") * AngleHelper.DegreesToVector(angle);
+        rb.velocity = 5 * stats.GetStat("speed") * AngleHelper.DegreesToVector(angle);
 
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, AngleHelper.VectorToDegrees(rb.velocity.normalized)-90));
     }
@@ -65,17 +67,9 @@ public class Projectile : MonoBehaviour
         stats.AddToStat("pierce", -1);
         if (stats.GetStat("pierce") <= -1)
             Destroy(gameObject);
-        if (stats.GetStat("pierce") < -1)
-            return;
-
-        bool hitSuccessfully = false;
 
         if (stats.GetStat("explosion_radius") == 0) // contact damage
         {
-            if (target.GetComponent<Enemy>().parentKiller == null)
-                hitSuccessfully = true;
-            else if (!target.GetComponent<Enemy>().parentKiller.Equals(this))
-                hitSuccessfully = true;
             if (target.GetComponent<Enemy>().Damage(Mathf.RoundToInt(stats.GetStat("damage")), this)) // deals damage & checks for combo
             {
                 if (combo)
@@ -91,10 +85,6 @@ public class Projectile : MonoBehaviour
             foreach (RaycastHit2D rcH2d in hit)
             {
                 GameObject obj = rcH2d.collider.gameObject;
-                if (obj.GetComponent<Enemy>().parentKiller == null)
-                    hitSuccessfully = true;
-                else if (!obj.GetComponent<Enemy>().parentKiller.Equals(this))
-                    hitSuccessfully = true;
                 if (obj.GetComponent<Enemy>().Damage(Mathf.RoundToInt(stats.GetStat("damage")), this)) // deals damage & checks for combo
                 {
                     if (combo)
@@ -106,31 +96,24 @@ public class Projectile : MonoBehaviour
             }
         }
 
-        
-        if (hitSuccessfully)
+
+        stats.SetStat("homing", 0);
+        if (deathFX != null) // spawns FX
         {
-            stats.SetStat("homing", 0);
-            if (deathFX != null) // spawns FX
+            int spawnCount = deathFX.Length;
+            if (randomFX)
+                spawnCount = 1;
+            for (int i = 0; i < spawnCount; i++)
             {
-                int spawnCount = deathFX.Length;
+                int objIndex = i;
                 if (randomFX)
-                    spawnCount = 1;
-                for (int i = 0; i < spawnCount; i++)
+                    objIndex = UnityEngine.Random.Range(0, deathFX.Length);
+                GameObject fx = Instantiate(deathFX[objIndex], transform.position + Vector3.back, Quaternion.identity);
+                if (stats.GetStat("explosion_radius") > 0)
                 {
-                    int objIndex = i;
-                    if (randomFX)
-                        objIndex = Random.Range(0, deathFX.Length);
-                    GameObject fx = Instantiate(deathFX[objIndex], transform.position + Vector3.back, Quaternion.identity);
-                    if (stats.GetStat("explosion_radius") > 0)
-                    {
-                        fx.transform.localScale = stats.GetStat("explosion_radius") * 2 * Vector2.one;
-                    }
+                    fx.transform.localScale = stats.GetStat("explosion_radius") * 2 * Vector2.one;
                 }
             }
-        }
-        else
-        {
-            stats.AddToStat("pierce", 1);
         }
     }
 
