@@ -111,8 +111,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentTower: {fileID: 0}
-  combo: 0
-  curse: 0
   randomFX: 1
   FX:
   - {fileID: 4964151271825745108, guid: c48123ae0f507d948a354c6b1ba76d26, type: 3}
@@ -133,15 +131,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
     _serializedList:
+    - Key: lifetime
+      Value: 1
     - Key: damage
       Value: 0
     - Key: speed
       Value: 1
-    - Key: lifetime
-      Value: 1
     - Key: pierce
       Value: 0
     - Key: homing
+      Value: 0
+    - Key: stun
       Value: 0
     - Key: explosion_radius
       Value: 0

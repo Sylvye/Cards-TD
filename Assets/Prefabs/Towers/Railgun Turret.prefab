@@ -163,8 +163,6 @@ MonoBehaviour:
       Value: 1
     - Key: speed
       Value: 5
-    - Key: homing
-      Value: 0
     - Key: base_damage
       Value: 5
     - Key: damage_mult

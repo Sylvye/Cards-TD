@@ -10,8 +10,7 @@ public class Enemy : MonoBehaviour
     public int pulls;
     public List<GameObject> drops;
     public List<float> dropWeights;
-    private float lastStun;
-    private float stunDuration; // make stun work in Update() instead of in a coroutine
+    private float stunEnd;
 
     [NonSerialized]
     public Stats stats;
@@ -24,12 +23,15 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        transform.position += stats.GetStat("speed") * Time.deltaTime * Vector3.right;
-        if (transform.position.x >= 11.5f)
+        if (Time.time > stunEnd)
         {
-            Main.Damage((int)stats.GetStat("hp"));
-            Destroy(gameObject);
-            Spawner.spawnedEnemies.Remove(gameObject);
+            transform.position += stats.GetStat("speed") * Time.deltaTime * Vector3.right;
+            if (transform.position.x >= 11.5f)
+            {
+                Main.Damage((int)stats.GetStat("hp"));
+                Destroy(gameObject);
+                Spawner.spawnedEnemies.Remove(gameObject);
+            }
         }
     }
 
@@ -97,14 +99,6 @@ public class Enemy : MonoBehaviour
 
     public void Stun(float time)
     {
-        StartCoroutine(StunC(time));
-    }
-
-    private IEnumerator StunC(float time)
-    {
-        float spd = stats.GetStat("speed");
-        stats.SetStat("speed", 0);
-        yield return new WaitForSeconds(time);
-        stats.SetStat("speed", spd);
+        stunEnd = Time.time + time;
     }
 }

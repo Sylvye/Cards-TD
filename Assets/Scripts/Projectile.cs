@@ -11,34 +11,32 @@ public class Projectile : MonoBehaviour
     public GameObject parentTower;
     [NonSerialized]
     public Stats stats;
-    public bool combo = false;
-    public bool curse = false;
     public bool randomFX = true;
     public GameObject[] FX;
     public GameObject[] despawnFX;
     public float angle;
     private Rigidbody2D rb;
+    private float spawnTime;
 
     private void Awake()
     {
         stats = GetComponent<Stats>();
-        stats.AddStat("damage", 0);
-        stats.AddStat("speed", 1);
-        stats.AddStat("lifetime", 1);
-        stats.AddStat("pierce", 0);
-        stats.AddStat("explosion_radius", 0);
-        stats.AddStat("homing", 0);
     }
 
     // Start is called before the first frame update
     private void Start()
     {
-        StartCoroutine(Despawn(stats.GetStat("lifetime")));
+        spawnTime = Time.time;
         rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
+        if (Time.time > spawnTime + stats.GetStat("lifetime"))
+        {
+            OnDespawn();
+            return;
+        }
         if (stats.GetStat("homing") > 0)
         {
             GameObject target = parentTower.GetComponent<Turret>().targetEnemy;
@@ -70,42 +68,34 @@ public class Projectile : MonoBehaviour
         if (stats.GetStat("pierce") < -1) // Prevents piercing through too many enemies if a projectile hits multiple in one frame
             return;
 
+        Enemy e = target.GetComponent<Enemy>();
+
+        float stun = stats.GetStat("stun");
+        if (stun > 0)
+        {
+            e.Stun(stun);
+        }
+
         if (stats.GetStat("explosion_radius") == 0) // contact damage
         {
-            if (target.GetComponent<Enemy>().Damage(Mathf.RoundToInt(stats.GetStat("damage")), this)) // deals damage & checks for combo
+            if (e.Damage(Mathf.RoundToInt(stats.GetStat("damage")), this)) // deals damage, then, if killed...
             {
-                if (combo)
-                {
-                    parentTower.GetComponent<Turret>().lastShot = -999;
-                    combo = false;
-                }
+                OnKill();
             }
         }
         else // explosion damage
         {
-            RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, stats.GetStat("explosion_radius"), Vector2.zero, 0, Main.enemyLayerMask_);
-            foreach (RaycastHit2D rcH2d in hit)
-            {
-                GameObject obj = rcH2d.collider.gameObject;
-                if (obj.GetComponent<Enemy>().Damage(Mathf.RoundToInt(stats.GetStat("damage")), this)) // deals damage & checks for combo
-                {
-                    if (combo)
-                    {
-                        parentTower.GetComponent<Turret>().lastShot = -999;
-                        combo = false;
-                    }
-                }
-            }
+            Explode();
         }
 
 
         stats.SetStat("homing", 0);
         if (FX != null) // spawns FX
         {
-            int spawnCount = FX.Length;
+            int FXCount = FX.Length;
             if (randomFX)
-                spawnCount = 1;
-            for (int i = 0; i < spawnCount; i++)
+                FXCount = 1;
+            for (int i = 0; i < FXCount; i++)
             {
                 int objIndex = i;
                 if (randomFX)
@@ -120,13 +110,30 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    private IEnumerator Despawn(float time)
+    public virtual void OnKill()
     {
-        yield return new WaitForSeconds(time);
+        
+    }
+
+    public virtual void OnDespawn()
+    {
         for (int i = 0; i < despawnFX.Length; i++)
         {
             Instantiate(despawnFX[i], transform.position, Quaternion.identity);
         }
         Destroy(gameObject);
+    }
+
+    public void Explode()
+    {
+        RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, stats.GetStat("explosion_radius"), Vector2.zero, 0, Main.enemyLayerMask_);
+        foreach (RaycastHit2D rayC in hit)
+        {
+            GameObject obj = rayC.collider.gameObject;
+            if (obj.GetComponent<Enemy>().Damage(Mathf.RoundToInt(stats.GetStat("damage")), this)) // deals damage, then, if killed...
+            {
+                OnKill();
+            }
+        }
     }
 }
