@@ -11,19 +11,9 @@ public abstract class Turret : Tower
     public float lastShot = -999;
     public GameObject targetEnemy;
 
-    public override void Awake()
-    {
-        base.Awake();
-    }
-
-    public void Start()
-    {
-        ApplyTierEffects();
-    }
-
     private void Update()
     {
-        if (lastShot + 1 / stats.GetStat("attack_speed") <= Time.time)
+        if (activated && lastShot + 1 / stats.GetStat("attack_speed") <= Time.time)
         {
             if (Action())
             {
@@ -50,14 +40,14 @@ public abstract class Turret : Tower
         GameObject projectile = Instantiate(obj, spawnPos, Quaternion.LookRotation(Vector3.forward, dir));
         Projectile p = projectile.GetComponent<Projectile>();
         p.angle = AngleHelper.VectorToDegrees(dir.normalized);
-        stats.AddToStats(p.stats); // adds all applicable stats over to the projectile
+        p.stats.AddStats(stats); // adds all applicable stats over to the projectile
         p.stats.SetStat("damage", GetDamage());
         p.parentTower = gameObject;
         return projectile;
     }
 
     // returns true if it successfully locates at a target, false if there are no targets in sight
-    public virtual bool Action()
+    public override bool Action()
     {
         GameObject target = GetFirstEnemy();
         if (target != null)

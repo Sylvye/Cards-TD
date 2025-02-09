@@ -11,6 +11,13 @@ using UnityEngine.UIElements;
 public class Stats : MonoBehaviour
 {
     //private Dictionary<string, float> stats = new();
+    public enum Operation
+    {
+        Add,
+        Subtract,
+        Multiply,
+        Divide
+    }
     [SerializedDictionary("Name", "Value")]
     public SerializedDictionary<string, float> stats = new();
 
@@ -32,12 +39,49 @@ public class Stats : MonoBehaviour
         return false;
     }
 
-    // returns true if successful
-    public bool AddToStat(string name, float value)
+
+    /// <summary>
+    /// Adds value to name
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="value"></param>
+    /// <returns>True if successful, false otherwise</returns>
+    public bool ModifyStat(string name, float value)
     {
         if (stats.TryGetValue(name, out _))
         {
             stats[name] += value;
+            return true;
+        }
+        Debug.LogWarning("Couldn't ADD stat \"" + name + "\"");
+        return false;
+    }
+
+    /// <summary>
+    /// Modifies a value
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="value"></param>
+    /// <param name="o"> The operation to perform on value </param>
+    /// <returns>True if successful, false otherwise</returns>
+    public bool ModifyStat(string name, float value, Operation o)
+    {
+        if (stats.TryGetValue(name, out _))
+        {
+            switch (o) {
+                case Operation.Add:
+                    stats[name] += value;
+                    break;
+                case Operation.Subtract: 
+                    stats[name] -= value;
+                    break;
+                case Operation.Multiply:
+                    stats[name] *= value;
+                    break;
+                case Operation.Divide:
+                    stats[name] /= value;
+                    break;
+            }
             return true;
         }
         Debug.LogWarning("Couldn't ADD stat \"" + name + "\"");
@@ -65,18 +109,15 @@ public class Stats : MonoBehaviour
         stats.Clear();
     }
 
-    public bool AddToStats(Stats other)
+    public bool AddStats(Stats other)
     {
         bool successful = false;
-        for (int i=0; i<stats.Count; i++)
+        for (int i=0; i<other.stats.Count; i++)
         {
-            string key = stats.ElementAt(i).Key;
-            float val = stats.ElementAt(i).Value;
-            float preVal = other.GetStat(key);
+            string key = other.stats.ElementAt(i).Key;
+            float val = other.stats.ElementAt(i).Value;
 
-            bool s = other.AddToStat(key, val);
-            //if (s)
-            //    Debug.Log("[" + name + " -> " + other.name + "] Adding " + val + " to \"" + key + "\" (" + preVal + "), got " + other.GetStat(key));
+            bool s = ModifyStat(key, val);
 
             if (s) // if we successfully added the stat
             {

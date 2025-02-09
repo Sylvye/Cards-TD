@@ -18,19 +18,10 @@ public class TowerCard : Card
     public override GameObject OnPlay()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        GameObject obj = Instantiate(spawnable, new Vector3(mousePos.x, mousePos.y, -2), Quaternion.identity);
-        Tower tower = obj.GetComponent<Tower>();
-        stats.AddToStats(tower.stats);
-        tower.tier = tier;
+        Tower t = Tower.MakeTowerByPrefab(spawnable, mousePos, stats);
+        t.LoadSprite(towerIndex);
 
-        tower.LoadSprite(towerIndex);
-
-        return obj;
-    }
-
-    public float GetReticleRadius()
-    {
-        return prefabTower.CalcRange(tier) + stats.GetStat("range");
+        return t.gameObject;
     }
 
     public override string GetName()

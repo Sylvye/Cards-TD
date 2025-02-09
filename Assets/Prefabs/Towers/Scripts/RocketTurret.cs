@@ -6,31 +6,26 @@ public class RocketTurret : Turret
 {
     public override void ApplyTierEffects()
     {
-        if (tier >= 2)
+        int t = (int)stats.GetStat("tier");
+        if (t >= 2)
         {
-            stats.AddToStat("range", 1);
-            stats.AddToStat("base_damage", 1);
+            stats.ModifyStat("range", 1);
+            stats.ModifyStat("base_damage", 1);
         }
-        if (tier >= 3)
+        if (t >= 3)
         {
-            stats.AddToStat("speed", 1);
+            stats.ModifyStat("speed", 1);
+            stats.ModifyStat("attack_speed", 0.2f);
         }
-        if (tier >= 4)
+        if (t >= 4)
         {
-            stats.AddToStat("attack_speed", 0.2f);
-            stats.AddToStat("speed", 1);
+            stats.ModifyStat("explosion_radius", 0.25f);
+            stats.ModifyStat("speed", 1);
         }
-        if (tier >= 5)
+        if (t >= 5)
         {
-            stats.AddToStat("pierce", 1);
-            stats.AddToStat("explosion_radius", 0.25f);
-            stats.AddToStat("attack_speed", 0.3f);
-            stats.AddToStat("base_damage", 3);
+            stats.ModifyStat("attack_speed", 0.3f);
+            stats.ModifyStat("base_damage", 3);
         }
-    }
-
-    public override float CalcRange(int t)
-    {
-        return t >= 2 ? stats.GetStat("range") + 1 : stats.GetStat("range");
     }
 }

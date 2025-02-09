@@ -18,7 +18,7 @@ public class Augment : MonoBehaviour, CardInterface
 
     public void ApplyEffect(TowerCard c)
     {
-        stats.AddToStats(c.stats);
+        c.stats.AddStats(stats);
     }
 
     public string GetName()

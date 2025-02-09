@@ -166,10 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba4cedf4ef3beb4e888f9ac6e8018ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 5
-  maxhp: 5
-  speed: 2
-  deathDropPulls: 1
+  pulls: 0
   drops:
   - {fileID: 0}
   - {fileID: 503293304816352400, guid: 3634da6ce461d454bb5150b5b3eb2b0d, type: 3}
@@ -191,11 +188,11 @@ MonoBehaviour:
   stats:
     _serializedList:
     - Key: hp
-      Value: 0
+      Value: 10
     - Key: max_hp
-      Value: 0
+      Value: 10
     - Key: speed
-      Value: 0
+      Value: 3
     - Key: resistance
       Value: 0
     - Key: regeneration

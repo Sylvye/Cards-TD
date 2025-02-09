@@ -29,20 +29,20 @@ public class BattleButton : Button
     {
         switch (phase)
         {
-            case 0:
-                Spawner.main.active = true;
+            case 0: // Pressed start
+                Spawner.main.SetActive(true);
                 spriteUp = nextUp;
                 spriteDown = nextDown;
                 SetSpriteUp();
                 OnMouseExit();
                 SetActive(false);
                 break;
-            case 1:
+            case 1: // Entered Inventory
                 StageController.inventoryUI.SetActive(true);
                 StageController.inventoryLabels.SetActive(true);
                 Main.UpdatePackLabels();
                 break;
-            case 2:
+            case 2: // Entered Boon / Curse stage
                 StageController.inventoryUI.SetActive(false);
                 StageController.inventoryLabels.SetActive(false);
                 StageController.boonCurse.SetActive(true);

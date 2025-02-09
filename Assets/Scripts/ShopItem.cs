@@ -23,7 +23,7 @@ public abstract class ShopItem : Button
     {
         if (Main.playerStats.GetStat("currency") >= GetPrice())
         {
-            Main.playerStats.AddToStat("currency", -GetPrice());
+            Main.playerStats.ModifyStat("currency", GetPrice(), Stats.Operation.Subtract);
             p.Claim();
             SetActive(false);
         }

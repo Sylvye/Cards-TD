@@ -134,16 +134,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b6fdb029be0654f969851e3686c71d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tier: 1
   type: 1
-  baseDamage: 0
-  attackSpeed: 1
-  damageMultiplier: 1
-  range: 5
-  explosionRadius: 0
+  activated: 0
   laser: {fileID: 6254124567953751875, guid: 61cb3435ca5d60a4e857f925901aef26, type: 3}
-  projectiles: 3
-  stunTime: 0
   FX: {fileID: 6445468403267832974, guid: af82e636ff8d2ce49b3460a8d6333316, type: 3}
 --- !u!114 &1309382448439379776
 MonoBehaviour:
@@ -159,6 +152,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
     _serializedList:
+    - Key: tier
+      Value: 0
     - Key: projectiles
       Value: 2
     - Key: stun

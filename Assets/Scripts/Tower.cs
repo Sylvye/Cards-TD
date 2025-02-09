@@ -14,43 +14,36 @@ public abstract class Tower : MonoBehaviour
     }
     [NonSerialized]
     public Stats stats;
-    public int tier;
     public Type type = Type.Kinetic;
+    public bool activated;
 
     public virtual void Awake()
     {
         stats = GetComponent<Stats>();
+        activated = false;
     }
 
     public void LoadSprite(int towerIndex)
     {
-        GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("TowerArt")[towerIndex * 5 + tier - 1];
+        GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("TowerArt")[towerIndex * 5 + (int)stats.GetStat("tier") - 1];
     }
 
-    public float GetRange()
-    {
-        return CalcRange(tier);
-    }
-
-    public virtual float CalcRange(int t)
-    {
-        return stats.GetStat("range");
-    }
+    public abstract bool Action();
 
     public abstract void ApplyTierEffects();
 
     private void OnMouseEnter()
     {
-        if (!Card.isCardSelected && !Spawner.main.IsStageComplete())
+        if (activated && !Card.isCardSelected && !Spawner.main.IsStageComplete())
         {
             Main.towerRangeReticle_.transform.position = transform.position;
-            Main.towerRangeReticle_.transform.localScale = GetRange() * 2 * Vector3.one + Vector3.forward * -6;
+            Main.towerRangeReticle_.transform.localScale = stats.GetStat("range") * 2 * Vector3.one + Vector3.forward * -6;
         }
     }
 
     private void OnMouseExit()
     {
-        if (!Card.isCardSelected)
+        if (activated && !Card.isCardSelected)
         {
             Main.towerRangeReticle_.transform.position = new Vector3(4, 10, 0);
             Main.towerRangeReticle_.transform.localScale = Vector2.one;
@@ -62,7 +55,16 @@ public abstract class Tower : MonoBehaviour
         float typeDamage = type == Type.Kinetic ? Main.playerStats.GetStat("kinetic_base_damage") : Main.playerStats.GetStat("energy_base_damage");
         float multipliedDamage = (stats.GetStat("base_damage") + Main.playerStats.GetStat("base_damage") + typeDamage) * (Main.playerStats.GetStat("damage_mult") + stats.GetStat("damage_mult"));
         int finalDamage = Mathf.RoundToInt(multipliedDamage + Main.playerStats.GetStat("flat_damage"));
-        Debug.Log("Type damage : " + typeDamage + "\nMultiplied base: " + multipliedDamage + "\nFinal: " + finalDamage);
+        //Debug.Log("Type damage : " + typeDamage + "\nMultiplied base: " + multipliedDamage + "\nFinal: " + finalDamage);
+        //Debug.Log("Final Damage: " + finalDamage + "\nKinetic Base: " + Main.playerStats.GetStat("kinetic_base_damage") + "\nEnergy Base: " + Main.playerStats.GetStat("energy_base_damage") + "\nBase Damage: " + stats.GetStat("base_damage") + "\nGlobal Base Damage: " + Main.playerStats.GetStat("base_damage") + "\nGlobal Damage Mult: " + Main.playerStats.GetStat("damage_mult") + "\nDamage Mult: " + stats.GetStat("damage_mult") + "\nFlat Damage: " + Main.playerStats.GetStat("flat_damage"));
         return finalDamage;
+    }
+
+    public static Tower MakeTowerByPrefab(GameObject obj, Vector2 pos, Stats s)
+    {
+        Tower t = Instantiate(obj, new Vector3(pos.x, pos.y, -2), Quaternion.identity).GetComponent<Tower>();
+        t.stats.AddStats(s);
+        t.ApplyTierEffects();
+        return t;
     }
 }

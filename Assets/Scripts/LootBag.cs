@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http.Headers;
 using UnityEngine;
 
-public class ItemDrop : MonoBehaviour
+public class LootBag : MonoBehaviour
 {
     public GameObject item;
     public int tier;
@@ -17,7 +17,11 @@ public class ItemDrop : MonoBehaviour
 
     private void OnMouseOver()
     {
-        GameObject ind = Instantiate(item, transform.position, Quaternion.identity);
+        for (int i=0; i<tier*tier; i++)
+        {
+            Vector3 offset = new Vector3(Random.Range(-1f, 1), Random.Range(-1f, 1), 0);
+            GameObject ind = Instantiate(item, transform.position + offset, Quaternion.identity);
+        }
         Destroy(gameObject);
     }
 }

@@ -134,8 +134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d3eb06477b073040941f2950c625289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tier: 1
   type: 0
+  activated: 0
   projectile: {fileID: 265608084915569301, guid: e98d3ed888d12e0459d3a3f5efaa149f, type: 3}
   lastShot: -999
   targetEnemy: {fileID: 0}
@@ -153,6 +153,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
     _serializedList:
+    - Key: tier
+      Value: 0
     - Key: projectiles
       Value: 2
     - Key: spread

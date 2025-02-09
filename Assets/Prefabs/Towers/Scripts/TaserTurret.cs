@@ -12,25 +12,15 @@ public class TaserTurret : Tower
     public GameObject FX;
     private float lastShot = -999;
 
-    public override void Awake()
-    {
-        base.Awake();
-    }
-
-    private void Start()
-    {
-        ApplyTierEffects();
-    }
-
     private void Update()
     {
-        if (lastShot + 1 / stats.GetStat("attack_speed") <= Time.time)
+        if (activated && lastShot + 1 / stats.GetStat("attack_speed") <= Time.time)
         {
-            Shoot();
+            Action();
         }
     }
     
-    public void Shoot()
+    public override bool Action()
     {
         GameObject[] targets = GetTargets();
         foreach (GameObject target in targets)
@@ -55,6 +45,7 @@ public class TaserTurret : Tower
         }
 
         lastShot = Time.time;
+        return true; // always hits
     }
 
     public GameObject[] GetTargets()
@@ -84,32 +75,28 @@ public class TaserTurret : Tower
 
     public override void ApplyTierEffects()
     {
-        if (tier >= 2)
+        int t = (int)stats.GetStat("tier");
+        if (t >= 2)
         {
-            stats.AddToStat("projectiles", 2);
-            stats.AddToStat("stun", 0.2f);
+            stats.ModifyStat("projectiles", 2);
+            stats.ModifyStat("stun", 0.05f);
         }
-        if (tier >= 3)
+        if (t >= 3)
         {
-            stats.AddToStat("projectiles", 2);
-            stats.AddToStat("attack_speed", 0.6f);
+            stats.ModifyStat("projectiles", 2);
+            stats.ModifyStat("attack_speed", 0.6f);
         }
-        if (tier >= 4)
+        if (t >= 4)
         {
-            stats.AddToStat("projectiles", 2);
-            stats.AddToStat("base_damage", 1);
+            stats.ModifyStat("projectiles", 2);
+            stats.ModifyStat("base_damage", 1);
         }
-        if (tier >= 5)
+        if (t >= 5)
         {
-            stats.AddToStat("projectiles", 2);
-            stats.AddToStat("base_damage", 1);
-            stats.AddToStat("stun", 1);
-            stats.AddToStat("range", 3);
+            stats.ModifyStat("projectiles", 2);
+            stats.ModifyStat("base_damage", 1);
+            stats.ModifyStat("stun", 0.05f);
+            stats.ModifyStat("range", 3);
         }
-    }
-
-    public override float CalcRange(int t)
-    {
-        return t >= 5 ? stats.GetStat("range") + 3 : stats.GetStat("range");
     }
 }

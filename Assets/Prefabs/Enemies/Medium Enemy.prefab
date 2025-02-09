@@ -169,7 +169,7 @@ MonoBehaviour:
   hp: 25
   maxhp: 25
   speed: 1.5
-  deathDropPulls: 2
+  deathDropPulls: 1
   drops:
   - {fileID: 0}
   - {fileID: 503293304816352400, guid: 3634da6ce461d454bb5150b5b3eb2b0d, type: 3}
@@ -195,11 +195,11 @@ MonoBehaviour:
   stats:
     _serializedList:
     - Key: hp
-      Value: 0
+      Value: 25
     - Key: max_hp
-      Value: 0
+      Value: 25
     - Key: speed
-      Value: 0
+      Value: 2
     - Key: resistance
       Value: 0
     - Key: regeneration

@@ -146,13 +146,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   boon: 0
-  description: Adds 4 small enemies AND +10% wave density
+  clone: 0
+  description: Adds 4 small enemies AND +15% wave density
   statNames:
   - small_enemies
   - wave_density
   statValues:
   - 4
-  - -0.1
+  - 0.15
   lootpool: {fileID: 11400000, guid: 1b3161b2815a3604fa8c823f046620e2, type: 2}
 --- !u!1001 &4329895225399515502
 PrefabInstance:

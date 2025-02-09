@@ -11,6 +11,7 @@ public class Card : MonoBehaviour, CardInterface
     public static bool isCardSelected = false;
     public string type;
     public GameObject spawnable;
+    private GameObject spawned;
     public int tier;
     private bool selected = false;
     private Vector3 handPos;
@@ -86,8 +87,10 @@ public class Card : MonoBehaviour, CardInterface
             SetHandPos();
             if (TryGetComponent(out TowerCard tc))
             {
+                spawned = tc.OnPlay();
+                spawned.layer = 2;
                 Main.hitboxReticle_.transform.localScale = 2 * tc.hitboxRadius * Vector3.one;
-                Main.towerRangeReticle_.transform.localScale = tc.GetReticleRadius() * 2 * Vector3.one + Vector3.forward * -6;
+                Main.towerRangeReticle_.transform.localScale = spawned.GetComponent<Tower>().stats.GetStat("range") * 2 * Vector3.one + Vector3.forward * -6;
             }
         }
     }
@@ -108,13 +111,15 @@ public class Card : MonoBehaviour, CardInterface
 
                     if (transform.position.y > -2.5 && Physics2D.OverlapCircle(Camera.main.ScreenToWorldPoint(Input.mousePosition), tc.hitboxRadius, Main.placementLayerMask_) == null)
                     {
-                        GameObject obj = OnPlay();
+                        spawned.GetComponent<Tower>().activated = true;
+                        spawned.layer = 6;
                         Hand.Remove(this);
                         gameObject.transform.position = Vector3.up * 10;
                         gameObject.transform.localScale = Vector3.one * 1.5f;
                     }
                     else
                     {
+                        Destroy(spawned);
                         transform.position = handPos;
                         transform.localScale = Vector3.one * 1.5f;
                     }
@@ -135,9 +140,12 @@ public class Card : MonoBehaviour, CardInterface
             Vector3 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (TryGetComponent(out TowerCard tc))
             {
+                Vector3 pos = new Vector3(target.x, target.y, -3);
+                if (spawned != null)
+                    spawned.transform.position = pos+Vector3.back;
                 transform.position = new Vector3(target.x + Main.hitboxReticle_.transform.localScale.x, target.y, -6);
-                Main.hitboxReticle_.transform.position = new Vector3(target.x, target.y, -3);
-                Main.towerRangeReticle_.transform.position = new Vector3(target.x, target.y, -3);
+                Main.hitboxReticle_.transform.position = pos;
+                Main.towerRangeReticle_.transform.position = pos;
                 if (Physics2D.OverlapCircle(target, tc.hitboxRadius, Main.placementLayerMask_) == null)
                     Main.hitboxReticle_.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
                 else

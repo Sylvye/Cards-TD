@@ -111,11 +111,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentTower: {fileID: 0}
-  stats: {fileID: 0}
   combo: 0
   curse: 0
   randomFX: 1
-  deathFX:
+  FX:
   - {fileID: 4964151271825745108, guid: c48123ae0f507d948a354c6b1ba76d26, type: 3}
   despawnFX:
   - {fileID: 8211478965151924206, guid: c8f6ca4450e4a454aab28291389de7da, type: 3}

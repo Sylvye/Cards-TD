@@ -104,7 +104,7 @@ public class RiskReward : CustomUIElement
             {
                 val *= boon ? 2 : 3;
             }
-            toEdit.AddToStat(statNames[i], val);
+            toEdit.ModifyStat(statNames[i], val);
         }
     }
 }

@@ -65,7 +65,7 @@ public class Main : MonoBehaviour
 
     public static void Earn(int amount)
     {
-        playerStats.AddToStat("currency", amount);
+        playerStats.ModifyStat("currency", amount);
         if (playerStats.GetStat("currency") < 0) // shouldn't happen ever, but just in case.
         {
             playerStats.SetStat("currency", 0);

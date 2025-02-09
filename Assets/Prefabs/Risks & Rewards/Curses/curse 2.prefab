@@ -146,11 +146,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   boon: 0
-  description: Adds 3 medium enemeis
+  clone: 0
+  description: Adds 3 medium enemeis AND +10% wave density
   statNames:
   - medium_enemies
+  - wave_density
   statValues:
   - 3
+  - 0.1
   lootpool: {fileID: 11400000, guid: 1b3161b2815a3604fa8c823f046620e2, type: 2}
 --- !u!1001 &8374834278066505447
 PrefabInstance:

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -4283607691600273033}
   - component: {fileID: 3972201283199114320}
   m_Layer: 2
-  m_Name: Small Explosion
+  m_Name: Small Explosion 1
   m_TagString: FX
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -142914262, guid: c8e61ad7256e35a43917775cb73772e8, type: 3}
+  m_Sprite: {fileID: -1891796973, guid: d3d15bef7c232114fa25853aa15dc83d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,7 +97,7 @@ Animator:
   m_GameObject: {fileID: 7715439341541856561}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fe82c37165e0c6f45b875349a1256ae7, type: 2}
+  m_Controller: {fileID: 9100000, guid: 206c8d2d1b0ea534f9d74641ca6ed096, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

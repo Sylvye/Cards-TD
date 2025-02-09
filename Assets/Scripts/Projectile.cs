@@ -14,7 +14,7 @@ public class Projectile : MonoBehaviour
     public bool combo = false;
     public bool curse = false;
     public bool randomFX = true;
-    public GameObject[] deathFX;
+    public GameObject[] FX;
     public GameObject[] despawnFX;
     public float angle;
     private Rigidbody2D rb;
@@ -64,9 +64,11 @@ public class Projectile : MonoBehaviour
 
     public void Hit(GameObject target)
     {
-        stats.AddToStat("pierce", -1);
+        stats.ModifyStat("pierce", -1);
         if (stats.GetStat("pierce") <= -1)
             Destroy(gameObject);
+        if (stats.GetStat("pierce") < -1) // Prevents piercing through too many enemies if a projectile hits multiple in one frame
+            return;
 
         if (stats.GetStat("explosion_radius") == 0) // contact damage
         {
@@ -98,17 +100,18 @@ public class Projectile : MonoBehaviour
 
 
         stats.SetStat("homing", 0);
-        if (deathFX != null) // spawns FX
+        if (FX != null) // spawns FX
         {
-            int spawnCount = deathFX.Length;
+            int spawnCount = FX.Length;
             if (randomFX)
                 spawnCount = 1;
             for (int i = 0; i < spawnCount; i++)
             {
                 int objIndex = i;
                 if (randomFX)
-                    objIndex = UnityEngine.Random.Range(0, deathFX.Length);
-                GameObject fx = Instantiate(deathFX[objIndex], transform.position + Vector3.back, Quaternion.identity);
+                    objIndex = UnityEngine.Random.Range(0, FX.Length);
+                Vector3 spawnPos = Vector3.Lerp(transform.position, target.transform.position, 0.5f);
+                GameObject fx = Instantiate(FX[objIndex], spawnPos + Vector3.back, Quaternion.identity);
                 if (stats.GetStat("explosion_radius") > 0)
                 {
                     fx.transform.localScale = stats.GetStat("explosion_radius") * 2 * Vector2.one;

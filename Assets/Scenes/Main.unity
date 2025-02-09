@@ -225,6 +225,54 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1505739290}
     m_Modifications:
+    - target: {fileID: -9102459732911952276, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
+      propertyPath: stats._serializedList.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -9102459732911952276, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
+      propertyPath: stats._serializedList.Array.data[0].Key
+      value: tier
+      objectReference: {fileID: 0}
+    - target: {fileID: -9102459732911952276, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
+      propertyPath: stats._serializedList.Array.data[1].Key
+      value: range
+      objectReference: {fileID: 0}
+    - target: {fileID: -9102459732911952276, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
+      propertyPath: stats._serializedList.Array.data[2].Key
+      value: base_damage
+      objectReference: {fileID: 0}
+    - target: {fileID: -9102459732911952276, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
+      propertyPath: stats._serializedList.Array.data[3].Key
+      value: attack_speed
+      objectReference: {fileID: 0}
+    - target: {fileID: -9102459732911952276, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
+      propertyPath: stats._serializedList.Array.data[4].Key
+      value: pierce
+      objectReference: {fileID: 0}
+    - target: {fileID: -9102459732911952276, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
+      propertyPath: stats._serializedList.Array.data[5].Key
+      value: projectiles
+      objectReference: {fileID: 0}
+    - target: {fileID: -9102459732911952276, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
+      propertyPath: stats._serializedList.Array.data[6].Key
+      value: speed
+      objectReference: {fileID: 0}
+    - target: {fileID: -9102459732911952276, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
+      propertyPath: stats._serializedList.Array.data[7].Key
+      value: homing
+      objectReference: {fileID: 0}
+    - target: {fileID: -9102459732911952276, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
+      propertyPath: stats._serializedList.Array.data[8].Key
+      value: spread
+      objectReference: {fileID: 0}
+    - target: {fileID: -9102459732911952276, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
+      propertyPath: stats._serializedList.Array.data[9].Key
+      value: explosion_radius
+      objectReference: {fileID: 0}
+    - target: {fileID: -9102459732911952276, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
+      propertyPath: stats._serializedList.Array.data[0].Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 467519594113573095, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -286,6 +334,54 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1505739290}
     m_Modifications:
+    - target: {fileID: -5554047912560711574, guid: bbed92b32139ec642878e347d427052e, type: 3}
+      propertyPath: stats._serializedList.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -5554047912560711574, guid: bbed92b32139ec642878e347d427052e, type: 3}
+      propertyPath: stats._serializedList.Array.data[0].Key
+      value: tier
+      objectReference: {fileID: 0}
+    - target: {fileID: -5554047912560711574, guid: bbed92b32139ec642878e347d427052e, type: 3}
+      propertyPath: stats._serializedList.Array.data[1].Key
+      value: range
+      objectReference: {fileID: 0}
+    - target: {fileID: -5554047912560711574, guid: bbed92b32139ec642878e347d427052e, type: 3}
+      propertyPath: stats._serializedList.Array.data[2].Key
+      value: base_damage
+      objectReference: {fileID: 0}
+    - target: {fileID: -5554047912560711574, guid: bbed92b32139ec642878e347d427052e, type: 3}
+      propertyPath: stats._serializedList.Array.data[3].Key
+      value: attack_speed
+      objectReference: {fileID: 0}
+    - target: {fileID: -5554047912560711574, guid: bbed92b32139ec642878e347d427052e, type: 3}
+      propertyPath: stats._serializedList.Array.data[4].Key
+      value: pierce
+      objectReference: {fileID: 0}
+    - target: {fileID: -5554047912560711574, guid: bbed92b32139ec642878e347d427052e, type: 3}
+      propertyPath: stats._serializedList.Array.data[5].Key
+      value: projectiles
+      objectReference: {fileID: 0}
+    - target: {fileID: -5554047912560711574, guid: bbed92b32139ec642878e347d427052e, type: 3}
+      propertyPath: stats._serializedList.Array.data[6].Key
+      value: speed
+      objectReference: {fileID: 0}
+    - target: {fileID: -5554047912560711574, guid: bbed92b32139ec642878e347d427052e, type: 3}
+      propertyPath: stats._serializedList.Array.data[7].Key
+      value: homing
+      objectReference: {fileID: 0}
+    - target: {fileID: -5554047912560711574, guid: bbed92b32139ec642878e347d427052e, type: 3}
+      propertyPath: stats._serializedList.Array.data[8].Key
+      value: spread
+      objectReference: {fileID: 0}
+    - target: {fileID: -5554047912560711574, guid: bbed92b32139ec642878e347d427052e, type: 3}
+      propertyPath: stats._serializedList.Array.data[9].Key
+      value: explosion_radius
+      objectReference: {fileID: 0}
+    - target: {fileID: -5554047912560711574, guid: bbed92b32139ec642878e347d427052e, type: 3}
+      propertyPath: stats._serializedList.Array.data[0].Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 467519594113573095, guid: bbed92b32139ec642878e347d427052e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1674,6 +1770,54 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1505739290}
     m_Modifications:
+    - target: {fileID: -9102459732911952276, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
+      propertyPath: stats._serializedList.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -9102459732911952276, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
+      propertyPath: stats._serializedList.Array.data[0].Key
+      value: tier
+      objectReference: {fileID: 0}
+    - target: {fileID: -9102459732911952276, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
+      propertyPath: stats._serializedList.Array.data[1].Key
+      value: range
+      objectReference: {fileID: 0}
+    - target: {fileID: -9102459732911952276, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
+      propertyPath: stats._serializedList.Array.data[2].Key
+      value: base_damage
+      objectReference: {fileID: 0}
+    - target: {fileID: -9102459732911952276, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
+      propertyPath: stats._serializedList.Array.data[3].Key
+      value: attack_speed
+      objectReference: {fileID: 0}
+    - target: {fileID: -9102459732911952276, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
+      propertyPath: stats._serializedList.Array.data[4].Key
+      value: pierce
+      objectReference: {fileID: 0}
+    - target: {fileID: -9102459732911952276, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
+      propertyPath: stats._serializedList.Array.data[5].Key
+      value: projectiles
+      objectReference: {fileID: 0}
+    - target: {fileID: -9102459732911952276, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
+      propertyPath: stats._serializedList.Array.data[6].Key
+      value: speed
+      objectReference: {fileID: 0}
+    - target: {fileID: -9102459732911952276, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
+      propertyPath: stats._serializedList.Array.data[7].Key
+      value: homing
+      objectReference: {fileID: 0}
+    - target: {fileID: -9102459732911952276, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
+      propertyPath: stats._serializedList.Array.data[8].Key
+      value: spread
+      objectReference: {fileID: 0}
+    - target: {fileID: -9102459732911952276, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
+      propertyPath: stats._serializedList.Array.data[9].Key
+      value: explosion_radius
+      objectReference: {fileID: 0}
+    - target: {fileID: -9102459732911952276, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
+      propertyPath: stats._serializedList.Array.data[0].Value
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 467519594113573095, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1861,6 +2005,54 @@ PrefabInstance:
     - target: {fileID: 467519594113573095, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371754562718877836, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
+      propertyPath: stats._serializedList.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371754562718877836, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
+      propertyPath: stats._serializedList.Array.data[0].Key
+      value: tier
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371754562718877836, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
+      propertyPath: stats._serializedList.Array.data[1].Key
+      value: range
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371754562718877836, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
+      propertyPath: stats._serializedList.Array.data[2].Key
+      value: base_damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371754562718877836, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
+      propertyPath: stats._serializedList.Array.data[3].Key
+      value: attack_speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371754562718877836, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
+      propertyPath: stats._serializedList.Array.data[4].Key
+      value: pierce
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371754562718877836, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
+      propertyPath: stats._serializedList.Array.data[5].Key
+      value: projectiles
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371754562718877836, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
+      propertyPath: stats._serializedList.Array.data[6].Key
+      value: speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371754562718877836, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
+      propertyPath: stats._serializedList.Array.data[7].Key
+      value: homing
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371754562718877836, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
+      propertyPath: stats._serializedList.Array.data[8].Key
+      value: spread
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371754562718877836, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
+      propertyPath: stats._serializedList.Array.data[9].Key
+      value: explosion_radius
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371754562718877836, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
+      propertyPath: stats._serializedList.Array.data[0].Value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7631322497954940115, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
       propertyPath: m_Name
@@ -2248,15 +2440,15 @@ MonoBehaviour:
     - Key: flat_damage
       Value: 0
     - Key: damage_mult
-      Value: 1
+      Value: 0
     - Key: energy_base_damage
       Value: 0
     - Key: kinetic_base_damage
       Value: 0
     - Key: energy_damage_mult
-      Value: 1
+      Value: 0
     - Key: kinetic_damage_mult
-      Value: 1
+      Value: 0
     - Key: pierce
       Value: 0
     - Key: kinetic_pierce
@@ -2702,6 +2894,54 @@ PrefabInstance:
     - target: {fileID: 467519594113573095, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684361676557154510, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
+      propertyPath: stats._serializedList.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684361676557154510, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
+      propertyPath: stats._serializedList.Array.data[0].Key
+      value: tier
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684361676557154510, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
+      propertyPath: stats._serializedList.Array.data[1].Key
+      value: range
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684361676557154510, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
+      propertyPath: stats._serializedList.Array.data[2].Key
+      value: base_damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684361676557154510, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
+      propertyPath: stats._serializedList.Array.data[3].Key
+      value: attack_speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684361676557154510, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
+      propertyPath: stats._serializedList.Array.data[4].Key
+      value: pierce
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684361676557154510, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
+      propertyPath: stats._serializedList.Array.data[5].Key
+      value: projectiles
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684361676557154510, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
+      propertyPath: stats._serializedList.Array.data[6].Key
+      value: speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684361676557154510, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
+      propertyPath: stats._serializedList.Array.data[7].Key
+      value: homing
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684361676557154510, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
+      propertyPath: stats._serializedList.Array.data[8].Key
+      value: spread
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684361676557154510, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
+      propertyPath: stats._serializedList.Array.data[9].Key
+      value: explosion_radius
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684361676557154510, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
+      propertyPath: stats._serializedList.Array.data[0].Value
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6046127290222308652, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
       propertyPath: tier
@@ -3254,6 +3494,54 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1505739290}
     m_Modifications:
+    - target: {fileID: -6811351823866483701, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
+      propertyPath: stats._serializedList.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -6811351823866483701, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
+      propertyPath: stats._serializedList.Array.data[0].Key
+      value: tier
+      objectReference: {fileID: 0}
+    - target: {fileID: -6811351823866483701, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
+      propertyPath: stats._serializedList.Array.data[1].Key
+      value: range
+      objectReference: {fileID: 0}
+    - target: {fileID: -6811351823866483701, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
+      propertyPath: stats._serializedList.Array.data[2].Key
+      value: base_damage
+      objectReference: {fileID: 0}
+    - target: {fileID: -6811351823866483701, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
+      propertyPath: stats._serializedList.Array.data[3].Key
+      value: attack_speed
+      objectReference: {fileID: 0}
+    - target: {fileID: -6811351823866483701, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
+      propertyPath: stats._serializedList.Array.data[4].Key
+      value: pierce
+      objectReference: {fileID: 0}
+    - target: {fileID: -6811351823866483701, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
+      propertyPath: stats._serializedList.Array.data[5].Key
+      value: projectiles
+      objectReference: {fileID: 0}
+    - target: {fileID: -6811351823866483701, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
+      propertyPath: stats._serializedList.Array.data[6].Key
+      value: speed
+      objectReference: {fileID: 0}
+    - target: {fileID: -6811351823866483701, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
+      propertyPath: stats._serializedList.Array.data[7].Key
+      value: homing
+      objectReference: {fileID: 0}
+    - target: {fileID: -6811351823866483701, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
+      propertyPath: stats._serializedList.Array.data[8].Key
+      value: spread
+      objectReference: {fileID: 0}
+    - target: {fileID: -6811351823866483701, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
+      propertyPath: stats._serializedList.Array.data[9].Key
+      value: explosion_radius
+      objectReference: {fileID: 0}
+    - target: {fileID: -6811351823866483701, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
+      propertyPath: stats._serializedList.Array.data[0].Value
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 467519594113573095, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3775,6 +4063,54 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -6612765135822769905, guid: bbed92b32139ec642878e347d427052e, type: 3}
       propertyPath: tier
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -5554047912560711574, guid: bbed92b32139ec642878e347d427052e, type: 3}
+      propertyPath: stats._serializedList.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -5554047912560711574, guid: bbed92b32139ec642878e347d427052e, type: 3}
+      propertyPath: stats._serializedList.Array.data[0].Key
+      value: tier
+      objectReference: {fileID: 0}
+    - target: {fileID: -5554047912560711574, guid: bbed92b32139ec642878e347d427052e, type: 3}
+      propertyPath: stats._serializedList.Array.data[1].Key
+      value: range
+      objectReference: {fileID: 0}
+    - target: {fileID: -5554047912560711574, guid: bbed92b32139ec642878e347d427052e, type: 3}
+      propertyPath: stats._serializedList.Array.data[2].Key
+      value: base_damage
+      objectReference: {fileID: 0}
+    - target: {fileID: -5554047912560711574, guid: bbed92b32139ec642878e347d427052e, type: 3}
+      propertyPath: stats._serializedList.Array.data[3].Key
+      value: attack_speed
+      objectReference: {fileID: 0}
+    - target: {fileID: -5554047912560711574, guid: bbed92b32139ec642878e347d427052e, type: 3}
+      propertyPath: stats._serializedList.Array.data[4].Key
+      value: pierce
+      objectReference: {fileID: 0}
+    - target: {fileID: -5554047912560711574, guid: bbed92b32139ec642878e347d427052e, type: 3}
+      propertyPath: stats._serializedList.Array.data[5].Key
+      value: projectiles
+      objectReference: {fileID: 0}
+    - target: {fileID: -5554047912560711574, guid: bbed92b32139ec642878e347d427052e, type: 3}
+      propertyPath: stats._serializedList.Array.data[6].Key
+      value: speed
+      objectReference: {fileID: 0}
+    - target: {fileID: -5554047912560711574, guid: bbed92b32139ec642878e347d427052e, type: 3}
+      propertyPath: stats._serializedList.Array.data[7].Key
+      value: homing
+      objectReference: {fileID: 0}
+    - target: {fileID: -5554047912560711574, guid: bbed92b32139ec642878e347d427052e, type: 3}
+      propertyPath: stats._serializedList.Array.data[8].Key
+      value: spread
+      objectReference: {fileID: 0}
+    - target: {fileID: -5554047912560711574, guid: bbed92b32139ec642878e347d427052e, type: 3}
+      propertyPath: stats._serializedList.Array.data[9].Key
+      value: explosion_radius
+      objectReference: {fileID: 0}
+    - target: {fileID: -5554047912560711574, guid: bbed92b32139ec642878e347d427052e, type: 3}
+      propertyPath: stats._serializedList.Array.data[0].Value
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 467519594113573095, guid: bbed92b32139ec642878e347d427052e, type: 3}
@@ -4576,10 +4912,10 @@ MonoBehaviour:
   - {fileID: 3867853743162614571, guid: 53315ca4737905743bdbf41ad03cfc94, type: 3}
   - {fileID: 3867853743162614571, guid: b01f81d790e6bc541adc80f2013e55d3, type: 3}
   - {fileID: 3867853743162614571, guid: c442795b2eb3763458e8d295f5064008, type: 3}
-  wave: 0000000000000000000000000000000001000000
+  wave: 0100000001000000010000000100000002000000
   waveIndex: 0
-  active: 0
   complete: 1
+  cooldown: 0
 --- !u!114 &1412497684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4600,20 +4936,20 @@ MonoBehaviour:
       Value: 0
     - Key: large_enemies
       Value: 0
-    - Key: small_enemy_speed
-      Value: 0
-    - Key: medium_enemy_speed
-      Value: 0
-    - Key: large_enemy_speed
-      Value: 0
+    - Key: small_enemy_speed_mult
+      Value: 1
+    - Key: medium_enemy_speed_mult
+      Value: 1
+    - Key: large_enemy_speed_mult
+      Value: 1
     - Key: small_enemy_hp_mult
-      Value: 0
+      Value: 1
     - Key: medium_enemy_hp_mult
-      Value: 0
+      Value: 1
     - Key: large_enemy_hp_mult
-      Value: 0
+      Value: 1
     - Key: wave_density
-      Value: 0
+      Value: 1
     - Key: shields
       Value: 0
     - Key: desperation
@@ -5886,6 +6222,54 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3684361676557154510, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
+      propertyPath: stats._serializedList.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684361676557154510, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
+      propertyPath: stats._serializedList.Array.data[0].Key
+      value: tier
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684361676557154510, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
+      propertyPath: stats._serializedList.Array.data[1].Key
+      value: range
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684361676557154510, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
+      propertyPath: stats._serializedList.Array.data[2].Key
+      value: base_damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684361676557154510, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
+      propertyPath: stats._serializedList.Array.data[3].Key
+      value: attack_speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684361676557154510, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
+      propertyPath: stats._serializedList.Array.data[4].Key
+      value: pierce
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684361676557154510, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
+      propertyPath: stats._serializedList.Array.data[5].Key
+      value: projectiles
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684361676557154510, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
+      propertyPath: stats._serializedList.Array.data[6].Key
+      value: speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684361676557154510, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
+      propertyPath: stats._serializedList.Array.data[7].Key
+      value: homing
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684361676557154510, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
+      propertyPath: stats._serializedList.Array.data[8].Key
+      value: spread
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684361676557154510, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
+      propertyPath: stats._serializedList.Array.data[9].Key
+      value: explosion_radius
+      objectReference: {fileID: 0}
+    - target: {fileID: 3684361676557154510, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
+      propertyPath: stats._serializedList.Array.data[0].Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7631322497954940115, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}
       propertyPath: m_Name
       value: Rocket Turret Card
@@ -6093,6 +6477,54 @@ PrefabInstance:
     - target: {fileID: 467519594113573095, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371754562718877836, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
+      propertyPath: stats._serializedList.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371754562718877836, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
+      propertyPath: stats._serializedList.Array.data[0].Key
+      value: tier
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371754562718877836, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
+      propertyPath: stats._serializedList.Array.data[1].Key
+      value: range
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371754562718877836, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
+      propertyPath: stats._serializedList.Array.data[2].Key
+      value: base_damage
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371754562718877836, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
+      propertyPath: stats._serializedList.Array.data[3].Key
+      value: attack_speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371754562718877836, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
+      propertyPath: stats._serializedList.Array.data[4].Key
+      value: pierce
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371754562718877836, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
+      propertyPath: stats._serializedList.Array.data[5].Key
+      value: projectiles
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371754562718877836, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
+      propertyPath: stats._serializedList.Array.data[6].Key
+      value: speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371754562718877836, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
+      propertyPath: stats._serializedList.Array.data[7].Key
+      value: homing
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371754562718877836, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
+      propertyPath: stats._serializedList.Array.data[8].Key
+      value: spread
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371754562718877836, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
+      propertyPath: stats._serializedList.Array.data[9].Key
+      value: explosion_radius
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371754562718877836, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
+      propertyPath: stats._serializedList.Array.data[0].Value
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5919581471223590647, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
       propertyPath: m_Size.x
@@ -6451,6 +6883,54 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1505739290}
     m_Modifications:
+    - target: {fileID: -6811351823866483701, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
+      propertyPath: stats._serializedList.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -6811351823866483701, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
+      propertyPath: stats._serializedList.Array.data[0].Key
+      value: tier
+      objectReference: {fileID: 0}
+    - target: {fileID: -6811351823866483701, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
+      propertyPath: stats._serializedList.Array.data[1].Key
+      value: range
+      objectReference: {fileID: 0}
+    - target: {fileID: -6811351823866483701, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
+      propertyPath: stats._serializedList.Array.data[2].Key
+      value: base_damage
+      objectReference: {fileID: 0}
+    - target: {fileID: -6811351823866483701, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
+      propertyPath: stats._serializedList.Array.data[3].Key
+      value: attack_speed
+      objectReference: {fileID: 0}
+    - target: {fileID: -6811351823866483701, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
+      propertyPath: stats._serializedList.Array.data[4].Key
+      value: pierce
+      objectReference: {fileID: 0}
+    - target: {fileID: -6811351823866483701, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
+      propertyPath: stats._serializedList.Array.data[5].Key
+      value: projectiles
+      objectReference: {fileID: 0}
+    - target: {fileID: -6811351823866483701, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
+      propertyPath: stats._serializedList.Array.data[6].Key
+      value: speed
+      objectReference: {fileID: 0}
+    - target: {fileID: -6811351823866483701, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
+      propertyPath: stats._serializedList.Array.data[7].Key
+      value: homing
+      objectReference: {fileID: 0}
+    - target: {fileID: -6811351823866483701, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
+      propertyPath: stats._serializedList.Array.data[8].Key
+      value: spread
+      objectReference: {fileID: 0}
+    - target: {fileID: -6811351823866483701, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
+      propertyPath: stats._serializedList.Array.data[9].Key
+      value: explosion_radius
+      objectReference: {fileID: 0}
+    - target: {fileID: -6811351823866483701, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
+      propertyPath: stats._serializedList.Array.data[0].Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 467519594113573095, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6791,8 +7271,8 @@ MonoBehaviour:
   scaleAmount: 1.05
   spriteUp: {fileID: 446073088, guid: 7f4c0888bafbc8748ba242f3dce27cf3, type: 3}
   spriteDown: {fileID: 863563095, guid: 7f4c0888bafbc8748ba242f3dce27cf3, type: 3}
-  startUp: {fileID: 0}
-  startDown: {fileID: 0}
+  startUp: {fileID: 446073088, guid: 7f4c0888bafbc8748ba242f3dce27cf3, type: 3}
+  startDown: {fileID: 863563095, guid: 7f4c0888bafbc8748ba242f3dce27cf3, type: 3}
   nextUp: {fileID: 1064653082, guid: 7f4c0888bafbc8748ba242f3dce27cf3, type: 3}
   nextDown: {fileID: -108163918, guid: 7f4c0888bafbc8748ba242f3dce27cf3, type: 3}
 --- !u!4 &1964653213 stripped
@@ -7499,18 +7979,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 770447041}
     m_Modifications:
     - target: {fileID: 3377194612189142151, guid: 9daf630084c953244bd68a42b30a724e, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3377194612189142151, guid: 9daf630084c953244bd68a42b30a724e, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3377194612189142151, guid: 9daf630084c953244bd68a42b30a724e, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3377194612189142151, guid: 9daf630084c953244bd68a42b30a724e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.5
       objectReference: {fileID: 0}
@@ -7553,10 +8021,6 @@ PrefabInstance:
     - target: {fileID: 4670957519281825566, guid: 9daf630084c953244bd68a42b30a724e, type: 3}
       propertyPath: m_Name
       value: Risk-Reward Textbox
-      objectReference: {fileID: 0}
-    - target: {fileID: 4670957519281825566, guid: 9daf630084c953244bd68a42b30a724e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

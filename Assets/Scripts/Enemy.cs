@@ -6,21 +6,28 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int hp;
-    public int maxhp;
-    public float speed;
     [Header("Drops")]
-    public int deathDropPulls;
+    public int pulls;
     public List<GameObject> drops;
     public List<float> dropWeights;
+    private float lastStun;
+    private float stunDuration; // make stun work in Update() instead of in a coroutine
+
+    [NonSerialized]
+    public Stats stats;
+
+    private void Awake()
+    {
+        stats = GetComponent<Stats>();
+    }
 
     // Update is called once per frame
     private void Update()
     {
-        transform.position += speed * Time.deltaTime * Vector3.right;
+        transform.position += stats.GetStat("speed") * Time.deltaTime * Vector3.right;
         if (transform.position.x >= 11.5f)
         {
-            Main.Damage(hp);
+            Main.Damage((int)stats.GetStat("hp"));
             Destroy(gameObject);
             Spawner.spawnedEnemies.Remove(gameObject);
         }
@@ -28,12 +35,12 @@ public class Enemy : MonoBehaviour
 
     public bool Damage(int amount)
     {
-        hp -= amount;
-        if (hp <= 0)
+        stats.ModifyStat("hp", amount, Stats.Operation.Subtract);
+        if (stats.GetStat("hp") <= 0) // death
         {
             Destroy(gameObject);
             Spawner.spawnedEnemies.Remove(gameObject);
-            PerformDeathDrops(deathDropPulls);
+            RollLoot(pulls);
             return true;
         }
         return false;
@@ -42,18 +49,18 @@ public class Enemy : MonoBehaviour
     //returns true if the attack killed the enemy
     public bool Damage(int amount, Projectile reference)
     {
-        hp -= amount;
-        if (hp <= 0) // if died
+        stats.ModifyStat("hp", amount, Stats.Operation.Subtract);
+        if (stats.GetStat("hp") <= 0) // death
         {
             Destroy(gameObject);
             Spawner.spawnedEnemies.Remove(gameObject);
-            PerformDeathDrops(deathDropPulls, AngleHelper.DegreesToVector(reference.angle));
+            RollLoot(pulls, AngleHelper.DegreesToVector(reference.angle));
             return true;
         }
         return false;
     }
 
-    public void PerformDeathDrops(int pulls)
+    public void RollLoot(int pulls)
     {
         for (int i=0; i<pulls; i++)
         {
@@ -61,13 +68,13 @@ public class Enemy : MonoBehaviour
             if (loot != null)
             {
                 GameObject obj = Instantiate(loot, transform.position, Quaternion.identity);
-                ItemDrop objID = loot.GetComponent<ItemDrop>();
+                LootBag objID = loot.GetComponent<LootBag>();
                 obj.GetComponent<Rigidbody2D>().velocity = AngleHelper.DegreesToVector(UnityEngine.Random.Range(0, 360)).normalized * UnityEngine.Random.Range(5, 11);
             }
         }
     }
 
-    public void PerformDeathDrops(int pulls, Vector2 direction)
+    public void RollLoot(int pulls, Vector2 direction)
     {
         for (int i = 0; i < pulls; i++)
         {
@@ -75,7 +82,7 @@ public class Enemy : MonoBehaviour
             if (loot != null)
             {
                 GameObject obj = Instantiate(loot, transform.position, Quaternion.identity);
-                ItemDrop objID = loot.GetComponent<ItemDrop>();
+                LootBag objID = loot.GetComponent<LootBag>();
                 obj.GetComponent<Rigidbody2D>().velocity = direction.normalized * 10;
             }
         }
@@ -95,9 +102,9 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator StunC(float time)
     {
-        float spd = speed;
-        speed = 0;
+        float spd = stats.GetStat("speed");
+        stats.SetStat("speed", 0);
         yield return new WaitForSeconds(time);
-        speed = spd;
+        stats.SetStat("speed", spd);
     }
 }

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Indicator Sprite Holder
   m_EditorClassIdentifier: 
   sprites:
+  - {fileID: -1611206241, guid: a806fa70320f9344fa0634b8082dd2a2, type: 3}
   - {fileID: 221629553, guid: a806fa70320f9344fa0634b8082dd2a2, type: 3}
   - {fileID: 650263525, guid: a806fa70320f9344fa0634b8082dd2a2, type: 3}
-  - {fileID: -1611206241, guid: a806fa70320f9344fa0634b8082dd2a2, type: 3}

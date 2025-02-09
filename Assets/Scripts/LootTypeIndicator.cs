@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class DropIndicator : MonoBehaviour
+public class LootTypeIndicator : MonoBehaviour
 {
     public int category;
     public SpriteHolder sprites;

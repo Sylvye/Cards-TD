@@ -12,9 +12,10 @@ public class Spawner : MonoBehaviour
     public List<GameObject> enemies;
     public List<int> wave;
     public int waveIndex = 0;
-    public bool active = true;
+    private bool active = false;
     public bool complete = false;
     private int spawned; // how many enemies spawned this wave
+    [SerializeField]
     private float cooldown = 0;
     private bool freebie = false;
 
@@ -38,15 +39,8 @@ public class Spawner : MonoBehaviour
 
                 if (cooldown <= 0)
                 {
-                    if (enemies[wave[waveIndex]] != null)
-                    {
-                        cooldown = 1 / Main.enemyStats.GetStat("wave_density");
-                        Spawn(enemies[wave[waveIndex]], transform.position, enemies[wave[waveIndex++]].transform.rotation);
-                    }
-                    else
-                    {
-                        cooldown = 1 / Main.enemyStats.GetStat("wave_density");
-                    }
+                    Send(wave[waveIndex++]);
+                    cooldown = 1 / Main.enemyStats.GetStat("wave_density");
                 }
             }
             else
@@ -54,6 +48,20 @@ public class Spawner : MonoBehaviour
                 Complete();
             }
         }
+    }
+
+    public void SetActive(bool a)
+    {
+        if (a)
+        {
+            UpdateWave();
+        }
+        active = a;
+    }
+
+    public bool GetActive()
+    {
+        return active;
     }
 
     private void Complete()
@@ -73,7 +81,12 @@ public class Spawner : MonoBehaviour
 
     public void Send(int tier)
     {
-        Spawn(enemies[tier - 1], transform.position, enemies[tier - 1].transform.rotation);
+        Enemy e = Spawn(enemies[tier - 1], transform.position, enemies[tier - 1].transform.rotation).GetComponent<Enemy>();
+        float speedMult = stats.GetStat(TierToType(tier) + "_enemy_speed_mult");
+        float hpMult = stats.GetStat(TierToType(tier) + "_enemy_hp_mult");
+        e.stats.ModifyStat("speed", speedMult, Stats.Operation.Multiply);
+        e.stats.ModifyStat("hp", hpMult, Stats.Operation.Multiply);
+        e.stats.ModifyStat("max_hp", hpMult, Stats.Operation.Multiply);
     }
 
     public GameObject Spawn(GameObject obj, Vector3 pos, Quaternion rot)
@@ -87,5 +100,38 @@ public class Spawner : MonoBehaviour
         spawnedEnemies.Add(o);
         spawned++;
         return o;
+    }
+
+    private string TierToType(int tier)
+    {
+        return tier switch
+        {
+            1 => "small",
+            2 => "medium",
+            3 => "large",
+            _ => ""
+        };
+    }
+
+    public void UpdateWave()
+    {
+        int small = (int)stats.GetStat("small_enemies");
+        int medium = (int)stats.GetStat("medium_enemies");
+        int large = (int)stats.GetStat("large_enemies");
+        for (int i = 0; i < small; i++)
+        {
+            wave.Add(1);
+        }
+        for (int i = 0; i < medium; i++)
+        {
+            wave.Add(2);
+        }
+        for (int i = 0; i < large; i++)
+        {
+            wave.Add(3);
+        }
+        stats.SetStat("small_enemies", 0);
+        stats.SetStat("medium_enemies", 0);
+        stats.SetStat("large_enemies", 0);
     }
 }

@@ -146,11 +146,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   boon: 0
+  clone: 0
   description: Wave density increased by +30%
   statNames:
   - wave_density
   statValues:
-  - -0.3
+  - 0.3
   lootpool: {fileID: 11400000, guid: 1b3161b2815a3604fa8c823f046620e2, type: 2}
 --- !u!1001 &4337975082225946264
 PrefabInstance:

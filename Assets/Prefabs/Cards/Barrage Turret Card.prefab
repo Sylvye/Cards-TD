@@ -163,6 +163,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
     _serializedList:
+    - Key: tier
+      Value: 1
     - Key: range
       Value: 0
     - Key: base_damage
