@@ -10,6 +10,7 @@ public class Projectile : MonoBehaviour
 {
     public GameObject parentTower;
     [NonSerialized]
+    public Tower.Type type;
     public Stats stats;
     public bool randomFX = true;
     public GameObject[] FX;
@@ -76,7 +77,7 @@ public class Projectile : MonoBehaviour
             e.Stun(stun);
         }
 
-        if (stats.GetStat("explosion_radius") == 0) // contact damage
+        if (stats.GetStat("explosion_radius") <= 0) // contact damage
         {
             if (e.Damage(Mathf.RoundToInt(stats.GetStat("damage")), this)) // deals damage, then, if killed...
             {
@@ -126,13 +127,16 @@ public class Projectile : MonoBehaviour
 
     public void Explode()
     {
-        RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, stats.GetStat("explosion_radius"), Vector2.zero, 0, Main.enemyLayerMask_);
-        foreach (RaycastHit2D rayC in hit)
+        if (stats.GetStat("explosion_radius") > 0)
         {
-            GameObject obj = rayC.collider.gameObject;
-            if (obj.GetComponent<Enemy>().Damage(Mathf.RoundToInt(stats.GetStat("damage")), this)) // deals damage, then, if killed...
+            RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, stats.GetStat("explosion_radius"), Vector2.zero, 0, Main.enemyLayerMask_);
+            foreach (RaycastHit2D rayC in hit)
             {
-                OnKill();
+                GameObject obj = rayC.collider.gameObject;
+                if (obj.GetComponent<Enemy>().Damage(Mathf.RoundToInt(stats.GetStat("damage")), this)) // deals damage, then, if killed...
+                {
+                    OnKill();
+                }
             }
         }
     }

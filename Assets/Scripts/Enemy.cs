@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public bool Damage(int amount)
+    public bool Damage(int amount) // add type here
     {
         stats.ModifyStat("hp", amount, Stats.Operation.Subtract);
         if (stats.GetStat("hp") <= 0) // death
@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
     }
 
     //returns true if the attack killed the enemy
-    public bool Damage(int amount, Projectile reference)
+    public bool Damage(int amount, Projectile reference) // add type here
     {
         stats.ModifyStat("hp", amount, Stats.Operation.Subtract);
         if (stats.GetStat("hp") <= 0) // death

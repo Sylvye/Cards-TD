@@ -170,6 +170,6 @@ MonoBehaviour:
     - Key: damage_mult
       Value: 1
     - Key: attack_speed
-      Value: 3
+      Value: 4
     - Key: range
-      Value: 1
+      Value: 1.5

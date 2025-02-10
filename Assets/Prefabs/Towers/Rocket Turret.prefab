@@ -159,8 +159,6 @@ MonoBehaviour:
       Value: 1
     - Key: spread
       Value: 15
-    - Key: pierce
-      Value: 0
     - Key: speed
       Value: 3
     - Key: homing

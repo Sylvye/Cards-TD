@@ -188,9 +188,9 @@ MonoBehaviour:
   stats:
     _serializedList:
     - Key: hp
-      Value: 10
+      Value: 6
     - Key: max_hp
-      Value: 10
+      Value: 6
     - Key: speed
       Value: 3
     - Key: resistance

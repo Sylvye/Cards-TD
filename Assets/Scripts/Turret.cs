@@ -42,6 +42,7 @@ public abstract class Turret : Tower
         p.angle = AngleHelper.VectorToDegrees(dir.normalized);
         p.stats.AddStats(stats); // adds all applicable stats over to the projectile
         p.stats.SetStat("damage", GetDamage());
+        p.type = type;
         p.parentTower = gameObject;
         return projectile;
     }

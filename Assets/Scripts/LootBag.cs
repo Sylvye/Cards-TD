@@ -19,8 +19,9 @@ public class LootBag : MonoBehaviour
     {
         for (int i=0; i<tier*tier; i++)
         {
-            Vector3 offset = new Vector3(Random.Range(-1f, 1), Random.Range(-1f, 1), 0);
-            GameObject ind = Instantiate(item, transform.position + offset, Quaternion.identity);
+            Vector3 dir = new Vector3(Random.Range(-1f, 1), Random.Range(-1f, 1), 0).normalized;
+            GameObject ind = Instantiate(item, transform.position, Quaternion.identity);
+            ind.GetComponent<Rigidbody2D>().velocity = dir*3;
         }
         Destroy(gameObject);
     }

@@ -171,9 +171,9 @@ MonoBehaviour:
     - Key: damage_mult
       Value: 1
     - Key: attack_speed
-      Value: 2
+      Value: 3
     - Key: range
-      Value: 2
+      Value: 3
     - Key: explosion_radius
       Value: 0
 --- !u!114 &1458326075435976873

@@ -10,6 +10,7 @@ public class BarrageTurret : Turret
         if (t >= 2)
         {
             stats.ModifyStat("attack_speed", 1);
+            stats.ModifyStat("range", 0.5f);
         }
         if (t >= 3)
         {
@@ -21,8 +22,8 @@ public class BarrageTurret : Turret
         }
         if (t >= 5)
         {
-            stats.ModifyStat("range", 1.2f);
             stats.ModifyStat("attack_speed", 3);
+            stats.ModifyStat("spread", 10, Stats.Operation.Subtract);
         }
     }
 }

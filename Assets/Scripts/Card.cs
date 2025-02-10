@@ -33,17 +33,22 @@ public class Card : MonoBehaviour, CardInterface
 
     private void Update()
     {
+        if (Input.GetMouseButtonUp(0)) // avoids using OnMouseUp()
+        {
+            MouseUp();
+        }
+
         if (StageController.currentStage == StageController.Stage.Battle && Hand.GetIndexOf(this) != -1)
         {
             float mouseY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
             float mouseX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
             float scale = 1.5f;
-            if (mouseY <= -3 && mouseX <= transform.parent.position.x + (Hand.Size()-1) * 2 && !isCardSelected && !areCardsBeingHovered && !Spawner.main.IsStageComplete()) // if mouse enters card bar
+            if (mouseY <= -3 && mouseX <= transform.parent.position.x + (Hand.Size()-1) * 2 + 1 && !isCardSelected && !areCardsBeingHovered && !Spawner.main.IsStageComplete()) // if mouse enters card bar
             {
                 areCardsBeingHovered = true;
                 transform.localScale = scale * 2f * Vector3.one;
                 lerpPos = handPos + Vector3.up * scale;
-            } else if ((mouseY > -3+scale*1.2f || mouseX > transform.parent.position.x + (Hand.Size() - 1) * 2) && areCardsBeingHovered) // if mouse exits card bar
+            } else if ((mouseY > -3+scale*1.2f || mouseX > transform.parent.position.x + (Hand.Size() - 1) * 2 + 1) && areCardsBeingHovered) // if mouse exits card bar
             {
                 areCardsBeingHovered = false;
                 if (!isCardSelected)
@@ -95,40 +100,44 @@ public class Card : MonoBehaviour, CardInterface
         }
     }
 
-    private void OnMouseUp()
+    private void MouseUp()
     {
-        if (!Spawner.main.IsStageComplete())
+        if (Hand.GetIndexOf(this) != -1) // if card is in hand
         {
-            selected = false;
-            isCardSelected = false;
-            if (StageController.currentStage == StageController.Stage.Battle)
+            if (!Spawner.main.IsStageComplete())
             {
-                if (TryGetComponent(out TowerCard tc))
+                selected = false;
+                isCardSelected = false;
+                if (StageController.currentStage == StageController.Stage.Battle)
                 {
-                    Main.hitboxReticle_.transform.position = new Vector3(2, 10, 0);
-                    Main.towerRangeReticle_.transform.position = new Vector3(4, 10, 0);
-                    Main.towerRangeReticle_.transform.localScale = Vector2.one;
+                    if (TryGetComponent(out TowerCard tc))
+                    {
+                        Main.hitboxReticle_.transform.position = new Vector3(2, 10, 0);
+                        Main.towerRangeReticle_.transform.position = new Vector3(4, 10, 0);
+                        Main.towerRangeReticle_.transform.localScale = Vector2.one;
 
-                    if (transform.position.y > -2.5 && Physics2D.OverlapCircle(Camera.main.ScreenToWorldPoint(Input.mousePosition), tc.hitboxRadius, Main.placementLayerMask_) == null)
-                    {
-                        spawned.GetComponent<Tower>().activated = true;
-                        spawned.layer = 6;
-                        Hand.Remove(this);
-                        gameObject.transform.position = Vector3.up * 10;
-                        gameObject.transform.localScale = Vector3.one * 1.5f;
+                        if (transform.position.y > -2.5 && Physics2D.OverlapCircle(Camera.main.ScreenToWorldPoint(Input.mousePosition), tc.hitboxRadius, Main.placementLayerMask_) == null)
+                        {
+                            spawned.GetComponent<Tower>().activated = true;
+                            spawned.layer = 6;
+                            Hand.Remove(this);
+                            gameObject.transform.position = Vector3.up * 10;
+                            gameObject.transform.localScale = Vector3.one * 1.5f;
+                        }
+                        else
+                        {
+                            ReturnTohand();
+                        }
                     }
-                    else
-                    {
-                        Destroy(spawned);
-                        transform.position = handPos;
-                        transform.localScale = Vector3.one * 1.5f;
-                    }
+                }
+                else
+                {
+                    ReturnTohand();
                 }
             }
             else
             {
-                transform.position = handPos;
-                transform.localScale = Vector3.one * 1.5f;
+                ReturnTohand();
             }
         }
     }
@@ -156,6 +165,14 @@ public class Card : MonoBehaviour, CardInterface
                 transform.position = new Vector3(target.x, target.y, -6);
             }
         }
+    }
+
+    public void ReturnTohand()
+    {
+        if (spawned != null)
+            Destroy(spawned);
+        transform.position = handPos;
+        transform.localScale = Vector3.one * 2;
     }
 
     public void SetHandPos()

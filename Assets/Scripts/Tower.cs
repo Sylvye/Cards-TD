@@ -53,6 +53,7 @@ public abstract class Tower : MonoBehaviour
     public virtual int GetDamage()
     {
         float typeDamage = type == Type.Kinetic ? Main.playerStats.GetStat("kinetic_base_damage") : Main.playerStats.GetStat("energy_base_damage");
+        float typeMult = type == Type.Kinetic ? Main.playerStats.GetStat("kinetic_damage_mult") : Main.playerStats.GetStat("energy_base_damage_mult");
         float multipliedDamage = (stats.GetStat("base_damage") + Main.playerStats.GetStat("base_damage") + typeDamage) * (Main.playerStats.GetStat("damage_mult") + stats.GetStat("damage_mult"));
         int finalDamage = Mathf.RoundToInt(multipliedDamage + Main.playerStats.GetStat("flat_damage"));
         //Debug.Log("Type damage : " + typeDamage + "\nMultiplied base: " + multipliedDamage + "\nFinal: " + finalDamage);
