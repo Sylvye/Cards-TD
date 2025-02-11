@@ -19,12 +19,12 @@ public class Stats : MonoBehaviour
         Divide
     }
     [SerializedDictionary("Name", "Value")]
-    public SerializedDictionary<string, float> stats = new();
+    public SerializedDictionary<string, Stat> stats = new();
 
     // returns true if successful
-    public bool AddStat(string name, float value)
+    public bool AddStat(string name, float value, float min, float max)
     {
-        return stats.TryAdd(name, value);
+        return stats.TryAdd(name, new Stat(value, min, max));
     }
 
     // returns true if successful
@@ -32,7 +32,7 @@ public class Stats : MonoBehaviour
     {
         if (stats.TryGetValue(name, out _))
         {
-            stats[name] = value;
+            stats[name].SetValue(value);
             return true;
         }
         Debug.LogWarning("Couldn't SET stat \"" + name + "\"");
@@ -50,7 +50,7 @@ public class Stats : MonoBehaviour
     {
         if (stats.TryGetValue(name, out _))
         {
-            stats[name] += value;
+            stats[name].Modify(value, Operation.Add);
             return true;
         }
         Debug.LogWarning("Couldn't ADD stat \"" + name + "\"");
@@ -68,20 +68,7 @@ public class Stats : MonoBehaviour
     {
         if (stats.TryGetValue(name, out _))
         {
-            switch (o) {
-                case Operation.Add:
-                    stats[name] += value;
-                    break;
-                case Operation.Subtract: 
-                    stats[name] -= value;
-                    break;
-                case Operation.Multiply:
-                    stats[name] *= value;
-                    break;
-                case Operation.Divide:
-                    stats[name] /= value;
-                    break;
-            }
+            stats[name].Modify(value, o);
             return true;
         }
         Debug.LogWarning("Couldn't ADD stat \"" + name + "\"");
@@ -91,9 +78,9 @@ public class Stats : MonoBehaviour
     // returns min_value if failed
     public float GetStat(string name)
     {
-        if (stats.TryGetValue(name, out float val))
+        if (stats.ContainsKey(name))
         {
-            return val;
+            return stats[name].GetValue();
         }
         Debug.LogWarning("Couldn't GET stat \"" + name + "\"");
         return float.MinValue;
@@ -115,7 +102,7 @@ public class Stats : MonoBehaviour
         for (int i=0; i<other.stats.Count; i++)
         {
             string key = other.stats.ElementAt(i).Key;
-            float val = other.stats.ElementAt(i).Value;
+            float val = other.stats.ElementAt(i).Value.GetValue();
 
             bool s = ModifyStat(key, val);
 
@@ -133,7 +120,7 @@ public class Stats : MonoBehaviour
         string message = "";
         for (int i=0; i<stats.Count; i++)
         {
-            message += stats.Keys.ElementAt(i) + " = " + stats.Values.ElementAt(i) + "\n";
+            message += stats.Keys.ElementAt(i) + " = " + stats.Values.ElementAt(i).GetValue() + "\n";
         }
         return message;
     }

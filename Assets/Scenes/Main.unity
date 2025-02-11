@@ -2432,31 +2432,70 @@ MonoBehaviour:
   stats:
     _serializedList:
     - Key: lives
-      Value: 0
+      Value:
+        value: 0
+        min: 0
+        max: 0
     - Key: currency
-      Value: 0
+      Value:
+        value: 0
+        min: 0
+        max: 0
     - Key: base_damage
-      Value: 0
+      Value:
+        value: 0
+        min: 0
+        max: 0
     - Key: flat_damage
-      Value: 0
+      Value:
+        value: 0
+        min: 0
+        max: 0
     - Key: damage_mult
-      Value: 0
+      Value:
+        value: 0
+        min: 0
+        max: 0
     - Key: energy_base_damage
-      Value: 0
+      Value:
+        value: 0
+        min: 0
+        max: 0
     - Key: kinetic_base_damage
-      Value: 0
+      Value:
+        value: 0
+        min: 0
+        max: 0
     - Key: energy_damage_mult
-      Value: 0
+      Value:
+        value: 0
+        min: 0
+        max: 0
     - Key: kinetic_damage_mult
-      Value: 0
+      Value:
+        value: 0
+        min: 0
+        max: 0
     - Key: pierce
-      Value: 0
+      Value:
+        value: 0
+        min: 0
+        max: 0
     - Key: kinetic_pierce
-      Value: 0
+      Value:
+        value: 0
+        min: 0
+        max: 0
     - Key: energy_pierce
-      Value: 0
+      Value:
+        value: 0
+        min: 0
+        max: 0
     - Key: base_discount
-      Value: 0
+      Value:
+        value: 0
+        min: 0
+        max: 0
 --- !u!1 &714570139
 GameObject:
   m_ObjectHideFlags: 0
@@ -4789,6 +4828,98 @@ Transform:
   m_Children: []
   m_Father: {fileID: 557305113}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1410382054
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1410382056}
+  - component: {fileID: 1410382055}
+  - component: {fileID: 1410382057}
+  m_Layer: 0
+  m_Name: StatTester
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1410382055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410382054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae17612f2b478de4b9de5259b22bec4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+  - value: 0
+    min: 0
+    max: 0
+  - value: 0
+    min: 0
+    max: 0
+  - value: 0
+    min: 0
+    max: 0
+  - value: 0
+    min: 0
+    max: 0
+  - value: 0
+    min: 0
+    max: 0
+  - value: 0
+    min: 0
+    max: 0
+  - value: 0
+    min: 0
+    max: 0
+  - value: 0
+    min: 0
+    max: 0
+  - value: 0
+    min: 0
+    max: 0
+--- !u!4 &1410382056
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410382054}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -22.82226, y: -10.836652, z: -5.2283316}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1410382057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410382054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 120fee790d013ae46a3af3417b801ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+    _serializedList:
+    - Key: 
+      Value:
+        value: 0
+        min: 0
+        max: 0
 --- !u!4 &1410483332 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 467519594113573095, guid: bbed92b32139ec642878e347d427052e, type: 3}
@@ -4931,33 +5062,75 @@ MonoBehaviour:
   stats:
     _serializedList:
     - Key: small_enemies
-      Value: 0
+      Value:
+        value: 0
+        min: 0
+        max: 0
     - Key: medium_enemies
-      Value: 0
+      Value:
+        value: 0
+        min: 0
+        max: 0
     - Key: large_enemies
-      Value: 0
+      Value:
+        value: 0
+        min: 0
+        max: 0
     - Key: small_enemy_speed_mult
-      Value: 1
+      Value:
+        value: 0
+        min: 0
+        max: 0
     - Key: medium_enemy_speed_mult
-      Value: 1
+      Value:
+        value: 0
+        min: 0
+        max: 0
     - Key: large_enemy_speed_mult
-      Value: 1
+      Value:
+        value: 0
+        min: 0
+        max: 0
     - Key: small_enemy_hp_mult
-      Value: 1
+      Value:
+        value: 0
+        min: 0
+        max: 0
     - Key: medium_enemy_hp_mult
-      Value: 1
+      Value:
+        value: 0
+        min: 0
+        max: 0
     - Key: large_enemy_hp_mult
-      Value: 1
+      Value:
+        value: 0
+        min: 0
+        max: 0
     - Key: wave_density
-      Value: 1
+      Value:
+        value: 0
+        min: 0
+        max: 0
     - Key: shields
-      Value: 0
+      Value:
+        value: 0
+        min: 0
+        max: 0
     - Key: desperation
-      Value: 0
+      Value:
+        value: 0
+        min: 0
+        max: 0
     - Key: resistance
-      Value: 0
+      Value:
+        value: 0
+        min: 0
+        max: 0
     - Key: regeneration
-      Value: 0
+      Value:
+        value: 0
+        min: 0
+        max: 0
 --- !u!1 &1441573541
 GameObject:
   m_ObjectHideFlags: 0
@@ -8157,3 +8330,4 @@ SceneRoots:
   - {fileID: 652896875}
   - {fileID: 773382578}
   - {fileID: 1049787310}
+  - {fileID: 1410382056}
