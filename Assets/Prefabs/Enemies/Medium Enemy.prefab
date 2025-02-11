@@ -192,14 +192,32 @@ MonoBehaviour:
   stats:
     _serializedList:
     - Key: hp
-      Value: 25
+      Value:
+        value: 0
+        min: 0
+        max: 
     - Key: max_hp
-      Value: 25
+      Value:
+        value: 15
+        min: 0
+        max: 
     - Key: speed
-      Value: 2
+      Value:
+        value: 2
+        min: 
+        max: 
     - Key: resistance
-      Value: 0
+      Value:
+        value: 0
+        min: 
+        max: 
     - Key: regeneration
-      Value: 0
+      Value:
+        value: 0
+        min: 
+        max: 
     - Key: shield
-      Value: 0
+      Value:
+        value: 0
+        min: 
+        max: 

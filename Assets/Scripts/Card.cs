@@ -12,7 +12,6 @@ public class Card : MonoBehaviour, CardInterface
     public string type;
     public GameObject spawnable;
     private GameObject spawned;
-    public int tier;
     private bool selected = false;
     private Vector3 handPos;
     private Vector3 lerpPos;

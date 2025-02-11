@@ -18,11 +18,11 @@ public class Stats : MonoBehaviour
         Multiply,
         Divide
     }
-    [SerializedDictionary("Name", "Value")]
+    [SerializedDictionary("Name", "Stat")]
     public SerializedDictionary<string, Stat> stats = new();
 
     // returns true if successful
-    public bool AddStat(string name, float value, float min, float max)
+    public bool AddStat(string name, float value, string min, string max)
     {
         return stats.TryAdd(name, new Stat(value, min, max));
     }

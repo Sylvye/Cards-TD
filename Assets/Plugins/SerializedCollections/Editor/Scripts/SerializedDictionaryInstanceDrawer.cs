@@ -435,7 +435,10 @@ namespace AYellowpaper.SerializedCollections.Editor
 
         private void DoKeyValueRect(Rect rect)
         {
-            var width = GetDesiredKeyLabelWidth(rect.width, 22);
+            // Calculate the key column width and force it to be no more than 60 pixels.
+            var keyWidth = GetDesiredKeyLabelWidth(rect.width, 22);
+            var width = Mathf.Min(keyWidth, 60); // <-- Force the key (left) column to be at most 60 pixels wide
+
             Rect leftRect = rect.WithWidth(width);
             Rect rightRect = leftRect.AppendRight(rect.width - width);
 
@@ -443,8 +446,12 @@ namespace AYellowpaper.SerializedCollections.Editor
             {
                 if (Event.current.type == EventType.Repaint)
                 {
-                    _keyValueStyle.Draw(leftRect, EditorGUIUtility.TrTextContent(_propertyData.GetElementData(SerializedDictionaryDrawer.KeyFlag).Settings.DisplayName), false, false, false, false);
-                    _keyValueStyle.Draw(rightRect, EditorGUIUtility.TrTextContent(_propertyData.GetElementData(SerializedDictionaryDrawer.ValueFlag).Settings.DisplayName), false, false, false, false);
+                    _keyValueStyle.Draw(leftRect,
+                        EditorGUIUtility.TrTextContent(_propertyData.GetElementData(SerializedDictionaryDrawer.KeyFlag).Settings.DisplayName),
+                        false, false, false, false);
+                    _keyValueStyle.Draw(rightRect,
+                        EditorGUIUtility.TrTextContent(_propertyData.GetElementData(SerializedDictionaryDrawer.ValueFlag).Settings.DisplayName),
+                        false, false, false, false);
                 }
                 var changeSizeRect = leftRect.AppendRight(5);
                 changeSizeRect.x -= 2;
@@ -465,6 +472,7 @@ namespace AYellowpaper.SerializedCollections.Editor
 
             EditorGUI.DrawRect(rect.AppendDown(1, -1), SerializedDictionaryDrawer.BorderColor);
         }
+
 
         private float GetDesiredKeyLabelWidth(float maxWidth, float offset = 0f)
         {

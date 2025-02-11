@@ -165,6 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentTower: {fileID: 0}
+  stats: {fileID: 0}
   randomFX: 1
   FX:
   - {fileID: 6939733695739161384, guid: e9589a2c4d1cf1947b04b44120f25f13, type: 3}
@@ -220,16 +221,37 @@ MonoBehaviour:
   stats:
     _serializedList:
     - Key: lifetime
-      Value: 1
+      Value:
+        value: 3
+        min: 0
+        max: 
     - Key: damage
-      Value: 0
+      Value:
+        value: 0
+        min: 0
+        max: 
     - Key: speed
-      Value: 1
+      Value:
+        value: 0
+        min: 1
+        max: 
     - Key: pierce
-      Value: 0
+      Value:
+        value: 0
+        min: 
+        max: 
     - Key: homing
-      Value: 0
+      Value:
+        value: 0
+        min: 0
+        max: 
     - Key: stun
-      Value: 0
+      Value:
+        value: 0
+        min: 0
+        max: 
     - Key: explosion_radius
-      Value: 0
+      Value:
+        value: 0
+        min: 0
+        max: 

@@ -21,7 +21,7 @@ public class UpgradeTable : MonoBehaviour
         if (card == null) return;
         Card c = card.prefabReference.GetComponent<Card>();
 
-        c.tier++;
+        c.stats.ModifyStat("tier", 1);
     }
 
     public static ScrollAreaItemCard GetCard()
@@ -33,7 +33,7 @@ public class UpgradeTable : MonoBehaviour
     {
         ScrollAreaItemCard c = GetCard();
         if (c == null) return -1;
-        int tier = c.prefabReference.GetComponent<Card>().tier;
+        int tier = (int)c.prefabReference.GetComponent<Card>().stats.GetStat("tier");
         return 5 * (int)Mathf.Pow(tier + upgrades, 2);
     }
 }

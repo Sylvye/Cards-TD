@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-// IngredientDrawerUIE
+
 [CustomPropertyDrawer(typeof(Stat))]
 public class StatDrawer : PropertyDrawer
 {
@@ -13,27 +13,55 @@ public class StatDrawer : PropertyDrawer
     {
         EditorGUI.BeginProperty(position, label, property);
 
-        // Optionally, draw a label for the entire property.
-        position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
+        // Draw the global property label and update the remaining position.
+        //position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
 
-        float padding = 5f;
+        // Spacing between columns.
         float spacing = 5f;
-        float totalWidth = position.width - padding * 2;
+        float totalWidth = position.width;
 
-        // Distribute space between the fields. Adjust percentages as needed.
-        float valueWidth = totalWidth * 0.4f;
-        float minWidth = totalWidth * 0.3f;
-        float maxWidth = totalWidth * 0.3f;
+        // Define custom ratios for each column:
+        float valueRatio = 0.5f;
+        float minRatio = 0.25f;
+        float maxRatio = 0.25f;
+        float totalSpacing = spacing * 2;
+        float valueColWidth = (totalWidth - totalSpacing) * valueRatio;
+        float minColWidth = (totalWidth - totalSpacing) * minRatio;
+        float maxColWidth = (totalWidth - totalSpacing) * maxRatio;
 
-        // Define rectangles for each field.
-        Rect valueRect = new Rect(position.x + padding, position.y, valueWidth - spacing, EditorGUIUtility.singleLineHeight);
-        Rect minRect = new Rect(valueRect.xMax + spacing, position.y, minWidth - spacing, EditorGUIUtility.singleLineHeight);
-        Rect maxRect = new Rect(minRect.xMax + spacing, position.y, maxWidth, EditorGUIUtility.singleLineHeight);
+        // Define column rectangles.
+        Rect valueCol = new Rect(position.x, position.y, valueColWidth, EditorGUIUtility.singleLineHeight);
+        Rect minCol = new Rect(valueCol.xMax + spacing, position.y, minColWidth, EditorGUIUtility.singleLineHeight);
+        Rect maxCol = new Rect(minCol.xMax + spacing, position.y, maxColWidth, EditorGUIUtility.singleLineHeight);
 
-        // Draw the fields. Use the exact names from your Stat struct.
-        EditorGUI.PropertyField(valueRect, property.FindPropertyRelative("value"), GUIContent.none);
-        EditorGUI.PropertyField(minRect, property.FindPropertyRelative("min"), GUIContent.none);
-        EditorGUI.PropertyField(maxRect, property.FindPropertyRelative("max"), GUIContent.none);
+        // Get the serialized properties.
+        SerializedProperty valueProp = property.FindPropertyRelative("value");
+        SerializedProperty minProp = property.FindPropertyRelative("min");
+        SerializedProperty maxProp = property.FindPropertyRelative("max");
+
+        // --- Value Column ---
+        // Reserve a fixed width for the "Value" label.
+        float valueLabelWidth = 40f;
+        Rect valueLabelRect = new Rect(valueCol.x, valueCol.y, valueLabelWidth, valueCol.height);
+        Rect valueFieldRect = new Rect(valueLabelRect.xMax, valueCol.y, valueCol.width - valueLabelWidth, valueCol.height);
+        EditorGUI.LabelField(valueLabelRect, "Value");
+        EditorGUI.PropertyField(valueFieldRect, valueProp, GUIContent.none);
+
+        // --- Min Column ---
+        // Reserve a smaller width for the "Min" label so that more space goes to the text field.
+        float minLabelWidth = 30f;
+        Rect minLabelRect = new Rect(minCol.x, minCol.y, minLabelWidth, minCol.height);
+        Rect minFieldRect = new Rect(minLabelRect.xMax, minCol.y, minCol.width - minLabelWidth, minCol.height);
+        EditorGUI.LabelField(minLabelRect, "Min");
+        minProp.stringValue = EditorGUI.TextField(minFieldRect, minProp.stringValue);
+
+        // --- Max Column ---
+        // Do the same for the "Max" field.
+        float maxLabelWidth = 30f;
+        Rect maxLabelRect = new Rect(maxCol.x, maxCol.y, maxLabelWidth, maxCol.height);
+        Rect maxFieldRect = new Rect(maxLabelRect.xMax, maxCol.y, maxCol.width - maxLabelWidth, maxCol.height);
+        EditorGUI.LabelField(maxLabelRect, "Max");
+        maxProp.stringValue = EditorGUI.TextField(maxFieldRect, maxProp.stringValue);
 
         EditorGUI.EndProperty();
     }

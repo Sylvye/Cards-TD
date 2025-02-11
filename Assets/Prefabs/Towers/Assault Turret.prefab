@@ -155,27 +155,60 @@ MonoBehaviour:
   stats:
     _serializedList:
     - Key: tier
-      Value: 0
+      Value:
+        value: 0
+        min: 1
+        max: 5
     - Key: projectiles
-      Value: 1
-    - Key: spread
-      Value: 15
-    - Key: pierce
-      Value: 0
-    - Key: speed
-      Value: 2
-    - Key: homing
-      Value: 0
+      Value:
+        value: 1
+        min: 1
+        max: 
     - Key: base_damage
-      Value: 2
+      Value:
+        value: 2
+        min: 0
+        max: 
     - Key: damage_mult
-      Value: 1
-    - Key: attack_speed
-      Value: 3
+      Value:
+        value: 1
+        min: 0
+        max: 
     - Key: range
-      Value: 3
+      Value:
+        value: 3
+        min: 1
+        max: 
+    - Key: attack_speed
+      Value:
+        value: 2
+        min: 0.1
+        max: 
     - Key: explosion_radius
-      Value: 0
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: spread
+      Value:
+        value: 25
+        min: 5
+        max: 
+    - Key: pierce
+      Value:
+        value: 1
+        min: 0
+        max: 
+    - Key: speed
+      Value:
+        value: 3
+        min: 1
+        max: 
+    - Key: homing
+      Value:
+        value: 0
+        min: 0
+        max: 
 --- !u!114 &1458326075435976873
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -40,6 +40,17 @@ public class TaserTurret : Tower
 
                 if (stats.GetStat("stun") > 0)
                     e.Stun(stats.GetStat("stun"));
+
+                if (stats.GetStat("explosion_radius") > 0)
+                {
+                    RaycastHit2D[] hit = Physics2D.CircleCastAll(e.transform.position, stats.GetStat("explosion_radius"), Vector2.zero, 0, Main.enemyLayerMask_);
+                    foreach (RaycastHit2D rayC in hit)
+                    {
+                        GameObject obj = rayC.collider.gameObject;
+                        obj.GetComponent<Enemy>().Damage(GetDamage());
+                    }
+                }
+
                 e.Damage(GetDamage());
             }
         }
@@ -93,7 +104,7 @@ public class TaserTurret : Tower
         }
         if (t >= 5)
         {
-            stats.ModifyStat("projectiles", 2);
+            stats.ModifyStat("projectiles", 1);
             stats.ModifyStat("base_damage", 1);
             stats.ModifyStat("stun", 0.05f);
             stats.ModifyStat("range", 3);

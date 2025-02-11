@@ -191,29 +191,29 @@ MonoBehaviour:
       Value:
         value: 0
         min: 0
-        max: 0
+        max: 
     - Key: max_hp
       Value:
-        value: 0
+        value: 6
         min: 0
-        max: 0
+        max: 
     - Key: speed
       Value:
-        value: 0
-        min: 0
-        max: 0
+        value: 3
+        min: 
+        max: 
     - Key: resistance
       Value:
         value: 0
-        min: 0
-        max: 0
+        min: 
+        max: 
     - Key: regeneration
       Value:
         value: 0
-        min: 0
-        max: 0
+        min: 
+        max: 
     - Key: shield
       Value:
         value: 0
-        min: 0
-        max: 0
+        min: 
+        max: 

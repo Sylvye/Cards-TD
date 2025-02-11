@@ -99,16 +99,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: Explosion
-  flatDamage: 0
-  attackSpeed: 0
-  range: 0
-  pierce: 0
-  projectiles: 0
-  projectileSpeedMult: 0
-  homingSpeed: 0
-  spread: 0
-  explosionRadius: 0.1
-  stats: {fileID: 0}
 --- !u!114 &701445910214206412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,20 +114,47 @@ MonoBehaviour:
   stats:
     _serializedList:
     - Key: base_damage
-      Value: 0
+      Value:
+        value: 0
+        min: 
+        max: 
     - Key: attack_speed
-      Value: 0
+      Value:
+        value: 0
+        min: 
+        max: 
     - Key: range
-      Value: 0
+      Value:
+        value: 0
+        min: 
+        max: 
     - Key: pierce
-      Value: 0
+      Value:
+        value: 0
+        min: 
+        max: 
     - Key: projectiles
-      Value: 0
+      Value:
+        value: 0
+        min: 
+        max: 
     - Key: speed
-      Value: 0
+      Value:
+        value: 0
+        min: 
+        max: 
     - Key: homing
-      Value: 0
+      Value:
+        value: 0
+        min: 
+        max: 
     - Key: spread
-      Value: 0
+      Value:
+        value: 0
+        min: 
+        max: 
     - Key: explosion_radius
-      Value: 0.1
+      Value:
+        value: 0.2
+        min: 
+        max: 

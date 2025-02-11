@@ -2,16 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
 [Serializable]
-public struct Stat
+public class Stat
 {
     public float value;
-    public float min;
-    public float max;
+    public string min;
+    public string max;
 
-    public Stat(float value, float min, float max)
+    public Stat(float value, string min, string max)
     {
         this.value = value;
         this.min = min;
@@ -52,13 +53,16 @@ public struct Stat
 
     private void Clamp()
     {
-        if (min != -1 && value < min)
+        bool hasMin = float.TryParse(min, out float minimum);
+        bool hasMax = float.TryParse(max, out float maximum);
+
+        if (hasMin && value < minimum)
         {
-            value = min;
+            value = minimum;
         }
-        else if (max != -1 && value > max)
+        else if (hasMax && value > maximum)
         {
-            value = max;
+            value = maximum;
         }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -18,6 +19,11 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         stats = GetComponent<Stats>();
+    }
+
+    private void Start()
+    {
+        stats.SetStat("hp", stats.GetStat("max_hp"));
     }
 
     // Update is called once per frame
