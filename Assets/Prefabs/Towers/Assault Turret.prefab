@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5780642335862219962}
   - component: {fileID: 2802227255617744018}
   - component: {fileID: -9032120063116637718}
-  - component: {fileID: 1458326075435976873}
   m_Layer: 6
   m_Name: Assault Turret
   m_TagString: Untagged
@@ -209,17 +208,3 @@ MonoBehaviour:
         value: 0
         min: 0
         max: 
---- !u!114 &1458326075435976873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5304065507062134350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 120fee790d013ae46a3af3417b801ce5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats:
-    _serializedList: []
