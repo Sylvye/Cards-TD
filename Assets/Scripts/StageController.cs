@@ -20,13 +20,15 @@ public class StageController : MonoBehaviour
     [Header("General")]
     public static StageController main;
     public static Stage currentStage = Stage.Map;
+    public BackgroundMat[] stageMaterials; // MAP, BATTLE, AUGMENT, SHOP, UPGRADE
+    private static Material BGMat;
+    private static float lerpProgress = 1;
     private static Vector3 cameraDestination = new(0, -10, -10);
     [Header("Shop")]
     public Transform shopCardSpawn;
     public Transform shopAugmentSpawn;
     public GameobjectLootpool cardProbs;
     public Transform textParent;
-    public float[] rarityWeights = { 78, 12, 6, 3, 1 };
     [Header("Battle")]
     public static GameObject battleButton;
     public static GameObject inventoryLabels;
@@ -52,10 +54,12 @@ public class StageController : MonoBehaviour
 
     private void Start()
     {
+        BGMat = GameObject.Find("Background Shader").GetComponent<SpriteRenderer>().material;
         inventoryLabels.SetActive(false);
         inventoryUI.SetActive(false);
         boonCurse.SetActive(false);
         riskRewardTextbox.SetActive(false);
+        RoundBGMat();
     }
     private void Update()
     {
@@ -63,10 +67,20 @@ public class StageController : MonoBehaviour
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, cameraDestination, Time.deltaTime * 5);
         else
             Camera.main.transform.position = cameraDestination;
+
+        if (lerpProgress < 0.995)
+        {
+            LerpBGMat();
+        }
+        else if (lerpProgress != 1)
+        {
+            RoundBGMat();
+        }
     }
 
     public static void SwitchStage(Stage stage)
     {
+        lerpProgress = 0;
         if (currentStage == Stage.Shop)
         {
             ShopController.ResetShop();
@@ -164,5 +178,45 @@ public class StageController : MonoBehaviour
 
         cardScrollArea.FillWithCards(cardSAI, cardDestination, 0, Cards.CardType.Card);
         augmentScrollArea.FillWithCards(cardSAI, augmentDestination, 1, Cards.CardType.Augment);
+    }
+
+    private static void LerpBGMat()
+    {
+        int stageIndex = (int)currentStage-1;
+        float speed = 5;
+        lerpProgress = Mathf.Lerp(lerpProgress, 1, Time.deltaTime * speed);
+
+        Color lerpedOverlapColor = Color.Lerp(BGMat.GetColor("_Overlap_Color"), main.stageMaterials[stageIndex].overlapColor, Time.deltaTime * speed);
+        Color lerpedHighColor = Color.Lerp(BGMat.GetColor("_High_Color"), main.stageMaterials[stageIndex].highColor, Time.deltaTime * speed);
+        Color lerpedLowColor = Color.Lerp(BGMat.GetColor("_Low_Color"), main.stageMaterials[stageIndex].lowColor, Time.deltaTime * speed);
+        float lerpedBlobStep = Mathf.Lerp(BGMat.GetFloat("_Blob_Step"), main.stageMaterials[stageIndex].blobStep, Time.deltaTime * speed);
+        float lerpedBlobPower = Mathf.Lerp(BGMat.GetFloat("_Blob_Power"), main.stageMaterials[stageIndex].blobPower, Time.deltaTime * speed);
+        float lerpedBlobDensity = Mathf.Lerp(BGMat.GetFloat("_Blob_Density"), main.stageMaterials[stageIndex].blobDensity, Time.deltaTime * speed);
+        float lerpedShearStrength = Mathf.Lerp(BGMat.GetFloat("_Shear_Strength"), main.stageMaterials[stageIndex].shearStrength, Time.deltaTime * speed);
+        float lerpedGradientNoiseStep = Mathf.Lerp(BGMat.GetFloat("_Gradient_Noise_Step"), main.stageMaterials[stageIndex].gradientNoiseStep, Time.deltaTime * speed);
+
+        BGMat.SetColor("_Overlap_Color", lerpedOverlapColor);
+        BGMat.SetColor("_High_Color", lerpedHighColor);
+        BGMat.SetColor("_Low_Color", lerpedLowColor);
+        BGMat.SetFloat("_Blob_Step", lerpedBlobStep);
+        BGMat.SetFloat("_Blob_Power", lerpedBlobPower);
+        BGMat.SetFloat("_Blob_Density", lerpedBlobDensity);
+        BGMat.SetFloat("_Shear_Strength", lerpedShearStrength);
+        BGMat.SetFloat("_Gradient_Noise_Step", lerpedGradientNoiseStep);
+    }
+
+    private static void RoundBGMat()
+    {
+        lerpProgress = 1;
+        int stageIndex = (int)currentStage-1;
+
+        BGMat.SetColor("_Overlap_Color", main.stageMaterials[stageIndex].overlapColor);
+        BGMat.SetColor("_High_Color", main.stageMaterials[stageIndex].highColor);
+        BGMat.SetColor("_Low_Color", main.stageMaterials[stageIndex].lowColor);
+        BGMat.SetFloat("_Blob_Step", main.stageMaterials[stageIndex].blobStep);
+        BGMat.SetFloat("_Blob_Power", main.stageMaterials[stageIndex].blobPower);
+        BGMat.SetFloat("_Blob_Density", main.stageMaterials[stageIndex].blobDensity);
+        BGMat.SetFloat("_Shear_Strength", main.stageMaterials[stageIndex].shearStrength);
+        BGMat.SetFloat("_Gradient_Noise_Step", main.stageMaterials[stageIndex].gradientNoiseStep);
     }
 }

@@ -89,12 +89,16 @@ public class Main : MonoBehaviour
             Spawner.main.Send(2);
         if (Input.GetKeyUp(KeyCode.Alpha3))
             Spawner.main.Send(3);
-        if (Input.GetKeyUp(KeyCode.Alpha4))
-            Spawner.main.Send(4);
-        if (Input.GetKeyUp(KeyCode.Alpha5))
-            Spawner.main.Send(5);
         if (Input.GetKeyUp(KeyCode.Alpha6))
-            Spawner.main.Send(6);
+            StageController.SwitchStage((StageController.Stage)(6 - 5));
+        if (Input.GetKeyUp(KeyCode.Alpha7))
+            StageController.SwitchStage((StageController.Stage)(7 - 5));
+        if (Input.GetKeyUp(KeyCode.Alpha8))
+            StageController.SwitchStage((StageController.Stage)(8 - 5));
+        if (Input.GetKeyUp(KeyCode.Alpha9))
+            StageController.SwitchStage((StageController.Stage)(9 - 5));
+        if (Input.GetKeyUp(KeyCode.Alpha0))
+            StageController.SwitchStage((StageController.Stage)(10 - 5));
         if (Input.GetKeyUp(KeyCode.M))
             Earn(100);
         if (Input.GetKeyUp(KeyCode.B))
