@@ -140,7 +140,7 @@ public class StageController : MonoBehaviour
             GameObject label = ShopController.MakeLabel(pos + Vector3.down, cardItem.GetPrice() + "c");
             if (cardItem.GetDiscount() != 1)
             {
-                label.GetComponent<TMPLabel>().SetText(label.GetComponent<TMPLabel>().GetText() + " (-" + cardItem.GetDiscount()*100 + "%)");
+                label.GetComponent<TMPLabel>().SetText(label.GetComponent<TMPLabel>().GetText());
             }
             label.transform.SetParent(textParent, true);
         }
@@ -154,7 +154,7 @@ public class StageController : MonoBehaviour
             GameObject label = ShopController.MakeLabel(pos + Vector3.down, augmentItem.GetPrice() + "c");
             if (augmentItem.GetDiscount() != 1)
             {
-                label.GetComponent<TMPLabel>().SetText(label.GetComponent<TMPLabel>().GetText() + " (-" + augmentItem.GetDiscount()*100 + "%)");
+                label.GetComponent<TMPLabel>().SetText(label.GetComponent<TMPLabel>().GetText());
             }
             label.transform.SetParent(textParent, true);
         }
@@ -162,7 +162,7 @@ public class StageController : MonoBehaviour
 
     public void SetupUpgrade()
     {
-        UpgradeTable.upgrades = 0;
+        UpgradeTable.upgrades = 0; // resets upgrade cost scaling
 
         ScrollArea cardScrollArea = GameObject.Find("Upgrade Deck Scroll Area").GetComponent<ScrollArea>();
         Transform cardDestination = UpgradeTable.main.transform.GetChild(0);

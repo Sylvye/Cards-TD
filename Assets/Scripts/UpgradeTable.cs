@@ -13,10 +13,8 @@ public class UpgradeTable : MonoBehaviour
         main = this;
     }
 
-
-    public static bool Upgrade() // upgrades a card by one tier
+    public static bool Upgrade() // upgrades a card by one tier. if successful, returns true
     {
-        upgrades++;
         ScrollAreaItemCard card = GetCard();
         if (card == null) return false;
         Card c = card.prefabReference.GetComponent<Card>();
@@ -32,11 +30,16 @@ public class UpgradeTable : MonoBehaviour
         return main.transform.GetChild(0).childCount == 0 ? null : main.transform.GetChild(0).GetComponentInChildren<ScrollAreaItemCard>();
     }
 
+    // 15(x+T-1)^2
+    // x = upgrades
+    // T = tier
     public static int UpgradeCost()
     {
         ScrollAreaItemCard c = GetCard();
         if (c == null) return -1;
-        int tier = (int)c.prefabReference.GetComponent<Card>().stats.GetStat("tier");
-        return 5 * (int)Mathf.Pow(tier + upgrades, 2);
+        Card card = c.prefabReference.GetComponent<Card>();
+        if (card.stats.GetStat("tier") > 4) return -1;
+        int tier = (int)card.stats.GetStat("tier");
+        return 15 * (int)Mathf.Pow(upgrades + tier - 1, 2);
     }
 }

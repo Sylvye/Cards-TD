@@ -48,8 +48,8 @@ Material:
     - _Gradient_Noise_Scale: 5
     - _Gradient_Noise_Step: 0.5
     - _Morph_Rotate_Speed: 0.001
-    - _Morph_Speed: 0.1
-    - _Pixelation: 400
+    - _Morph_Speed: 0.01
+    - _Pixelation: 150
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Rotate_Speed: 0.05
