@@ -10,8 +10,7 @@ public class ScrollAreaItem : MonoBehaviour
     public string id;
     [NonSerialized]
     public Vector2 homePos;
-    [NonSerialized]
-    public SpriteRenderer sr;
+    private SpriteRenderer sr;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -35,6 +34,11 @@ public class ScrollAreaItem : MonoBehaviour
         {
             MouseTooltip.SetVisible(false);
         }
+    }
+
+    public void SetSprite(Sprite s)
+    {
+        sr.sprite = s;
     }
 
     public virtual bool Clickable()

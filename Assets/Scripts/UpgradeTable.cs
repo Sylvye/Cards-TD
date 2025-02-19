@@ -14,14 +14,17 @@ public class UpgradeTable : MonoBehaviour
     }
 
 
-    public static void Upgrade() // upgrades a card by one tier
+    public static bool Upgrade() // upgrades a card by one tier
     {
         upgrades++;
         ScrollAreaItemCard card = GetCard();
-        if (card == null) return;
+        if (card == null) return false;
         Card c = card.prefabReference.GetComponent<Card>();
-
+        if (c.stats.GetStat("tier") >= 5) return false;
         c.stats.ModifyStat("tier", 1);
+        card.SetSprite(c.GetSprite());
+
+        return true;
     }
 
     public static ScrollAreaItemCard GetCard()

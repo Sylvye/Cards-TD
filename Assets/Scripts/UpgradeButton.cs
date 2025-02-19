@@ -12,7 +12,9 @@ public class UpgradeButton : Button
 
     public override void Action()
     {
-        Main.playerStats.ModifyStat("currency", UpgradeTable.UpgradeCost(), Stats.Operation.Subtract);
-        UpgradeTable.Upgrade();
+        if (UpgradeTable.Upgrade()) // if successful
+        {
+            Main.playerStats.ModifyStat("currency", UpgradeTable.UpgradeCost(), Stats.Operation.Subtract);
+        }
     }
 }
