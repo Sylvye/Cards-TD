@@ -2,10 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class ScrollAreaItem : MonoBehaviour
+public class ScrollAreaItem : MonoBehaviour, IComparable<ScrollAreaItem>
 {
     public string id;
     [NonSerialized]
@@ -44,5 +45,10 @@ public class ScrollAreaItem : MonoBehaviour
     public virtual bool Clickable()
     {
         return transform.parent.GetComponent<BoxCollider2D>().OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+    }
+
+    public virtual int CompareTo(ScrollAreaItem other)
+    {
+        return id.CompareTo(other.id);
     }
 }

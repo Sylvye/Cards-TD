@@ -15,7 +15,7 @@ public class ShopController : MonoBehaviour
     public GameobjectLootpool cardLootpool;
     public GameobjectLootpool augmentLootpool;
     public AnimationCurve tierChances;
-    public ScrollArea shopScrollArea;
+    public static ScrollArea shopScrollArea;
 
     private static List<GameObject> shopStuff = new();
 
@@ -66,11 +66,13 @@ public class ShopController : MonoBehaviour
 
     public static void ResetShop()
     {
-        main.shopScrollArea.ClearInventory();
+        shopScrollArea.DeleteInventory();
 
         foreach (GameObject obj in shopStuff)
         {
             Destroy(obj);
         }
+
+        Debug.Log(main.transform.childCount);
     }
 }

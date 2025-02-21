@@ -38,7 +38,6 @@ public class DraggableScrollAreaItem : ScrollAreaItem
                 break;
             case State.Moving:
                 pos = Vector3.Lerp(transform.position, lerpPos, Time.deltaTime * 50);
-                Debug.DrawLine(transform.position, pos, Color.yellow, 10);
                 transform.position = new Vector3(pos.x, pos.y, -2);
                 break;
             case State.Positioned:
@@ -86,6 +85,7 @@ public class DraggableScrollAreaItem : ScrollAreaItem
                 transform.localPosition = Vector3.zero;
                 scale = transform.localScale;
                 state = State.Positioned;
+                p.GetComponent<ScrollArea>().RefreshPositions();
             }
             else
             {
@@ -107,7 +107,7 @@ public class DraggableScrollAreaItem : ScrollAreaItem
             transform.parent = null;
             state = State.Moving;
             p.GetComponent<ScrollArea>().RemoveFromInventory(gameObject);
-            p.GetComponent<ScrollArea>().RefreshPositions();
+            //p.GetComponent<ScrollArea>().RefreshPositions();
         }
     }
 

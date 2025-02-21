@@ -39,6 +39,8 @@ public class StageController : MonoBehaviour
     [Header("Upgrade")]
     public int test2 = 10;
     [Header("Augment")]
+    public static ScrollArea augCardScrollArea;
+    public static ScrollArea augAugmentScrollArea;
     public GameObject cardSAI;
 
     private void Awake()
@@ -49,6 +51,8 @@ public class StageController : MonoBehaviour
         inventoryUI = GameObject.Find("Inventory UI");
         boonCurse = GameObject.Find("Boon-curse");
         riskRewardTextbox = GameObject.Find("Risk-Reward Textbox");
+        augCardScrollArea = GameObject.Find("Augment Deck Scroll Area").GetComponent<ScrollArea>();
+        augAugmentScrollArea = GameObject.Find("Augment Scroll Area").GetComponent<ScrollArea>();
         inventoryLootScrollArea = inventoryUI.GetComponentInChildren<ScrollArea>();
     }
 
@@ -81,9 +85,24 @@ public class StageController : MonoBehaviour
     public static void SwitchStage(Stage stage)
     {
         lerpProgress = 0;
-        if (currentStage == Stage.Shop)
+        switch (currentStage)
         {
-            ShopController.ResetShop();
+            case Stage.Map:
+                break;
+            case Stage.Battle:
+                break;
+            case Stage.Shop:
+                ShopController.ResetShop();
+                break;
+            case Stage.Augment:
+                augCardScrollArea.DeleteInventory();
+                augAugmentScrollArea.DeleteInventory();
+                break;
+            case Stage.Upgrade:
+                ShopController.shopScrollArea.DeleteInventory();
+                break;
+            default:
+                break;
         }
 
         switch (stage)
@@ -171,13 +190,11 @@ public class StageController : MonoBehaviour
 
     public void SetupAugment()
     {
-        ScrollArea cardScrollArea = GameObject.Find("Augment Deck Scroll Area").GetComponent<ScrollArea>();
-        ScrollArea augmentScrollArea = GameObject.Find("Augment Scroll Area").GetComponent<ScrollArea>();
         Transform cardDestination = AugmentTable.main.transform.GetChild(1);
         Transform augmentDestination = AugmentTable.main.transform.GetChild(0);
 
-        cardScrollArea.FillWithCards(cardSAI, cardDestination, 0, Cards.CardType.Card);
-        augmentScrollArea.FillWithCards(cardSAI, augmentDestination, 1, Cards.CardType.Augment);
+        augCardScrollArea.FillWithCards(cardSAI, cardDestination, 0, Cards.CardType.Card);
+        augAugmentScrollArea.FillWithCards(cardSAI, augmentDestination, 1, Cards.CardType.Augment);
     }
 
     private static void LerpBGMat()

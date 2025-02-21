@@ -13,13 +13,7 @@ public class ScrollArea : MonoBehaviour
     public float scrolledAmt = 0;
     public float scrollPower = 0.5f;
     public int layer;
-    private List<GameObject> inventory = new List<GameObject>();
-
-    // Start is called before the first frame update
-    private void Start()
-    {
-
-    }
+    private List<ScrollAreaItem> inventory = new();
 
     // Update is called once per frame
     private void Update()
@@ -43,40 +37,49 @@ public class ScrollArea : MonoBehaviour
         }
     }
     
-    public void ClearInventory()
+    public void DeleteInventory()
     {
+        foreach (ScrollAreaItem child in inventory)
+        {
+            Destroy(child.gameObject);
+        }
         inventory.Clear();
     }
 
     public void RefreshPositions()
     {
+        inventory.Sort();
         for (int i=0; i<inventory.Count; i++)
         {
-            GameObject item = inventory[i];
+            GameObject item = inventory[i].gameObject;
             item.transform.localPosition = new Vector3(offset.x * (i % itemsPerRow) / transform.localScale.x, -offset.y * (i / itemsPerRow) / transform.localScale.y, -1) + startPos + Vector3.down * scrolledAmt;
         }
     }
 
     public void AddToInventory(GameObject item)
     {
-        inventory.Add(item);
+        inventory.Add(item.GetComponent<ScrollAreaItem>());
+        inventory.Sort();
         item.transform.parent = transform;
-        int itemIndex = inventory.Count - 1;
-        item.transform.localPosition = new Vector3(offset.x * (itemIndex % itemsPerRow) / transform.localScale.x, -offset.y * (itemIndex++ / itemsPerRow) / transform.localScale.y, -1) + startPos + Vector3.down * scrolledAmt;
         item.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+        RefreshPositions();
     }
 
     public void AddToInventory(GameObject[] items)
     {
         foreach (GameObject item in items)
         {
-            AddToInventory(item);
+            inventory.Add(item.GetComponent<ScrollAreaItem>());
+            inventory.Sort();
+            item.transform.parent = transform;
+            item.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
         }
+        RefreshPositions();
     }
 
     public void RemoveFromInventory(GameObject item)
     {
-        inventory.Remove(item);
+        inventory.Remove(item.GetComponent<ScrollAreaItem>());
         item.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.None;
         if (TryGetComponent(out DraggableScrollAreaItem sai))
         {
@@ -88,7 +91,7 @@ public class ScrollArea : MonoBehaviour
     {
         for (int i=inventory.Count-1; i>=0; i--)
         {
-            GameObject obj = inventory[i];
+            GameObject obj = inventory[i].gameObject;
             if (obj.TryGetComponent(out LootItem li) && li.claimed)
             {
                 Destroy(obj);
@@ -127,6 +130,7 @@ public class ScrollArea : MonoBehaviour
             item.prefabReference = cardPrefabReference.GetGameObject();
             item.id = cardPrefabReference.GetName();
         }
+        inventory.Sort();
     }
 
     public void FillWithList(List<ScrollAreaItem> list, Transform destination, int sortingOrder)
@@ -146,5 +150,6 @@ public class ScrollArea : MonoBehaviour
                 dsai.draggableDestinations.Add(destination);
             }
         }
+        inventory.Sort();
     }
 }
