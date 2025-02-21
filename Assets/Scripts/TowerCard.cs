@@ -26,11 +26,24 @@ public class TowerCard : Card
 
     public override string GetName()
     {
+        if (stats == null)
+        {
+            stats = GetComponent<Stats>();
+        }
         return prefabTower.name + " T" + stats.GetStat("tier");
     }
 
     public override Sprite GetSprite()
     {
+        if (stats == null)
+        {
+            stats = GetComponent<Stats>();
+        }
         return Resources.LoadAll<Sprite>("CardPack")[towerIndex * 5 + (int)stats.GetStat("tier") - 1];
+    }
+
+    public override Sprite GetSprite(int tier)
+    {
+        return Resources.LoadAll<Sprite>("CardPack")[towerIndex * 5 + tier - 1];
     }
 }

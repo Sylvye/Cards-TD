@@ -14,6 +14,7 @@ public class ShopController : MonoBehaviour
     public int augmentCount;
     public GameobjectLootpool cardLootpool;
     public GameobjectLootpool augmentLootpool;
+    public AnimationCurve tierChances;
     public ScrollArea shopScrollArea;
 
     private static List<GameObject> shopStuff = new();
@@ -27,11 +28,7 @@ public class ShopController : MonoBehaviour
 
     public static GameObject MakeCard()
     {
-        CardPurchaseable output = Instantiate(main.cardPrefab, new Vector3(0, 10, 0), Quaternion.identity).GetComponent<CardPurchaseable>();
-
-        output.card = main.cardLootpool.GetRandom().GetComponent<Card>();
-        shopStuff.Add(output.gameObject);
-        return output.gameObject;
+        return MakeCard(new Vector3(0, 10, 0));
     }
 
     public static GameObject MakeCard(Vector3 spawn)
@@ -39,17 +36,14 @@ public class ShopController : MonoBehaviour
         CardPurchaseable output = Instantiate(main.cardPrefab, spawn, Quaternion.identity).GetComponent<CardPurchaseable>();
 
         output.card = main.cardLootpool.GetRandom().GetComponent<Card>();
+        output.tier = Random.Range(1, Mathf.RoundToInt(main.tierChances.Evaluate(MapController.GetProgress()) * 5 + 1));
         shopStuff.Add(output.gameObject);
         return output.gameObject;
     }
 
     public static GameObject MakeAugment()
     {
-        AugmentPurchaseable output = Instantiate(main.augmentPrefab, new Vector3(0, 10, 0), Quaternion.identity).GetComponent<AugmentPurchaseable>();
-
-        output.augment = main.augmentLootpool.GetRandom().GetComponent<Augment>();
-        shopStuff.Add(output.gameObject);
-        return output.gameObject;
+        return MakeAugment(new Vector3(0, 10, 0));
     }
 
     public static GameObject MakeAugment(Vector3 spawn)

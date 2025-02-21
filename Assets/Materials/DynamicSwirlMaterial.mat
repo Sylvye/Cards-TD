@@ -46,7 +46,7 @@ Material:
     - _Blob_Rotation_Speed: 0.5
     - _Blob_Step: 0.4
     - _Gradient_Noise_Scale: 5
-    - _Gradient_Noise_Step: 0.5
+    - _Gradient_Noise_Step: 1.5
     - _Morph_Rotate_Speed: 0.001
     - _Morph_Speed: 0.01
     - _Pixelation: 150

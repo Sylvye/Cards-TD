@@ -19,4 +19,4 @@ MonoBehaviour:
   blobPower: 0.5
   blobDensity: 2
   shearStrength: 2
-  gradientNoiseStep: 0.5
+  gradientNoiseStep: 1

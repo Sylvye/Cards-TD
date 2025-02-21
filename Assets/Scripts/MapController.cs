@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Transactions;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -252,5 +253,10 @@ public class MapController : MonoBehaviour
             else if (reachedColumn)
                 break;
         }
+    }
+
+    public static float GetProgress()
+    {
+        return (float)currentNode.column / (Main.mapLength_ - 1);
     }
 }

@@ -203,6 +203,11 @@ public class Card : MonoBehaviour, CardInterface
 
     public virtual Sprite GetSprite()
     {
+        return GetSprite(1);
+    }
+
+    public virtual Sprite GetSprite(int tier)
+    {
         return GetComponent<SpriteRenderer>().sprite;
     }
 }

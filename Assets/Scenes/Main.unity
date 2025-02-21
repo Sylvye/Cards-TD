@@ -3625,8 +3625,8 @@ Transform:
   m_GameObject: {fileID: 1110758237}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -30.5, y: -10, z: 7}
-  m_LocalScale: {x: 10, y: 8, z: 1}
+  m_LocalPosition: {x: -31.5, y: -10, z: 7}
+  m_LocalScale: {x: 8, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1412432099}
@@ -5849,6 +5849,30 @@ MonoBehaviour:
   augmentCount: 4
   cardLootpool: {fileID: 11400000, guid: 8c35a6c4cd076c24a8edd87b7f79db56, type: 2}
   augmentLootpool: {fileID: 11400000, guid: bfb1dc40dbe26a64d91527bd18e805ea, type: 2}
+  tierChances:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1.3333334
+      outSlope: 1.3333334
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.75
+      value: 1
+      inSlope: 1.3333334
+      outSlope: 1.3333334
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   shopScrollArea: {fileID: 0}
 --- !u!1 &1700930360
 GameObject:
