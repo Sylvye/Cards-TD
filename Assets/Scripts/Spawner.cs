@@ -82,8 +82,9 @@ public class Spawner : MonoBehaviour
     public void Send(int tier)
     {
         Enemy e = Spawn(enemies[tier - 1], transform.position, enemies[tier - 1].transform.rotation).GetComponent<Enemy>();
-        float speedMult = stats.GetStat(TierToType(tier) + "_enemy_speed_mult");
-        float hpMult = stats.GetStat(TierToType(tier) + "_enemy_hp_mult");
+        float speedMult = stats.GetStat(Enemy.TierToType(tier) + "_enemy_speed_mult");
+        float hpMult = stats.GetStat(Enemy.TierToType(tier) + "_enemy_hp_mult");
+        e.size = (Enemy.Size)tier;
         e.stats.ModifyStat("speed", speedMult, Stats.Operation.Multiply);
         e.stats.ModifyStat("hp", hpMult, Stats.Operation.Multiply);
         e.stats.ModifyStat("max_hp", hpMult, Stats.Operation.Multiply);
@@ -91,26 +92,16 @@ public class Spawner : MonoBehaviour
 
     public GameObject Spawn(GameObject obj, Vector3 pos, Quaternion rot)
     {
-        GameObject o = Instantiate(obj, pos + 0.001f * spawned * Vector3.forward, rot);
+        GameObject enemy = Instantiate(obj, pos + 0.001f * spawned * Vector3.forward, rot);
+        Enemy e = enemy.GetComponent<Enemy>();
         if (!freebie && waveIndex == wave.Count)
         {
-            o.GetComponent<Enemy>().dropWeights[0] = 0;
+            e.dropWeights[0] = 0;
             freebie = true;
         }
-        spawnedEnemies.Add(o);
+        spawnedEnemies.Add(enemy);
         spawned++;
-        return o;
-    }
-
-    private string TierToType(int tier)
-    {
-        return tier switch
-        {
-            1 => "small",
-            2 => "medium",
-            3 => "large",
-            _ => ""
-        };
+        return enemy;
     }
 
     public void UpdateWave()

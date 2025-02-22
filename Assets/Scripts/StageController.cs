@@ -90,6 +90,8 @@ public class StageController : MonoBehaviour
             case Stage.Map:
                 break;
             case Stage.Battle:
+                Spawner.main.stats.ModifyStat("hp_mult", 0.2f);
+                Spawner.main.stats.ModifyStat("speed", 0.05f);
                 break;
             case Stage.Shop:
                 ShopController.ResetShop();

@@ -4625,6 +4625,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
     _serializedList:
+    - Key: flat_hp
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: hp_mult
+      Value:
+        value: 1
+        min: 0.1
+        max: 
     - Key: small_enemies
       Value:
         value: 0
@@ -4675,24 +4685,24 @@ MonoBehaviour:
         value: 1
         min: 0.5
         max: 
-    - Key: shields
+    - Key: shield
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: regeneration
       Value:
         value: 0
         min: 0
         max: 
     - Key: desperation
       Value:
-        value: 0
-        min: 0
+        value: 1
+        min: 1
         max: 
     - Key: resistance
       Value:
         value: 1
-        min: 0
-        max: 
-    - Key: regeneration
-      Value:
-        value: 0
         min: 0
         max: 
 --- !u!1 &1441573541

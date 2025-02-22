@@ -166,6 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ba4cedf4ef3beb4e888f9ac6e8018ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  size: 0
   pulls: 1
   drops:
   - {fileID: 0}
@@ -220,4 +221,9 @@ MonoBehaviour:
       Value:
         value: 0
         min: 
+        max: 
+    - Key: desperation
+      Value:
+        value: 1
+        min: 1
         max: 

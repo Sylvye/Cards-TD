@@ -7,6 +7,14 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public enum Size
+    {
+        Small,
+        Medium, 
+        Large,
+        Other
+    }
+    public Size size;
     [Header("Drops")]
     public int pulls;
     public List<GameObject> drops;
@@ -23,7 +31,18 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        stats.SetStat("hp", stats.GetStat("max_hp"));
+        float hp = stats.GetStat("max_hp") * Spawner.main.stats.GetStat("hp_mult");
+        float sizeMult = stats.GetStat(TierToType((int)size) + "_enemy_hp_mult");
+        if (sizeMult < 0)
+            sizeMult = 1;
+        hp *= sizeMult;
+        hp += Spawner.main.stats.GetStat("flat_hp");
+        stats.SetStat("hp", hp);
+        stats.ModifyStat("shield", Spawner.main.stats.GetStat("shield"));
+        stats.ModifyStat("regeneration", Spawner.main.stats.GetStat("regeneration"));
+        stats.ModifyStat("resistance", Spawner.main.stats.GetStat("resistance"), Stats.Operation.Multiply);
+        stats.ModifyStat("desperation", Spawner.main.stats.GetStat("desperation"), Stats.Operation.Multiply);
+        StartCoroutine(Regenerate());
     }
 
     // Update is called once per frame
@@ -31,7 +50,8 @@ public class Enemy : MonoBehaviour
     {
         if (Time.time > stunEnd)
         {
-            transform.position += stats.GetStat("speed") * Time.deltaTime * Vector3.right;
+            float boost = (stats.GetStat("desperation") - 1) * (1 - stats.GetStat("hp") / stats.GetStat("max_hp")) + 1;
+            transform.position += stats.GetStat("speed") * boost * Time.deltaTime * Vector3.right;
             if (transform.position.x >= 11.5f)
             {
                 Main.Damage((int)stats.GetStat("hp"));
@@ -43,6 +63,10 @@ public class Enemy : MonoBehaviour
 
     public bool Damage(int amount) // add type here
     {
+        amount *= 1 - (int)stats.GetStat("resistance");
+        amount -= (int)stats.GetStat("shield");
+        if (amount <= 0)
+            return false;
         stats.ModifyStat("hp", amount, Stats.Operation.Subtract);
         if (stats.GetStat("hp") <= 0) // death
         {
@@ -57,6 +81,10 @@ public class Enemy : MonoBehaviour
     //returns true if the attack killed the enemy
     public bool Damage(int amount, Projectile reference) // add type here
     {
+        amount *= 1 - (int)stats.GetStat("resistance");
+        amount -= (int)stats.GetStat("shield");
+        if (amount <= 0)
+            return false;
         stats.ModifyStat("hp", amount, Stats.Operation.Subtract);
         if (stats.GetStat("hp") <= 0) // death
         {
@@ -106,5 +134,28 @@ public class Enemy : MonoBehaviour
     public void Stun(float time)
     {
         stunEnd = Time.time + time;
+    }
+
+    public static string TierToType(int tier)
+    {
+        return tier switch
+        {
+            1 => "small",
+            2 => "medium",
+            3 => "large",
+            _ => ""
+        };
+    }
+
+    private IEnumerator Regenerate()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+            if (stats.GetStat("regeneration") + stats.GetStat("hp") <= stats.GetStat("max_hp"))
+            {
+                stats.ModifyStat("hp", stats.GetStat("regeneration"));
+            }
+        }
     }
 }
