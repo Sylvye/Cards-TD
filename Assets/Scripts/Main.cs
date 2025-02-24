@@ -20,7 +20,7 @@ public class Main : MonoBehaviour
     public int mapLength;
     public static int mapLength_;
 
-    public static GameObject hitboxReticle_;
+    public static GameObject towerHitboxReticle_;
     public GameObject hitboxReticle;
 
     public static GameObject towerRangeReticle_;
@@ -38,7 +38,7 @@ public class Main : MonoBehaviour
     {
         main = this;
         placementLayerMask_ = placementLayerMask;
-        hitboxReticle_ = hitboxReticle;
+        towerHitboxReticle_ = hitboxReticle;
         towerRangeReticle_ = towerRangeReticle;
         enemyLayerMask_ = enemyLayerMask;
         mapLength_ = mapLength;

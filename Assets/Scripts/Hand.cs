@@ -113,4 +113,13 @@ public class Hand : MonoBehaviour
             card.SetHandPos();
         }
     }
+
+    // true = show cards; false = hide
+    public static void Display(bool b)
+    {
+        foreach (Transform t in main.transform)
+        {
+            t.gameObject.SetActive(b);
+        }
+    }
 }

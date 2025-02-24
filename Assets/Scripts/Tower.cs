@@ -34,7 +34,7 @@ public abstract class Tower : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (activated && !Card.isCardSelected && !Spawner.main.IsStageComplete())
+        if (activated && !Spawner.main.IsStageComplete())
         {
             Main.towerRangeReticle_.transform.position = transform.position;
             Main.towerRangeReticle_.transform.localScale = stats.GetStat("range") * 2 * Vector3.one + Vector3.forward * -6;
@@ -43,7 +43,7 @@ public abstract class Tower : MonoBehaviour
 
     private void OnMouseExit()
     {
-        if (activated && !Card.isCardSelected)
+        if (activated)
         {
             Main.towerRangeReticle_.transform.position = new Vector3(4, 10, 0);
             Main.towerRangeReticle_.transform.localScale = Vector2.one;

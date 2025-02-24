@@ -102,6 +102,8 @@ public class StageController : MonoBehaviour
     public static void SwitchStage(Stage stage)
     {
         lerpProgress = 0;
+
+        // FROM
         switch (currentStage)
         {
             case Stage.Map:
@@ -133,6 +135,7 @@ public class StageController : MonoBehaviour
                 break;
         }
 
+        // TO
         switch (stage)
         {
             case Stage.Map:
@@ -167,6 +170,7 @@ public class StageController : MonoBehaviour
     public void SetupBattle()
     {
         Hand.Deal();
+        Hand.Display(false);
         Spawner.main.complete = false;
         battleButton.GetComponent<BattleButton>().SetActive(true);
     }
