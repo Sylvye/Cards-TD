@@ -98,11 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66bfd3aeb11534949b61d3d175bad1e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  draggableDestinations: []
   id: Barrage Turret T
-  draggable: 0
-  snapDist: 1
-  state: 0
+  order: 2
   claimed: 0
   cardReference: {fileID: -6612765135822769905, guid: bbed92b32139ec642878e347d427052e, type: 3}
   tier: 4

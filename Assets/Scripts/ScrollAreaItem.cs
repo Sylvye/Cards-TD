@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 public class ScrollAreaItem : MonoBehaviour, IComparable<ScrollAreaItem>
 {
     public string id;
+    public int order;
     [NonSerialized]
     public Vector2 homePos;
     private SpriteRenderer sr;
@@ -49,6 +50,6 @@ public class ScrollAreaItem : MonoBehaviour, IComparable<ScrollAreaItem>
 
     public virtual int CompareTo(ScrollAreaItem other)
     {
-        return id.CompareTo(other.id);
+        return 10000*(order - other.order) + id.CompareTo(other.id);
     }
 }

@@ -98,11 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc345c51ac22a064d84303dec3237e4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  draggableDestinations: []
   id: Safe of coins
-  draggable: 0
-  snapDist: 1
-  state: 0
+  order: 1
   claimed: 0
   amount: 250
 --- !u!61 &-2133913993022396976

@@ -98,11 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66bfd3aeb11534949b61d3d175bad1e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  draggableDestinations: []
   id: Railgun Turret T
-  draggable: 0
-  snapDist: 1
-  state: 0
+  order: 2
   claimed: 0
   cardReference: {fileID: 6066731110582671636, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
   tier: 2

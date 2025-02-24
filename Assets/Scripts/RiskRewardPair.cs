@@ -46,16 +46,8 @@ public class RiskRewardPair : Button
             rr.Action();
         }
 
-        // switches away from battle scene
-        StageController.inventoryUI.SetActive(false);
-        StageController.inventoryLabels.SetActive(false);
         StageController.SwitchStage(StageController.Stage.Map);
         SetSpriteUp();
-        Hand.Clear();
-        StageController.inventoryLootScrollArea.ClearClaimed();
-        StageController.boonCurse.SetActive(false);
-        BattleButton.main.spriteUp = BattleButton.main.startUp;
-        BattleButton.main.spriteDown = BattleButton.main.startDown;
     }
 
     public static void Refresh()

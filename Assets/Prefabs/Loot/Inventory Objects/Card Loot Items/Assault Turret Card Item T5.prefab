@@ -98,11 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66bfd3aeb11534949b61d3d175bad1e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  draggableDestinations: []
   id: Assault Turret T
-  draggable: 0
-  snapDist: 1
-  state: 0
+  order: 2
   claimed: 0
   cardReference: {fileID: 8857968249970093843, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
   tier: 5

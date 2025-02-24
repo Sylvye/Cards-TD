@@ -98,11 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66bfd3aeb11534949b61d3d175bad1e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  draggableDestinations: []
   id: Taser Turret T
-  draggable: 0
-  snapDist: 1
-  state: 0
+  order: 2
   claimed: 0
   cardReference: {fileID: 6630076731711478058, guid: 84f20cb5397e61a47ba928f43ea90d3c, type: 3}
   tier: 3

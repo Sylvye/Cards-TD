@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using static UnityEditor.Timeline.Actions.MenuPriority;
@@ -24,6 +25,8 @@ public class StageController : MonoBehaviour
     private static Material BGMat;
     private static float lerpProgress = 1;
     private static Vector3 cameraDestination = new(0, -10, -10);
+    private static GameObject darkenOverlay;
+    private static float timeScale = 1;
     [Header("Shop")]
     public Transform shopCardSpawn;
     public Transform shopAugmentSpawn;
@@ -50,6 +53,7 @@ public class StageController : MonoBehaviour
         inventoryLabels = GameObject.Find("Inventory Labels");
         inventoryUI = GameObject.Find("Inventory UI");
         boonCurse = GameObject.Find("Boon-curse");
+        darkenOverlay = GameObject.Find("Screen Darken");
         riskRewardTextbox = GameObject.Find("Risk-Reward Textbox");
         augCardScrollArea = GameObject.Find("Augment Deck Scroll Area").GetComponent<ScrollArea>();
         augAugmentScrollArea = GameObject.Find("Augment Scroll Area").GetComponent<ScrollArea>();
@@ -62,16 +66,19 @@ public class StageController : MonoBehaviour
         inventoryLabels.SetActive(false);
         inventoryUI.SetActive(false);
         boonCurse.SetActive(false);
+        darkenOverlay.SetActive(false);
         riskRewardTextbox.SetActive(false);
         RoundBGMat();
     }
     private void Update()
     {
+        // move camera
         if (Vector3.Distance(Camera.main.transform.position, cameraDestination) > 0.02f)
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, cameraDestination, Time.deltaTime * 5);
         else
             Camera.main.transform.position = cameraDestination;
 
+        // lerp background
         if (lerpProgress < 0.995)
         {
             LerpBGMat();
@@ -79,6 +86,16 @@ public class StageController : MonoBehaviour
         else if (lerpProgress != 1)
         {
             RoundBGMat();
+        }
+
+        // lerp timescale
+        if (Mathf.Abs(timeScale - Time.timeScale) > 0.1f)
+        {
+            Time.timeScale = Mathf.Lerp(Time.timeScale, timeScale, 5 * Time.deltaTime);
+        }
+        else
+        {
+            Time.timeScale = timeScale;
         }
     }
 
@@ -90,8 +107,17 @@ public class StageController : MonoBehaviour
             case Stage.Map:
                 break;
             case Stage.Battle:
-                Spawner.main.stats.ModifyStat("hp_mult", 0.2f);
+                inventoryUI.SetActive(false);
+                inventoryLabels.SetActive(false);
+                inventoryLootScrollArea.ClearClaimed();
+                boonCurse.SetActive(false);
+                Hand.Clear();
+                BattleButton.main.spriteUp = BattleButton.main.startUp;
+                BattleButton.main.spriteDown = BattleButton.main.startDown;
+                Spawner.main.stats.ModifyStat("hp_mult", 1.2f, Stats.Operation.Multiply); // Every round is 20% healthier than previous
                 Spawner.main.stats.ModifyStat("speed", 0.05f);
+                ToggleDarken(false);
+                ToggleTime(true);
                 break;
             case Stage.Shop:
                 ShopController.ResetShop();
@@ -197,6 +223,16 @@ public class StageController : MonoBehaviour
 
         augCardScrollArea.FillWithCards(cardSAI, cardDestination, 0, Cards.CardType.Card);
         augAugmentScrollArea.FillWithCards(cardSAI, augmentDestination, 1, Cards.CardType.Augment);
+    }
+
+    public static void ToggleDarken(bool active)
+    {
+        darkenOverlay.SetActive(active);
+    }
+
+    public static void ToggleTime(bool active)
+    {
+        timeScale = active ? 1 : 0.1f;
     }
 
     private static void LerpBGMat()

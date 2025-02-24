@@ -19,4 +19,9 @@ public class CardLootItem : LootItem
         id += tier;
         Cards.AddToDeck(newCard);
     }
+
+    public override int CompareTo(ScrollAreaItem other)
+    {
+        return base.CompareTo(other);
+    }
 }

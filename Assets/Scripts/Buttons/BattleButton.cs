@@ -38,6 +38,8 @@ public class BattleButton : Button
                 SetActive(false);
                 break;
             case 1: // Entered Inventory
+                StageController.ToggleDarken(true);
+                StageController.ToggleTime(false);
                 StageController.inventoryUI.SetActive(true);
                 StageController.inventoryLabels.SetActive(true);
                 Main.UpdatePackLabels();

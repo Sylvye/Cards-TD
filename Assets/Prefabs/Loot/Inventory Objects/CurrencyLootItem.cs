@@ -10,4 +10,9 @@ public class CurrencyLootItem : LootItem
     {
         Main.Earn(amount);
     }
+
+    public override int CompareTo(ScrollAreaItem other)
+    {
+        return base.CompareTo(other);
+    }
 }
