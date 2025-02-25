@@ -12,7 +12,7 @@ public class Main : MonoBehaviour
 {
     public static bool paused = false;
     public static int lives = 100;
-    public int[] packs = { 0, 0, 0 }; // artisan, fighter, hoarder
+    public int[] packs = { 0, 0 }; // augment, gold
 
     public static Stats playerStats;
     public static Stats enemyStats;
@@ -75,7 +75,7 @@ public class Main : MonoBehaviour
 
     public static void UpdatePackLabels()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
             StageController.inventoryLabels.transform.GetChild(i+1).GetComponent<TMPLabel>().SetText("" + main.packs[i]);
         }

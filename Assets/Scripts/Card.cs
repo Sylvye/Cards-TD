@@ -32,8 +32,8 @@ public abstract class Card : MonoBehaviour, CardInterface
     private void OnMouseDown()
     {
         transform.localScale = Vector3.one * 1.5f;
-        transform.parent = transform.parent.parent;
         SetHandPos();
+        transform.parent = transform.parent.parent;
 
         MouseDownAction();
 
@@ -47,7 +47,7 @@ public abstract class Card : MonoBehaviour, CardInterface
         // this check is because something to do with the fact that this isnt a unity method
         if (Hand.GetIndexOf(this) != -1) // if card is in hand
         {
-            if (!Spawner.main.IsStageComplete() && StageController.currentStage == StageController.Stage.Battle)
+            if (!Spawner.main.IsStageCleared() && StageController.currentStage == StageController.Stage.Battle)
             {
                 MouseUpAction();
             }
@@ -86,6 +86,7 @@ public abstract class Card : MonoBehaviour, CardInterface
         transform.parent = Hand.main.transform;
         transform.position = handPos;
         transform.localScale = Vector3.one * 2;
+        gameObject.SetActive(false);
     }
 
     public void SetHandPos()

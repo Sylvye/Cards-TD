@@ -6,8 +6,9 @@ public class UpgradeButton : Button
 {
     private TMPLabel costLabel;
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
         costLabel = GameObject.Find("Cost Label").GetComponent<TMPLabel>();
     }
 

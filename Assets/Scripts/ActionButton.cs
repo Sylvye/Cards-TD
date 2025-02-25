@@ -6,14 +6,15 @@ public class ActionButton : Button
 {
     public static ActionButton main;
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
         main = this;
     }
 
     private void Update()
     {
-        SetActive(Hand.Size() > 0);
+        SetActive(Hand.Size() > 0 && (BattleButton.phase == 1 || Spawner.main.GetActive()));
     }
 
     public override void Action()

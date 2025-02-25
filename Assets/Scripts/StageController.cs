@@ -26,14 +26,13 @@ public class StageController : MonoBehaviour
     private static float lerpProgress = 1;
     private static Vector3 cameraDestination = new(0, -10, -10);
     private static GameObject darkenOverlay;
-    private static float timeScale = 1;
+    public static float timeScale = 1;
     [Header("Shop")]
     public Transform shopCardSpawn;
     public Transform shopAugmentSpawn;
     public GameobjectLootpool cardProbs;
     public Transform textParent;
     [Header("Battle")]
-    public static GameObject battleButton;
     public static GameObject inventoryLabels;
     public static GameObject inventoryUI;
     public static ScrollArea inventoryLootScrollArea;
@@ -49,7 +48,6 @@ public class StageController : MonoBehaviour
     private void Awake()
     {
         main = this;
-        battleButton = GameObject.Find("Battle Button");
         inventoryLabels = GameObject.Find("Inventory Labels");
         inventoryUI = GameObject.Find("Inventory UI");
         boonCurse = GameObject.Find("Boon-curse");
@@ -114,8 +112,8 @@ public class StageController : MonoBehaviour
                 inventoryLootScrollArea.ClearClaimed();
                 boonCurse.SetActive(false);
                 Hand.Clear();
-                BattleButton.main.spriteUp = BattleButton.main.startUp;
-                BattleButton.main.spriteDown = BattleButton.main.startDown;
+                BattleButton.main.spriteUp = BattleButton.main.playUp;
+                BattleButton.main.spriteDown = BattleButton.main.playDown;
                 Spawner.main.stats.ModifyStat("hp_mult", 1.2f, Stats.Operation.Multiply); // Every round is 20% healthier than previous
                 Spawner.main.stats.ModifyStat("speed", 0.05f);
                 ToggleDarken(false);
@@ -172,7 +170,7 @@ public class StageController : MonoBehaviour
         Hand.Deal();
         Hand.Display(false);
         Spawner.main.complete = false;
-        battleButton.GetComponent<BattleButton>().SetActive(true);
+        BattleButton.main.SetActive(true);
     }
 
 
@@ -236,7 +234,7 @@ public class StageController : MonoBehaviour
 
     public static void ToggleTime(bool active)
     {
-        timeScale = active ? 1 : 0.1f;
+        timeScale = active ? (currentStage == Stage.Battle ? BattleButton.speed : 1) : 0.1f;
     }
 
     private static void LerpBGMat()

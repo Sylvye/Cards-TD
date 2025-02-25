@@ -1,26 +1,45 @@
+using System;
 using UnityEngine;
 
 public class BattleButton : Button
 {
     public static BattleButton main;
     public static int phase = 0;
-    public Sprite startUp;
-    public Sprite startDown;
-    public Sprite nextUp;
-    public Sprite nextDown;
+    public static int speed = 1;
+    public string fileName;
+    [NonSerialized] public Sprite playUp;
+    [NonSerialized] public Sprite playDown;
+    [NonSerialized] public Sprite exitUp;
+    [NonSerialized] public Sprite exitDown;
+    [NonSerialized] public Sprite nextUp;
+    [NonSerialized] public Sprite nextDown;
+    private Sprite[] sprites;
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
         main = this;
+        sprites = Resources.LoadAll<Sprite>(fileName);
         startScale = transform.localScale;
-        startUp = spriteUp;
-        startDown = spriteDown;
+        playUp = sprites[0];
+        playDown = sprites[1];
+        exitUp = sprites[2];
+        exitDown = sprites[3];
+        nextUp = sprites[4];
+        nextDown = sprites[5];
     }
 
     private void Update()
     {
-        if (Spawner.main.IsStageComplete())
+        if (Spawner.main.IsStageCleared())
         {
+            if (!GetActive())
+            {
+                phase++;
+                SetSprites(nextUp, nextDown);
+                MakeSpriteUp();
+                Debug.Log("Did it");
+            }
             SetActive(true);
         }
     }
@@ -31,20 +50,27 @@ public class BattleButton : Button
         {
             case 0: // Pressed start
                 Spawner.main.SetActive(true);
-                spriteUp = nextUp;
-                spriteDown = nextDown;
-                SetSpriteUp();
-                OnMouseExit();
-                SetActive(false);
+                int index = 6 + 2 * (int)Mathf.Log(speed, 2);
+                SetSprites(sprites[index], sprites[index + 1]);
+                MakeSpriteUp();
+                //OnMouseExit();
                 break;
-            case 1: // Entered Inventory
+            case 1: // time dilation
+                speed *= 2;
+                if (speed > 8)
+                    speed = 1;
+                int index2 = 6 + 2 * (int)Mathf.Log(speed, 2);
+                StageController.timeScale = speed;
+                SetSprites(sprites[index2], sprites[index2 + 1]);
+                return;
+            case 2: // Entered Inventory
                 StageController.ToggleDarken(true);
                 StageController.ToggleTime(false);
                 StageController.inventoryUI.SetActive(true);
                 StageController.inventoryLabels.SetActive(true);
                 Main.UpdatePackLabels();
                 break;
-            case 2: // Entered Boon / Curse stage
+            case 3: // Entered Boon / Curse stage
                 StageController.inventoryUI.SetActive(false);
                 StageController.inventoryLabels.SetActive(false);
                 StageController.boonCurse.SetActive(true);
@@ -52,6 +78,6 @@ public class BattleButton : Button
                 SetActive(false);
                 break;
         }
-        phase = ++phase % 3;
+        phase = ++phase % 4;
     }
 }

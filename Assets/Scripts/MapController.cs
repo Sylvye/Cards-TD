@@ -100,7 +100,7 @@ public class MapController : MonoBehaviour
         nodes = new GameObject[sum];
         for (int i=0; i<sum; i++)
         {
-            nodes[i] = Instantiate(nodeObj_, new Vector3(-15, -10, 0), Quaternion.identity);
+            nodes[i] = Instantiate(nodeObj_, new Vector3(-15, -10, 1), Quaternion.identity);
             nodes[i].transform.SetParent(main.transform);
             MapNode n = nodes[i].GetComponent<MapNode>();
             n.index = i;

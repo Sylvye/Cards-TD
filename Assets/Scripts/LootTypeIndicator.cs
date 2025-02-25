@@ -11,13 +11,12 @@ public class LootTypeIndicator : MonoBehaviour
     private float spawnTime;
     
     private SpriteRenderer sr;
-    private Transform destination;
+    private Vector3 destination;
 
 
     private void Start()
     {
         spawnTime = Time.time;
-        destination = GameObject.Find("Pack Icon").transform;
         sr = GetComponent<SpriteRenderer>();
         if (firstDrop)
         {
@@ -26,8 +25,9 @@ public class LootTypeIndicator : MonoBehaviour
         }
         else
         {
-            category = Random.Range(0, 3);
+            category = Random.Range(0, 2);
         }
+        Main.main.packs[category]++;
         sr.sprite = sprites.sprites[category];
     }
 
@@ -35,13 +35,14 @@ public class LootTypeIndicator : MonoBehaviour
     {
         if (Time.time > spawnTime+0.75f)
         {
-            if (Vector2.Distance(transform.position, destination.position) > 0.1f)
+            if (destination == null)
+                destination = transform.position + Vector3.up * 12;
+            if (Vector2.Distance(transform.position, destination) > 0.1f)
             {
-                transform.position = Vector2.Lerp(transform.position, destination.position, Time.deltaTime * 10);
+                transform.position = Vector2.Lerp(transform.position, destination, Time.deltaTime * 10);
             }
             else
             {
-                Main.main.packs[category]++;
                 Destroy(gameObject);
             }
         }

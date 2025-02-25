@@ -74,7 +74,7 @@ public class Spawner : MonoBehaviour
         waveIndex = 0;
     }
 
-    public bool IsStageComplete()
+    public bool IsStageCleared()
     {
         return StageController.currentStage == StageController.Stage.Battle && complete && spawnedEnemies.Count == 0;
     }

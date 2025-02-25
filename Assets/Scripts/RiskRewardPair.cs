@@ -8,8 +8,9 @@ public class RiskRewardPair : Button
     public static RiskRewardPair[] riskRewards;
     public Sprite outline;
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
         riskRewards = new RiskRewardPair[2];
     }
 
@@ -47,7 +48,7 @@ public class RiskRewardPair : Button
         }
 
         StageController.SwitchStage(StageController.Stage.Map);
-        SetSpriteUp();
+        MakeSpriteUp();
     }
 
     public static void Refresh()

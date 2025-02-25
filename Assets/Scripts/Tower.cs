@@ -34,7 +34,7 @@ public abstract class Tower : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (activated && !Spawner.main.IsStageComplete())
+        if (activated && !Spawner.main.IsStageCleared())
         {
             Main.towerRangeReticle_.transform.position = transform.position;
             Main.towerRangeReticle_.transform.localScale = stats.GetStat("range") * 2 * Vector3.one + Vector3.forward * -6;
