@@ -10,7 +10,7 @@ public class RocketTurret : Turret
         if (t >= 2)
         {
             stats.ModifyStat("range", 1);
-            stats.ModifyStat("base_damage", 1);
+            stats.ModifyStat("base_damage", 5);
         }
         if (t >= 3)
         {
@@ -25,7 +25,7 @@ public class RocketTurret : Turret
         if (t >= 5)
         {
             stats.ModifyStat("attack_speed", 0.3f);
-            stats.ModifyStat("base_damage", 3);
+            stats.ModifyStat("base_damage", 25);
         }
     }
 }

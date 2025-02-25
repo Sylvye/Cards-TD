@@ -31,16 +31,11 @@ public class BattleButton : Button
 
     private void Update()
     {
-        if (Spawner.main.IsStageCleared())
+        if (Spawner.main.IsStageCleared() && phase == 1)
         {
-            if (!GetActive())
-            {
-                phase++;
-                SetSprites(nextUp, nextDown);
-                MakeSpriteUp();
-                Debug.Log("Did it");
-            }
-            SetActive(true);
+            phase++;
+            SetSprites(nextUp, nextDown);
+            MakeSpriteUp();
         }
     }
 

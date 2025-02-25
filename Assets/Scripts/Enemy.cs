@@ -46,12 +46,12 @@ public class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
+    private void FixedUpdate()
     {
         if (Time.time > stunEnd)
         {
             float boost = (stats.GetStat("desperation") - 1) * (1 - stats.GetStat("hp") / stats.GetStat("max_hp")) + 1;
-            transform.position += stats.GetStat("speed") * boost * Time.deltaTime * Vector3.right;
+            transform.position += stats.GetStat("speed") * boost * 0.01f * Vector3.right;
             if (transform.position.x >= 11.5f)
             {
                 Main.Damage((int)stats.GetStat("hp"));

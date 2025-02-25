@@ -14,7 +14,7 @@ public class ActionButton : Button
 
     private void Update()
     {
-        SetActive(Hand.Size() > 0 && (BattleButton.phase == 1 || Spawner.main.GetActive()));
+        SetActive(Hand.Size() > 0 && (BattleButton.phase == 0 || Spawner.main.GetActive()));
     }
 
     public override void Action()

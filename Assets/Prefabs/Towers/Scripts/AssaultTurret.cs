@@ -14,7 +14,7 @@ public class AssaultTurret : Turret
         }
         if (t >= 3)
         {
-            stats.ModifyStat("base_damage", 1);
+            stats.ModifyStat("base_damage", 5);
             stats.ModifyStat("pierce", 1);
         }
         if (t >= 4)
@@ -23,7 +23,7 @@ public class AssaultTurret : Turret
         }
         if (t >= 5)
         {
-            stats.ModifyStat("base_damage", 2);
+            stats.ModifyStat("base_damage", 10);
             stats.ModifyStat("explosion_radius", 0.25f);
         }
     }

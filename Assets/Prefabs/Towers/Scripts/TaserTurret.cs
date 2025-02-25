@@ -12,7 +12,7 @@ public class TaserTurret : Tower
     public GameObject FX;
     private float lastShot = -999;
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (activated && lastShot + 1 / stats.GetStat("attack_speed") <= Time.time)
         {
@@ -91,6 +91,7 @@ public class TaserTurret : Tower
         {
             stats.ModifyStat("projectiles", 2);
             stats.ModifyStat("stun", 0.05f);
+            stats.ModifyStat("base_damage", 5);
         }
         if (t >= 3)
         {
@@ -100,12 +101,12 @@ public class TaserTurret : Tower
         if (t >= 4)
         {
             stats.ModifyStat("projectiles", 2);
-            stats.ModifyStat("base_damage", 1);
+            stats.ModifyStat("base_damage", 5);
         }
         if (t >= 5)
         {
             stats.ModifyStat("projectiles", 1);
-            stats.ModifyStat("base_damage", 1);
+            stats.ModifyStat("base_damage", 5);
             stats.ModifyStat("stun", 0.05f);
             stats.ModifyStat("range", 3);
         }

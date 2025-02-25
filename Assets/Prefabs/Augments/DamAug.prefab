@@ -115,7 +115,7 @@ MonoBehaviour:
     _serializedList:
     - Key: base_damage
       Value:
-        value: 1
+        value: 2
         min: 
         max: 
     - Key: attack_speed

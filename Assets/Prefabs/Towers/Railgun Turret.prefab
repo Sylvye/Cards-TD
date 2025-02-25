@@ -165,7 +165,7 @@ MonoBehaviour:
         max: 
     - Key: base_damage
       Value:
-        value: 5
+        value: 25
         min: 0
         max: 
     - Key: damage_mult

@@ -199,7 +199,7 @@ MonoBehaviour:
         max: 
     - Key: max_hp
       Value:
-        value: 15
+        value: 100
         min: 0
         max: 
     - Key: speed

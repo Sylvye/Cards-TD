@@ -11,7 +11,7 @@ public abstract class Turret : Tower
     public float lastShot = -999;
     public GameObject targetEnemy;
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (activated && lastShot + 1 / stats.GetStat("attack_speed") <= Time.time)
         {
