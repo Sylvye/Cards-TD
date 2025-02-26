@@ -27,7 +27,7 @@ public abstract class CustomUIElement : MonoBehaviour
         return GetComponent<SpriteRenderer>().sprite;
     }
 
-    public void SetActive(bool a)
+    public virtual void SetActive(bool a)
     {
         active = a;
         if (a)

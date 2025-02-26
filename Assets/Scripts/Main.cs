@@ -88,7 +88,7 @@ public class Main : MonoBehaviour
         {
             paused = !paused;
             StageController.ToggleDarken(paused);
-            StageController.ToggleTime(!paused);
+            StageController.ToggleTime(!paused, 0);
         }
         if (Input.GetKeyUp(KeyCode.Alpha1))
             Spawner.main.Send(1);

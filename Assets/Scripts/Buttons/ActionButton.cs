@@ -5,6 +5,7 @@ using UnityEngine;
 public class ActionButton : Button
 {
     public static ActionButton main;
+    public static bool active = false;
 
     public override void Awake()
     {
@@ -14,15 +15,27 @@ public class ActionButton : Button
 
     private void Update()
     {
-        SetActive(Hand.Size() > 0 && (BattleButton.phase == 0 || Spawner.main.GetActive()));
+        SetActive(Hand.Size() > 0 && (BattleButton.phase == 0 || !Spawner.main.IsStageCleared()));
     }
 
     public override void Action()
     {
-        StageController.ToggleDarken(true);
-        StageController.ToggleTime(false);
-        SetActive(false);
+        active = !active;
 
-        Hand.Display(true);
+        if (active)
+        {
+            StageController.ToggleDarken(true);
+            StageController.ToggleTime(false);
+
+            Hand.ReformatHand();
+            Hand.Display(true);
+        }
+        else
+        {
+            StageController.ToggleDarken(false);
+            StageController.ToggleTime(true);
+
+            Hand.Display(false);
+        }
     }
 }

@@ -2,97 +2,70 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapNode : MonoBehaviour
+public class MapNode : Button
 {
     public int index;
     public int column;
+    public bool clickable = true;
     public MapNode[] exits;
-
-    public Sprite spriteLight;
-    public Sprite spriteDark;
 
     public string displayName;
     public StageController.Stage stage;
 
-    private void OnMouseDown()
+    public override void Action()
     {
-        if (spriteDark != spriteLight && StageController.currentStage == StageController.Stage.Map)
+        if (clickable && column == MapController.currentNode.column + 1 && ((MapController.currentNode.exits[0] != null && MapController.currentNode.exits[0].Equals(this)) || MapController.currentNode.exits[1] != null && MapController.currentNode.exits[1].Equals(this)))
         {
-            transform.localScale = new Vector3(0.4f, 0.4f, 1);
-            SetSprite(spriteLight);
-        }
-    }
+            StageController.SwitchStage(stage);
 
-    private void OnMouseUp()
-    {
-        transform.localScale = new Vector3(0.6f, 0.6f, 1);
-    }
-
-    private void OnMouseUpAsButton()
-    {
-        if (StageController.currentStage == StageController.Stage.Map)
-        {
-            if (spriteDark != spriteLight && column == MapController.currentNode.column + 1 && ((MapController.currentNode.exits[0] != null && MapController.currentNode.exits[0].Equals(this)) || MapController.currentNode.exits[1] != null && MapController.currentNode.exits[1].Equals(this)))
-            {
-                StageController.SwitchStage(stage);
-
-                MapController.EliminateColumn(this);
-                MapController.currentNode.SetSprite(MapController.nodeCompleted);
-                MapController.currentNode.spriteLight = MapController.nodeCompleted;
-                MapController.currentNode.spriteDark = MapController.nodeCompleted;
-                MapController.currentNode = this;
-                SetSprite(MapController.nodeCurrentDark);
-                spriteDark = MapController.nodeCurrentDark;
-                spriteLight = MapController.nodeCurrentLight;
-                displayName = "Your Location";
-            }
+            MapController.EliminateColumn(this);
+            MapController.currentNode.SetSprite(MapController.nodeCompleted);
+            MapController.currentNode.clickable = false;
+            MapController.currentNode.displayName = "Trail";
+            MapController.currentNode = this;
+            SetSprite(MapController.nodeCurrentDark);
+            spriteUp = MapController.nodeCurrentDark;
+            spriteDown = MapController.nodeCurrentLight;
+            displayName = "Your Location";
         }
     }
 
     private void OnMouseOver()
     {
-        if (spriteDark != spriteLight)
+        if (clickable)
         {
-            SetSpriteLight(true);
             if (exits.Length >= 1 && exits[0] != null)
             {
-                exits[0].SetSpriteLight(true);
+                exits[0].MakeSpriteDown();
             }
             if (exits.Length >= 2 && exits[1] != null)
             {
-                exits[1].SetSpriteLight(true);
+                exits[1].MakeSpriteDown();
             }
         }
     }
 
-    private void OnMouseEnter()
+    public override void OnMouseEnter()
     {
+        base.OnMouseEnter();
         if (MouseTooltip.GetText() != displayName)
             MouseTooltip.SetText(displayName);
         MouseTooltip.SetVisible(true);
     }
 
 
-    private void OnMouseExit()
+    public override void OnMouseExit()
     {
+        base.OnMouseExit();
         MouseTooltip.SetVisible(false);
-        SetSpriteLight(false);
         if (exits.Length >= 1 && exits[0] != null)
         {
-            exits[0].SetSpriteLight(false);
+            exits[0].MakeSpriteUp();
         }
         if (exits.Length >= 2 && exits[1] != null)
         {
-            exits[1].SetSpriteLight(false);
+            exits[1].MakeSpriteUp();
         }
-    }
-
-    public void SetSpriteLight(bool b)
-    {
-        if (b)
-            SetSprite(spriteLight);
-        else
-            SetSprite(spriteDark);
     }
 
     public void SetSprite(Sprite s)

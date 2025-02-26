@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-public class AugmentTable : MonoBehaviour
+public class AugmentTable : Table
 {
     public static AugmentTable main;
 

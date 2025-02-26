@@ -12,9 +12,11 @@ public abstract class Card : MonoBehaviour, CardInterface
     private Vector3 handPos;
     [NonSerialized]
     public Stats stats;
+    public static Transform field;
 
     public virtual void Awake()
     {
+        field = GameObject.Find("Field").transform;
         stats = GetComponent<Stats>();
         GetComponent<SpriteRenderer>().sprite = GetSprite();
     }
@@ -31,12 +33,12 @@ public abstract class Card : MonoBehaviour, CardInterface
 
     private void OnMouseDown()
     {
-        transform.localScale = Vector3.one * 1.5f;
         SetHandPos();
         transform.parent = transform.parent.parent;
 
         MouseDownAction();
 
+        ActionButton.active = false;
         StageController.ToggleDarken(false);
         StageController.ToggleTime(true);
         Hand.Display(false);
@@ -53,7 +55,7 @@ public abstract class Card : MonoBehaviour, CardInterface
             }
             else
             {
-                ReturnTohand();
+                ReturnToHand();
             }
 
             ActionButton.main.SetActive(true);
@@ -68,7 +70,7 @@ public abstract class Card : MonoBehaviour, CardInterface
         }
         else
         {
-            ReturnTohand();
+            ReturnToHand();
         }
     }
 
@@ -81,11 +83,10 @@ public abstract class Card : MonoBehaviour, CardInterface
         transform.position = new Vector3(target.x, target.y, -6);
     }
 
-    public virtual void ReturnTohand()
+    public virtual void ReturnToHand()
     {
         transform.parent = Hand.main.transform;
         transform.position = handPos;
-        transform.localScale = Vector3.one * 2;
         gameObject.SetActive(false);
     }
 
@@ -123,5 +124,13 @@ public abstract class Card : MonoBehaviour, CardInterface
     public virtual Sprite GetSprite(int tier)
     {
         return GetComponent<SpriteRenderer>().sprite;
+    }
+
+    public static void ClearField()
+    {
+        foreach (Transform child in field)
+        {
+            Destroy(child.gameObject);
+        }
     }
 }

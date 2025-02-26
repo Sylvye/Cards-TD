@@ -23,7 +23,7 @@ public class Hand : MonoBehaviour
             Card c = Cards.DrawFromDeck();
             Add(c);
         }
-        RepositionHand();
+        RecalculateHand();
     }
 
     public static void Draw()
@@ -32,7 +32,7 @@ public class Hand : MonoBehaviour
         {
             Card c = Cards.DrawFromDeck();
             Add(c);
-            RepositionHand();
+            RecalculateHand();
         }
     }
 
@@ -44,7 +44,7 @@ public class Hand : MonoBehaviour
             Card c = Cards.DrawFromDeck();
             Add(c);
         }
-        RepositionHand();
+        RecalculateHand();
     }
 
     public static void Clear()
@@ -60,7 +60,7 @@ public class Hand : MonoBehaviour
     {
         main.hand.Add(c);
         c.transform.SetParent(main.transform);
-        RepositionHand();
+        RecalculateHand();
     }
 
     public static int GetIndexOf(Card c)
@@ -78,7 +78,7 @@ public class Hand : MonoBehaviour
         Card c = main.hand[index];
         main.hand.RemoveAt(index);
         Cards.AddToDeck(c);
-        RepositionHand();
+        RecalculateHand();
         return c;
     }
 
@@ -86,7 +86,7 @@ public class Hand : MonoBehaviour
     {
         main.hand.Remove(c);
         Cards.AddToDeck(c);
-        RepositionHand();
+        RecalculateHand();
     }
     
     public static Card Set(int index, Card c)
@@ -95,7 +95,7 @@ public class Hand : MonoBehaviour
         main.hand[index] = c;
         c.transform.SetParent(main.transform);
         Cards.AddToDeck(output);
-        RepositionHand();
+        RecalculateHand();
         return output;
     }
 
@@ -104,13 +104,21 @@ public class Hand : MonoBehaviour
         return main.hand.Count;
     }
 
-    public static void RepositionHand() // moves cards to their spots in the card bar from the stack of cards out of frame
+    public static void RecalculateHand() // moves cards to their spots in the card bar from the stack of cards out of frame
     {
         for (int i=0; i<Size(); i++)
         {
             Card card = Get(i);
             card.transform.localPosition = 2f * i * Vector3.right + Vector3.forward * -5;
             card.SetHandPos();
+        }
+    }
+
+    public static void ReformatHand()
+    {
+        foreach (Card c in main.hand)
+        {
+            c.ReturnToHand();
         }
     }
 

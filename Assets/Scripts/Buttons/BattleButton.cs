@@ -44,8 +44,9 @@ public class BattleButton : Button
         switch (phase)
         {
             case 0: // Pressed start
-                Spawner.main.SetActive(true);
+                Spawner.main.StartWave();
                 int index = 6 + 2 * (int)Mathf.Log(speed, 2);
+                StageController.timeScale = speed;
                 SetSprites(sprites[index], sprites[index + 1]);
                 MakeSpriteUp();
                 //OnMouseExit();
@@ -59,6 +60,7 @@ public class BattleButton : Button
                 SetSprites(sprites[index2], sprites[index2 + 1]);
                 return;
             case 2: // Entered Inventory
+                Card.ClearField();
                 StageController.ToggleDarken(true);
                 StageController.ToggleTime(false);
                 StageController.inventoryUI.SetActive(true);

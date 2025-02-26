@@ -30,11 +30,10 @@ public class TowerCard : Card
             spawned.layer = 6;
             Hand.Remove(this);
             gameObject.transform.position = Vector3.up * 10;
-            gameObject.transform.localScale = Vector3.one * 1.5f;
         }
         else
         {
-            ReturnTohand();
+            ReturnToHand();
         }
     }
 
@@ -51,7 +50,7 @@ public class TowerCard : Card
 
     public override void MouseDragAction(Vector3 target)
     {
-        Vector3 pos = new Vector3(target.x, target.y, -3);
+        Vector3 pos = new(target.x, target.y, 3);
         if (spawned != null)
             spawned.transform.position = pos + Vector3.back;
         transform.position = new Vector3(target.x + Main.towerHitboxReticle_.transform.localScale.x, target.y, -6);
@@ -72,9 +71,9 @@ public class TowerCard : Card
         return t.gameObject;
     }
 
-    public override void ReturnTohand()
+    public override void ReturnToHand()
     {
-        base.ReturnTohand();
+        base.ReturnToHand();
         if (spawned != null)
             Destroy(spawned);
     }

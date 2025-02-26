@@ -34,7 +34,7 @@ public abstract class Tower : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (activated && !Spawner.main.IsStageCleared())
+        if (activated && !Input.GetMouseButton(0))
         {
             Main.towerRangeReticle_.transform.position = transform.position;
             Main.towerRangeReticle_.transform.localScale = stats.GetStat("range") * 2 * Vector3.one + Vector3.forward * -6;
@@ -43,7 +43,7 @@ public abstract class Tower : MonoBehaviour
 
     private void OnMouseExit()
     {
-        if (activated)
+        if (activated && !Input.GetMouseButton(0))
         {
             Main.towerRangeReticle_.transform.position = new Vector3(4, 10, 0);
             Main.towerRangeReticle_.transform.localScale = Vector2.one;
@@ -65,7 +65,8 @@ public abstract class Tower : MonoBehaviour
 
     public static Tower MakeTowerByPrefab(GameObject obj, Vector2 pos, Stats s)
     {
-        Tower t = Instantiate(obj, new Vector3(pos.x, pos.y, -2), Quaternion.identity).GetComponent<Tower>();
+        Tower t = Instantiate(obj, new Vector3(pos.x, pos.y, 2), Quaternion.identity).GetComponent<Tower>();
+        t.transform.parent = Card.field;
         t.stats.AddStats(s);
         t.ApplyTierEffects();
         return t;

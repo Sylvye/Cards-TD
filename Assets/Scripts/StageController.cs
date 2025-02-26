@@ -125,9 +125,11 @@ public class StageController : MonoBehaviour
             case Stage.Augment:
                 augCardScrollArea.DeleteInventory();
                 augAugmentScrollArea.DeleteInventory();
+                AugmentTable.main.PurgeStowaways();
                 break;
             case Stage.Upgrade:
                 ShopController.shopScrollArea.DeleteInventory();
+                UpgradeTable.main.PurgeStowaways();
                 break;
             default:
                 break;
@@ -234,7 +236,12 @@ public class StageController : MonoBehaviour
 
     public static void ToggleTime(bool active)
     {
-        timeScale = active ? (currentStage == Stage.Battle ? BattleButton.speed : 1) : 0.1f;
+        ToggleTime(active, 0.1f);
+    }
+
+    public static void ToggleTime(bool active, float tScale)
+    {
+        timeScale = active ? (BattleButton.phase == 1 ? BattleButton.speed : 1) : tScale;
     }
 
     private static void LerpBGMat()

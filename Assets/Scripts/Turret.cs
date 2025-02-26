@@ -37,7 +37,7 @@ public abstract class Turret : Tower
 
     private GameObject ShootProjectile(GameObject obj, Vector2 spawnPos, Vector2 dir)
     {
-        GameObject projectile = Instantiate(obj, spawnPos, Quaternion.LookRotation(Vector3.forward, dir));
+        GameObject projectile = Instantiate(obj, new Vector3(spawnPos.x, spawnPos.y, 3), Quaternion.LookRotation(Vector3.forward, dir));
         Projectile p = projectile.GetComponent<Projectile>();
         p.angle = AngleHelper.VectorToDegrees(dir.normalized);
         p.stats.AddStats(stats); // adds all applicable stats over to the projectile

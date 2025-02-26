@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         float hp = stats.GetStat("max_hp") * Spawner.main.stats.GetStat("hp_mult");
-        float sizeMult = stats.GetStat(TierToType((int)size) + "_enemy_hp_mult");
+        float sizeMult = Spawner.main.stats.GetStat(TierToType((int)size) + "_enemy_hp_mult");
         if (sizeMult < 0)
             sizeMult = 1;
         hp *= sizeMult;
@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public bool Damage(int amount) // add type here
+    public bool Damage(int amount)
     {
         amount *= 1 - (int)stats.GetStat("resistance");
         amount -= (int)stats.GetStat("shield");
@@ -79,7 +79,7 @@ public class Enemy : MonoBehaviour
     }
 
     //returns true if the attack killed the enemy
-    public bool Damage(int amount, Projectile reference) // add type here
+    public bool Damage(int amount, Projectile reference)
     {
         amount *= 1 - (int)stats.GetStat("resistance");
         amount -= (int)stats.GetStat("shield");

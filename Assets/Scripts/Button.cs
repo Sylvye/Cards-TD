@@ -100,4 +100,11 @@ public abstract class Button : CustomUIElement
         spriteUp = up;
         spriteDown = down;
     }
+
+    public override void SetActive(bool a)
+    {
+        base.SetActive(a);
+        if (outlineObj != null && !a)
+            outlineObj.SetActive(false);
+    }
 }

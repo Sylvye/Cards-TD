@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UpgradeTable : MonoBehaviour
+public class UpgradeTable : Table
 {
     public static UpgradeTable main;
     public static int upgrades = 0;

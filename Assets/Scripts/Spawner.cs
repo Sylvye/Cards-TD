@@ -8,16 +8,20 @@ using UnityEngine.SceneManagement;
 public class Spawner : MonoBehaviour
 {
     public static Spawner main;
-    public static List<GameObject> spawnedEnemies = new();
-    public List<GameObject> enemies;
-    public List<int> wave;
-    public int waveIndex = 0;
-    private bool active = false;
-    public bool complete = false;
-    private int spawned; // how many enemies spawned this wave
+    public static List<GameObject> spawnedEnemies = new(); // all spawned enemies, including from other spawners
+    public List<GameObject> enemies; // reference to match with enemy indexes in wave (below)
+    public List<int> wave; // list of indexes leading to which enemy to spawn when
+    public bool[] loot;
+    public int maxLoot = 3;
+    public int minLoot = 1;
+    public int waveIndex = 0; // the current index in wave of the enemy to spawn
+    private bool active = false; // if the spawner is active
+    public bool complete = false; // if the wave is over
+    private int spawned; // how many enemies spawned so far this wave
     [SerializeField]
-    private float cooldown = 0;
-    private bool freebie = false;
+    private float cooldown; // the time between spawning enemies
+    private float lastSpawnTime;
+    private static bool freebie = false; // whether or not a lootbag has dropped yet
 
     [NonSerialized]
     public Stats stats;
@@ -35,12 +39,11 @@ public class Spawner : MonoBehaviour
         {
             if (waveIndex < wave.Count)
             {
-                cooldown -= Time.deltaTime;
-
-                if (cooldown <= 0)
+                if (Time.time >= lastSpawnTime + cooldown)
                 {
-                    Send(wave[waveIndex++]);
-                    cooldown = 1 / Main.enemyStats.GetStat("wave_density");
+                    Send(wave[waveIndex]);
+                    waveIndex++;
+                    lastSpawnTime = Time.time;
                 }
             }
             else
@@ -50,13 +53,12 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    public void SetActive(bool a)
+    public void StartWave()
     {
-        if (a)
-        {
-            UpdateWave();
-        }
-        active = a;
+        UpdateWave();
+        AssignLoot();
+        active = true;
+        cooldown = 1 / Main.enemyStats.GetStat("wave_density");
     }
 
     public bool GetActive()
@@ -69,7 +71,6 @@ public class Spawner : MonoBehaviour
         active = false;
         complete = true;
         freebie = false;
-        cooldown = 0;
         spawned = 0;
         waveIndex = 0;
     }
@@ -88,6 +89,7 @@ public class Spawner : MonoBehaviour
         e.stats.ModifyStat("speed", speedMult, Stats.Operation.Multiply);
         e.stats.ModifyStat("hp", hpMult, Stats.Operation.Multiply);
         e.stats.ModifyStat("max_hp", hpMult, Stats.Operation.Multiply);
+        e.pulls = loot[waveIndex] ? 1 : 0;
     }
 
     public GameObject Spawn(GameObject obj, Vector3 pos, Quaternion rot)
@@ -124,5 +126,23 @@ public class Spawner : MonoBehaviour
         stats.SetStat("small_enemies", 0);
         stats.SetStat("medium_enemies", 0);
         stats.SetStat("large_enemies", 0);
+    }
+
+    public void AssignLoot()
+    {
+        loot = new bool[wave.Count];
+        for (int i=minLoot; i<=maxLoot; i++)
+        {
+            int li = UnityEngine.Random.Range(0, wave.Count);
+            while (i < wave.Count)
+            {
+                if (!loot[li]) // if there is no loot, give it loot. otherwise keep trying
+                {
+                    loot[li] = true;
+                    break;
+                }
+                li = UnityEngine.Random.Range(0, wave.Count);
+            }
+        }
     }
 }
