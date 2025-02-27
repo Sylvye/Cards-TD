@@ -23,12 +23,12 @@ MonoBehaviour:
   - {fileID: 2226533950621865980, guid: 68eb0ef0207faed4fb55000b8f756e11, type: 3}
   - {fileID: 2226533950621865980, guid: 75aea22b54f99a248a5edad5bcc538b2, type: 3}
   weights:
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 0.5
+  - 13
+  - 13
+  - 13
+  - 13
+  - 13
+  - 10
+  - 10
+  - 10
+  - 5

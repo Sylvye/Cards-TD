@@ -201,5 +201,5 @@ MonoBehaviour:
     - Key: speed
       Value:
         value: 6
-        min: 1
+        min: 0
         max: 

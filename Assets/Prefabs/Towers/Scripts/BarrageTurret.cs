@@ -15,15 +15,17 @@ public class BarrageTurret : Turret
         if (t >= 3)
         {
             stats.ModifyStat("projectiles", 1);
+            stats.ModifyStat("base_damage", 2);
         }
         if (t >= 4)
         {
-            stats.ModifyStat("base_damage", 5);
+            stats.ModifyStat("base_damage", 3);
+            stats.ModifyStat("spread", 10, Stats.Operation.Subtract);
         }
         if (t >= 5)
         {
+            stats.ModifyStat("base_damage", 5);
             stats.ModifyStat("attack_speed", 3);
-            stats.ModifyStat("spread", 10, Stats.Operation.Subtract);
         }
     }
 }

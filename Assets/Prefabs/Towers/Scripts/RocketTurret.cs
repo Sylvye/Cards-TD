@@ -9,23 +9,26 @@ public class RocketTurret : Turret
         int t = (int)stats.GetStat("tier");
         if (t >= 2)
         {
-            stats.ModifyStat("range", 1);
-            stats.ModifyStat("base_damage", 5);
+            stats.ModifyStat("attack_speed", 0.2f);
+            stats.ModifyStat("base_damage", 10);
         }
         if (t >= 3)
         {
-            stats.ModifyStat("speed", 1);
-            stats.ModifyStat("attack_speed", 0.2f);
+            stats.ModifyStat("range", 1);
+            stats.ModifyStat("explosion_radius", 1);
+            stats.ModifyStat("base_damage", 20);
         }
         if (t >= 4)
         {
-            stats.ModifyStat("explosion_radius", 0.25f);
+            stats.ModifyStat("explosion_radius", 1);
             stats.ModifyStat("speed", 1);
+            stats.ModifyStat("base_damage", 30);
         }
         if (t >= 5)
         {
             stats.ModifyStat("attack_speed", 0.3f);
-            stats.ModifyStat("base_damage", 25);
+            stats.ModifyStat("base_damage", 50);
+            stats.ModifyStat("explosion_radius", 1);
         }
     }
 }

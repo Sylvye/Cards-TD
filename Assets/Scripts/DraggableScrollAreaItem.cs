@@ -15,17 +15,17 @@ public class DraggableScrollAreaItem : ScrollAreaItem
     public State state = State.Home;
     private Transform p;
     private Vector2 lerpPos;
-    [NonSerialized]
-    public Vector2 ogScale;
-    private Vector2 scale;
+    //[NonSerialized]
+    //public Vector2 ogScale;
+    //private Vector2 scale;
 
     public override void Start()
     {
         base.Start();
 
         lerpPos = transform.position;
-        scale = transform.localScale;
-        ogScale = scale;
+        //scale = transform.localScale;
+        //ogScale = scale;
         p = transform.parent;
     }
 
@@ -49,8 +49,8 @@ public class DraggableScrollAreaItem : ScrollAreaItem
     {
         if (state.Equals(State.Home) && Clickable())
         {
-            if (!Input.GetMouseButton(0))
-                transform.localScale = scale * 1.1f;
+            //if (!Input.GetMouseButton(0))
+            //    transform.localScale = scale * 1.1f;
             MouseTooltip.SetVisible(true);
             MouseTooltip.SetText(id);
         }
@@ -58,8 +58,8 @@ public class DraggableScrollAreaItem : ScrollAreaItem
 
     private void OnMouseExit()
     {
-        if (!Input.GetMouseButton(0))
-            transform.localScale = scale;
+        //if (!Input.GetMouseButton(0))
+        //    transform.localScale = scale;
         if (state.Equals(State.Home) && (Clickable() || MouseTooltip.GetText().Equals(id)))
         {
             MouseTooltip.SetVisible(false);
@@ -75,23 +75,23 @@ public class DraggableScrollAreaItem : ScrollAreaItem
     {
         if (Clickable())
         {
-            transform.localScale = scale;
+            //transform.localScale = scale;
 
             Transform closest = GetViableDestination(snapDist);
             if (closest != null)
             {
                 transform.parent = closest;
-                transform.localScale = closest.localScale;
-                transform.localPosition = Vector3.zero;
-                scale = transform.localScale;
+                //transform.localScale = closest.localScale;
+                //transform.localPosition = Vector3.zero;
+                //scale = transform.localScale;
                 state = State.Positioned;
                 p.GetComponent<ScrollArea>().RefreshPositions();
             }
             else
             {
                 transform.parent = p;
-                scale = ogScale;
-                transform.localScale = scale;
+                //scale = ogScale;
+                //transform.localScale = scale;
                 homePos += p.GetComponent<ScrollArea>().scrolledAmt * Vector2.down;
                 p.GetComponent<ScrollArea>().AddToInventory(gameObject);
                 state = State.Home;

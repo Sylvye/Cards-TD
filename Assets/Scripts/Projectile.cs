@@ -18,6 +18,7 @@ public class Projectile : MonoBehaviour
     public float angle;
     private Rigidbody2D rb;
     private float spawnTime;
+    private readonly static float EXPLOSION_RADIUS_CONSTANT = 0.2f;
 
     private void Awake()
     {
@@ -105,7 +106,7 @@ public class Projectile : MonoBehaviour
                 GameObject fx = Instantiate(FX[objIndex], spawnPos + Vector3.back, Quaternion.identity);
                 if (stats.GetStat("explosion_radius") > 0)
                 {
-                    fx.transform.localScale = stats.GetStat("explosion_radius") * 2 * Vector2.one;
+                    fx.transform.localScale = stats.GetStat("explosion_radius") * EXPLOSION_RADIUS_CONSTANT * 2 * Vector2.one;
                 }
             }
         }
@@ -127,9 +128,18 @@ public class Projectile : MonoBehaviour
 
     public void Explode()
     {
-        if (stats.GetStat("explosion_radius") > 0)
+        float radius = stats.GetStat("explosion_radius") * EXPLOSION_RADIUS_CONSTANT;
+        if (radius > 0)
         {
-            RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, stats.GetStat("explosion_radius"), Vector2.zero, 0, Main.enemyLayerMask_);
+            RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, radius, Vector2.zero, 0, Main.enemyLayerMask_);
+            float segments = 36;
+            Vector2 pos = transform.position + Vector3.right * radius;
+            for (int i=1; i<segments+1; i++)
+            {
+                Vector2 newPos = transform.position + (Vector3)AngleHelper.DegreesToVector(i * 360 / segments) * radius;
+                Debug.DrawLine(pos, newPos, Color.red, 1);
+                pos = newPos;
+            }
             foreach (RaycastHit2D rayC in hit)
             {
                 GameObject obj = rayC.collider.gameObject;

@@ -31,17 +31,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        float hp = stats.GetStat("max_hp") * Spawner.main.stats.GetStat("hp_mult");
-        float sizeMult = Spawner.main.stats.GetStat(TierToType((int)size) + "_enemy_hp_mult");
-        if (sizeMult < 0)
-            sizeMult = 1;
-        hp *= sizeMult;
-        hp += Spawner.main.stats.GetStat("flat_hp");
-        stats.SetStat("hp", hp);
-        stats.ModifyStat("shield", Spawner.main.stats.GetStat("shield"));
-        stats.ModifyStat("regeneration", Spawner.main.stats.GetStat("regeneration"));
-        stats.ModifyStat("resistance", Spawner.main.stats.GetStat("resistance"), Stats.Operation.Multiply);
-        stats.ModifyStat("desperation", Spawner.main.stats.GetStat("desperation"), Stats.Operation.Multiply);
+        stats.SetStat("hp", stats.GetStat("max_hp"));
         StartCoroutine(Regenerate());
     }
 

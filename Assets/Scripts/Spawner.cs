@@ -84,11 +84,21 @@ public class Spawner : MonoBehaviour
     {
         Enemy e = Spawn(enemies[tier - 1], transform.position, enemies[tier - 1].transform.rotation).GetComponent<Enemy>();
         float speedMult = stats.GetStat(Enemy.TierToType(tier) + "_enemy_speed_mult");
-        float hpMult = stats.GetStat(Enemy.TierToType(tier) + "_enemy_hp_mult");
+        float hp = e.stats.GetStat("max_hp") * stats.GetStat("hp_mult");
+        float sizeMult = stats.GetStat(Enemy.TierToType(tier) + "_enemy_hp_mult");
+        if (sizeMult < 0)
+            sizeMult = 1;
+        hp *= sizeMult;
+        hp += stats.GetStat("flat_hp");
         e.size = (Enemy.Size)tier;
+        e.stats.SetStat("max_hp", hp);
+
         e.stats.ModifyStat("speed", speedMult, Stats.Operation.Multiply);
-        e.stats.ModifyStat("hp", hpMult, Stats.Operation.Multiply);
-        e.stats.ModifyStat("max_hp", hpMult, Stats.Operation.Multiply);
+        e.stats.ModifyStat("shield", stats.GetStat("shield"));
+        e.stats.ModifyStat("regeneration", stats.GetStat("regeneration"));
+        e.stats.ModifyStat("resistance", stats.GetStat("resistance"), Stats.Operation.Multiply);
+        e.stats.ModifyStat("desperation", stats.GetStat("desperation"), Stats.Operation.Multiply);
+        
         e.pulls = loot[waveIndex] ? 1 : 0;
     }
 

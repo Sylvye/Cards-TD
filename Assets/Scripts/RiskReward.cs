@@ -59,7 +59,7 @@ public class RiskReward : CustomUIElement
 
         Vector3 XOffset = boon ? Vector2.left : Vector2.right;
         Vector3 YOffset = transform.position.y > 0 ? Vector2.down : Vector2.up;
-        Vector3 textPos = transform.position + XOffset * 6 + YOffset;
+        Vector3 textPos = transform.position + XOffset * 5 + YOffset;
 
         textbox.transform.position = textPos;
         textbox.text.SetText(description);

@@ -20,7 +20,6 @@ public class BattleButton : Button
         base.Awake();
         main = this;
         sprites = Resources.LoadAll<Sprite>(fileName);
-        startScale = transform.localScale;
         playUp = sprites[0];
         playDown = sprites[1];
         exitUp = sprites[2];

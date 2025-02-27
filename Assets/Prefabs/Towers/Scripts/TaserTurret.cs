@@ -97,16 +97,17 @@ public class TaserTurret : Tower
         {
             stats.ModifyStat("projectiles", 2);
             stats.ModifyStat("attack_speed", 0.6f);
+            stats.ModifyStat("base_damage", 5);
         }
         if (t >= 4)
         {
             stats.ModifyStat("projectiles", 2);
-            stats.ModifyStat("base_damage", 5);
+            stats.ModifyStat("base_damage", 10);
         }
         if (t >= 5)
         {
             stats.ModifyStat("projectiles", 1);
-            stats.ModifyStat("base_damage", 5);
+            stats.ModifyStat("base_damage", 10);
             stats.ModifyStat("stun", 0.05f);
             stats.ModifyStat("range", 3);
         }

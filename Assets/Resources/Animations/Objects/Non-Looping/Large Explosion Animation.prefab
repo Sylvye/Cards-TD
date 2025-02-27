@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -14.848301, y: -3.0242386, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -120,9 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88de207af10b2624a9d0bcd5c0bf1adb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path: LargeExplosionAnimation
-  killAfterComplete: 1
-  randomFirstFrame: 0
   randomRotation:
   - 0
   - 90

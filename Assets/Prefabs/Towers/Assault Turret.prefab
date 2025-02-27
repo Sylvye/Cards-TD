@@ -201,7 +201,7 @@ MonoBehaviour:
     - Key: speed
       Value:
         value: 3
-        min: 1
+        min: 0
         max: 
     - Key: homing
       Value:

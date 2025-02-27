@@ -11,6 +11,7 @@ public class AssaultTurret : Turret
         if (t >= 2)
         {
             stats.ModifyStat("range", 1);
+            stats.ModifyStat("base_damage", 5);
         }
         if (t >= 3)
         {
@@ -20,11 +21,12 @@ public class AssaultTurret : Turret
         if (t >= 4)
         {
             stats.ModifyStat("attack_speed", 3);
+            stats.ModifyStat("base_damage", 10);
         }
         if (t >= 5)
         {
             stats.ModifyStat("base_damage", 10);
-            stats.ModifyStat("explosion_radius", 0.25f);
+            stats.ModifyStat("explosion_radius", 1f);
         }
     }
 }
