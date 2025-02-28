@@ -183,7 +183,7 @@ public class StageController : MonoBehaviour
 
         for (int i = 0; i<ShopController.main.cardCount; i++) // cards
         {
-            Vector3 pos = shopCardSpawn.position + i * Vector3.right - ShopController.main.cardCount / 2f * Vector3.right;
+            Vector3 pos = shopCardSpawn.position + i * 2 * Vector3.right - ShopController.main.cardCount * Vector3.right;
             GameObject cardObj = ShopController.MakeCard(pos);
             ShopItem cardItem = cardObj.GetComponent<ShopItem>();
             cardObj.transform.parent = shopCardSpawn;
@@ -196,7 +196,7 @@ public class StageController : MonoBehaviour
         }
         for (int i = 0; i < ShopController.main.augmentCount; i++) // augments
         {
-            Vector3 pos = shopAugmentSpawn.position + i * Vector3.right - ShopController.main.augmentCount / 2f * Vector3.right;
+            Vector3 pos = shopAugmentSpawn.position + i * 2 * Vector3.right + ShopController.main.augmentCount * Vector3.left;
             GameObject augmentObj = ShopController.MakeAugment(pos);
             ShopItem augmentItem = augmentObj.GetComponent<ShopItem>();
             augmentObj.transform.parent = shopAugmentSpawn;

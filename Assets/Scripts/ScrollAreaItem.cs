@@ -6,17 +6,18 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class ScrollAreaItem : MonoBehaviour, IComparable<ScrollAreaItem>
+public class ScrollAreaItem : CustomUIElement, IComparable<ScrollAreaItem>
 {
     public string id;
     public int order;
     [NonSerialized]
-    public Vector2 homePos;
+    public Vector3 homePos;
     private SpriteRenderer sr;
 
     // Start is called before the first frame update
-    public virtual void Start()
+    public override void Start()
     {
+        base.Start();
         homePos = transform.position;
         sr = GetComponent<SpriteRenderer>();
     }
@@ -51,5 +52,11 @@ public class ScrollAreaItem : MonoBehaviour, IComparable<ScrollAreaItem>
     public virtual int CompareTo(ScrollAreaItem other)
     {
         return 10000*(order - other.order) + id.CompareTo(other.id);
+    }
+
+    public override void ShiftPos(Vector2 dest)
+    {
+        base.ShiftPos(dest);
+        homePos += (Vector3)dest;
     }
 }

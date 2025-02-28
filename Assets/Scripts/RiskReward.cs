@@ -19,7 +19,7 @@ public class RiskReward : CustomUIElement
     private Textbox textbox;
     private RiskReward prefab;
 
-    private void Awake()
+    public override void Awake()
     {
         textbox = GameObject.Find("Risk-Reward Textbox").GetComponent<Textbox>();
         outline = transform.GetChild(0).gameObject;
@@ -83,7 +83,7 @@ public class RiskReward : CustomUIElement
         transform.parent.GetComponent<RiskRewardPair>().OnMouseUpAsButton();
     }
 
-    public override void Action()
+    public void Action()
     {
         if (!clone)
         {

@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.5, y: -16.5, z: -0.3701979}
-  m_LocalScale: {x: 2, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -144,7 +144,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 1
-  scaleAmount: 1.1
+  locked: 1
+  lerpPos: {x: 0, y: 0}
+  zPos: 0
   spriteUp: {fileID: 0}
   spriteDown: {fileID: 0}
   outlineUp: {fileID: 0}

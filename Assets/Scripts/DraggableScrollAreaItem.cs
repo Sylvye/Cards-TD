@@ -10,47 +10,21 @@ public class DraggableScrollAreaItem : ScrollAreaItem
         Home, Moving, Positioned
     }
     [Header("Draggableness")]
-    public List<Transform> draggableDestinations = new();
+    public List<Transform> draggableSnaps = new(); // the locations the item can snap to
     public float snapDist = 1;
     public State state = State.Home;
-    private Transform p;
-    private Vector2 lerpPos;
-    //[NonSerialized]
-    //public Vector2 ogScale;
-    //private Vector2 scale;
+    private Transform ogParent;
 
     public override void Start()
     {
         base.Start();
-
-        lerpPos = transform.position;
-        //scale = transform.localScale;
-        //ogScale = scale;
-        p = transform.parent;
-    }
-
-    private void Update()
-    {
-        Vector3 pos;
-        switch (state)
-        {
-            case State.Home:
-                break;
-            case State.Moving:
-                pos = Vector3.Lerp(transform.position, lerpPos, Time.deltaTime * 50);
-                transform.position = new Vector3(pos.x, pos.y, -2);
-                break;
-            case State.Positioned:
-                break;
-        }
+        ogParent = transform.parent;
     }
 
     private void OnMouseEnter()
     {
         if (state.Equals(State.Home) && Clickable())
         {
-            //if (!Input.GetMouseButton(0))
-            //    transform.localScale = scale * 1.1f;
             MouseTooltip.SetVisible(true);
             MouseTooltip.SetText(id);
         }
@@ -58,8 +32,6 @@ public class DraggableScrollAreaItem : ScrollAreaItem
 
     private void OnMouseExit()
     {
-        //if (!Input.GetMouseButton(0))
-        //    transform.localScale = scale;
         if (state.Equals(State.Home) && (Clickable() || MouseTooltip.GetText().Equals(id)))
         {
             MouseTooltip.SetVisible(false);
@@ -68,32 +40,24 @@ public class DraggableScrollAreaItem : ScrollAreaItem
 
     private void OnMouseDrag()
     {
-        lerpPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        SetDestination(Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
 
     private void OnMouseUp()
     {
         if (Clickable())
         {
-            //transform.localScale = scale;
-
-            Transform closest = GetViableDestination(snapDist);
+            Transform closest = GetViableSnap(snapDist);
             if (closest != null)
             {
                 transform.parent = closest;
-                //transform.localScale = closest.localScale;
-                //transform.localPosition = Vector3.zero;
-                //scale = transform.localScale;
                 state = State.Positioned;
-                p.GetComponent<ScrollArea>().RefreshPositions();
             }
             else
             {
-                transform.parent = p;
-                //scale = ogScale;
-                //transform.localScale = scale;
-                homePos += p.GetComponent<ScrollArea>().scrolledAmt * Vector2.down;
-                p.GetComponent<ScrollArea>().AddToInventory(gameObject);
+                transform.parent = ogParent;
+                ShiftPos(ogParent.GetComponent<ScrollArea>().scrolledAmt * Vector2.down);
+                ogParent.GetComponent<ScrollArea>().AddToInventory(gameObject, true);
                 state = State.Home;
             }
         }
@@ -103,11 +67,10 @@ public class DraggableScrollAreaItem : ScrollAreaItem
     {
         if (Clickable() && (state.Equals(State.Positioned) || state.Equals(State.Home)))
         {
-            lerpPos = transform.position;
+            SetDestination(transform.position);
             transform.parent = null;
             state = State.Moving;
-            p.GetComponent<ScrollArea>().RemoveFromInventory(gameObject);
-            //p.GetComponent<ScrollArea>().RefreshPositions();
+            ogParent.GetComponent<ScrollArea>().RemoveFromInventory(gameObject);
         }
     }
 
@@ -117,18 +80,18 @@ public class DraggableScrollAreaItem : ScrollAreaItem
     }
 
     // returns the destination it can snap to if within range
-    private Transform GetViableDestination(float range)
+    private Transform GetViableSnap(float range)
     {
-        if (draggableDestinations.Count == 0)
+        if (draggableSnaps.Count == 0)
             return null;
 
         Transform closest = null;
         float dist = float.MaxValue;
 
-        for (int i = 0; i < draggableDestinations.Count; i++)
+        for (int i = 0; i < draggableSnaps.Count; i++)
         {
-            Transform o = draggableDestinations[i];
-            float d = Vector2.Distance(o.position, lerpPos);
+            Transform o = draggableSnaps[i];
+            float d = Vector2.Distance(o.position, GetDestination());
             if (d < dist && o.childCount == 0)
             {
                 closest = o;
@@ -137,5 +100,16 @@ public class DraggableScrollAreaItem : ScrollAreaItem
         }
 
         return closest != null && Vector2.Distance(closest.position, transform.position) < range ? closest : null; // if within range, return closest, otherwise return null
+    }
+
+    public void SetState(State s)
+    {
+        state = s;
+        locked = s == State.Moving;
+    }
+
+    public State GetState()
+    {
+        return state;
     }
 }

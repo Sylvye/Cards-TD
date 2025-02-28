@@ -72,7 +72,5 @@ public class ShopController : MonoBehaviour
         {
             Destroy(obj);
         }
-
-        Debug.Log(main.transform.childCount);
     }
 }

@@ -98,6 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc345c51ac22a064d84303dec3237e4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 1
+  locked: 0
+  lerpPos: {x: 0, y: 0, z: 0}
+  yPos: 0
   id: Safe of coins
   order: 1
   claimed: 0

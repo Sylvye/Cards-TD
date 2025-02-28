@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 1
-  scaleAmount: 1.1
+  locked: 1
   spriteUp: {fileID: 0}
   spriteDown: {fileID: 0}
   outlineUp: {fileID: 0}

@@ -5,21 +5,38 @@ using UnityEngine;
 
 public abstract class CustomUIElement : MonoBehaviour
 {
-    [NonSerialized]
-    public Vector3 startScale;
-    [SerializeField]
-    private bool active = true;
+    private static readonly float LERP_SPEED = 50;
+    [SerializeField] private bool active = true;
+    public bool locked = false;
+    [SerializeField] private Vector2 lerpPos;
+    public float zPos;
+
+    public virtual void Awake()
+    {
+        lerpPos = transform.position;
+        zPos = transform.position.y;
+    }
 
     // Start is called before the first frame update
     public virtual void Start()
     {
-        startScale = transform.localScale;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!locked)
+        {
+            if (Vector2.Distance(transform.position, lerpPos) > 0.01f)
+            {
+                transform.position = (Vector3)Vector2.Lerp(transform.position, lerpPos, LERP_SPEED * Time.deltaTime) + Vector3.forward * zPos;
+            }
+            else
+            {
+                transform.position = GetDestination();
+            }
+        }
     }
 
     public virtual Sprite GetSprite()
@@ -45,5 +62,19 @@ public abstract class CustomUIElement : MonoBehaviour
         return active;
     }
 
-    public abstract void Action();
+    public virtual void SetDestination(Vector2 dest)
+    {
+        lerpPos = new Vector3(dest.x, dest.y, zPos);
+    }
+
+    public virtual Vector3 GetDestination()
+    {
+        return new Vector3(lerpPos.x, lerpPos.y, zPos);
+    }
+
+    public virtual void ShiftPos(Vector2 dest)
+    {
+        transform.position = new Vector3(dest.x, dest.y, zPos);
+        lerpPos = transform.position;
+    }
 }

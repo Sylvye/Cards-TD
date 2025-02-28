@@ -30,8 +30,7 @@ public class ScrollArea : MonoBehaviour
                 foreach (Transform child in transform)
                 {
                     Vector2 moveAmt = Vector3.up * scrollAmt;
-                    child.transform.localPosition -= (Vector3)moveAmt;
-                    child.GetComponent<ScrollAreaItem>().homePos -= moveAmt;
+                    child.GetComponent<ScrollAreaItem>().ShiftPos(-moveAmt);
                 }
             }
         }
@@ -46,45 +45,48 @@ public class ScrollArea : MonoBehaviour
         inventory.Clear();
     }
 
-    public void RefreshPositions()
-    {
-        inventory.Sort();
-        for (int i=0; i<inventory.Count; i++)
-        {
-            GameObject item = inventory[i].gameObject;
-            item.transform.localPosition = new Vector3(offset.x * (i % itemsPerRow) / transform.localScale.x, -offset.y * (i / itemsPerRow) / transform.localScale.y, -1) + startPos + Vector3.down * scrolledAmt;
-        }
-    }
-
     public void AddToInventory(GameObject item)
     {
+        AddToInventory(item, false);
+    }
+
+    public void AddToInventory(GameObject item, bool refresh)
+    {
         inventory.Add(item.GetComponent<ScrollAreaItem>());
-        inventory.Sort();
         item.transform.parent = transform;
         item.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
-        RefreshPositions();
+        if (refresh)
+            RefreshPositions();
     }
 
     public void AddToInventory(GameObject[] items)
     {
+        AddToInventory(items, false);
+    }
+
+    public void AddToInventory(GameObject[] items, bool refresh)
+    {
         foreach (GameObject item in items)
         {
             inventory.Add(item.GetComponent<ScrollAreaItem>());
-            inventory.Sort();
             item.transform.parent = transform;
             item.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
         }
-        RefreshPositions();
+        if (refresh)
+            RefreshPositions();
     }
 
     public void RemoveFromInventory(GameObject item)
     {
+        RemoveFromInventory(item, false);
+    }
+
+    public void RemoveFromInventory(GameObject item, bool refresh)
+    {
         inventory.Remove(item.GetComponent<ScrollAreaItem>());
         item.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.None;
-        //if (TryGetComponent(out DraggableScrollAreaItem sai))
-        //{
-        //    item.transform.localScale = sai.ogScale;
-        //}
+        if (refresh)
+            RefreshPositions();
     }
 
     public void ClearClaimed()
@@ -126,11 +128,11 @@ public class ScrollArea : MonoBehaviour
             sr.sprite = cardPrefabReference.GetSprite();
 
             ScrollAreaItemCard item = itemObj.GetComponent<ScrollAreaItemCard>();
-            item.draggableDestinations.Add(destination);
+            item.draggableSnaps.Add(destination);
             item.prefabReference = cardPrefabReference.GetGameObject();
             item.id = cardPrefabReference.GetName();
         }
-        inventory.Sort();
+        RefreshPositions();
     }
 
     public void FillWithList(List<ScrollAreaItem> list, Transform destination, int sortingOrder)
@@ -147,9 +149,22 @@ public class ScrollArea : MonoBehaviour
 
             if (itemObj.TryGetComponent(out DraggableScrollAreaItem dsai))
             {
-                dsai.draggableDestinations.Add(destination);
+                dsai.draggableSnaps.Add(destination);
             }
         }
+        RefreshPositions();
+    }
+
+    private void RefreshPositions()
+    {
         inventory.Sort();
+        for (int i = 0; i < inventory.Count; i++)
+        {
+            CustomUIElement item = inventory[i].GetComponent<CustomUIElement>();
+            //item.SetDestination(new Vector3(offset.x * (i % itemsPerRow) / transform.localScale.x, -offset.y * (i / itemsPerRow) / transform.localScale.y) + startPos + Vector3.down * scrolledAmt + Vector3.back); // localPos, original solution
+            //item.SetDestination(transform.position + new Vector3(offset.x * (i % itemsPerRow) / transform.localScale.x, -offset.y * (i / itemsPerRow) / transform.localScale.y, -1) + startPos + Vector3.down * scrolledAmt);
+            item.SetDestination(transform.position + new Vector3(offset.x * (i % itemsPerRow), -offset.y * (i / itemsPerRow)) + new Vector3(startPos.x*transform.localScale.x, startPos.y*transform.localScale.y) + Vector3.down * scrolledAmt);
+            item.zPos = transform.position.z - 1;
+        }
     }
 }

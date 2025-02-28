@@ -8,9 +8,9 @@ public class Table : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            Transform grandchild = child.GetChild(0);
-            if (grandchild != null)
+            if (child.childCount > 0)
             {
+                Transform grandchild = child.GetChild(0);
                 Destroy(grandchild.gameObject);
             }
         }

@@ -41,11 +41,9 @@ public class PackButton : Button
             if (packs > 0)
             {
                 Main.main.packs[packIndex]--;
-                StageController.inventoryLootScrollArea.AddToInventory(CreateItem());
+                StageController.inventoryLootScrollArea.AddToInventory(CreateItem(), true);
             }
         }
-
-        StageController.inventoryLootScrollArea.RefreshPositions();
         Main.UpdatePackLabels();
     }
 }

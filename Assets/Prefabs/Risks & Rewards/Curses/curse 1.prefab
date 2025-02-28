@@ -145,7 +145,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 1
+  lerpPos: {x: 0, y: 0, z: 0}
+  locked: 1
   boon: 0
+  clone: 0
   description: Adds 2 medium enemies
   statNames:
   - medium_enemies

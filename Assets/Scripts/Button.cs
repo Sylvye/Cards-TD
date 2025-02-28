@@ -6,7 +6,6 @@ using UnityEngine;
 
 public abstract class Button : CustomUIElement
 {
-    public float scaleAmount = 0.9f;
     public Sprite spriteUp;
     public Sprite spriteDown;
     public Sprite outlineUp;
@@ -14,8 +13,9 @@ public abstract class Button : CustomUIElement
     private GameObject outlineObj;
     private SpriteRenderer outlineSR;
 
-    public virtual void Awake()
+    public override void Awake()
     {
+        base.Awake();
         if (outlineUp != null && outlineDown != null)
         {
             outlineObj = new GameObject("outline");
@@ -27,6 +27,8 @@ public abstract class Button : CustomUIElement
         }
     }
 
+    public abstract void Action();
+
     public virtual void OnMouseEnter()
     {
         if (!Input.GetMouseButtonDown(0))
@@ -35,7 +37,6 @@ public abstract class Button : CustomUIElement
         }
         if (GetActive())
         {
-            transform.localScale = startScale * scaleAmount;
             if (outlineObj != null)
             {
                 outlineObj.SetActive(true);
@@ -48,7 +49,6 @@ public abstract class Button : CustomUIElement
     {
         if (GetActive())
         {
-            transform.localScale = startScale;
             if (outlineObj != null)
             {
                 outlineObj.SetActive(false);
