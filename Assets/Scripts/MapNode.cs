@@ -6,7 +6,9 @@ public class MapNode : Button
 {
     public int index;
     public int column;
+    public int spriteIndex;
     public bool clickable = true;
+    public Sprite spriteDeactivated;
     public MapNode[] exits;
 
     public string displayName;
@@ -23,9 +25,7 @@ public class MapNode : Button
             MapController.currentNode.clickable = false;
             MapController.currentNode.displayName = "Trail";
             MapController.currentNode = this;
-            SetSprite(MapController.nodeCurrentDark);
-            spriteUp = MapController.nodeCurrentDark;
-            spriteDown = MapController.nodeCurrentLight;
+            SetSprite(MapController.currentNode.spriteIndex);
             displayName = "Your Location";
         }
     }
@@ -68,8 +68,19 @@ public class MapNode : Button
         }
     }
 
-    public void SetSprite(Sprite s)
+    public void SetSprite(int spriteIndex)
     {
-        GetComponent<SpriteRenderer>().sprite = s;
+        SetSprite(spriteIndex, true);
+    }
+
+    public void SetSprite(int spriteIndex, bool set)
+    {
+        this.spriteIndex = spriteIndex;
+        if (set)
+        {
+            GetComponent<SpriteRenderer>().sprite = MapController.sprites[spriteIndex];
+        }
+        spriteUp = MapController.sprites[spriteIndex];
+        spriteDown = MapController.sprites[spriteIndex + 1];
     }
 }

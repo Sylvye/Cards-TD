@@ -11,24 +11,18 @@ public class MapController : MonoBehaviour
     public static MapNode currentNode;
 
     public GameObject nodeObj;
+    public string filePath;
     public static GameObject nodeObj_;
 
-    public static Sprite nodeCompleted;
-    public static Sprite nodeX;
-    public static Sprite nodeCurrentDark;
-    public static Sprite nodeCurrentLight;
-    public static Sprite nodeMinibossDark;
-    public static Sprite nodeMinibossLight;
-    public static Sprite nodeBattleDark;
-    public static Sprite nodeBattleLight;
-    public static Sprite nodeShopDark;
-    public static Sprite nodeShopLight;
-    public static Sprite nodeUpgradeDark;
-    public static Sprite nodeUpgradeLight;
-    public static Sprite nodeAugmentDark;
-    public static Sprite nodeAugmentLight;
-    public static Sprite nodeBossDark;
-    public static Sprite nodeBossLight;
+    public static Sprite[] sprites;
+    public static int nodeCompleted;
+    public static int nodeX;
+    public static int nodeMinibossUp;
+    public static int nodeBattleUp;
+    public static int nodeShopUp;
+    public static int nodeUpgradeUp;
+    public static int nodeAugmentUp;
+    public static int nodeBossUp;
 
     private static int[] lengths;
     private static GameObject[] nodes;
@@ -36,24 +30,16 @@ public class MapController : MonoBehaviour
     private void Start()
     {
         main = this;
-        Sprite[] sprites = Resources.LoadAll<Sprite>("NodePack");
         nodeObj_ = nodeObj;
-        nodeCompleted = sprites[0];
-        nodeX = sprites[1];
-        nodeCurrentDark = sprites[2];
-        nodeCurrentLight = sprites[3];
-        nodeMinibossDark = sprites[4];
-        nodeMinibossLight = sprites[5];
-        nodeBattleDark = sprites[6];
-        nodeBattleLight = sprites[7];
-        nodeShopDark = sprites[8];
-        nodeShopLight = sprites[9];
-        nodeUpgradeDark = sprites[10];
-        nodeUpgradeLight = sprites[11];
-        nodeAugmentDark= sprites[12];
-        nodeAugmentLight= sprites[13];
-        nodeBossDark= sprites[14];
-        nodeBossLight= sprites[15];
+        sprites = Resources.LoadAll<Sprite>(filePath);
+        
+        nodeX = 0;
+        nodeMinibossUp = 6;
+        nodeBattleUp = 3;
+        nodeShopUp = 15;
+        nodeUpgradeUp = 9;
+        nodeAugmentUp= 12;
+        nodeBossUp= 1;
 
         Screen.SetResolution(2560, 1080, true);
     }
@@ -124,9 +110,7 @@ public class MapController : MonoBehaviour
         MapNode bossNode = nodes[index].GetComponent<MapNode>();
         nodes[index].transform.position = new Vector3(10, -10, 0);
         bossNode.column = length-1;
-        bossNode.SetSprite(nodeBossDark);
-        bossNode.spriteDown = nodeBossLight;
-        bossNode.spriteUp = nodeBossDark;
+        bossNode.SetSprite(nodeBossUp);
         bossNode.stage = StageController.Stage.Battle;
         bossNode.displayName = "Stage Boss";
 
@@ -139,9 +123,7 @@ public class MapController : MonoBehaviour
             // assigns sprites
             if (n.column % 2 != 0) // battle stages are every even column
             {
-                n.spriteDown = nodeBattleLight;
-                n.spriteUp = nodeBattleDark;
-                n.SetSprite(nodeBattleDark);
+                n.SetSprite(nodeBattleUp);
                 n.displayName = "Defense";
                 n.stage = StageController.Stage.Battle;
             }
@@ -152,41 +134,31 @@ public class MapController : MonoBehaviour
                 switch (r)
                 {
                     case 0:
-                        n.spriteDown = nodeShopLight;
-                        n.spriteUp = nodeShopDark;
-                        n.SetSprite(nodeShopDark);
+                        n.SetSprite(nodeShopUp);
                         n.displayName = "Shop";
                         n.stage = StageController.Stage.Shop;
                         break;
                     case 1:
-                        n.spriteDown = nodeUpgradeLight;
-                        n.spriteUp = nodeUpgradeDark;
-                        n.SetSprite(nodeUpgradeDark);
+                        n.SetSprite(nodeUpgradeUp);
                         n.displayName = "Upgrade";
                         n.stage = StageController.Stage.Upgrade;
                         break;
                     case 2:
-                        n.spriteDown = nodeAugmentLight;
-                        n.spriteUp = nodeAugmentDark;
-                        n.SetSprite(nodeAugmentDark);
+                        n.SetSprite(nodeAugmentUp);
                         n.displayName = "Augment";
                         n.stage = StageController.Stage.Augment;
                         break;
                     default:
                         if (Random.Range(0, 1 + n.column/2) == 0)
                         {
-                            n.spriteDown = nodeBattleLight;
-                            n.spriteUp = nodeBattleDark;
-                            n.SetSprite(nodeBattleDark);
+                            n.SetSprite(nodeBattleUp);
                             n.displayName = "Defense";
                             n.stage = StageController.Stage.Battle;
                             break;
                         }
                         else
                         {
-                            n.spriteDown = nodeMinibossLight;
-                            n.spriteUp = nodeMinibossDark;
-                            n.SetSprite(nodeMinibossDark);
+                            n.SetSprite(nodeMinibossUp);
                             n.displayName = "Miniboss";
                             n.stage = StageController.Stage.Battle;
                             break;
@@ -211,9 +183,9 @@ public class MapController : MonoBehaviour
         }
 
         MapNode startNode = nodes[0].GetComponent<MapNode>();
-        nodes[0].GetComponentInParent<SpriteRenderer>().sprite = nodeCurrentDark;
+        nodes[0].GetComponentInParent<SpriteRenderer>().sprite = sprites[nodeCurrentUp];
         startNode.spriteDown = nodeCurrentLight;
-        startNode.spriteUp = nodeCurrentDark;
+        startNode.spriteUp = nodeCurrentUp;
         startNode.stage = StageController.Stage.None;
         startNode.displayName = "Start";
 

@@ -652,7 +652,7 @@ SpriteRenderer:
   m_Size: {x: 1.15, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &187928247
@@ -1928,7 +1928,7 @@ SpriteRenderer:
   m_Size: {x: 1.15, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &652896872
@@ -2126,7 +2126,7 @@ SpriteRenderer:
   m_Size: {x: 1.15, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &688472666
@@ -4800,7 +4800,7 @@ SpriteRenderer:
   m_Size: {x: 1.15, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1410483332 stripped
@@ -7460,6 +7460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeObj: {fileID: 4281045009634875367, guid: 6554b996ef45a7b48a874760182a2840, type: 3}
+  filePath: MapNodesRevamped
 --- !u!4 &2019246468
 Transform:
   m_ObjectHideFlags: 0
