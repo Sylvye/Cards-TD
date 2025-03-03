@@ -28,8 +28,9 @@ public class BattleButton : Button
         nextDown = sprites[5];
     }
 
-    private void Update()
+    public override void Update()
     {
+        base.Update();
         if (Spawner.main.IsStageCleared() && phase == 1)
         {
             phase++;

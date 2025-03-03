@@ -13,8 +13,9 @@ public class UpgradeButton : Button
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
+        base.Update();
         int cost = UpgradeTable.UpgradeCost();
         // card isnt null, tier < 5, and can afford
         SetActive(UpgradeTable.GetCard() != null && UpgradeTable.GetCard().prefabReference.GetComponent<Card>().stats.GetStat("tier") < 5 && Main.playerStats.GetStat("currency") >= cost);

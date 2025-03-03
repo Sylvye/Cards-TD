@@ -8,8 +8,9 @@ public class PackButton : Button
     public int packIndex;
     public GameObject lootObj;
 
-    private void Update()
+    public override void Update()
     {
+        base.Update();
         if (Main.main.packs[packIndex] > 0)
         {
             SetActive(true);

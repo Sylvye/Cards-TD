@@ -15,7 +15,7 @@ public class ShopController : MonoBehaviour
     public GameobjectLootpool cardLootpool;
     public GameobjectLootpool augmentLootpool;
     public AnimationCurve tierChances;
-    public static ScrollArea shopScrollArea;
+    public static ScrollAreaInventory shopScrollArea;
 
     private static List<GameObject> shopStuff = new();
 
@@ -23,7 +23,7 @@ public class ShopController : MonoBehaviour
     void Start()
     {
         main = this;
-        shopScrollArea = GameObject.Find("Shop Deck Scroll Area").GetComponent<ScrollArea>();
+        shopScrollArea = GameObject.Find("Shop Deck Scroll Area").GetComponent<ScrollAreaInventory>();
     }
 
     public static GameObject MakeCard()

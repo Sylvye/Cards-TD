@@ -35,14 +35,14 @@ public class StageController : MonoBehaviour
     [Header("Battle")]
     public static GameObject inventoryLabels;
     public static GameObject inventoryUI;
-    public static ScrollArea inventoryLootScrollArea;
+    public static ScrollAreaInventory inventoryLootScrollArea;
     public static GameObject boonCurse;
     public static GameObject riskRewardTextbox;
     [Header("Upgrade")]
     public int test2 = 10;
     [Header("Augment")]
-    public static ScrollArea augCardScrollArea;
-    public static ScrollArea augAugmentScrollArea;
+    public static ScrollAreaInventory augCardScrollArea;
+    public static ScrollAreaInventory augAugmentScrollArea;
     public GameObject cardSAI;
 
     private void Awake()
@@ -53,9 +53,9 @@ public class StageController : MonoBehaviour
         boonCurse = GameObject.Find("Boon-curse");
         darkenOverlay = GameObject.Find("Screen Darken");
         riskRewardTextbox = GameObject.Find("Risk-Reward Textbox");
-        augCardScrollArea = GameObject.Find("Augment Deck Scroll Area").GetComponent<ScrollArea>();
-        augAugmentScrollArea = GameObject.Find("Augment Scroll Area").GetComponent<ScrollArea>();
-        inventoryLootScrollArea = inventoryUI.GetComponentInChildren<ScrollArea>();
+        augCardScrollArea = GameObject.Find("Augment Deck Scroll Area").GetComponent<ScrollAreaInventory>();
+        augAugmentScrollArea = GameObject.Find("Augment Scroll Area").GetComponent<ScrollAreaInventory>();
+        inventoryLootScrollArea = inventoryUI.GetComponentInChildren<ScrollAreaInventory>();
     }
 
     private void Start()
@@ -105,6 +105,7 @@ public class StageController : MonoBehaviour
         switch (currentStage)
         {
             case Stage.Map:
+                MapController.main.gameObject.SetActive(false);
                 break;
             case Stage.Battle:
                 inventoryUI.SetActive(false);
@@ -141,6 +142,7 @@ public class StageController : MonoBehaviour
             case Stage.Map:
                 cameraDestination = new Vector3(0, -10, -10);
                 currentStage = Stage.Map;
+                MapController.main.gameObject.SetActive(true);
                 break;
             case Stage.Battle:
                 cameraDestination = new Vector3(0, 0, -10);
@@ -178,7 +180,7 @@ public class StageController : MonoBehaviour
 
     public void SetupShop()
     {
-        ScrollArea cardScrollArea = GameObject.Find("Shop Deck Scroll Area").GetComponent<ScrollArea>();
+        ScrollAreaInventory cardScrollArea = GameObject.Find("Shop Deck Scroll Area").GetComponent<ScrollAreaInventory>();
         cardScrollArea.FillWithCards(cardSAI, transform, 0, Cards.CardType.Card);
 
         for (int i = 0; i<ShopController.main.cardCount; i++) // cards
@@ -213,7 +215,7 @@ public class StageController : MonoBehaviour
     {
         UpgradeTable.upgrades = 0; // resets upgrade cost scaling
 
-        ScrollArea cardScrollArea = GameObject.Find("Upgrade Deck Scroll Area").GetComponent<ScrollArea>();
+        ScrollAreaInventory cardScrollArea = GameObject.Find("Upgrade Deck Scroll Area").GetComponent<ScrollAreaInventory>();
         Transform cardDestination = UpgradeTable.main.transform.GetChild(0);
         cardScrollArea.FillWithCards(cardSAI, cardDestination, 0, Cards.CardType.Card);
     }

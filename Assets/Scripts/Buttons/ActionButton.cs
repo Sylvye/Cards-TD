@@ -13,8 +13,9 @@ public class ActionButton : Button
         main = this;
     }
 
-    private void Update()
+    public override void Update()
     {
+        base.Update();
         SetActive(Hand.Size() > 0 && (BattleButton.phase == 0 || !Spawner.main.IsStageCleared()));
     }
 

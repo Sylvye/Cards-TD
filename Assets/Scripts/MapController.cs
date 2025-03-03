@@ -8,6 +8,7 @@ using UnityEngine.Rendering;
 public class MapController : MonoBehaviour
 {
     public static MapController main;
+    public static ScrollArea scrollArea;
     public static MapNode currentNode;
 
     public GameObject nodeObj;
@@ -30,6 +31,7 @@ public class MapController : MonoBehaviour
     private void Start()
     {
         main = this;
+        scrollArea = GetComponent<ScrollArea>();
         nodeObj_ = nodeObj;
         sprites = Resources.LoadAll<Sprite>(filePath);
         
@@ -48,11 +50,10 @@ public class MapController : MonoBehaviour
     {
         lengths = new int[length];
         lengths[0] = 1;
-        lengths[1] = 1;
-        lengths[2] = 2;
+        lengths[1] = 2;
 
         // creates the random array of heights for each column in the map
-        for (int i=3; i<length; i++)
+        for (int i=2; i<length; i++)
         {
             int r = Random.Range(0, 2);
 
@@ -86,33 +87,32 @@ public class MapController : MonoBehaviour
         nodes = new GameObject[sum];
         for (int i=0; i<sum; i++)
         {
-            nodes[i] = Instantiate(nodeObj_, new Vector3(-15, -10, 1), Quaternion.identity);
+            nodes[i] = Instantiate(nodeObj_, Vector3.zero, Quaternion.identity);
             nodes[i].transform.SetParent(main.transform);
             MapNode n = nodes[i].GetComponent<MapNode>();
             n.index = i;
         }
 
         // positions the nodes
-        Vector3 pos = new(-10, -10, 0);
+        Vector3 pos = main.transform.position + Vector3.back;
         int index = 0;
-        for (int i=0; i < length-1; i++)
+        float xOffset = 2.5f;
+        float yOffset = 3;
+        for (int i=0; i < length; i++)
         {
-            pos.y = -9.5f - lengths[i] / 2f;
+            pos.x = lengths[i] / -2f * xOffset + xOffset / 2f;
             for (int j=0; j < lengths[i]; j++)
             {
+                ScrollAreaItem SAI = nodes[index].GetComponent<ScrollAreaItem>();
                 nodes[index].GetComponent<MapNode>().column = i;
+                SAI.SetHomePos(pos);
+                SAI.zPos = main.transform.position.z-1;
                 nodes[index].transform.position = pos;
-                pos.y += 1;
+                pos.x += xOffset;
                 index++;
             }
-            pos.x += 20f/(length-1);
+            pos.y += yOffset;
         }
-        MapNode bossNode = nodes[index].GetComponent<MapNode>();
-        nodes[index].transform.position = new Vector3(10, -10, 0);
-        bossNode.column = length-1;
-        bossNode.SetSprite(nodeBossUp);
-        bossNode.stage = StageController.Stage.Battle;
-        bossNode.displayName = "Stage Boss";
 
         // assigns nodes their possible exits & sprites
         for (int i=0; i<nodes.Length-1; i++)
@@ -121,7 +121,7 @@ public class MapController : MonoBehaviour
             MapNode n = nObj.GetComponent<MapNode>();
 
             // assigns sprites
-            if (n.column % 2 != 0) // battle stages are every even column
+            if (n.column % 2 == 0) // battle stages are every even column
             {
                 n.SetSprite(nodeBattleUp);
                 n.displayName = "Defense";
@@ -182,12 +182,12 @@ public class MapController : MonoBehaviour
                 n.exits[1] = null;
         }
 
+        MapNode bossNode = nodes[index - 1].GetComponent<MapNode>();
+        bossNode.SetSprite(nodeBossUp);
+        bossNode.stage = StageController.Stage.Battle;
+        bossNode.displayName = "Stage Boss";
+
         MapNode startNode = nodes[0].GetComponent<MapNode>();
-        nodes[0].GetComponentInParent<SpriteRenderer>().sprite = sprites[nodeCurrentUp];
-        startNode.spriteDown = nodeCurrentLight;
-        startNode.spriteUp = nodeCurrentUp;
-        startNode.stage = StageController.Stage.None;
-        startNode.displayName = "Start";
 
         currentNode = startNode;
     }
@@ -216,8 +216,8 @@ public class MapController : MonoBehaviour
                 if (!objNode.Equals(n))
                 {
                     objNode.SetSprite(nodeX);
-                    objNode.spriteDown = nodeX;
-                    objNode.spriteUp = nodeX;
+                    objNode.spriteDown = sprites[nodeX];
+                    objNode.spriteUp = sprites[nodeX];
                     objNode.stage = StageController.Stage.None;
                     objNode.displayName = "Unreachable";
                 }

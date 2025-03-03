@@ -54,9 +54,19 @@ public class ScrollAreaItem : CustomUIElement, IComparable<ScrollAreaItem>
         return 10000*(order - other.order) + id.CompareTo(other.id);
     }
 
-    public override void ShiftPos(Vector2 dest)
+    public override void ShiftPos(Vector2 dir)
     {
-        base.ShiftPos(dest);
-        homePos += (Vector3)dest;
+        base.ShiftPos(dir);
+        homePos += (Vector3)dir;
+    }
+
+    public void SetHomePos()
+    {
+        SetHomePos(transform.position);
+    }
+
+    public void SetHomePos(Vector2 pos)
+    {
+        homePos = pos;
     }
 }

@@ -16,7 +16,7 @@ public class MapNode : Button
 
     public override void Action()
     {
-        if (clickable && column == MapController.currentNode.column + 1 && ((MapController.currentNode.exits[0] != null && MapController.currentNode.exits[0].Equals(this)) || MapController.currentNode.exits[1] != null && MapController.currentNode.exits[1].Equals(this)))
+        if (clickable && (column == MapController.currentNode.column + 1 && ((MapController.currentNode.exits[0] != null && MapController.currentNode.exits[0].Equals(this)) || MapController.currentNode.exits[1] != null && MapController.currentNode.exits[1].Equals(this)) || column == 0))
         {
             StageController.SwitchStage(stage);
 

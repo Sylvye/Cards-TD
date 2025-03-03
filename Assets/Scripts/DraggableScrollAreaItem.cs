@@ -56,8 +56,9 @@ public class DraggableScrollAreaItem : ScrollAreaItem
             else
             {
                 transform.parent = ogParent;
-                ShiftPos(ogParent.GetComponent<ScrollArea>().scrolledAmt * Vector2.down);
-                ogParent.GetComponent<ScrollArea>().AddToInventory(gameObject, true);
+                ScrollAreaInventory ogSA = ogParent.GetComponent<ScrollAreaInventory>();
+                ShiftPos(ogSA.scrolledAmt * Vector2.down);
+                ogSA.AddToInventory(gameObject, true);
                 state = State.Home;
             }
         }
@@ -70,7 +71,7 @@ public class DraggableScrollAreaItem : ScrollAreaItem
             SetDestination(transform.position);
             transform.parent = null;
             state = State.Moving;
-            ogParent.GetComponent<ScrollArea>().RemoveFromInventory(gameObject);
+            ogParent.GetComponent<ScrollAreaInventory>().RemoveFromInventory(gameObject);
         }
     }
 

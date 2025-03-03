@@ -24,7 +24,7 @@ public abstract class CustomUIElement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         if (!locked)
         {
@@ -72,9 +72,9 @@ public abstract class CustomUIElement : MonoBehaviour
         return new Vector3(lerpPos.x, lerpPos.y, zPos);
     }
 
-    public virtual void ShiftPos(Vector2 dest)
+    public virtual void ShiftPos(Vector2 dir)
     {
-        transform.position = new Vector3(dest.x, dest.y, zPos);
+        transform.position = new Vector3(dir.x + transform.position.x, dir.y + transform.position.y, zPos);
         lerpPos = transform.position;
     }
 }

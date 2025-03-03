@@ -5,8 +5,9 @@ using UnityEngine;
 public class AugmentButton : Button
 {
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
+        base.Update();
         SetActive(AugmentTable.main.transform.GetChild(0).transform.childCount == 1 && AugmentTable.main.transform.GetChild(1).transform.childCount == 1);
     }
 
