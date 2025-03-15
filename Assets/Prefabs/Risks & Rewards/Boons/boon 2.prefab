@@ -145,11 +145,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 1
-  lerpPos: {x: 0, y: 0, z: 0}
   locked: 1
+  lerpPos: {x: 0, y: 0}
+  zPos: 0
   boon: 1
   clone: 0
-  description: Energy attacks deal +35% damage
+  description: energy attacks deal +35% damage
   statNames:
   - energy_damage_mult
   statValues:

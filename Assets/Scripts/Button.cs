@@ -23,7 +23,7 @@ public abstract class Button : CustomUIElement
             outlineObj.transform.localPosition = Vector3.back;
             outlineSR = outlineObj.AddComponent<SpriteRenderer>();
             outlineSR.sprite = outlineUp;
-            outlineObj.SetActive(false);
+            ToggleOutline(false);
         }
     }
 
@@ -39,7 +39,7 @@ public abstract class Button : CustomUIElement
         {
             if (outlineObj != null)
             {
-                outlineObj.SetActive(true);
+                ToggleOutline(true);
                 outlineSR.sprite = outlineUp;
             }
         }
@@ -51,7 +51,7 @@ public abstract class Button : CustomUIElement
         {
             if (outlineObj != null)
             {
-                outlineObj.SetActive(false);
+                ToggleOutline(false);
             }
         }
     }
@@ -105,6 +105,12 @@ public abstract class Button : CustomUIElement
     {
         base.SetActive(a);
         if (outlineObj != null && !a)
-            outlineObj.SetActive(false);
+            ToggleOutline(false);
+    }
+
+    public void ToggleOutline(bool a)
+    {
+        if (outlineObj != null)
+            outlineObj.SetActive(a);
     }
 }

@@ -145,11 +145,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 1
-  lerpPos: {x: 0, y: 0, z: 0}
   locked: 1
+  lerpPos: {x: 0, y: 0}
+  zPos: 0
   boon: 0
   clone: 1
-  description: 'Triple the effect of the last curse taken:'
+  description: 'triple the effect of the last curse taken:'
   statNames: []
   statValues: []
   lootpool: {fileID: 11400000, guid: 1b3161b2815a3604fa8c823f046620e2, type: 2}

@@ -145,11 +145,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 1
-  lerpPos: {x: 0, y: 0, z: 0}
   locked: 1
+  lerpPos: {x: 0, y: 0}
+  zPos: 0
   boon: 1
   clone: 1
-  description: 'Double the effect of the last boon taken:'
+  description: 'double the effect of the last boon taken:'
   statNames: []
   statValues: []
   lootpool: {fileID: 11400000, guid: 996dccbf9002bae4ca136fa1d1d6b28b, type: 2}

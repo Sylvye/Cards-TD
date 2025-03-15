@@ -21,7 +21,7 @@ public class MapNode : Button
             StageController.SwitchStage(stage);
 
             MapController.EliminateColumn(this);
-            MapController.currentNode.SetSprite(MapController.nodeCompleted);
+            // set sprite to the "completed" texture
             MapController.currentNode.clickable = false;
             MapController.currentNode.displayName = "Trail";
             MapController.currentNode = this;
@@ -30,24 +30,20 @@ public class MapNode : Button
         }
     }
 
-    private void OnMouseOver()
+    public override void OnMouseEnter()
     {
+        base.OnMouseEnter();
         if (clickable)
         {
             if (exits.Length >= 1 && exits[0] != null)
             {
-                exits[0].MakeSpriteDown();
+                exits[0].ToggleOutline(true);
             }
             if (exits.Length >= 2 && exits[1] != null)
             {
-                exits[1].MakeSpriteDown();
+                exits[1].ToggleOutline(true);
             }
         }
-    }
-
-    public override void OnMouseEnter()
-    {
-        base.OnMouseEnter();
         if (MouseTooltip.GetText() != displayName)
             MouseTooltip.SetText(displayName);
         MouseTooltip.SetVisible(true);
@@ -60,11 +56,11 @@ public class MapNode : Button
         MouseTooltip.SetVisible(false);
         if (exits.Length >= 1 && exits[0] != null)
         {
-            exits[0].MakeSpriteUp();
+            exits[0].ToggleOutline(false);
         }
         if (exits.Length >= 2 && exits[1] != null)
         {
-            exits[1].MakeSpriteUp();
+            exits[1].ToggleOutline(false);
         }
     }
 

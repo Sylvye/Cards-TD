@@ -73,14 +73,6 @@ public class Main : MonoBehaviour
         }
     }
 
-    public static void UpdatePackLabels()
-    {
-        for (int i = 0; i < 2; i++)
-        {
-            StageController.inventoryLabels.transform.GetChild(i+1).GetComponent<TMPLabel>().SetText("" + main.packs[i]);
-        }
-    }
-
     private void Update() 
     {
         // testing purposes

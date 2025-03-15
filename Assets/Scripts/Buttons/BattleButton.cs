@@ -65,7 +65,6 @@ public class BattleButton : Button
                 StageController.ToggleTime(false);
                 StageController.inventoryUI.SetActive(true);
                 StageController.inventoryLabels.SetActive(true);
-                Main.UpdatePackLabels();
                 break;
             case 3: // Entered Boon / Curse stage
                 StageController.inventoryUI.SetActive(false);
