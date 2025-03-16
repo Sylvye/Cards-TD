@@ -22,7 +22,7 @@ public class UpgradeButton : Button
         string text = "";
         if (cost == 0)
         {
-            text = "Free!";
+            text = "free!";
         }
         else if (cost > 0)
         {

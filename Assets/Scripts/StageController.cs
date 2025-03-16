@@ -39,7 +39,7 @@ public class StageController : MonoBehaviour
     public static GameObject boonCurse;
     public static GameObject riskRewardTextbox;
     [Header("Upgrade")]
-    public int test2 = 10;
+    public static ScrollAreaInventory upgScrollArea;
     [Header("Augment")]
     public static ScrollAreaInventory augCardScrollArea;
     public static ScrollAreaInventory augAugmentScrollArea;
@@ -55,6 +55,7 @@ public class StageController : MonoBehaviour
         riskRewardTextbox = GameObject.Find("Risk-Reward Textbox");
         augCardScrollArea = GameObject.Find("Augment Deck Scroll Area").GetComponent<ScrollAreaInventory>();
         augAugmentScrollArea = GameObject.Find("Augment Scroll Area").GetComponent<ScrollAreaInventory>();
+        upgScrollArea = GameObject.Find("Upgrade Deck Scroll Area").GetComponent<ScrollAreaInventory>();
         inventoryLootScrollArea = inventoryUI.GetComponentInChildren<ScrollAreaInventory>();
     }
 
@@ -129,7 +130,7 @@ public class StageController : MonoBehaviour
                 AugmentTable.main.PurgeStowaways();
                 break;
             case Stage.Upgrade:
-                ShopController.shopScrollArea.DeleteInventory();
+                upgScrollArea.DeleteInventory();
                 UpgradeTable.main.PurgeStowaways();
                 break;
             default:
@@ -183,13 +184,15 @@ public class StageController : MonoBehaviour
         ScrollAreaInventory cardScrollArea = GameObject.Find("Shop Deck Scroll Area").GetComponent<ScrollAreaInventory>();
         cardScrollArea.FillWithCards(cardSAI, transform, 0, Cards.CardType.Card);
 
+        float spacing = 2;
+
         for (int i = 0; i<ShopController.main.cardCount; i++) // cards
         {
-            Vector3 pos = shopCardSpawn.position + i * 2 * Vector3.right - ShopController.main.cardCount * Vector3.right;
+            Vector3 pos = shopCardSpawn.position + spacing * (i * Vector3.right + (ShopController.main.cardCount * 0.5f - 0.5f) * Vector3.left);
             GameObject cardObj = ShopController.MakeCard(pos);
             ShopItem cardItem = cardObj.GetComponent<ShopItem>();
             cardObj.transform.parent = shopCardSpawn;
-            GameObject label = ShopController.MakeLabel(pos + Vector3.down, cardItem.GetPrice() + "c");
+            GameObject label = ShopController.MakeLabel(pos + Vector3.down * 1.2f, cardItem.GetPrice() + "c");
             if (cardItem.GetDiscount() != 1)
             {
                 label.GetComponent<TMPLabel>().SetText(label.GetComponent<TMPLabel>().GetText());
@@ -198,11 +201,11 @@ public class StageController : MonoBehaviour
         }
         for (int i = 0; i < ShopController.main.augmentCount; i++) // augments
         {
-            Vector3 pos = shopAugmentSpawn.position + i * 2 * Vector3.right + ShopController.main.augmentCount * Vector3.left;
+            Vector3 pos = shopAugmentSpawn.position + spacing * (i * Vector3.right + (ShopController.main.augmentCount * 0.5f - 0.5f) * Vector3.left);
             GameObject augmentObj = ShopController.MakeAugment(pos);
             ShopItem augmentItem = augmentObj.GetComponent<ShopItem>();
             augmentObj.transform.parent = shopAugmentSpawn;
-            GameObject label = ShopController.MakeLabel(pos + Vector3.down, augmentItem.GetPrice() + "c");
+            GameObject label = ShopController.MakeLabel(pos + Vector3.down * 1.2f, augmentItem.GetPrice() + "c");
             if (augmentItem.GetDiscount() != 1)
             {
                 label.GetComponent<TMPLabel>().SetText(label.GetComponent<TMPLabel>().GetText());

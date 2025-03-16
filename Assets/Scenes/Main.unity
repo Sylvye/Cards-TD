@@ -1552,8 +1552,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 38084e92b24182e4fa76ae3642301336, type: 2}
-  m_sharedMaterial: {fileID: -1783730945373700140, guid: 38084e92b24182e4fa76ae3642301336, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: deb0848c9c3707649b6438fb8995eb46, type: 2}
+  m_sharedMaterial: {fileID: -8239725189054850413, guid: deb0848c9c3707649b6438fb8995eb46, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2451,7 +2451,7 @@ PrefabInstance:
     - target: {fileID: 7085174636817522291, guid: e268599e2152bcd4191499219abe793a, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 38084e92b24182e4fa76ae3642301336, type: 2}
+      objectReference: {fileID: 11400000, guid: deb0848c9c3707649b6438fb8995eb46, type: 2}
     - target: {fileID: 7085174636817522291, guid: e268599e2152bcd4191499219abe793a, type: 3}
       propertyPath: m_fontColor.b
       value: 0.62352943
@@ -2467,7 +2467,7 @@ PrefabInstance:
     - target: {fileID: 7085174636817522291, guid: e268599e2152bcd4191499219abe793a, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -1783730945373700140, guid: 38084e92b24182e4fa76ae3642301336, type: 2}
+      objectReference: {fileID: -8239725189054850413, guid: deb0848c9c3707649b6438fb8995eb46, type: 2}
     - target: {fileID: 7085174636817522291, guid: e268599e2152bcd4191499219abe793a, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4288662952
@@ -2590,8 +2590,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Rocket Turret T1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 38084e92b24182e4fa76ae3642301336, type: 2}
-  m_sharedMaterial: {fileID: -1783730945373700140, guid: 38084e92b24182e4fa76ae3642301336, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: deb0848c9c3707649b6438fb8995eb46, type: 2}
+  m_sharedMaterial: {fileID: -8239725189054850413, guid: deb0848c9c3707649b6438fb8995eb46, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2716,7 +2716,6 @@ MonoBehaviour:
   shopAugmentSpawn: {fileID: 1635188129}
   cardProbs: {fileID: 11400000, guid: 8c35a6c4cd076c24a8edd87b7f79db56, type: 2}
   textParent: {fileID: 424699732}
-  test2: 10
   cardSAI: {fileID: 2544091038844672236, guid: 2c3333db66507c34a8c6df8cd963f9b6, type: 3}
 --- !u!4 &721293945
 Transform:
@@ -3460,6 +3459,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeObj: {fileID: 4281045009634875367, guid: 6554b996ef45a7b48a874760182a2840, type: 3}
   filePath: MapNodesRevamped
+  mapNodeLink: {fileID: 5752711711366637410, guid: 6549c25c20688214baec5c961a6cc43d, type: 3}
 --- !u!212 &995766151
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6348,7 +6348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 1
-  locked: 0
+  locked: 1
   lerpPos: {x: 0, y: 0}
   zPos: 0
   spriteUp: {fileID: 399017858, guid: 7c0ccbf37dce7ae49921dbefdf869b95, type: 3}
@@ -7784,7 +7784,7 @@ PrefabInstance:
     - target: {fileID: 7085174636817522291, guid: e268599e2152bcd4191499219abe793a, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: 38084e92b24182e4fa76ae3642301336, type: 2}
+      objectReference: {fileID: 11400000, guid: deb0848c9c3707649b6438fb8995eb46, type: 2}
     - target: {fileID: 7085174636817522291, guid: e268599e2152bcd4191499219abe793a, type: 3}
       propertyPath: m_fontColor.b
       value: 0.62352943
@@ -7800,7 +7800,7 @@ PrefabInstance:
     - target: {fileID: 7085174636817522291, guid: e268599e2152bcd4191499219abe793a, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -1783730945373700140, guid: 38084e92b24182e4fa76ae3642301336, type: 2}
+      objectReference: {fileID: -8239725189054850413, guid: deb0848c9c3707649b6438fb8995eb46, type: 2}
     - target: {fileID: 7085174636817522291, guid: e268599e2152bcd4191499219abe793a, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4284660469

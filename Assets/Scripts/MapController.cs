@@ -14,6 +14,7 @@ public class MapController : MonoBehaviour
     public GameObject nodeObj;
     public string filePath;
     public static GameObject nodeObj_;
+    public GameObject mapNodeLink;
 
     public static Sprite[] sprites;
     public static int nodeX;
@@ -219,7 +220,7 @@ public class MapController : MonoBehaviour
                     objNode.spriteUp = sprites[nodeX];
                     objNode.stage = StageController.Stage.None;
                     objNode.displayName = "Unreachable";
-                    objNode.clickable = false;
+                    objNode.SetActive(false);
                 }
             }
             else if (reachedColumn)

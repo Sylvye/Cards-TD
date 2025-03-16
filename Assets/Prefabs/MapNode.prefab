@@ -110,7 +110,6 @@ MonoBehaviour:
   index: 0
   column: 0
   spriteIndex: 0
-  clickable: 1
   spriteDeactivated: {fileID: 0}
   exits: []
   displayName: 

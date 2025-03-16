@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class CustomUIElement : MonoBehaviour
 {
-    private static readonly float LERP_SPEED = 50;
+    private static readonly float LERP_SPEED = 25;
     [SerializeField] private bool active = true;
     public bool locked = false;
     [SerializeField] private Vector2 lerpPos;
@@ -17,7 +17,7 @@ public abstract class CustomUIElement : MonoBehaviour
         zPos = transform.position.y;
     }
 
-    // Start is called before the first frame update
+    // Dont delete, messes with inheritance
     public virtual void Start()
     {
         
@@ -46,14 +46,18 @@ public abstract class CustomUIElement : MonoBehaviour
 
     public virtual void SetActive(bool a)
     {
+        SetActive(a, true);
+    }
+
+    public virtual void SetActive(bool a, bool dim)
+    {
         active = a;
-        if (a)
+        if (dim)
         {
-            GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-        }
-        else
-        {
-            GetComponent<SpriteRenderer>().color = new Color(0.75f, 0.75f, 0.75f, 0.75f);
+            if (a)
+                GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            else
+                GetComponent<SpriteRenderer>().color = new Color(0.75f, 0.75f, 0.75f, 0.75f);
         }
     }
 

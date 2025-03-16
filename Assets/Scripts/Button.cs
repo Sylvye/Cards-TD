@@ -12,10 +12,12 @@ public abstract class Button : CustomUIElement
     public Sprite outlineDown;
     private GameObject outlineObj;
     private SpriteRenderer outlineSR;
+    private SpriteRenderer sr;
 
     public override void Awake()
     {
         base.Awake();
+        sr = GetComponent<SpriteRenderer>();
         if (outlineUp != null && outlineDown != null)
         {
             outlineObj = new GameObject("outline");
@@ -23,6 +25,10 @@ public abstract class Button : CustomUIElement
             outlineObj.transform.localPosition = Vector3.back;
             outlineSR = outlineObj.AddComponent<SpriteRenderer>();
             outlineSR.sprite = outlineUp;
+            outlineSR.sortingOrder = sr.sortingOrder;
+            outlineSR.sortingLayerID = sr.sortingLayerID;
+            outlineSR.sortingLayerName = sr.sortingLayerName;
+            outlineSR.maskInteraction = sr.maskInteraction;
             ToggleOutline(false);
         }
     }
@@ -103,7 +109,12 @@ public abstract class Button : CustomUIElement
 
     public override void SetActive(bool a)
     {
-        base.SetActive(a);
+        SetActive(a, true);
+    }
+
+    public override void SetActive(bool a, bool dim)
+    {
+        base.SetActive(a, dim);
         if (outlineObj != null && !a)
             ToggleOutline(false);
     }

@@ -7,34 +7,59 @@ public class MapNode : Button
     public int index;
     public int column;
     public int spriteIndex;
-    public bool clickable = true;
     public Sprite spriteDeactivated;
     public MapNode[] exits;
 
     public string displayName;
     public StageController.Stage stage;
 
+    public override void Start()
+    {
+        base.Start();
+        foreach (MapNode node in exits)
+        {
+            if (node != null)
+            {
+                GameObject link = Instantiate(MapController.main.mapNodeLink, Vector3.forward * 0.5f, Quaternion.identity, transform);
+                LineRenderer lr = link.GetComponent<LineRenderer>();
+                Vector3[] points = { transform.position, node.transform.position };
+                lr.SetPositions(points);
+            }
+        }
+    }
+
     public override void Action()
     {
-        if (clickable && (column == MapController.currentNode.column + 1 && ((MapController.currentNode.exits[0] != null && MapController.currentNode.exits[0].Equals(this)) || MapController.currentNode.exits[1] != null && MapController.currentNode.exits[1].Equals(this)) || column == 0))
+        if (GetActive() && (column == MapController.currentNode.column + 1 && ((MapController.currentNode.exits[0] != null && MapController.currentNode.exits[0].Equals(this)) || MapController.currentNode.exits[1] != null && MapController.currentNode.exits[1].Equals(this)) || column == 0))
         {
             StageController.SwitchStage(stage);
 
             MapController.EliminateColumn(this);
-            // set sprite to the "completed" texture
-            MapController.currentNode.clickable = false;
+
             MapController.currentNode.displayName = "Trail";
             MapController.currentNode = this;
-            SetSprite(MapController.currentNode.spriteIndex);
+
+            if (exits.Length >= 1 && exits[0] != null)
+            {
+                exits[0].ToggleOutline(false);
+            }
+            if (exits.Length >= 2 && exits[1] != null)
+            {
+                exits[1].ToggleOutline(false);
+            }
+
+            SetActive(false);
+            ToggleOutline(false);
+            SetSprite(spriteIndex + 2);
             displayName = "Your Location";
         }
     }
 
     public override void OnMouseEnter()
     {
-        base.OnMouseEnter();
-        if (clickable)
+        if (GetActive())
         {
+            base.OnMouseEnter();
             if (exits.Length >= 1 && exits[0] != null)
             {
                 exits[0].ToggleOutline(true);
@@ -43,10 +68,10 @@ public class MapNode : Button
             {
                 exits[1].ToggleOutline(true);
             }
+            if (MouseTooltip.GetText() != displayName)
+                MouseTooltip.SetText(displayName);
+            MouseTooltip.SetVisible(true);
         }
-        if (MouseTooltip.GetText() != displayName)
-            MouseTooltip.SetText(displayName);
-        MouseTooltip.SetVisible(true);
     }
 
 
@@ -64,6 +89,22 @@ public class MapNode : Button
         }
     }
 
+    public override void OnMouseDown()
+    {
+        if (GetActive())
+        {
+            base.OnMouseDown();
+        }
+    }
+
+    public override void OnMouseUpAsButton()
+    {
+        if (GetActive())
+        {
+            base.OnMouseUpAsButton();
+        }
+    }
+
     public void SetSprite(int spriteIndex)
     {
         SetSprite(spriteIndex, true);
@@ -78,5 +119,10 @@ public class MapNode : Button
         }
         spriteUp = MapController.sprites[spriteIndex];
         spriteDown = MapController.sprites[spriteIndex + 1];
+    }
+
+    public override void SetActive(bool a)
+    {
+        base.SetActive(a, false);
     }
 }

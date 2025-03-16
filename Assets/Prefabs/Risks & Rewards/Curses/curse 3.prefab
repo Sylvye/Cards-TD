@@ -150,7 +150,7 @@ MonoBehaviour:
   zPos: 0
   boon: 0
   clone: 0
-  description: adds 1 large enemy AND -10% wave density
+  description: adds 1 large enemy and -10% wave density
   statNames:
   - large_enemies
   - wave_density
