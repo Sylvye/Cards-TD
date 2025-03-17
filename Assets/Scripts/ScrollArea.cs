@@ -36,7 +36,7 @@ public class ScrollArea : MonoBehaviour
     private bool CanScrollInDir(float amount)
     {
         bool up = amount > 0;
-        Transform node = up ? node = transform.GetChild(0) : transform.GetChild(transform.childCount-1);
+        Transform node = up ? transform.GetChild(0) : transform.GetChild(transform.childCount-1);
         Collider2D nodeCollider = node.GetComponent<Collider2D>();
         Collider2D collider = GetComponent<Collider2D>();
 
