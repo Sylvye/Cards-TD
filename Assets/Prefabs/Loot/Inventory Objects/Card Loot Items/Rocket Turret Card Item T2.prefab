@@ -98,7 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66bfd3aeb11534949b61d3d175bad1e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Rocket Turret T
+  active: 1
+  locked: 0
+  lerpPos: {x: 0, y: 0}
+  zPos: 0
+  id: rocket turret t
   order: 2
   claimed: 0
   cardReference: {fileID: 6046127290222308652, guid: f41cc8cb3dee1ce458ca18dbba0863ef, type: 3}

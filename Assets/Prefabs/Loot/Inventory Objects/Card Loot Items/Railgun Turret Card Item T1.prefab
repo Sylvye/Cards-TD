@@ -98,7 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66bfd3aeb11534949b61d3d175bad1e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Railgun Turret T
+  active: 1
+  locked: 0
+  lerpPos: {x: 0, y: 0}
+  zPos: 0
+  id: railgun turret t
   order: 2
   claimed: 0
   cardReference: {fileID: 6066731110582671636, guid: 6cef3416ebef8394e9296e522081e718, type: 3}

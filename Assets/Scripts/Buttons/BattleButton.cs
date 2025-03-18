@@ -7,6 +7,8 @@ public class BattleButton : Button
     public static int phase = 0;
     public static int speed = 1;
     public string fileName;
+    public ItemLootpool augmentLootpool;
+    public ItemLootpool currencyLootpool;
     [NonSerialized] public Sprite playUp;
     [NonSerialized] public Sprite playDown;
     [NonSerialized] public Sprite exitUp;
@@ -65,6 +67,23 @@ public class BattleButton : Button
                 StageController.ToggleTime(false);
                 StageController.inventoryUI.SetActive(true);
                 StageController.inventoryLabels.SetActive(true);
+
+                // fill inventory with stuff here
+                int augments = Main.main.packs[0];
+                int currencies = Main.main.packs[1];
+                GameObject[] augmentItems = new GameObject[augments];
+                GameObject[] currencyItems = new GameObject[currencies];
+
+                for (int i = 0; i < currencies; i++)
+                {
+                    currencyItems[i] = CreateItem(currencyLootpool);
+                }
+                for (int i = 0; i < augments; i++)
+                {
+                    augmentItems[i] = CreateItem(augmentLootpool);
+                }
+                StageController.inventoryLootScrollArea.AddToInventory(currencyItems, true);
+                StageController.inventoryLootScrollArea.AddToInventory(augmentItems, true);
                 break;
             case 3: // Entered Boon / Curse stage
                 StageController.inventoryUI.SetActive(false);
@@ -75,5 +94,12 @@ public class BattleButton : Button
                 break;
         }
         phase = ++phase % 4;
+    }
+
+    private GameObject CreateItem(ItemLootpool lp)
+    {
+        GameObject inventoryObj = Instantiate(lp.GetRandom().gameObject);
+
+        return inventoryObj;
     }
 }

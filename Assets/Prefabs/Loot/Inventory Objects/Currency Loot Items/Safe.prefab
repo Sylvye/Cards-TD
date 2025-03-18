@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6994004999299769164}
   - component: {fileID: 7612658532311921237}
   - component: {fileID: -2133913993022396976}
+  - component: {fileID: 6447852335045312116}
   m_Layer: 0
   m_Name: Safe
   m_TagString: Untagged
@@ -54,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: cb0a4bda8ff283f4c8f45dc4a32dbe9c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -100,9 +101,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   locked: 0
-  lerpPos: {x: 0, y: 0, z: 0}
-  yPos: 0
-  id: Safe of coins
+  lerpPos: {x: 0, y: 0}
+  zPos: 0
+  id: safe of coins
   order: 1
   claimed: 0
   amount: 250
@@ -151,3 +152,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &6447852335045312116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8027126686543341126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb33903a4325aa429366157a27dc652, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeVar: _time
+  speed: 5
+  animate: 0

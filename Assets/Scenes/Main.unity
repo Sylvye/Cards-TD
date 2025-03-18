@@ -6953,6 +6953,8 @@ MonoBehaviour:
   outlineUp: {fileID: 211716340, guid: 4a974da8d7f41a343a07d1253968b0fa, type: 3}
   outlineDown: {fileID: -2118457427, guid: 4a974da8d7f41a343a07d1253968b0fa, type: 3}
   fileName: PlayButton
+  augmentLootpool: {fileID: 11400000, guid: b6f049194857b9c4ea45df4d95911a31, type: 2}
+  currencyLootpool: {fileID: 11400000, guid: a60a53d7012dcf344947fcc5994d11d5, type: 2}
 --- !u!1 &1927435557
 GameObject:
   m_ObjectHideFlags: 0

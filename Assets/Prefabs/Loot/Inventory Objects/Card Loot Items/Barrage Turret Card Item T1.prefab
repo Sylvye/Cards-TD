@@ -98,7 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66bfd3aeb11534949b61d3d175bad1e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Barrage Turret T
+  active: 1
+  locked: 0
+  lerpPos: {x: 0, y: 0}
+  zPos: 0
+  id: barrage turret t
   order: 2
   claimed: 0
   cardReference: {fileID: -6612765135822769905, guid: bbed92b32139ec642878e347d427052e, type: 3}

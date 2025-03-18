@@ -18,5 +18,13 @@ public abstract class LootItem : ScrollAreaItem
         }
     }
 
+    private void OnMouseOver()
+    {
+        if (TryGetComponent(out AnimateMaterial am))
+        {
+            am.Activate();
+        }
+    }
+
     public abstract void Claim();
 }

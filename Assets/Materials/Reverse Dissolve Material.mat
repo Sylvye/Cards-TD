@@ -63,7 +63,8 @@ Material:
     - _Noise_Scale: 0.01
     - _Resolution: 75.1
     - _Time: 0
-    - _time: 0.45
+    - _percent: 0
+    - _time: 0
     m_Colors:
     - _Color: {r: 0.65882355, g: 0.8039216, b: 0.62352943, a: 0}
     - _Color_1: {r: 3.545098, g: 3.827451, b: 3.0901961, a: 0}

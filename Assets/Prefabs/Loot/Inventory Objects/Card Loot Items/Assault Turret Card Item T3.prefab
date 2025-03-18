@@ -98,7 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66bfd3aeb11534949b61d3d175bad1e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Assault Turret T
+  active: 1
+  locked: 0
+  lerpPos: {x: 0, y: 0}
+  zPos: 0
+  id: assault turret t
   order: 2
   claimed: 0
   cardReference: {fileID: 8857968249970093843, guid: ada2d28bb00e8c04a89a5c7f6d476c34, type: 3}
