@@ -84,7 +84,7 @@ public class TowerCard : Card
         {
             stats = GetComponent<Stats>();
         }
-        return prefabTower.name + " T" + stats.GetStat("tier");
+        return prefabTower.name + " t" + stats.GetStat("tier");
     }
 
     public override Sprite GetSprite()

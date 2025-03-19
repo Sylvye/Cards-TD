@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -6612765135822769905}
   - component: {fileID: -5554047912560711574}
   m_Layer: 0
-  m_Name: Barrage Turret Card
+  m_Name: barrage turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

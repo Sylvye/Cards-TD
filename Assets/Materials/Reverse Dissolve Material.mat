@@ -60,14 +60,14 @@ Material:
     m_Floats:
     - _Fade_Speed: 0.8
     - _Fade_Step: 0.6
-    - _Noise_Scale: 0.01
+    - _Noise_Scale: 0.02
     - _Resolution: 75.1
     - _Time: 0
     - _percent: 0
     - _time: 0
     m_Colors:
     - _Color: {r: 0.65882355, g: 0.8039216, b: 0.62352943, a: 0}
-    - _Color_1: {r: 3.545098, g: 3.827451, b: 3.0901961, a: 0}
+    - _Color_1: {r: 0.8862745, g: 0.95686275, b: 0.77254903, a: 0}
     - _Color_2: {r: 0.2, g: 0.23137255, b: 0.38431373, a: 0}
     - _Resolution: {r: 25, g: 32, b: 0, a: 0}
     - _Tiling_Scale: {r: 125, g: 210, b: 0, a: 0}

@@ -2779,7 +2779,7 @@
     "m_Group": {
         "m_Id": "bd8b7f6074034919aaf40087b0e5d38c"
     },
-    "m_Name": "Pixelate",
+    "m_Name": "Pixelate UV",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
@@ -3520,7 +3520,7 @@
     "m_Group": {
         "m_Id": "f4e572be62b046b0904a8b9e35f725a2"
     },
-    "m_Name": "Pixelate",
+    "m_Name": "Pixelate UV",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
@@ -5284,7 +5284,7 @@
     "m_Group": {
         "m_Id": "423e0d2096244c48b0877f9d57831ec2"
     },
-    "m_Name": "Pixelate",
+    "m_Name": "Pixelate UV",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {

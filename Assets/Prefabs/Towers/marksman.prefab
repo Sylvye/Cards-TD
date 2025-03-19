@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 1820388846495544464}
   - component: {fileID: 4856065107173903896}
   - component: {fileID: 5780642335862219962}
-  - component: {fileID: -2378648107687848834}
-  - component: {fileID: 1309382448439379776}
+  - component: {fileID: 1884044996202361986}
+  - component: {fileID: 7778745991435108470}
   m_Layer: 6
-  m_Name: Taser Turret
+  m_Name: marksman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -122,7 +122,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &-2378648107687848834
+--- !u!114 &1884044996202361986
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,14 +131,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5304065507062134350}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55b6fdb029be0654f969851e3686c71d, type: 3}
+  m_Script: {fileID: 11500000, guid: d74afde4d85ba9f45ad60ded4bf91e35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 0
   activated: 0
-  laser: {fileID: 6254124567953751875, guid: 61cb3435ca5d60a4e857f925901aef26, type: 3}
-  FX: {fileID: 6445468403267832974, guid: af82e636ff8d2ce49b3460a8d6333316, type: 3}
---- !u!114 &1309382448439379776
+  projectile: {fileID: 265608084915569301, guid: a5be2440cec90c449a68fc49e15b5621, type: 3}
+  lastShot: -999
+  targetEnemy: {fileID: 0}
+--- !u!114 &7778745991435108470
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,12 +160,12 @@ MonoBehaviour:
         max: 5
     - Key: projectiles
       Value:
-        value: 3
+        value: 1
         min: 1
         max: 
     - Key: base_damage
       Value:
-        value: 10
+        value: 25
         min: 0
         max: 
     - Key: damage_mult
@@ -187,8 +188,18 @@ MonoBehaviour:
         value: 0
         min: 0
         max: 
-    - Key: stun
+    - Key: spread
       Value:
-        value: 0.1
+        value: 25
+        min: 5
+        max: 
+    - Key: pierce
+      Value:
+        value: 2
+        min: 0
+        max: 
+    - Key: speed
+      Value:
+        value: 6
         min: 0
         max: 

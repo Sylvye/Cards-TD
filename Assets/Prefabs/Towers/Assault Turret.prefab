@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2802227255617744018}
   - component: {fileID: -9032120063116637718}
   m_Layer: 6
-  m_Name: Assault Turret
+  m_Name: assault turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

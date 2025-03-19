@@ -105,7 +105,6 @@ MonoBehaviour:
   zPos: 0
   id: damage
   order: 0
-  claimed: 0
   augment: {fileID: 6280387633327717232, guid: a35a1b084e8f738408261053c01acef2, type: 3}
 --- !u!61 &-6336402353446167825
 BoxCollider2D:
@@ -165,5 +164,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeVar: _time
-  speed: 5
+  speed: 10
   animate: 0

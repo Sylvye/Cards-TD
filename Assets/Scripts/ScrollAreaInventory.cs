@@ -73,7 +73,7 @@ public class ScrollAreaInventory : ScrollArea
         for (int i = inventory.Count - 1; i >= 0; i--)
         {
             GameObject obj = inventory[i].gameObject;
-            if (obj.TryGetComponent(out LootItem li) && li.claimed)
+            if (obj.TryGetComponent(out LootItem li))
             {
                 Destroy(obj);
                 inventory.RemoveAt(i);

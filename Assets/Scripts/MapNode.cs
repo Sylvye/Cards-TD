@@ -39,17 +39,9 @@ public class MapNode : Button
             MapController.currentNode.displayName = "Trail";
             MapController.currentNode = this;
 
-            if (exits.Length >= 1 && exits[0] != null)
-            {
-                exits[0].ToggleOutline(false);
-            }
-            if (exits.Length >= 2 && exits[1] != null)
-            {
-                exits[1].ToggleOutline(false);
-            }
-
             SetActive(false);
             ToggleOutline(false);
+            OnMouseExit();
             SetSprite(spriteIndex + 2);
             displayName = "Your Location";
         }

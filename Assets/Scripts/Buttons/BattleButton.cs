@@ -1,4 +1,5 @@
 using System;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 
 public class BattleButton : Button
@@ -77,10 +78,12 @@ public class BattleButton : Button
                 for (int i = 0; i < currencies; i++)
                 {
                     currencyItems[i] = CreateItem(currencyLootpool);
+                    currencyItems[i].GetComponent<LootItem>().Claim();
                 }
                 for (int i = 0; i < augments; i++)
                 {
                     augmentItems[i] = CreateItem(augmentLootpool);
+                    augmentItems[i].GetComponent<LootItem>().Claim();
                 }
                 StageController.inventoryLootScrollArea.AddToInventory(currencyItems, true);
                 StageController.inventoryLootScrollArea.AddToInventory(augmentItems, true);

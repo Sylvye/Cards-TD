@@ -105,7 +105,6 @@ MonoBehaviour:
   zPos: 0
   id: small sum of coins
   order: 4
-  claimed: 0
   amount: 15
 --- !u!61 &-3640682698597089801
 BoxCollider2D:
@@ -165,5 +164,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeVar: _time
-  speed: 5
+  speed: 10
   animate: 0

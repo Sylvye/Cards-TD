@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 1820388846495544464}
   - component: {fileID: 4856065107173903896}
   - component: {fileID: 5780642335862219962}
-  - component: {fileID: 1884044996202361986}
-  - component: {fileID: 7778745991435108470}
+  - component: {fileID: 1543812599934924934}
+  - component: {fileID: -5467991435838630256}
   m_Layer: 6
-  m_Name: Railgun Turret
+  m_Name: barrager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -122,7 +122,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &1884044996202361986
+--- !u!114 &1543812599934924934
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -131,15 +131,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5304065507062134350}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d74afde4d85ba9f45ad60ded4bf91e35, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d3eb06477b073040941f2950c625289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
   activated: 0
-  projectile: {fileID: 265608084915569301, guid: a5be2440cec90c449a68fc49e15b5621, type: 3}
+  projectile: {fileID: 265608084915569301, guid: e98d3ed888d12e0459d3a3f5efaa149f, type: 3}
   lastShot: -999
   targetEnemy: {fileID: 0}
---- !u!114 &7778745991435108470
+--- !u!114 &-5467991435838630256
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,12 +160,12 @@ MonoBehaviour:
         max: 5
     - Key: projectiles
       Value:
-        value: 1
+        value: 2
         min: 1
         max: 
     - Key: base_damage
       Value:
-        value: 25
+        value: 5
         min: 0
         max: 
     - Key: damage_mult
@@ -175,18 +175,13 @@ MonoBehaviour:
         max: 
     - Key: range
       Value:
-        value: 5
+        value: 1.5
         min: 1
         max: 
     - Key: attack_speed
       Value:
-        value: 1
+        value: 4
         min: 0.1
-        max: 
-    - Key: explosion_radius
-      Value:
-        value: 0
-        min: 0
         max: 
     - Key: spread
       Value:
@@ -195,11 +190,21 @@ MonoBehaviour:
         max: 
     - Key: pierce
       Value:
-        value: 2
+        value: 0
         min: 0
         max: 
     - Key: speed
       Value:
-        value: 6
+        value: 3
+        min: 0
+        max: 
+    - Key: homing
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: explosion_radius
+      Value:
+        value: 0
         min: 0
         max: 

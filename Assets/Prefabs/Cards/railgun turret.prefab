@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 467519594113573095}
   - component: {fileID: 5919581471223590647}
   - component: {fileID: 7158332179295412726}
-  - component: {fileID: 6046127290222308652}
-  - component: {fileID: 3684361676557154510}
+  - component: {fileID: 6066731110582671636}
+  - component: {fileID: -9102459732911952276}
   m_Layer: 0
-  m_Name: Rocket Turret Card
+  m_Name: railgun turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1582639936, guid: 8d88f2d416aced54cb6055c1a4e8bdfc, type: 3}
+  m_Sprite: {fileID: -603496036, guid: 8d88f2d416aced54cb6055c1a4e8bdfc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -132,7 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5625, y: 2.1875}
   m_EdgeRadius: 0
---- !u!114 &6046127290222308652
+--- !u!114 &6066731110582671636
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,11 +145,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 
-  spawnable: {fileID: 5304065507062134350, guid: 50f35958cda5a6a49b2184264fe87f36, type: 3}
+  spawnable: {fileID: 5304065507062134350, guid: df4fa3818a6d3e046be03900477dc6f8, type: 3}
   spawned: {fileID: 0}
-  towerIndex: 4
-  hitboxRadius: 0.6
---- !u!114 &3684361676557154510
+  towerIndex: 1
+  hitboxRadius: 0.75
+--- !u!114 &-9102459732911952276
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

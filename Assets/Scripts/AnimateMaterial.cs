@@ -54,4 +54,10 @@ public class AnimateMaterial : MonoBehaviour
             animate = true;
         }
     }
+
+    public void PrimeAnimation()
+    {
+        time = 0;
+        animate = false;
+    }
 }

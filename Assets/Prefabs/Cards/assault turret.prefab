@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 467519594113573095}
   - component: {fileID: 5919581471223590647}
   - component: {fileID: 7158332179295412726}
-  - component: {fileID: 6630076731711478058}
-  - component: {fileID: -6811351823866483701}
+  - component: {fileID: 8857968249970093843}
+  - component: {fileID: 3371754562718877836}
   m_Layer: 0
-  m_Name: Taser Turret Card
+  m_Name: assault turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -306165635, guid: 8d88f2d416aced54cb6055c1a4e8bdfc, type: 3}
+  m_Sprite: {fileID: -1280954968, guid: 8d88f2d416aced54cb6055c1a4e8bdfc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -132,7 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5625, y: 2.1875}
   m_EdgeRadius: 0
---- !u!114 &6630076731711478058
+--- !u!114 &8857968249970093843
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,11 +145,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 
-  spawnable: {fileID: 5304065507062134350, guid: bed34bc661e45414c87597feb578152a, type: 3}
+  spawnable: {fileID: 5304065507062134350, guid: 987c16521ba5619458f023b92a5c78be, type: 3}
   spawned: {fileID: 0}
-  towerIndex: 3
-  hitboxRadius: 0.75
---- !u!114 &-6811351823866483701
+  towerIndex: 0
+  hitboxRadius: 0.5
+--- !u!114 &3371754562718877836
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
