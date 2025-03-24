@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 public class ScrollAreaItem : CustomUIElement, IComparable<ScrollAreaItem>
 {
     public string id;
+    public bool readName = true;
     public int order;
     [NonSerialized]
     public Vector3 homePos;
@@ -24,7 +25,7 @@ public class ScrollAreaItem : CustomUIElement, IComparable<ScrollAreaItem>
 
     private void OnMouseEnter()
     {
-        if (Clickable())
+        if (readName && Clickable())
         {
             MouseTooltip.SetVisible(true);
             MouseTooltip.SetText(id);
@@ -33,7 +34,7 @@ public class ScrollAreaItem : CustomUIElement, IComparable<ScrollAreaItem>
 
     private void OnMouseExit()
     {
-        if (Clickable() || MouseTooltip.GetText().Equals(id))
+        if ((readName && Clickable()) || MouseTooltip.GetText().Equals(id))
         {
             MouseTooltip.SetVisible(false);
         }

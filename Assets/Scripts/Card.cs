@@ -10,13 +10,14 @@ public abstract class Card : MonoBehaviour, CardInterface
 {
     public string type;
     private Vector3 handPos;
+    public float cooldown;
     [NonSerialized]
     public Stats stats;
-    public static Transform field;
+    public static Transform playingField;
 
     public virtual void Awake()
     {
-        field = GameObject.Find("Field").transform;
+        playingField = GameObject.Find("Field").transform;
         stats = GetComponent<Stats>();
         GetComponent<SpriteRenderer>().sprite = GetSprite();
     }
@@ -128,7 +129,7 @@ public abstract class Card : MonoBehaviour, CardInterface
 
     public static void ClearField()
     {
-        foreach (Transform child in field)
+        foreach (Transform child in playingField)
         {
             Destroy(child.gameObject);
         }

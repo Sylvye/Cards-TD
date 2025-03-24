@@ -164,5 +164,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeVar: _time
-  speed: 10
+  speed: 1
   animate: 0

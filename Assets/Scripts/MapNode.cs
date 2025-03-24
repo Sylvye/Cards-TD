@@ -30,20 +30,26 @@ public class MapNode : Button
 
     public override void Action()
     {
-        if (GetActive() && (column == MapController.currentNode.column + 1 && ((MapController.currentNode.exits[0] != null && MapController.currentNode.exits[0].Equals(this)) || MapController.currentNode.exits[1] != null && MapController.currentNode.exits[1].Equals(this)) || column == 0))
+        if (GetActive() && 
+            column == MapController.col && 
+                ((column == 0) || 
+                (MapController.currentNode.exits[0] != null 
+                    && MapController.currentNode.exits[0].Equals(this)) 
+                    || MapController.currentNode.exits[1] != null 
+                    && MapController.currentNode.exits[1].Equals(this)))
         {
             StageController.SwitchStage(stage);
 
             MapController.EliminateColumn(this);
-
-            MapController.currentNode.displayName = "Trail";
+            MapController.currentNode.displayName = "trail";
             MapController.currentNode = this;
+            MapController.col++;
 
             SetActive(false);
             ToggleOutline(false);
             OnMouseExit();
             SetSprite(spriteIndex + 2);
-            displayName = "Your Location";
+            displayName = "your Location";
         }
     }
 

@@ -66,7 +66,7 @@ public abstract class Tower : MonoBehaviour
     public static Tower MakeTowerByPrefab(GameObject obj, Vector2 pos, Stats s)
     {
         Tower t = Instantiate(obj, new Vector3(pos.x, pos.y, 2), Quaternion.identity).GetComponent<Tower>();
-        t.transform.parent = Card.field;
+        t.transform.parent = Card.playingField;
         t.stats.AddStats(s);
         t.ApplyTierEffects();
         return t;

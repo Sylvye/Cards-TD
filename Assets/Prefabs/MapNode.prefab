@@ -166,4 +166,5 @@ MonoBehaviour:
   lerpPos: {x: 0, y: 0}
   zPos: 0
   id: 
+  readName: 0
   order: 0

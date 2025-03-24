@@ -28,7 +28,7 @@ public class AnimateMaterial : MonoBehaviour
     {
         if (animate)
         {
-            time += Time.deltaTime * speed;
+            time += Time.unscaledDeltaTime * speed;
             SetTime(Mathf.Clamp(time, 0, 1));
             if (time >= 1)
             {

@@ -10,6 +10,7 @@ public class MapController : MonoBehaviour
     public static MapController main;
     public static ScrollArea scrollArea;
     public static MapNode currentNode;
+    public static int col;
 
     public GameObject nodeObj;
     public string filePath;
@@ -42,6 +43,7 @@ public class MapController : MonoBehaviour
         nodeUpgradeUp = 9;
         nodeAugmentUp= 12;
         nodeBossUp= 1;
+        col = 0;
 
         Screen.SetResolution(2560, 1080, true);
     }
@@ -124,7 +126,7 @@ public class MapController : MonoBehaviour
             if (n.column % 2 == 0) // battle stages are every even column
             {
                 n.SetSprite(nodeBattleUp);
-                n.displayName = "Defense";
+                n.displayName = "defense";
                 n.stage = StageController.Stage.Battle;
             }
             else
@@ -135,31 +137,31 @@ public class MapController : MonoBehaviour
                 {
                     case 0:
                         n.SetSprite(nodeShopUp);
-                        n.displayName = "Shop";
+                        n.displayName = "shop";
                         n.stage = StageController.Stage.Shop;
                         break;
                     case 1:
                         n.SetSprite(nodeUpgradeUp);
-                        n.displayName = "Upgrade";
+                        n.displayName = "upgrade";
                         n.stage = StageController.Stage.Upgrade;
                         break;
                     case 2:
                         n.SetSprite(nodeAugmentUp);
-                        n.displayName = "Augment";
+                        n.displayName = "augment";
                         n.stage = StageController.Stage.Augment;
                         break;
                     default:
                         if (Random.Range(0, 1 + n.column/2) == 0)
                         {
                             n.SetSprite(nodeBattleUp);
-                            n.displayName = "Defense";
+                            n.displayName = "defense";
                             n.stage = StageController.Stage.Battle;
                             break;
                         }
                         else
                         {
                             n.SetSprite(nodeMinibossUp);
-                            n.displayName = "Miniboss";
+                            n.displayName = "miniboss";
                             n.stage = StageController.Stage.Battle;
                             break;
                         }
@@ -185,7 +187,7 @@ public class MapController : MonoBehaviour
         MapNode bossNode = nodes[index - 1].GetComponent<MapNode>();
         bossNode.SetSprite(nodeBossUp);
         bossNode.stage = StageController.Stage.Battle;
-        bossNode.displayName = "Stage Boss";
+        bossNode.displayName = "stage boss";
 
         MapNode startNode = nodes[0].GetComponent<MapNode>();
 
@@ -219,7 +221,7 @@ public class MapController : MonoBehaviour
                     objNode.spriteDown = sprites[nodeX];
                     objNode.spriteUp = sprites[nodeX];
                     objNode.stage = StageController.Stage.None;
-                    objNode.displayName = "Unreachable";
+                    objNode.displayName = "unreachable";
                     objNode.SetActive(false);
                 }
             }

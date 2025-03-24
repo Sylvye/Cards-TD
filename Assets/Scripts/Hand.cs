@@ -7,11 +7,13 @@ public class Hand : MonoBehaviour
 {
     public static Hand main;
     private List<Card> hand = new();
+    public static float cooldownSum;
 
     // Start is called before the first frame update
     private void Start()
     {
         main = this;
+        cooldownSum = 0;
     }
 
     // returns all cards back to the deck. adds 5 cards from the deck to the hand
@@ -128,6 +130,16 @@ public class Hand : MonoBehaviour
         foreach (Transform t in main.transform)
         {
             t.gameObject.SetActive(b);
+        }
+    }
+
+    public static void CalculateSum()
+    {
+        cooldownSum = 0;
+        foreach (Transform child in main.transform)
+        {
+            Card c = child.GetComponent<Card>();
+            cooldownSum += c.cooldown;
         }
     }
 }

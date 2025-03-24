@@ -38,7 +38,7 @@ public class LootTypeIndicator : MonoBehaviour
         {
             if (Vector2.Distance(transform.position, destination) > 0.1f)
             {
-                transform.position = (Vector3)Vector2.Lerp(transform.position, destination, Time.deltaTime * 10) + Vector3.back * 1;
+                transform.position = (Vector3)Vector2.Lerp(transform.position, destination, Time.unscaledDeltaTime * 2) + Vector3.back * 1;
             }
             else
             {
