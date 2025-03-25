@@ -51,6 +51,8 @@ public class DraggableScrollAreaItem : ScrollAreaItem
             if (closest != null)
             {
                 transform.parent = closest;
+                transform.position = closest.position;
+                locked = true;
                 state = State.Positioned;
             }
             else
@@ -68,6 +70,7 @@ public class DraggableScrollAreaItem : ScrollAreaItem
     {
         if (Clickable() && (state.Equals(State.Positioned) || state.Equals(State.Home)))
         {
+            locked = false;
             SetDestination(transform.position);
             transform.parent = null;
             state = State.Moving;

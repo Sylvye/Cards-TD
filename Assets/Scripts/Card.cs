@@ -14,14 +14,17 @@ public abstract class Card : MonoBehaviour, CardInterface
     [NonSerialized]
     public Stats stats;
     public static Transform playingField;
+    private bool clicked;
 
     public virtual void Awake()
     {
         playingField = GameObject.Find("Field").transform;
         stats = GetComponent<Stats>();
         GetComponent<SpriteRenderer>().sprite = GetSprite();
+        clicked = false;
     }
 
+    // dont delete, method is overriden
     public virtual void Start()
     {
         
@@ -34,22 +37,27 @@ public abstract class Card : MonoBehaviour, CardInterface
 
     private void OnMouseDown()
     {
-        SetHandPos();
-        transform.parent = transform.parent.parent;
+        if (Time.time - Hand.timeOfLastPlay <= cooldown)
+        {
+            SetHandPos();
+            transform.parent = transform.parent.parent;
 
-        MouseDownAction();
+            MouseDownAction();
 
-        ActionButton.active = false;
-        StageController.ToggleDarken(false);
-        StageController.ToggleTime(true);
-        Hand.Display(false);
+            ActionButton.active = false;
+            StageController.ToggleDarken(false);
+            StageController.ToggleTime(true);
+            Hand.Display(false);
+            Hand.timeOfLastPlay = Time.time;
+            clicked = true;
+        }
     }
 
     private void OnMouseUp()
     {
-        // this check is because something to do with the fact that this isnt a unity method
-        if (Hand.GetIndexOf(this) != -1) // if card is in hand
+        if (clicked && Hand.GetIndexOf(this) != -1) // if card is in hand
         {
+            clicked = false;
             if (!Spawner.main.IsStageCleared() && StageController.currentStage == StageController.Stage.Battle)
             {
                 MouseUpAction();

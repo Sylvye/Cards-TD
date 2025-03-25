@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 
+  cooldown: 20
   spawnable: {fileID: 5304065507062134350, guid: 50f35958cda5a6a49b2184264fe87f36, type: 3}
   spawned: {fileID: 0}
   towerIndex: 4
