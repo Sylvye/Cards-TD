@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimateMaterial : MonoBehaviour
+public class MaterialAnimator : MonoBehaviour
 {
     public string timeVar = "_time";
     public float speed;
@@ -29,7 +29,7 @@ public class AnimateMaterial : MonoBehaviour
         if (animate)
         {
             time += Time.unscaledDeltaTime * speed;
-            SetTime(Mathf.Clamp(time, 0, 1));
+            Set(Mathf.Clamp(time, 0, 1));
             if (time >= 1)
             {
                 animate = false;
@@ -37,14 +37,24 @@ public class AnimateMaterial : MonoBehaviour
         }
     }
 
-    public void SetTime(float time)
+    public void Set(float val)
     {
-        r.material.SetFloat(timeVar, time);
+        r.material.SetFloat(timeVar, val);
     }
 
-    public float GetTime()
+    public void Set(string v, float val)
+    {
+        r.material.SetFloat(v, val);
+    }
+
+    public float Get()
     {
         return r.material.GetFloat(timeVar);
+    }
+
+    public float Get(string v)
+    {
+        return r.material.GetFloat(v);
     }
 
     public void Activate()

@@ -58,14 +58,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amplitude: 0.2
-    - _Freq: 1
+    - _Amplitude: 0.03
+    - _Freq: 10
     - _Height: 0
-    - _Layer_Thickness: 0.2
+    - _Layer_Thickness: 0.03
+    - _NumCards: 36
     - _Speed: 10
+    - _UnscaledTime: 0
     m_Colors:
     - _Color_1: {r: 0.8862745, g: 0.9568626, b: 0.772549, a: 0}
     - _Color_5: {r: 0.19999996, g: 0.23137257, b: 0.38431367, a: 0}
+    - _Grid: {r: 25, g: 35, b: 0, a: 0}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
+    - _Sprite_Size: {r: 25, g: 35, b: 0, a: 0}
     - _Tiling: {r: 0.2, g: 0.2, b: 0, a: 0}
   m_BuildTextureStacks: []

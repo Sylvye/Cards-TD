@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7158332179295412726}
   - component: {fileID: 6066731110582671636}
   - component: {fileID: -9102459732911952276}
+  - component: {fileID: -3119326863907844181}
   m_Layer: 0
   m_Name: railgun turret
   m_TagString: Untagged
@@ -55,7 +56,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: ece0360cc44cd85448972b67bfedaaac, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -214,3 +215,18 @@ MonoBehaviour:
         value: 0
         min: 
         max: 
+--- !u!114 &-3119326863907844181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7631322497954940115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e847297959cf71845b4fcadbadd1a4b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeVar: _Height
+  speed: 0
+  animate: 0

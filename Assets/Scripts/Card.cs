@@ -15,11 +15,13 @@ public abstract class Card : MonoBehaviour, CardInterface
     public Stats stats;
     public static Transform playingField;
     private bool clicked;
+    private MaterialAnimator ma;
 
     public virtual void Awake()
     {
         playingField = GameObject.Find("Field").transform;
         stats = GetComponent<Stats>();
+        ma = GetComponent<MaterialAnimator>();
         GetComponent<SpriteRenderer>().sprite = GetSprite();
         clicked = false;
     }
@@ -30,6 +32,15 @@ public abstract class Card : MonoBehaviour, CardInterface
         
     }
 
+    public virtual void Update()
+    {
+        if (!clicked)
+        {
+            ma.Set("_UnscaledTime", Time.unscaledTime);
+            ma.Set(Mathf.Clamp((Time.time - Hand.timeOfLastPlay) / cooldown, 0, 1));
+        }
+    }
+
     public virtual GameObject OnPlay()
     {
         return null;
@@ -37,7 +48,7 @@ public abstract class Card : MonoBehaviour, CardInterface
 
     private void OnMouseDown()
     {
-        if (Time.time - Hand.timeOfLastPlay <= cooldown)
+        if (Time.time - Hand.timeOfLastPlay >= cooldown)
         {
             SetHandPos();
             transform.parent = transform.parent.parent;
@@ -73,13 +84,16 @@ public abstract class Card : MonoBehaviour, CardInterface
 
     private void OnMouseDrag()
     {
-        if (StageController.currentStage == StageController.Stage.Battle)
+        if (clicked)
         {
-            MouseDragAction(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        }
-        else
-        {
-            ReturnToHand();
+            if (StageController.currentStage == StageController.Stage.Battle)
+            {
+                MouseDragAction(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            }
+            else
+            {
+                ReturnToHand();
+            }
         }
     }
 

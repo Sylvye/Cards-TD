@@ -15,7 +15,7 @@ public class Hand : MonoBehaviour
     {
         main = this;
         cooldownSum = 0;
-        timeOfLastPlay = 0;
+        timeOfLastPlay = -999;
     }
 
     // returns all cards back to the deck. adds 5 cards from the deck to the hand
