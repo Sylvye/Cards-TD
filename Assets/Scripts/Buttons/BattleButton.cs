@@ -87,6 +87,7 @@ public class BattleButton : Button
                 }
                 StageController.inventoryLootScrollArea.AddToInventory(currencyItems, true);
                 StageController.inventoryLootScrollArea.AddToInventory(augmentItems, true);
+                Main.main.packs = new int[] { 0, 0 }; // clears packs
                 break;
             case 3: // Entered Boon / Curse stage
                 StageController.inventoryUI.SetActive(false);

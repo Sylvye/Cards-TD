@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class DestroySelf : MonoBehaviour
 {
+    public float lifetime = -1;
+
     public void DeleteMe()
     {
-        Destroy(gameObject);
+        if (lifetime > 0)
+        {
+            Destroy(gameObject, lifetime);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -48,7 +48,7 @@ public abstract class Card : MonoBehaviour, CardInterface
 
     private void OnMouseDown()
     {
-        if (Time.time - Hand.timeOfLastPlay >= cooldown)
+        if (Time.time - Hand.timeOfLastPlay >= cooldown) // if off cooldown
         {
             SetHandPos();
             transform.parent = transform.parent.parent;
@@ -72,8 +72,12 @@ public abstract class Card : MonoBehaviour, CardInterface
             if (!Spawner.main.IsStageCleared() && StageController.currentStage == StageController.Stage.Battle)
             {
                 MouseUpAction();
+                if (BattleButton.phase == 0)
+                {
+                    BattleButton.main.Action();
+                }
             }
-            else
+            else // failed
             {
                 ReturnToHand();
             }

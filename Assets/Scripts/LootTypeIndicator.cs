@@ -24,9 +24,9 @@ public class LootTypeIndicator : MonoBehaviour
         }
         else
         {
-            // 25% chance for an augment
+            // 15% chance for an augment
             int rand = Random.Range(0, 100);
-            category = rand < 25 ? 0 : 1; // 1 = drop, 0 = augment
+            category = rand < 15 ? 0 : 1; // 1 = drop, 0 = augment
         }
         Main.main.packs[category]++;
         sr.sprite = sprites.sprites[category];
