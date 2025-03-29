@@ -17,7 +17,7 @@ public class UpgradeTable : Table
     {
         ScrollAreaItemCard card = GetCard();
         if (card == null) return false;
-        Card c = card.prefabReference.GetComponent<Card>();
+        Card c = card.reference.GetComponent<Card>();
         if (c.stats.GetStat("tier") >= 5) return false;
         c.stats.ModifyStat("tier", 1);
         card.SetSprite(c.GetSprite());
@@ -37,7 +37,7 @@ public class UpgradeTable : Table
     {
         ScrollAreaItemCard c = GetCard();
         if (c == null) return -1;
-        Card card = c.prefabReference.GetComponent<Card>();
+        Card card = c.reference.GetComponent<Card>();
         if (card.stats.GetStat("tier") > 4) return -1;
         int tier = (int)card.stats.GetStat("tier");
         return 15 * (int)Mathf.Pow(upgrades + tier - 1, 2);

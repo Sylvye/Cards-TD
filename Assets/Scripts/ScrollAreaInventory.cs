@@ -22,6 +22,7 @@ public class ScrollAreaInventory : ScrollArea
             Destroy(child.gameObject);
         }
         inventory.Clear();
+        scrolledAmt = 0;
     }
 
     public void AddToInventory(GameObject item)
@@ -108,7 +109,7 @@ public class ScrollAreaInventory : ScrollArea
 
             ScrollAreaItemCard item = itemObj.GetComponent<ScrollAreaItemCard>();
             item.draggableSnaps.Add(destination);
-            item.prefabReference = cardPrefabReference.GetGameObject();
+            item.reference = cardPrefabReference.GetGameObject();
             item.id = cardPrefabReference.GetName();
         }
         RefreshPositions();

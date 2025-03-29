@@ -5,5 +5,5 @@ using UnityEngine;
 public class ScrollAreaItemCard : DraggableScrollAreaItem
 {
     [Header("Reference")]
-    public GameObject prefabReference;
+    public GameObject reference;
 }

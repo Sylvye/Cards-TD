@@ -17,8 +17,8 @@ public class AugmentTable : Table
     {
         ScrollAreaItemCard augment = main.transform.GetChild(0).GetComponentInChildren<ScrollAreaItemCard>();
         ScrollAreaItemCard card = main.transform.GetChild(1).GetComponentInChildren<ScrollAreaItemCard>();
-        Augment a = augment.prefabReference.GetComponent<Augment>();
-        TowerCard c = card.prefabReference.GetComponent<TowerCard>();
+        Augment a = augment.reference.GetComponent<Augment>();
+        TowerCard c = card.reference.GetComponent<TowerCard>();
 
         a.ApplyEffect(c);
         Cards.RemoveFromAugments(a);

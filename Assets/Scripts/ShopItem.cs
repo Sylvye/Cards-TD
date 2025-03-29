@@ -23,7 +23,7 @@ public abstract class ShopItem : Button
     {
         if (Main.playerStats.GetStat("currency") >= GetPrice())
         {
-            Main.playerStats.ModifyStat("currency", GetPrice(), Stats.Operation.Subtract);
+            Main.Earn(-GetPrice());
             p.Claim();
             SetActive(false);
         }
@@ -38,7 +38,8 @@ public abstract class ShopItem : Button
     {
         float disc = Mathf.Max(Main.playerStats.GetStat("base_discount"), discount);
         if (disc > 1) disc = 1;
-        else if (disc > 0.9) disc = 0.9f;
+        // what would this line even do lol
+        //else if (disc > 0.9) disc = 0.9f;
         else if (disc < 0) disc = 0;
         return disc;
     }
