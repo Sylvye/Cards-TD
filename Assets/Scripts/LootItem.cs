@@ -5,6 +5,13 @@ using UnityEngine;
 // for items in the loot scroll area. (inventory items)
 public abstract class LootItem : ScrollAreaItem
 {
+    public override void Start()
+    {
+        base.Start();
+        if (TryGetComponent(out MaterialAnimator am))
+            am.Set("_seed", Random.Range(-100, 100));
+    }
+
     private void OnMouseOver()
     {
         if (TryGetComponent(out MaterialAnimator am))

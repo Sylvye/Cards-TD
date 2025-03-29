@@ -37,7 +37,7 @@ public class UpgradeButton : Button
         float cost = UpgradeTable.UpgradeCost();
         if (UpgradeTable.Upgrade()) // if successful
         {
-            Main.playerStats.ModifyStat("currency", cost, Stats.Operation.Subtract);
+            Main.Earn((int)-cost);
             UpgradeTable.upgrades++;
         }
     }

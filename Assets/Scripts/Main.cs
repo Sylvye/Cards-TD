@@ -20,6 +20,8 @@ public class Main : MonoBehaviour
     public int mapLength;
     public static int mapLength_;
 
+    public GameObject sparkles;
+
     public static GameObject towerHitboxReticle_;
     public GameObject hitboxReticle;
 
@@ -32,6 +34,8 @@ public class Main : MonoBehaviour
     public static LayerMask enemyLayerMask_;
     public LayerMask enemyLayerMask;
 
+    private static TMPLabel coinLabel;
+
     public static Main main;
 
     private void Awake()
@@ -42,6 +46,7 @@ public class Main : MonoBehaviour
         towerRangeReticle_ = towerRangeReticle;
         enemyLayerMask_ = enemyLayerMask;
         mapLength_ = mapLength;
+        coinLabel = GameObject.Find("Coin label").GetComponent<TMPLabel>();
         playerStats = GetComponent<Stats>();
     }
 
@@ -71,6 +76,9 @@ public class Main : MonoBehaviour
         {
             playerStats.SetStat("currency", 0);
         }
+
+        coinLabel.SetText(""+playerStats.GetStat("currency"));
+        Instantiate(main.sparkles, Camera.main.transform.Find("Coin animation"));
     }
 
     private void Update() 

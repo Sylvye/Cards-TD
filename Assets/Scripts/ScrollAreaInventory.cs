@@ -22,6 +22,7 @@ public class ScrollAreaInventory : ScrollArea
             Destroy(child.gameObject);
         }
         inventory.Clear();
+        scrolledAmt = 0;
     }
 
     public void AddToInventory(GameObject item)
