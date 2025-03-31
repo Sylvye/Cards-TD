@@ -75,7 +75,13 @@ public class StageController : MonoBehaviour
         if (Vector3.Distance(Camera.main.transform.position, cameraDestination) > 0.02f)
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, cameraDestination, Time.deltaTime * 5);
         else
+        {
+            if (currentStage == Stage.Battle && CardBar.main.state == CardBar.State.Hidden)
+            {
+                CardBar.main.state = CardBar.State.Minimized;
+            }
             Camera.main.transform.position = cameraDestination;
+        }
 
         // lerp background
         if (lerpProgress < 0.995)
