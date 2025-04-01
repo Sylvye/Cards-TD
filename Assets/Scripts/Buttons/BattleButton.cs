@@ -64,6 +64,7 @@ public class BattleButton : Button
                 return;
             case 2: // Entered Inventory
                 Card.ClearField();
+                CardBar.main.state = CardBar.State.Hidden;
                 StageController.ToggleDarken(true);
                 StageController.ToggleTime(false);
                 StageController.inventoryUI.SetActive(true);

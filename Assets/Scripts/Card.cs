@@ -48,18 +48,14 @@ public abstract class Card : MonoBehaviour, CardInterface
 
     private void OnMouseDown()
     {
-        if (Time.time - Hand.timeOfLastPlay >= cooldown) // if off cooldown
+        if (IsOffCooldown())
         {
             SetHandPos();
             transform.parent = transform.parent.parent;
 
             MouseDownAction();
 
-            ActionButton.active = false;
-            StageController.ToggleDarken(false);
             StageController.ToggleTime(true);
-            Hand.Display(false);
-            Hand.timeOfLastPlay = Time.time;
             clicked = true;
         }
     }
@@ -72,6 +68,7 @@ public abstract class Card : MonoBehaviour, CardInterface
             if (!Spawner.main.IsStageCleared() && StageController.currentStage == StageController.Stage.Battle)
             {
                 MouseUpAction();
+                Hand.timeOfLastPlay = Time.time;
                 if (BattleButton.phase == 0)
                 {
                     BattleButton.main.Action();
@@ -81,8 +78,6 @@ public abstract class Card : MonoBehaviour, CardInterface
             {
                 ReturnToHand();
             }
-
-            ActionButton.main.SetActive(true);
         }
     }
 
@@ -113,13 +108,12 @@ public abstract class Card : MonoBehaviour, CardInterface
     public virtual void ReturnToHand()
     {
         transform.parent = Hand.main.transform;
-        transform.position = handPos;
-        gameObject.SetActive(false);
+        transform.localPosition = handPos;
     }
 
     public void SetHandPos()
     {
-        handPos = (Vector2)transform.parent.position + Hand.GetIndexOf(this) * 2f * Vector2.right;
+        handPos = Hand.GetIndexOf(this) * 1.5f * Vector2.right;
         handPos.z = -5;
     }
 
@@ -159,5 +153,10 @@ public abstract class Card : MonoBehaviour, CardInterface
         {
             Destroy(child.gameObject);
         }
+    }
+
+    public bool IsOffCooldown()
+    {
+        return Time.time - Hand.timeOfLastPlay >= cooldown;
     }
 }

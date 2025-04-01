@@ -26,6 +26,7 @@ public class StageController : MonoBehaviour
     private static float lerpProgress = 1;
     private static Vector3 cameraDestination = new(0, -10, -10);
     private static GameObject darkenOverlay;
+    private static MaterialAnimator darkenMA;
     public static float timeScale = 1;
     [Header("Shop")]
     public Transform shopCardSpawn;
@@ -52,6 +53,7 @@ public class StageController : MonoBehaviour
         inventoryUI = GameObject.Find("Inventory UI");
         boonCurse = GameObject.Find("Boon-curse");
         darkenOverlay = GameObject.Find("Screen Darken");
+        darkenMA = darkenOverlay.GetComponent<MaterialAnimator>();
         riskRewardTextbox = GameObject.Find("Risk-Reward Textbox");
         augCardScrollArea = GameObject.Find("Augment Deck Scroll Area").GetComponent<ScrollAreaInventory>();
         augAugmentScrollArea = GameObject.Find("Augment Scroll Area").GetComponent<ScrollAreaInventory>();
@@ -65,7 +67,7 @@ public class StageController : MonoBehaviour
         inventoryLabels.SetActive(false);
         inventoryUI.SetActive(false);
         boonCurse.SetActive(false);
-        darkenOverlay.SetActive(false);
+        darkenOverlay.GetComponent<Collider2D>().enabled = false;
         riskRewardTextbox.SetActive(false);
         RoundBGMat();
     }
@@ -76,10 +78,6 @@ public class StageController : MonoBehaviour
             Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, cameraDestination, Time.deltaTime * 5);
         else
         {
-            if (currentStage == Stage.Battle && CardBar.main.state == CardBar.State.Hidden)
-            {
-                CardBar.main.state = CardBar.State.Minimized;
-            }
             Camera.main.transform.position = cameraDestination;
         }
 
@@ -102,6 +100,8 @@ public class StageController : MonoBehaviour
         {
             Time.timeScale = timeScale;
         }
+
+        darkenMA.Set("_UnscaledTime", Time.unscaledTime);
     }
 
     public static void SwitchStage(Stage stage)
@@ -126,6 +126,7 @@ public class StageController : MonoBehaviour
                 Spawner.main.stats.ModifyStat("speed", 0.05f);
                 ToggleDarken(false);
                 ToggleTime(true);
+                //CardBar.main.state = CardBar.State.Hidden;
                 break;
             case Stage.Shop:
                 ShopController.ResetShop();
@@ -179,9 +180,9 @@ public class StageController : MonoBehaviour
     public void SetupBattle()
     {
         Hand.Deal();
-        Hand.Display(false);
         Spawner.main.complete = false;
         BattleButton.main.SetActive(true);
+        StartCoroutine(ShowTab());
     }
 
 
@@ -240,7 +241,13 @@ public class StageController : MonoBehaviour
 
     public static void ToggleDarken(bool active)
     {
-        darkenOverlay.SetActive(active);
+        darkenOverlay.GetComponent<Collider2D>().enabled = active;
+        darkenMA.speed *= -1;
+        float max = darkenMA.maxVal;
+        darkenMA.maxVal = darkenMA.minVal;
+        darkenMA.minVal = max;
+        darkenMA.PrimeAnimation();
+        darkenMA.Activate();
     }
 
     public static void ToggleTime(bool active)
@@ -291,5 +298,11 @@ public class StageController : MonoBehaviour
         BGMat.SetFloat("_Blob_Density", main.stageMaterials[stageIndex].blobDensity);
         BGMat.SetFloat("_Shear_Strength", main.stageMaterials[stageIndex].shearStrength);
         BGMat.SetFloat("_Gradient_Noise_Step", main.stageMaterials[stageIndex].gradientNoiseStep);
+    }
+
+    public IEnumerator ShowTab()
+    {
+        yield return new WaitForSeconds(1);
+        CardBar.main.state = CardBar.State.Minimized;
     }
 }

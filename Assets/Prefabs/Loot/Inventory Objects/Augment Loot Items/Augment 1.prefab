@@ -168,6 +168,8 @@ MonoBehaviour:
   timeVar: _time
   speed: 1
   animate: 0
+  minVal: 0
+  maxVal: 1
 --- !u!1001 &6223190704158492030
 PrefabInstance:
   m_ObjectHideFlags: 0

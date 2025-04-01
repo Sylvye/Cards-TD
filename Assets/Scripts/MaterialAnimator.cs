@@ -7,6 +7,8 @@ public class MaterialAnimator : MonoBehaviour
     public string timeVar = "_time";
     public float speed;
     public bool animate = false;
+    public float minVal= 0;
+    public float maxVal = 1;
     private Renderer r;
     private float time = 0;
 
@@ -30,7 +32,7 @@ public class MaterialAnimator : MonoBehaviour
         {
             time += Time.unscaledDeltaTime * speed;
             Set(Mathf.Clamp(time, 0, 1));
-            if (time >= 1)
+            if (speed > 0 && time >= maxVal || speed < 0 && time <= maxVal)
             {
                 animate = false;
             }
@@ -67,7 +69,7 @@ public class MaterialAnimator : MonoBehaviour
 
     public void PrimeAnimation()
     {
-        time = 0;
+        time = minVal;
         animate = false;
     }
 }

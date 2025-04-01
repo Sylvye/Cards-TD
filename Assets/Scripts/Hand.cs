@@ -7,14 +7,12 @@ public class Hand : MonoBehaviour
 {
     public static Hand main;
     private List<Card> hand = new();
-    public static float cooldownSum;
     public static float timeOfLastPlay;
 
     // Start is called before the first frame update
     private void Awake()
     {
         main = this;
-        cooldownSum = 0;
         timeOfLastPlay = -999;
     }
 
@@ -113,7 +111,6 @@ public class Hand : MonoBehaviour
         for (int i=0; i<Size(); i++)
         {
             Card card = Get(i);
-            card.transform.localPosition = 2f * i * Vector3.right + Vector3.forward * -5;
             card.SetHandPos();
         }
     }
@@ -126,24 +123,13 @@ public class Hand : MonoBehaviour
         }
     }
 
-    // true = show cards; false = hide
-    public static void Display(bool b)
+    public static bool CheckForComplete()
     {
-        foreach (Transform t in main.transform)
+        foreach (Transform child in main.transform)
         {
-            t.gameObject.SetActive(b);
+            Card c = child.GetComponent<Card>();
+            if (c.IsOffCooldown()) return true;
         }
+        return false;
     }
-
-    // for old system
-
-    //public static void CalculateSum()
-    //{
-    //    cooldownSum = 0;
-    //    foreach (Transform child in main.transform)
-    //    {
-    //        Card c = child.GetComponent<Card>();
-    //        cooldownSum += c.cooldown;
-    //    }
-    //}
 }

@@ -14,6 +14,9 @@ public class CardBar : MonoBehaviour
     public static CardBar main;
     public State state = State.Hidden;
     public float lerpSpeed = 1;
+    public Sprite hasComplete;
+    private Sprite hasNoComplete;
+    private SpriteRenderer sr;
     private Vector3 pos;
 
     private void Awake()
@@ -21,6 +24,8 @@ public class CardBar : MonoBehaviour
         main = this;
         state = State.Hidden;
         pos = transform.position;
+        sr = GetComponent<SpriteRenderer>();
+        hasNoComplete = sr.sprite;
     }
 
     // Update is called once per frame
@@ -30,28 +35,38 @@ public class CardBar : MonoBehaviour
         switch (state)
         {
             case State.Hidden:
-                transform.position = pos + Vector3.down * 0.7f + Vector3.back * 10;
+                transform.position = pos + Vector3.down * 0.7f + Vector3.back * 15;
                 break;
             case State.Minimized:
                 l = Vector2.Lerp(transform.position, pos, Time.unscaledDeltaTime * lerpSpeed);
                 transform.position = new Vector3(l.x, l.y, pos.z);
+                sr.sprite = Hand.CheckForComplete() ? hasComplete : hasNoComplete;
                 break;
             case State.Maximized:
                 l = Vector3.Lerp(transform.position, pos + Vector3.up * 3, Time.unscaledDeltaTime * lerpSpeed);
                 transform.position = new Vector3(l.x, l.y, pos.z);
+                sr.sprite = Hand.CheckForComplete() ? hasComplete : hasNoComplete;
                 break;
         }
     }
 
-    private void OnMouseOver()
+    private void OnMouseEnter()
     {
-        if (state != State.Hidden)
+        if (state == State.Minimized)
+        {
             state = State.Maximized;
+            Hand.ReformatHand();
+        }
     }
 
     private void OnMouseExit()
     {
-        if (state != State.Hidden) 
-            state = State.Minimized;
+        if (!GetComponent<Collider2D>().OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition)))
+        {
+            if (state != State.Hidden)
+            {
+                state = State.Minimized;
+            }
+        }
     }
 }
