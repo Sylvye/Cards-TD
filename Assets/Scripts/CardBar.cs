@@ -15,6 +15,7 @@ public class CardBar : MonoBehaviour
     public State state = State.Hidden;
     public float lerpSpeed = 1;
     public Sprite hasComplete;
+    public bool forced = false;
     private Sprite hasNoComplete;
     private SpriteRenderer sr;
     private Vector3 pos;
@@ -36,32 +37,41 @@ public class CardBar : MonoBehaviour
         {
             case State.Hidden:
                 transform.position = pos + Vector3.down * 0.7f + Vector3.back * 15;
+                forced = false;
                 break;
             case State.Minimized:
                 l = Vector2.Lerp(transform.position, pos, Time.unscaledDeltaTime * lerpSpeed);
                 transform.position = new Vector3(l.x, l.y, pos.z);
                 sr.sprite = Hand.CheckForComplete() ? hasComplete : hasNoComplete;
+                if (Vector2.Distance(transform.position, pos) < 0.1f)
+                {
+                    forced = false;
+                }
                 break;
             case State.Maximized:
                 l = Vector3.Lerp(transform.position, pos + Vector3.up * 3, Time.unscaledDeltaTime * lerpSpeed);
                 transform.position = new Vector3(l.x, l.y, pos.z);
                 sr.sprite = Hand.CheckForComplete() ? hasComplete : hasNoComplete;
+                if (Vector2.Distance(transform.position, pos + Vector3.up * 3) < 0.1f)
+                {
+                    forced = false;
+                }
                 break;
         }
     }
 
-    private void OnMouseEnter()
+    public void OnMouseEnter()
     {
-        if (state == State.Minimized)
+        if (state == State.Minimized && !Spawner.main.IsStageCleared() && !forced)
         {
             state = State.Maximized;
             Hand.ReformatHand();
         }
     }
 
-    private void OnMouseExit()
+    public void OnMouseExit()
     {
-        if (!GetComponent<Collider2D>().OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition)))
+        if (!GetComponent<Collider2D>().OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition)) && !forced)
         {
             if (state != State.Hidden)
             {

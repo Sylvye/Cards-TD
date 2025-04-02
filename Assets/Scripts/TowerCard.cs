@@ -18,7 +18,7 @@ public class TowerCard : Card
         prefabTower = spawnable.GetComponent<Tower>();
     }
 
-    public override void MouseUpAction()
+    public override bool MouseUpAction()
     {
         Main.towerHitboxReticle_.transform.position = new Vector3(2, 10, 0);
         Main.towerRangeReticle_.transform.position = new Vector3(4, 10, 0);
@@ -30,10 +30,12 @@ public class TowerCard : Card
             spawned.layer = 6;
             Hand.Remove(this);
             gameObject.transform.position = Vector3.up * 10;
+            return true;
         }
         else
         {
             ReturnToHand();
+            return false;
         }
     }
 
@@ -74,6 +76,9 @@ public class TowerCard : Card
     public override void ReturnToHand()
     {
         base.ReturnToHand();
+        Main.towerHitboxReticle_.transform.position = new Vector3(2, 10, 0);
+        Main.towerRangeReticle_.transform.position = new Vector3(4, 10, 0);
+        Main.towerRangeReticle_.transform.localScale = Vector2.one;
         if (spawned != null)
             Destroy(spawned);
     }

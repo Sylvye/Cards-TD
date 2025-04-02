@@ -31,15 +31,13 @@ public abstract class ShopItem : Button
 
     public int GetPrice()
     {
-        return Mathf.RoundToInt(price * 1-GetDiscount());
+        return Mathf.RoundToInt(price * (1-GetDiscount()));
     }
 
     public float GetDiscount()
     {
         float disc = Mathf.Max(Main.playerStats.GetStat("base_discount"), discount);
         if (disc > 1) disc = 1;
-        // what would this line even do lol
-        //else if (disc > 0.9) disc = 0.9f;
         else if (disc < 0) disc = 0;
         return disc;
     }

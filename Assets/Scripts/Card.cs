@@ -55,6 +55,8 @@ public abstract class Card : MonoBehaviour, CardInterface
 
             MouseDownAction();
 
+            CardBar.main.state = CardBar.State.Minimized;
+            CardBar.main.forced = true;
             StageController.ToggleTime(true);
             clicked = true;
         }
@@ -65,18 +67,27 @@ public abstract class Card : MonoBehaviour, CardInterface
         if (clicked && Hand.GetIndexOf(this) != -1) // if card is in hand
         {
             clicked = false;
-            if (!Spawner.main.IsStageCleared() && StageController.currentStage == StageController.Stage.Battle)
+            // stage isnt cleared & stage == battle & the mouse isnt over the card bar
+            if (!Spawner.main.IsStageCleared() && StageController.currentStage == StageController.Stage.Battle && !CardBar.main.GetComponent<Collider2D>().OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition)))
             {
-                MouseUpAction();
-                Hand.timeOfLastPlay = Time.time;
-                if (BattleButton.phase == 0)
+                if (MouseUpAction())
                 {
-                    BattleButton.main.Action();
+                    Hand.timeOfLastPlay = Time.time;
+                    if (BattleButton.phase == 0)
+                    {
+                        BattleButton.main.Action();
+                    } 
+                }
+                else // failed, wrong card specific / overlap conditions
+                {
+                    ReturnToHand();
                 }
             }
-            else // failed
+            else // failed, wrong global conditions
             {
                 ReturnToHand();
+                CardBar.main.forced = false;
+                CardBar.main.state = CardBar.State.Maximized;
             }
         }
     }
@@ -98,7 +109,8 @@ public abstract class Card : MonoBehaviour, CardInterface
 
     public abstract void MouseDownAction();
 
-    public abstract void MouseUpAction();
+    // true if successful, false if not
+    public abstract bool MouseUpAction();
 
     public virtual void MouseDragAction(Vector3 target)
     {
@@ -145,6 +157,11 @@ public abstract class Card : MonoBehaviour, CardInterface
     public virtual Sprite GetSprite(int tier)
     {
         return GetComponent<SpriteRenderer>().sprite;
+    }
+
+    public void UpdateSprite()
+    {
+        GetComponent<SpriteRenderer>().sprite = GetSprite((int)stats.GetStat("tier"));
     }
 
     public static void ClearField()

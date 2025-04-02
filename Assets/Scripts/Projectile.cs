@@ -18,7 +18,7 @@ public class Projectile : MonoBehaviour
     public float angle;
     private Rigidbody2D rb;
     private float spawnTime;
-    private readonly static float EXPLOSION_RADIUS_CONSTANT = 0.2f;
+    private readonly static float EXPLOSION_RADIUS_CONSTANT = 1f;
 
     private void Awake()
     {

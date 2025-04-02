@@ -879,10 +879,10 @@
     "m_Guid": {
         "m_GuidSerialized": "3f4acfe4-8297-4859-b0e6-42683c3b167d"
     },
-    "m_Name": "Thickness",
+    "m_Name": "Color Ratio",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Thickness",
-    "m_DefaultReferenceName": "_Thickness",
+    "m_RefNameGeneratedByDisplayName": "Color Ratio",
+    "m_DefaultReferenceName": "_Color_Ratio",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -1563,19 +1563,19 @@
             "m_Id": "fe549265b90b489889413c5abd207151"
         },
         {
-            "m_Id": "2a4243c894fc418ca3897a5403b83405"
-        },
-        {
             "m_Id": "f1e8a0efd1fa4ec98d18f14e63c59b1b"
         },
         {
             "m_Id": "37a4285e5d674751838f8350ae118a4a"
         },
         {
+            "m_Id": "141ce455b55e4dd393a1afb0d5862915"
+        },
+        {
             "m_Id": "9e461198b8bd4e6f8db0f2813d82a204"
         },
         {
-            "m_Id": "141ce455b55e4dd393a1afb0d5862915"
+            "m_Id": "2a4243c894fc418ca3897a5403b83405"
         },
         {
             "m_Id": "6ddb3cbe403e4329b98485f042cd111e"
@@ -3998,7 +3998,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "e0b766d7aa3f4280af6a5a6b8c112b05",
     "m_Id": 0,
-    "m_DisplayName": "Thickness",
+    "m_DisplayName": "Color Ratio",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",

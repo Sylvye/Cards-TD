@@ -150,11 +150,11 @@ MonoBehaviour:
   zPos: 0
   boon: 0
   clone: 0
-  description: enemies take -1 damage
+  description: enemies take -3 damage
   statNames:
   - shield
   statValues:
-  - 1
+  - 3
   lootpool: {fileID: 11400000, guid: 1b3161b2815a3604fa8c823f046620e2, type: 2}
 --- !u!1001 &2463747579615786910
 PrefabInstance:

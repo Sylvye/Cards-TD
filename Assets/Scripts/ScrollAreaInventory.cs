@@ -69,19 +69,6 @@ public class ScrollAreaInventory : ScrollArea
             RefreshPositions();
     }
 
-    public void ClearClaimed()
-    {
-        for (int i = inventory.Count - 1; i >= 0; i--)
-        {
-            GameObject obj = inventory[i].gameObject;
-            if (obj.TryGetComponent(out LootItem li))
-            {
-                Destroy(obj);
-                inventory.RemoveAt(i);
-            }
-        }
-    }
-
     public void FillWithCards(GameObject prefabObj, Transform destination, int sortingOrder, Cards.CardType type)
     {
         var numCards = type switch

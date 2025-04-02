@@ -20,6 +20,7 @@ public class UpgradeTable : Table
         Card c = card.reference.GetComponent<Card>();
         if (c.stats.GetStat("tier") >= 5) return false;
         c.stats.ModifyStat("tier", 1);
+        c.UpdateSprite();
         card.SetSprite(c.GetSprite());
 
         return true;

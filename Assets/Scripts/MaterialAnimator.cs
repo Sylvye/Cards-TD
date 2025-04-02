@@ -35,6 +35,7 @@ public class MaterialAnimator : MonoBehaviour
             if (speed > 0 && time >= maxVal || speed < 0 && time <= maxVal)
             {
                 animate = false;
+                Set(maxVal);
             }
         }
     }

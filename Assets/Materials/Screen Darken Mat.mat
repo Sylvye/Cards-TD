@@ -41,6 +41,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Color_Ratio: 0.5
     - _Freak: 1
     - _Freq: 6.26
     - _Ratio: 0
@@ -50,7 +51,7 @@ Material:
     m_Colors:
     - _Color_4: {r: 0.28627446, g: 0.41176468, b: 0.5372549, a: 0}
     - _Color_5: {r: 0.19999996, g: 0.23137257, b: 0.38431367, a: 0}
-    - _Size: {r: 2, g: 1, b: 0, a: 0}
+    - _Size: {r: 8, g: 4, b: 0, a: 0}
     - _size: {r: 2, g: 2, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1937760935548022097

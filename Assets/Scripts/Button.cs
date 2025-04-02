@@ -105,6 +105,7 @@ public abstract class Button : CustomUIElement
     {
         spriteUp = up;
         spriteDown = down;
+        MakeSpriteUp();
     }
 
     public override void SetActive(bool a)

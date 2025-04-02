@@ -25,5 +25,9 @@ public class CardPurchaseable : ShopItem, Purchaseable
         newCard.stats.SetStat("tier", tier);
         Cards.AddToDeck(newCard);
         card.transform.position = new Vector3(0, 10, -2);
+
+        // adds the card to the scroll area by refreshing the whole inventory
+        ShopController.shopScrollArea.DeleteInventory();
+        ShopController.shopScrollArea.FillWithCards(StageController.main.cardSAI, StageController.main.transform, 0, Cards.CardType.Card);
     }
 }
