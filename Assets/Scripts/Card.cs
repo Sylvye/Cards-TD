@@ -134,6 +134,11 @@ public abstract class Card : MonoBehaviour, CardInterface
         return type;
     }
 
+    public virtual string GetTag()
+    {
+        return type;
+    }
+
     public CardInterface FindReference(int index)
     {
         return Cards.GetFromDeck(index);

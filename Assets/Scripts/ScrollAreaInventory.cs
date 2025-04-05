@@ -97,7 +97,7 @@ public class ScrollAreaInventory : ScrollArea
             ScrollAreaItemCard item = itemObj.GetComponent<ScrollAreaItemCard>();
             item.draggableSnaps.Add(destination);
             item.reference = cardPrefabReference.GetGameObject();
-            item.id = cardPrefabReference.GetName();
+            item.id = cardPrefabReference.GetTag();
         }
         RefreshPositions();
     }
@@ -128,8 +128,6 @@ public class ScrollAreaInventory : ScrollArea
         for (int i = 0; i < inventory.Count; i++)
         {
             CustomUIElement item = inventory[i].GetComponent<CustomUIElement>();
-            //item.SetDestination(new Vector3(offset.x * (i % itemsPerRow) / transform.localScale.x, -offset.y * (i / itemsPerRow) / transform.localScale.y) + startPos + Vector3.down * scrolledAmt + Vector3.back); // localPos, original solution
-            //item.SetDestination(transform.position + new Vector3(offset.x * (i % itemsPerRow) / transform.localScale.x, -offset.y * (i / itemsPerRow) / transform.localScale.y, -1) + startPos + Vector3.down * scrolledAmt);
             item.SetDestination(transform.position + new Vector3(offset.x * (i % itemsPerRow), -offset.y * (i / itemsPerRow)) + new Vector3(startPos.x * transform.localScale.x, startPos.y * transform.localScale.y) + Vector3.down * scrolledAmt);
             item.zPos = transform.position.z - 1;
         }

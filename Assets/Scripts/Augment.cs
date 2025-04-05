@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Augment : MonoBehaviour, CardInterface
 {
+    public string displayName;
     public string type;
 
     [NonSerialized]
@@ -23,7 +24,12 @@ public class Augment : MonoBehaviour, CardInterface
 
     public string GetName()
     {
-        return type;
+        return displayName;
+    }
+
+    public string GetTag()
+    {
+        return displayName;
     }
 
     public Sprite GetSprite()

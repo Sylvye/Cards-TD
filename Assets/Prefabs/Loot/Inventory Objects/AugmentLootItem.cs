@@ -6,6 +6,12 @@ public class AugmentLootItem : LootItem
 {
     public Augment augment;
 
+    public override void Start()
+    {
+        base.Start();
+        id = augment.GetName();
+    }
+
     public override void Claim()
     {
         Augment newAugment = Instantiate(augment, Vector3.up * 12, Quaternion.identity);

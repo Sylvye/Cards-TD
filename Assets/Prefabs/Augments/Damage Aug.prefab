@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 9092517743045754295}
   - component: {fileID: 6765609515775237068}
   - component: {fileID: 6280387633327717232}
-  - component: {fileID: -5628557004143849349}
+  - component: {fileID: 2678190024770773503}
   m_Layer: 0
-  m_Name: ProjAug
+  m_Name: Damage Aug
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,12 +75,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 632578627, guid: dc1152ea8c4859e498e1db1ac64967c0, type: 3}
+  m_Sprite: {fileID: 1944339232, guid: c22905ee193702547a9f48c3c0e567ec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.71428573, y: 0.9142857}
+  m_Size: {x: 1.5625, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -98,8 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0086506276ec5a44badedee3b48193d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: fusillade
---- !u!114 &-5628557004143849349
+  displayName: strength
+  type: atk
+--- !u!114 &2678190024770773503
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,46 +116,6 @@ MonoBehaviour:
     _serializedList:
     - Key: base_damage
       Value:
-        value: 0
-        min: 
-        max: 
-    - Key: attack_speed
-      Value:
-        value: 0
-        min: 
-        max: 
-    - Key: range
-      Value:
-        value: 0
-        min: 
-        max: 
-    - Key: pierce
-      Value:
-        value: 0
-        min: 
-        max: 
-    - Key: projectiles
-      Value:
-        value: 1
-        min: 
-        max: 
-    - Key: speed
-      Value:
-        value: 0
-        min: 
-        max: 
-    - Key: homing
-      Value:
-        value: 0
-        min: 
-        max: 
-    - Key: spread
-      Value:
-        value: 0
-        min: 
-        max: 
-    - Key: explosion_radius
-      Value:
-        value: 0
+        value: 2
         min: 
         max: 

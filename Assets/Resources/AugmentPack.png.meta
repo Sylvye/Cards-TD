@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: dc1152ea8c4859e498e1db1ac64967c0
+guid: c22905ee193702547a9f48c3c0e567ec
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -114,7 +114,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
+        y: 96
         width: 25
         height: 32
       alignment: 0
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9a4a7566cea82047af20ff00282bcd0
-      internalID: 1355969626
+      spriteID: 88a12e6bf5725ef4f87680704590bb63
+      internalID: 1944339232
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 25
-        y: 64
+        y: 96
         width: 25
         height: 32
       alignment: 0
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be91d76084f07714c86f1054ab36ce40
-      internalID: -170499919
+      spriteID: aa459cde00fa6674488b2cdadc27e668
+      internalID: 1096156011
       vertices: []
       indices: 
       edges: []
@@ -156,6 +156,69 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 50
+        y: 96
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09ce24e67fec77e4cbe3003e4e4061da
+      internalID: -2109295617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AugmentPack_3
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 96
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ba8c808cf3296f46b1824bf55dea8c9
+      internalID: -1211881309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AugmentPack_4
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 96
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b07091a25c47c14cbcfe79f77db1ab1
+      internalID: 1935560174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AugmentPack_5
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 64
         width: 25
         height: 32
@@ -166,71 +229,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb72f356ff138d340b8f748f7f6c581c
-      internalID: 248517702
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AugmentPack_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 25
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 328b808a50970a04b9b13f14e0fe8a54
-      internalID: 632578627
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AugmentPack_4
-      rect:
-        serializedVersion: 2
-        x: 25
-        y: 32
-        width: 25
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5cc0bb12eede28642a42a2c64160db53
-      internalID: 1754732057
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AugmentPack_5
-      rect:
-        serializedVersion: 2
-        x: 50
-        y: 32
-        width: 25
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 44cd8de81dfea3c4bb61103cf259f585
-      internalID: 532321213
+      spriteID: 0d53689fdbcf86a46880a43c09f38958
+      internalID: 1033717011
       vertices: []
       indices: 
       edges: []
@@ -239,6 +239,195 @@ TextureImporter:
       name: AugmentPack_6
       rect:
         serializedVersion: 2
+        x: 25
+        y: 64
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ea11e2d789d3c340844e1ebd4ce49a3
+      internalID: -1169004822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AugmentPack_7
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 64
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a62078ad9608d9148aeee216ed7d9e4d
+      internalID: -1957736411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AugmentPack_8
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 64
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 553121eddbc436b4291c3f2fa96500a7
+      internalID: -940436596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AugmentPack_9
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 64
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73c69357564f6d04390467b1e827f04b
+      internalID: 1460570895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AugmentPack_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffb09d3a5cf27664d843a9ae6b7c98b0
+      internalID: -347451615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AugmentPack_11
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 32
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 492c1aed742fa4a45821845237e48f1a
+      internalID: -1699229431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AugmentPack_12
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 32
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19420e462f813e249b221638c961cc5a
+      internalID: -1113166066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AugmentPack_13
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 32
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9d09b79b27b1a740a0bf813f7709f7c
+      internalID: -1459862784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AugmentPack_14
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 32
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17d54515cff0a8846b9773f4265c6a58
+      internalID: -1608164003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AugmentPack_15
+      rect:
+        serializedVersion: 2
         x: 0
         y: 0
         width: 25
@@ -250,14 +439,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3eb29d25d296d304c8f456e2252caa92
-      internalID: -1354272892
+      spriteID: 564c0cb6472c99843b4a0053315ef39d
+      internalID: 791350121
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AugmentPack_7
+      name: AugmentPack_16
       rect:
         serializedVersion: 2
         x: 25
@@ -271,14 +460,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed19e729aa0cb414db1a9bde8798bb46
-      internalID: -1916838219
+      spriteID: b6a2c6b4118a8c34bb5a6f0b83567c40
+      internalID: -703471615
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AugmentPack_8
+      name: AugmentPack_17
       rect:
         serializedVersion: 2
         x: 50
@@ -292,8 +481,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0736a40494b9ea46af3eb673178e17f
-      internalID: -824540571
+      spriteID: 0687f0dba98947c4984d40c3dcdbc4a1
+      internalID: -2084606158
       vertices: []
       indices: 
       edges: []
@@ -309,15 +498,24 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      AugmentPack_0: 1355969626
-      AugmentPack_1: -170499919
-      AugmentPack_2: 248517702
-      AugmentPack_3: 632578627
-      AugmentPack_4: 1754732057
-      AugmentPack_5: 532321213
-      AugmentPack_6: -1354272892
-      AugmentPack_7: -1916838219
-      AugmentPack_8: -824540571
+      AugmentPack_0: 1944339232
+      AugmentPack_1: 1096156011
+      AugmentPack_10: -347451615
+      AugmentPack_11: -1699229431
+      AugmentPack_12: -1113166066
+      AugmentPack_13: -1459862784
+      AugmentPack_14: -1608164003
+      AugmentPack_15: 791350121
+      AugmentPack_16: -703471615
+      AugmentPack_17: -2084606158
+      AugmentPack_2: -2109295617
+      AugmentPack_3: -1211881309
+      AugmentPack_4: 1935560174
+      AugmentPack_5: 1033717011
+      AugmentPack_6: -1169004822
+      AugmentPack_7: -1957736411
+      AugmentPack_8: -940436596
+      AugmentPack_9: 1460570895
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

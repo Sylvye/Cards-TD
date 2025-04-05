@@ -6,6 +6,8 @@ public interface CardInterface
 {
     public string GetName();
 
+    public string GetTag();
+
     public Sprite GetSprite();
 
     public GameObject GetGameObject();

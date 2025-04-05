@@ -10,7 +10,6 @@ using UnityEngine.UI;
 
 public class Main : MonoBehaviour
 {
-    public static bool paused = false;
     public static int lives = 100;
     public int[] packs = { 0, 0 }; // augment, gold
 
@@ -83,13 +82,6 @@ public class Main : MonoBehaviour
 
     private void Update() 
     {
-        // testing purposes
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            paused = !paused;
-            StageController.ToggleDarken(paused);
-            StageController.ToggleTime(!paused, 0);
-        }
         if (Input.GetKeyUp(KeyCode.Alpha1))
             Spawner.main.Send(1);
         if (Input.GetKeyUp(KeyCode.Alpha2))
