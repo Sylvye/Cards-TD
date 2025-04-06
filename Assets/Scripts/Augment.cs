@@ -8,6 +8,7 @@ public class Augment : MonoBehaviour, CardInterface
 {
     public string displayName;
     public string type;
+    public string tier;
 
     [NonSerialized]
     public Stats stats;

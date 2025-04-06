@@ -48,7 +48,7 @@ Material:
     - _Fade_Step: 0.6
     - _Noise_Scale: 0.02
     - _seed: 0
-    - _time: 1
+    - _time: 0
     m_Colors:
     - _Color: {r: 0.6588235, g: 0.8039216, b: 0.62352943, a: 0}
     - _Color_1: {r: 0.8862745, g: 0.9568626, b: 0.772549, a: 0}

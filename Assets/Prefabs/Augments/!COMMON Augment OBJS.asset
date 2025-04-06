@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d08cc902fe661614a917cb17aa98bf2a, type: 3}
+  m_Name: '!COMMON Augment OBJS'
+  m_EditorClassIdentifier: 
+  objects:
+  - {fileID: 183066773122249344, guid: a35a1b084e8f738408261053c01acef2, type: 3}
+  - {fileID: 183066773122249344, guid: 38376354ca5b97949a722708b0ba02b5, type: 3}
+  - {fileID: 183066773122249344, guid: 24cfa45d08769ba4b92b8ef1a9a195d8, type: 3}
+  - {fileID: 183066773122249344, guid: f99ac4aa2a06be74d977af37b98f6d2c, type: 3}
+  - {fileID: 183066773122249344, guid: 7420a5ef509921e4ba401d94b08d6963, type: 3}
+  weights:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 9092517743045754295}
   - component: {fileID: 6765609515775237068}
   - component: {fileID: 6280387633327717232}
-  - component: {fileID: -6497052109948483012}
+  - component: {fileID: -5628557004143849349}
   m_Layer: 0
-  m_Name: Impact Aug
+  m_Name: Proj Aug
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -347451615, guid: c22905ee193702547a9f48c3c0e567ec, type: 3}
+  m_Sprite: {fileID: -940436596, guid: c22905ee193702547a9f48c3c0e567ec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,10 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0086506276ec5a44badedee3b48193d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayName: impacting
-  type: impact
-  tier: 
---- !u!114 &-6497052109948483012
+  displayName: the fusillade
+  type: proj
+--- !u!114 &-5628557004143849349
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
     _serializedList:
-    - Key: impact
+    - Key: projectiles
       Value:
         value: 1
         min: 

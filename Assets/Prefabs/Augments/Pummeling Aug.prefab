@@ -114,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
     _serializedList:
-    - Key: weakening_stx
+    - Key: weaken_stx
       Value:
         value: 0.05
         min: 

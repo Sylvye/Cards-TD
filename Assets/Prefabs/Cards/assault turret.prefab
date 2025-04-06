@@ -230,3 +230,5 @@ MonoBehaviour:
   timeVar: _Height
   speed: 0
   animate: 0
+  minVal: 0
+  maxVal: 0

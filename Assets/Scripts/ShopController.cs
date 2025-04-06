@@ -13,7 +13,9 @@ public class ShopController : MonoBehaviour
     public int cardCount;
     public int augmentCount;
     public GameobjectLootpool cardLootpool;
-    public GameobjectLootpool augmentLootpool;
+    public GameobjectLootpool commonAugmentLootpool;
+    public GameobjectLootpool rareAugmentLootpool;
+    public GameobjectLootpool uniqueAugmentLootpool;
     public AnimationCurve tierChances;
     public static ScrollAreaInventory shopScrollArea;
 
@@ -50,7 +52,18 @@ public class ShopController : MonoBehaviour
     {
         AugmentPurchaseable output = Instantiate(main.augmentPrefab, spawn, Quaternion.identity).GetComponent<AugmentPurchaseable>();
 
-        output.augment = main.augmentLootpool.GetRandom().GetComponent<Augment>();
+        int r = Random.Range(0, 100);
+        if (r < 50)
+        {
+            output.augment = main.commonAugmentLootpool.GetRandom().GetComponent<Augment>();
+        } else if (r < 80)
+        {
+            output.augment = main.rareAugmentLootpool.GetRandom().GetComponent<Augment>();
+        } else
+        {
+            output.augment = main.uniqueAugmentLootpool.GetRandom().GetComponent<Augment>();
+        }
+
         shopStuff.Add(output.gameObject);
         return output.gameObject;
     }

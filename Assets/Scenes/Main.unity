@@ -6094,7 +6094,9 @@ MonoBehaviour:
   cardCount: 3
   augmentCount: 4
   cardLootpool: {fileID: 11400000, guid: 8c35a6c4cd076c24a8edd87b7f79db56, type: 2}
-  augmentLootpool: {fileID: 11400000, guid: bfb1dc40dbe26a64d91527bd18e805ea, type: 2}
+  commonAugmentLootpool: {fileID: 11400000, guid: 11c5c22725f7728419ff33466504b3a7, type: 2}
+  rareAugmentLootpool: {fileID: 11400000, guid: 2f0f81b65b9c79242ad60d3109e6dbba, type: 2}
+  uniqueAugmentLootpool: {fileID: 11400000, guid: 7c16da1619c8bb948accab5ad4cb62fd, type: 2}
   tierChances:
     serializedVersion: 2
     m_Curve:

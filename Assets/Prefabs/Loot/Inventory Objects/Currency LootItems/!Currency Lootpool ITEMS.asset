@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7900f5160db60f84ab766b278ce0ff08, type: 3}
+  m_Name: '!Currency Lootpool ITEMS'
+  m_EditorClassIdentifier: 
+  items:
+  - {fileID: 7612658532311921237, guid: af9c1fb5f86e7ce499a201257e85b75a, type: 3}
+  - {fileID: 7612658532311921237, guid: 7e929d85d60979f4cb53772fbf858423, type: 3}
+  - {fileID: 7612658532311921237, guid: 6522bdd772174ea4891b2c0d25afc994, type: 3}
+  - {fileID: 7612658532311921237, guid: 4bf05cc4499efc144bba325af3aa80e6, type: 3}
+  weights:
+  - 50
+  - 25
+  - 18.75
+  - 6.25

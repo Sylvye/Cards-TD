@@ -22,4 +22,9 @@ public class AugmentLootItem : LootItem
     {
         return base.CompareTo(other);
     }
+
+    public override string GetName()
+    {
+        return "augment of " + id;
+    }
 }

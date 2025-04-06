@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d08cc902fe661614a917cb17aa98bf2a, type: 3}
+  m_Name: '!RARE Augment OBJS'
+  m_EditorClassIdentifier: 
+  objects:
+  - {fileID: 183066773122249344, guid: 50a4cb1e58e9fb34ea9ce8a367e61340, type: 3}
+  - {fileID: 183066773122249344, guid: f94c85ab0dcb7724f878ab803e69aba7, type: 3}
+  - {fileID: 183066773122249344, guid: dd77a5210eaeb6a43b4dcbc08d9ed917, type: 3}
+  - {fileID: 183066773122249344, guid: 3f5710509504eda46bcd2f9a7ab0247c, type: 3}
+  weights:
+  - 7.5
+  - 7.5
+  - 7.5
+  - 7.5

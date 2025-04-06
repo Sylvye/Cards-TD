@@ -28,7 +28,7 @@ public class ScrollAreaItem : CustomUIElement, IComparable<ScrollAreaItem>
         if (readName && Clickable())
         {
             MouseTooltip.SetVisible(true);
-            MouseTooltip.SetText(id);
+            MouseTooltip.SetText(GetName());
         }
     }
 
@@ -69,5 +69,10 @@ public class ScrollAreaItem : CustomUIElement, IComparable<ScrollAreaItem>
     public void SetHomePos(Vector2 pos)
     {
         homePos = pos;
+    }
+
+    public virtual string GetName()
+    {
+        return id;
     }
 }

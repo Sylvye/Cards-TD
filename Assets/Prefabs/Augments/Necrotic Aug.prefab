@@ -114,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
     _serializedList:
-    - Key: reaping
+    - Key: fatal
       Value:
         value: 1
         min: 

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6280387633327717232}
   - component: {fileID: -6497052109948483012}
   m_Layer: 0
-  m_Name: Impact Aug
+  m_Name: Smite Aug
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 183066773122249344}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 10, z: -2}
+  m_LocalPosition: {x: 0, y: 12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -347451615, guid: c22905ee193702547a9f48c3c0e567ec, type: 3}
+  m_Sprite: {fileID: -703471615, guid: c22905ee193702547a9f48c3c0e567ec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,9 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0086506276ec5a44badedee3b48193d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayName: impacting
-  type: impact
-  tier: 
+  displayName: rending
+  type: rend
 --- !u!114 &-6497052109948483012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
     _serializedList:
-    - Key: impact
+    - Key: smite
       Value:
         value: 1
         min: 
