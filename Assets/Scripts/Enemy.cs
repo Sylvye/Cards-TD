@@ -51,39 +51,40 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public bool Damage(int amount)
+    // returns any excess damage
+    public int Damage(int amount)
     {
         amount *= 1 - (int)stats.GetStat("resistance");
         amount -= (int)stats.GetStat("shield");
         if (amount <= 0)
-            return false;
+            return 0;
         stats.ModifyStat("hp", amount, Stats.Operation.Subtract);
         if (stats.GetStat("hp") <= 0) // death
         {
             Destroy(gameObject);
             Spawner.spawnedEnemies.Remove(gameObject);
             RollLoot(pulls);
-            return true;
+            return -(int)stats.GetStat("hp");
         }
-        return false;
+        return 0;
     }
 
-    //returns true if the attack killed the enemy
-    public bool Damage(int amount, Projectile reference)
+    // returns any excess damage
+    public int Damage(int amount, Projectile reference)
     {
         amount *= 1 - (int)stats.GetStat("resistance");
         amount -= (int)stats.GetStat("shield");
         if (amount <= 0)
-            return false;
+            return 0;
         stats.ModifyStat("hp", amount, Stats.Operation.Subtract);
         if (stats.GetStat("hp") <= 0) // death
         {
             Destroy(gameObject);
             Spawner.spawnedEnemies.Remove(gameObject);
             RollLoot(pulls, AngleHelper.DegreesToVector(reference.angle));
-            return true;
+            return -(int)stats.GetStat("hp");
         }
-        return false;
+        return 0;
     }
 
     public void RollLoot(int pulls)
@@ -124,6 +125,11 @@ public class Enemy : MonoBehaviour
     public void Stun(float time)
     {
         stunEnd = Time.time + time;
+    }
+
+    public bool IsAlive()
+    {
+        return stats.GetStat("hp") > 0;
     }
 
     public static string TierToType(int tier)

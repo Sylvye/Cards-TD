@@ -7,6 +7,7 @@ using UnityEngine;
 public class Augment : MonoBehaviour, CardInterface
 {
     public string displayName;
+    public string info;
     public string type;
     public string tier;
 

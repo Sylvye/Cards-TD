@@ -7,7 +7,6 @@ using static UnityEngine.GraphicsBuffer;
 
 public class TaserTurret : Tower
 {
-    // checked!
     public GameObject laser;
     public GameObject FX;
     private float lastShot = -999;

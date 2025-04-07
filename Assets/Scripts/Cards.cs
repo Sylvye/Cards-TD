@@ -12,8 +12,10 @@ public class Cards : MonoBehaviour
         Augment
     }
     public static Cards main;
-    private List<Card> deck = new();
+    private List<Card> cards = new();
     private List<Augment> augments = new();
+    private ScrollAreaInventory deckSAI;
+    private ScrollAreaInventory augmentSAI;
 
     private void Start()
     {
@@ -51,38 +53,38 @@ public class Cards : MonoBehaviour
 
     public static void AddToDeck(Card c)
     {
-        main.deck.Add(c);
+        main.cards.Add(c);
         c.transform.SetParent(main.transform);
         c.transform.position = Vector3.up * 10;
     }
 
     public static void RemoveFromDeck(Card c)
     {
-        main.deck.Remove(c);
+        main.cards.Remove(c);
     }
 
     public static Card RemoveFromDeck(int index)
     {
         if (index >= DeckSize())
             return null;
-        Card output = main.deck[index];
-        main.deck.RemoveAt(index);
+        Card output = main.cards[index];
+        main.cards.RemoveAt(index);
         return output;
     }
 
     public static Card GetFromDeck(int index)
     {
-        return main.deck[index];
+        return main.cards[index];
     }
 
     public static int IndexOfInDeck(Card c)
     {
-        return main.deck.IndexOf(c);
+        return main.cards.IndexOf(c);
     }
 
     public static int DeckSize()
     {
-        return main.deck.Count;
+        return main.cards.Count;
     }
 
     public static void AddToAugments(Augment a)

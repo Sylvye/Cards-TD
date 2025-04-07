@@ -255,3 +255,38 @@ MonoBehaviour:
         value: 0
         min: 0
         max: 
+    - Key: cleave
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: impact
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: weaken
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: weaken_stx
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: raze
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: smite
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: fatal
+      Value:
+        value: 0
+        min: 0
+        max: 
