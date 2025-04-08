@@ -121,7 +121,7 @@ public class StageController : MonoBehaviour
                 boonCurse.SetActive(false);
                 Hand.Clear();
                 BattleButton.main.SetSprites(BattleButton.main.playUp, BattleButton.main.playDown);
-                Spawner.main.stats.ModifyStat("hp_mult", 1.2f, Stats.Operation.Multiply); // Every round is 20% healthier than previous
+                Spawner.main.stats.ModifyStat("hp_mult", 1.2f, Stat.Operation.Multiply); // Every round is 20% healthier than previous
                 Spawner.main.stats.ModifyStat("speed", 0.05f);
                 ToggleDarken(false);
                 ToggleTime(true);
@@ -180,7 +180,7 @@ public class StageController : MonoBehaviour
     {
         Hand.Deal();
         Spawner.main.complete = false;
-        BattleButton.main.SetActive(true);
+        BattleButton.main.SetClickable(true);
         StartCoroutine(ShowTab());
     }
 

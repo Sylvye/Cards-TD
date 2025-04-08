@@ -59,9 +59,9 @@ public class TowerCard : Card
         Main.towerHitboxReticle_.transform.position = pos;
         Main.towerRangeReticle_.transform.position = pos;
         if (Physics2D.OverlapCircle(target, hitboxRadius, Main.placementLayerMask_) == null)
-            Main.towerHitboxReticle_.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+            Main.towerHitboxReticle_.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f); // TEMP
         else
-            Main.towerHitboxReticle_.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.5f);
+            Main.towerHitboxReticle_.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.5f); // TEMP
     }
 
     public override GameObject OnPlay()
@@ -83,25 +83,7 @@ public class TowerCard : Card
             Destroy(spawned);
     }
 
-    public override string GetName()
-    {
-        if (stats == null)
-        {
-            stats = GetComponent<Stats>();
-        }
-        return prefabTower.name + " t" + stats.GetStat("tier");
-    }
-
-    public override Sprite GetSprite()
-    {
-        if (stats == null)
-        {
-            stats = GetComponent<Stats>();
-        }
-        return Resources.LoadAll<Sprite>("CardPack")[towerIndex * 5 + (int)stats.GetStat("tier") - 1];
-    }
-
-    public override Sprite GetSprite(int tier)
+    public override Sprite CalcSprite(int tier)
     {
         return Resources.LoadAll<Sprite>("CardPack")[towerIndex * 5 + tier - 1];
     }

@@ -13,8 +13,8 @@ public class Main : MonoBehaviour
     public static int lives = 100;
     public int[] packs = { 0, 0 }; // augment, gold
 
-    public static Stats playerStats;
-    public static Stats enemyStats;
+    public static StatHolder playerStats;
+    public static StatHolder enemyStats;
 
     public int mapLength;
     public static int mapLength_;
@@ -46,7 +46,7 @@ public class Main : MonoBehaviour
         enemyLayerMask_ = enemyLayerMask;
         mapLength_ = mapLength;
         coinLabel = GameObject.Find("Coin label").GetComponent<TMPLabel>();
-        playerStats = GetComponent<Stats>();
+        playerStats = GetComponent<StatHolder>();
     }
 
     // Start is called before the first frame update

@@ -8,15 +8,13 @@ public class RiskRewardPair : Button
     public static RiskRewardPair[] riskRewards;
     public Sprite outline;
 
-    public override void Awake()
+    public override void OnAwake()
     {
-        base.Awake();
         riskRewards = new RiskRewardPair[2];
     }
 
-    public override void Start()
+    public override void OnStart()
     {
-        base.Start();
         if (riskRewards[0] == null)
             riskRewards[0] = this;
         else
@@ -26,7 +24,7 @@ public class RiskRewardPair : Button
     public override void OnMouseEnter()
     {
         base.OnMouseEnter();
-        GetComponent<SpriteRenderer>().sprite = outline;
+        sr.sprite = outline;
     }
 
     public override void OnMouseExit()
@@ -34,7 +32,7 @@ public class RiskRewardPair : Button
         if (!GetComponent<Collider2D>().OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition))) // checks if the mouse has actually left the bounds, and not just hovered over another collider
         {
             base.OnMouseExit();
-            GetComponent<SpriteRenderer>().sprite = spriteUp;
+            sr.sprite = spriteUp;
         }
     }
 
@@ -48,7 +46,7 @@ public class RiskRewardPair : Button
         }
 
         StageController.SwitchStage(StageController.Stage.Map);
-        MakeSpriteUp();
+        UseSpriteUp();
     }
 
     public static void Refresh()

@@ -20,7 +20,7 @@ public class BarrageTurret : Turret
         if (t >= 4)
         {
             stats.ModifyStat("base_damage", 3);
-            stats.ModifyStat("spread", 10, Stats.Operation.Subtract);
+            stats.ModifyStat("spread", 10, Stat.Operation.Subtract);
         }
         if (t >= 5)
         {

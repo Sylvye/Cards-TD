@@ -22,11 +22,11 @@ public class Enemy : MonoBehaviour
     private float stunEnd;
 
     [NonSerialized]
-    public Stats stats;
+    public StatHolder stats;
 
     private void Awake()
     {
-        stats = GetComponent<Stats>();
+        stats = GetComponent<StatHolder>();
     }
 
     private void Start()
@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour
         amount -= (int)stats.GetStat("shield");
         if (amount <= 0)
             return 0;
-        stats.ModifyStat("hp", amount, Stats.Operation.Subtract);
+        stats.ModifyStat("hp", amount, Stat.Operation.Subtract);
         if (stats.GetStat("hp") <= 0) // death
         {
             Destroy(gameObject);
@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour
         amount -= (int)stats.GetStat("shield");
         if (amount <= 0)
             return 0;
-        stats.ModifyStat("hp", amount, Stats.Operation.Subtract);
+        stats.ModifyStat("hp", amount, Stat.Operation.Subtract);
         if (stats.GetStat("hp") <= 0) // death
         {
             Destroy(gameObject);

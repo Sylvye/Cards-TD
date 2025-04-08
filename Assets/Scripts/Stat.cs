@@ -8,6 +8,13 @@ using UnityEngine.UIElements;
 [Serializable]
 public class Stat
 {
+    public enum Operation
+    {
+        Add,
+        Subtract,
+        Multiply,
+        Divide
+    }
     public float value;
     public string min;
     public string max;
@@ -31,20 +38,20 @@ public class Stat
         Clamp();
     }
 
-    public void Modify(float val, Stats.Operation op)
+    public void Modify(float val, Operation op)
     {
         switch (op)
         {
-            case Stats.Operation.Add:
+            case Operation.Add:
                 value += val;
                 break;
-            case Stats.Operation.Subtract:
+            case Operation.Subtract:
                 value -= val;
                 break;
-            case Stats.Operation.Multiply:
+            case Operation.Multiply:
                 value *= val;
                 break;
-            case Stats.Operation.Divide:
+            case Operation.Divide:
                 value /= val;
                 break;
         }

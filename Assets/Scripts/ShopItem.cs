@@ -11,12 +11,11 @@ public abstract class ShopItem : Button
     private float discount = 0;
     private Purchaseable p;
 
-    public override void Start()
+    public override void OnStart()
     {
-        base.Start();
         p = GetComponent<Purchaseable>();
-        spriteUp = p.GetSprite();
-        spriteDown = p.GetSprite();
+        spriteUp = p.CalcSprite();
+        spriteDown = p.CalcSprite();
     }
 
     public override void Action()
@@ -25,7 +24,7 @@ public abstract class ShopItem : Button
         {
             Main.Earn(-GetPrice());
             p.Claim();
-            SetActive(false);
+            SetClickable(false);
         }
     }
 

@@ -8,15 +8,14 @@ public class CardPurchaseable : ShopItem, Purchaseable
     public int tier;
 
     // Start is called before the first frame update
-    public override void Start()
+    public override void OnStart()
     {
-        base.Start();
-        GetComponent<SpriteRenderer>().sprite = GetSprite();
+        GetComponent<SpriteRenderer>().sprite = CalcSprite();
     }
 
-    public override Sprite GetSprite()
+    public Sprite CalcSprite()
     {
-        return card.GetSprite(tier);
+        return card.CalcSprite(tier);
     }
 
     public void Claim()

@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public abstract class Button : CustomUIElement
+public abstract class Button : SpriteUIE
 {
     public Sprite spriteUp;
     public Sprite spriteDown;
@@ -12,12 +13,10 @@ public abstract class Button : CustomUIElement
     public Sprite outlineDown;
     private GameObject outlineObj;
     private SpriteRenderer outlineSR;
-    private SpriteRenderer sr;
+    private bool clickable;
 
-    public override void Awake()
+    public override void OnAwake()
     {
-        base.Awake();
-        sr = GetComponent<SpriteRenderer>();
         if (outlineUp != null && outlineDown != null)
         {
             outlineObj = new GameObject("outline");
@@ -33,40 +32,32 @@ public abstract class Button : CustomUIElement
         }
     }
 
-    public abstract void Action();
-
     public virtual void OnMouseEnter()
     {
         if (!Input.GetMouseButtonDown(0))
         {
-            MakeSpriteUp();
+            UseSpriteUp();
         }
-        if (GetActive())
+        if (outlineObj != null && IsClickable())
         {
-            if (outlineObj != null)
-            {
-                ToggleOutline(true);
-                outlineSR.sprite = outlineUp;
-            }
+            ToggleOutline(true);
+            outlineSR.sprite = outlineUp;
         }
     }
 
     public virtual void OnMouseExit()
     {
-        if (GetActive())
+        if (outlineObj != null)
         {
-            if (outlineObj != null)
-            {
-                ToggleOutline(false);
-            }
+            ToggleOutline(false);
         }
     }
 
     public virtual void OnMouseDown()
     {
-        if (GetActive() && spriteDown != null)
+        if (IsClickable() && spriteDown != null)
         {
-            GetComponent<SpriteRenderer>().sprite = spriteDown;
+            UseSpriteDown();
             if (outlineObj != null)
             {
                 outlineSR.sprite = outlineDown;
@@ -76,12 +67,12 @@ public abstract class Button : CustomUIElement
 
     public virtual void OnMouseUpAsButton()
     {
-        if (GetActive())
+        if (IsClickable())
         {
             Action();
 
             if (spriteUp != null)
-                GetComponent<SpriteRenderer>().sprite = spriteUp;
+                UseSpriteUp();
             if (outlineObj != null)
             {
                 outlineSR.sprite = outlineUp;
@@ -89,35 +80,36 @@ public abstract class Button : CustomUIElement
         }
     }
 
-    public void MakeSpriteUp()
+    public abstract void Action();
+
+    public void SetClickable(bool c)
     {
-        if (spriteUp != null)
-            GetComponent<SpriteRenderer>().sprite = spriteUp;
+        clickable = c;
+        if (outlineObj != null && !c)
+            ToggleOutline(false);
     }
 
-    public void MakeSpriteDown()
+    public virtual bool IsClickable()
+    {
+        return clickable;
+    }
+
+    public void UseSpriteUp()
     {
         if (spriteUp != null)
-            GetComponent<SpriteRenderer>().sprite = spriteDown;
+            UseSpriteUp();
+    }
+
+    public void UseSpriteDown()
+    {
+        if (spriteUp != null)
+            UseSpriteDown();
     }
 
     public void SetSprites(Sprite up, Sprite down)
     {
         spriteUp = up;
         spriteDown = down;
-        MakeSpriteUp();
-    }
-
-    public override void SetActive(bool a)
-    {
-        SetActive(a, true);
-    }
-
-    public override void SetActive(bool a, bool dim)
-    {
-        base.SetActive(a, dim);
-        if (outlineObj != null && !a)
-            ToggleOutline(false);
     }
 
     public void ToggleOutline(bool a)

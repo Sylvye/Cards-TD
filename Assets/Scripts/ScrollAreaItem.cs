@@ -6,26 +6,21 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class ScrollAreaItem : CustomUIElement, IComparable<ScrollAreaItem>
+public class ScrollAreaItem : SpriteUIE, IComparable<ScrollAreaItem>
 {
-    public string id;
-    public bool readName = true;
-    public int order;
+    public int sortingOrder;
     [NonSerialized]
     public Vector3 homePos;
-    private SpriteRenderer sr;
 
     // Start is called before the first frame update
-    public override void Start()
+    public override void OnStart()
     {
-        base.Start();
         homePos = transform.position;
-        sr = GetComponent<SpriteRenderer>();
     }
 
     private void OnMouseEnter()
     {
-        if (readName && Clickable())
+        if (readInfo && Clickable())
         {
             MouseTooltip.SetVisible(true);
             MouseTooltip.SetText(GetName());
@@ -34,15 +29,10 @@ public class ScrollAreaItem : CustomUIElement, IComparable<ScrollAreaItem>
 
     private void OnMouseExit()
     {
-        if ((readName && Clickable()) || MouseTooltip.GetText().Equals(id))
+        if ((readInfo && Clickable()) || MouseTooltip.GetText().Equals(info))
         {
             MouseTooltip.SetVisible(false);
         }
-    }
-
-    public void SetSprite(Sprite s)
-    {
-        sr.sprite = s;
     }
 
     public virtual bool Clickable()
@@ -52,7 +42,7 @@ public class ScrollAreaItem : CustomUIElement, IComparable<ScrollAreaItem>
 
     public virtual int CompareTo(ScrollAreaItem other)
     {
-        return 10000*(order - other.order) + id.CompareTo(other.id);
+        return 10000*(sortingOrder - other.sortingOrder) + info.CompareTo(other.info);
     }
 
     public override void ShiftPos(Vector2 dir)
@@ -73,6 +63,6 @@ public class ScrollAreaItem : CustomUIElement, IComparable<ScrollAreaItem>
 
     public virtual string GetName()
     {
-        return id;
+        return info;
     }
 }

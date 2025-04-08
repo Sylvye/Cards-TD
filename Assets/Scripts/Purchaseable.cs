@@ -8,5 +8,5 @@ public interface Purchaseable
 {
     public void Claim();
 
-    public Sprite GetSprite();
+    public Sprite CalcSprite();
 }

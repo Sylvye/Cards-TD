@@ -7,13 +7,12 @@ public class AugmentPurchaseable : ShopItem, Purchaseable
     public Augment augment;
 
     // Start is called before the first frame update
-    public override void Start()
+    public override void OnStart()
     {
-        base.Start();
-        GetComponent<SpriteRenderer>().sprite = GetSprite();
+        SetSprite(CalcSprite());
     }
 
-    public override Sprite GetSprite()
+    public Sprite CalcSprite()
     {
         return augment.GetComponent<SpriteRenderer>().sprite;
     }

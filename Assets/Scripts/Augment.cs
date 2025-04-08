@@ -4,24 +4,32 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Augment : MonoBehaviour, CardInterface
+public class Augment : Puppetable
 {
     public string displayName;
     public string info;
     public string type;
-    public string tier;
-
-    [NonSerialized]
-    public Stats stats;
-
-    private void Awake()
+    public Dictionary<string, Stat> stats;
+    
+    public Augment()
     {
-        stats = GetComponent<Stats>();
+        displayName = "";
+        info = "";
+        type = "";
+        stats = new();
+    }
+
+    public Augment(string displayName, string info, string type, Dictionary<string, Stat> s)
+    {
+        this.displayName = displayName;
+        this.info = info;
+        this.type = type;
+        stats = s;
     }
 
     public void ApplyEffect(TowerCard c)
     {
-        c.stats.AddStats(stats);
+        c.stats;
     }
 
     public string GetName()
@@ -29,9 +37,9 @@ public class Augment : MonoBehaviour, CardInterface
         return displayName;
     }
 
-    public string GetTag()
+    public string GetInfo()
     {
-        return displayName;
+        return info;
     }
 
     public Sprite GetSprite()
@@ -42,15 +50,5 @@ public class Augment : MonoBehaviour, CardInterface
     public GameObject GetGameObject()
     {
         return gameObject;
-    }
-
-    public CardInterface FindReference(int index)
-    {
-        return Cards.GetFromAugments(index);
-    }
-
-    public int GetReferenceListLength()
-    {
-        return Cards.AugmentSize();
     }
 }

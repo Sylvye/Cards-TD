@@ -85,7 +85,7 @@ public class ScrollAreaInventory : ScrollArea
             AddToInventory(itemObj);
 
             SpriteRenderer sr = itemObj.GetComponent<SpriteRenderer>();
-            CardInterface cardPrefabReference = type switch
+            Puppetable cardPrefabReference = type switch
             {
                 Cards.CardType.Card => Cards.GetFromDeck(i),
                 Cards.CardType.Augment => Cards.GetFromAugments(i),
@@ -97,7 +97,7 @@ public class ScrollAreaInventory : ScrollArea
             ScrollAreaItemCard item = itemObj.GetComponent<ScrollAreaItemCard>();
             item.draggableSnaps.Add(destination);
             item.reference = cardPrefabReference.GetGameObject();
-            item.id = cardPrefabReference.GetTag();
+            item.info = cardPrefabReference.GetInfo();
         }
         RefreshPositions();
     }
@@ -127,7 +127,7 @@ public class ScrollAreaInventory : ScrollArea
         inventory.Sort();
         for (int i = 0; i < inventory.Count; i++)
         {
-            CustomUIElement item = inventory[i].GetComponent<CustomUIElement>();
+            SpriteUIE item = inventory[i].GetComponent<SpriteUIE>();
             item.SetDestination(transform.position + new Vector3(offset.x * (i % itemsPerRow), -offset.y * (i / itemsPerRow)) + new Vector3(startPos.x * transform.localScale.x, startPos.y * transform.localScale.y) + Vector3.down * scrolledAmt);
             item.zPos = transform.position.z - 1;
         }

@@ -13,13 +13,13 @@ public abstract class Tower : MonoBehaviour
         Energy
     }
     [NonSerialized]
-    public Stats stats;
+    public StatHolder stats;
     public Type type = Type.Kinetic;
     public bool activated;
 
     public virtual void Awake()
     {
-        stats = GetComponent<Stats>();
+        stats = GetComponent<StatHolder>();
         activated = false;
     }
 
@@ -63,10 +63,10 @@ public abstract class Tower : MonoBehaviour
         return finalDamage;
     }
 
-    public static Tower MakeTowerByPrefab(GameObject obj, Vector2 pos, Stats s)
+    public static Tower MakeTowerByPrefab(GameObject obj, Vector2 pos, StatHolder s)
     {
         Tower t = Instantiate(obj, new Vector3(pos.x, pos.y, 2), Quaternion.identity).GetComponent<Tower>();
-        t.transform.parent = Card.playingField;
+        t.transform.parent = Card.battlefield;
         t.stats.AddStats(s);
         t.ApplyTierEffects();
         return t;

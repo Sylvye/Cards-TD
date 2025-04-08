@@ -18,9 +18,8 @@ public class BattleButton : Button
     [NonSerialized] public Sprite nextDown;
     private Sprite[] sprites;
 
-    public override void Awake()
+    public override void OnAwake()
     {
-        base.Awake();
         main = this;
         sprites = Resources.LoadAll<Sprite>(fileName);
         playUp = sprites[0];
@@ -31,14 +30,13 @@ public class BattleButton : Button
         nextDown = sprites[5];
     }
 
-    public override void Update()
+    public override void OnUpdate()
     {
-        base.Update();
         if (Spawner.main.IsStageCleared() && phase == 1)
         {
             phase++;
             SetSprites(nextUp, nextDown);
-            MakeSpriteUp();
+            UseSpriteUp();
         }
     }
 
@@ -51,7 +49,7 @@ public class BattleButton : Button
                 int index = 6 + 2 * (int)Mathf.Log(speed, 2);
                 StageController.timeScale = speed;
                 SetSprites(sprites[index], sprites[index + 1]);
-                MakeSpriteUp();
+                UseSpriteUp();
                 //OnMouseExit();
                 break;
             case 1: // time dilation
@@ -95,7 +93,7 @@ public class BattleButton : Button
                 StageController.inventoryLabels.SetActive(false);
                 StageController.boonCurse.SetActive(true);
                 RiskRewardPair.Refresh();
-                SetActive(false);
+                SetClickable(false);
                 break;
         }
         phase = ++phase % 4;

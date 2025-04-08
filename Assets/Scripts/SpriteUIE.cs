@@ -3,28 +3,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class CustomUIElement : MonoBehaviour
+public abstract class SpriteUIE : MonoBehaviour
 {
     private static readonly float LERP_SPEED = 25;
-    [SerializeField] private bool active = true;
-    public bool locked = false;
-    [SerializeField] private Vector2 lerpPos;
-    public float zPos;
 
-    public virtual void Awake()
+    public string info;
+    public bool readInfo;
+    public bool locked = false;
+    public float zPos;
+    public SpriteRenderer sr;
+    private Vector2 lerpPos;
+
+    public void Awake()
     {
-        lerpPos = transform.position;
-        zPos = transform.position.y;
+        sr = GetComponent<SpriteRenderer>();
+        OnAwake();
     }
 
     // Dont delete, messes with inheritance
-    public virtual void Start()
+    public void Start()
     {
-        
+        lerpPos = transform.position;
+        zPos = transform.position.y;
+        OnStart();
     }
 
     // Update is called once per frame
-    public virtual void Update()
+    public void Update()
     {
         if (!locked)
         {
@@ -37,45 +42,61 @@ public abstract class CustomUIElement : MonoBehaviour
                 transform.position = GetDestination();
             }
         }
+        OnUpdate();
     }
 
-    public virtual Sprite GetSprite()
+    public virtual void OnAwake()
     {
-        return GetComponent<SpriteRenderer>().sprite;
+
     }
 
-    public virtual void SetActive(bool a)
+    public virtual void OnStart()
     {
-        SetActive(a, true);
+
     }
 
-    public virtual void SetActive(bool a, bool dim)
+    public virtual void OnUpdate()
     {
-        active = a;
-        if (dim)
-        {
-            if (a)
-                GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-            else
-                GetComponent<SpriteRenderer>().color = new Color(0.75f, 0.75f, 0.75f, 0.75f);
-        }
+
     }
 
-    public bool GetActive()
+    public virtual string GetInfo()
     {
-        return active;
+        return info;
     }
 
+    public Sprite GetSprite()
+    {
+        return sr.sprite;
+    }
+
+    public void SetSprite(Sprite s)
+    {
+        sr.sprite = s;
+    }
+
+    /// <summary>
+    /// sets the SUIE's lerpPos
+    /// </summary>
+    /// <param name="dest"></param>
     public virtual void SetDestination(Vector2 dest)
     {
         lerpPos = new Vector3(dest.x, dest.y, zPos);
     }
 
+    /// <summary>
+    /// returns the SUIE's lerpPos
+    /// </summary>
+    /// <returns></returns>
     public virtual Vector3 GetDestination()
     {
         return new Vector3(lerpPos.x, lerpPos.y, zPos);
     }
 
+    /// <summary>
+    /// moves both lerpPos AND transform.position by dir
+    /// </summary>
+    /// <param name="dir"></param>
     public virtual void ShiftPos(Vector2 dir)
     {
         transform.position = new Vector3(dir.x + transform.position.x, dir.y + transform.position.y, zPos);

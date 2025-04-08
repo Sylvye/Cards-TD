@@ -24,12 +24,12 @@ public class Spawner : MonoBehaviour
     private static bool freebie = false; // whether or not a lootbag has dropped yet
 
     [NonSerialized]
-    public Stats stats;
+    public StatHolder stats;
 
     private void Awake()
     {
         main = this;
-        stats = GetComponent<Stats>();
+        stats = GetComponent<StatHolder>();
     }
 
     // Update is called once per frame
@@ -93,11 +93,11 @@ public class Spawner : MonoBehaviour
         e.size = (Enemy.Size)tier;
         e.stats.SetStat("max_hp", hp);
 
-        e.stats.ModifyStat("speed", speedMult, Stats.Operation.Multiply);
+        e.stats.ModifyStat("speed", speedMult, Stat.Operation.Multiply);
         e.stats.ModifyStat("shield", stats.GetStat("shield"));
         e.stats.ModifyStat("regeneration", stats.GetStat("regeneration"));
-        e.stats.ModifyStat("resistance", stats.GetStat("resistance"), Stats.Operation.Multiply);
-        e.stats.ModifyStat("desperation", stats.GetStat("desperation"), Stats.Operation.Multiply);
+        e.stats.ModifyStat("resistance", stats.GetStat("resistance"), Stat.Operation.Multiply);
+        e.stats.ModifyStat("desperation", stats.GetStat("desperation"), Stat.Operation.Multiply);
         
         e.pulls = loot[waveIndex] ? 1 : 0;
     }

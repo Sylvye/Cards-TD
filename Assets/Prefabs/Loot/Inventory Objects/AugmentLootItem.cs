@@ -6,10 +6,9 @@ public class AugmentLootItem : LootItem
 {
     public Augment augment;
 
-    public override void Start()
+    public override void OnStart()
     {
-        base.Start();
-        id = augment.GetName();
+        info = augment.GetInfo();
     }
 
     public override void Claim()
@@ -25,6 +24,6 @@ public class AugmentLootItem : LootItem
 
     public override string GetName()
     {
-        return "augment of " + id;
+        return "augment of " + info;
     }
 }

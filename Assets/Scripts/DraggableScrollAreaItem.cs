@@ -15,9 +15,8 @@ public class DraggableScrollAreaItem : ScrollAreaItem
     public State state = State.Home;
     private Transform ogParent;
 
-    public override void Start()
+    public override void OnStart()
     {
-        base.Start();
         ogParent = transform.parent;
     }
 
@@ -26,13 +25,13 @@ public class DraggableScrollAreaItem : ScrollAreaItem
         if (state.Equals(State.Home) && Clickable())
         {
             MouseTooltip.SetVisible(true);
-            MouseTooltip.SetText(id);
+            MouseTooltip.SetText(info);
         }
     }
 
     private void OnMouseExit()
     {
-        if (state.Equals(State.Home) && (Clickable() || MouseTooltip.GetText().Equals(id)))
+        if (state.Equals(State.Home) && (Clickable() || MouseTooltip.GetText().Equals(info)))
         {
             MouseTooltip.SetVisible(false);
         }

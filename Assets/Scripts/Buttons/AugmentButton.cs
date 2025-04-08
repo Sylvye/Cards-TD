@@ -5,10 +5,9 @@ using UnityEngine;
 public class AugmentButton : Button
 {
     // Update is called once per frame
-    public override void Update()
+    public override void OnUpdate()
     {
-        base.Update();
-        SetActive(AugmentTable.main.transform.GetChild(0).transform.childCount == 1 && AugmentTable.main.transform.GetChild(1).transform.childCount == 1);
+        SetClickable(AugmentTable.main.transform.GetChild(0).transform.childCount == 1 && AugmentTable.main.transform.GetChild(1).transform.childCount == 1);
     }
 
     public override void Action()

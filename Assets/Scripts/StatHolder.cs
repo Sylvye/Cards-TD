@@ -8,16 +8,8 @@ using System.Numerics;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Stats : MonoBehaviour
+public class StatHolder : MonoBehaviour
 {
-    //private Dictionary<string, float> stats = new();
-    public enum Operation
-    {
-        Add,
-        Subtract,
-        Multiply,
-        Divide
-    }
     [SerializedDictionary("Name", "Stat")]
     public SerializedDictionary<string, Stat> stats = new();
 
@@ -39,6 +31,13 @@ public class Stats : MonoBehaviour
         return false;
     }
 
+    public void SetStatsFromDict(Dictionary<string, Stat> s)
+    {
+        for (int i = 0; i < s.Count; i++)
+        {
+            stats.Add(s.ElementAt(i).Key, s.ElementAt(i).Value);
+        }
+    }
 
     /// <summary>
     /// Adds value to name
@@ -50,7 +49,7 @@ public class Stats : MonoBehaviour
     {
         if (stats.TryGetValue(name, out _))
         {
-            stats[name].Modify(value, Operation.Add);
+            stats[name].Modify(value, Stat.Operation.Add);
             return true;
         }
         Debug.LogWarning("Couldn't ADD stat \"" + name + "\"");
@@ -64,7 +63,7 @@ public class Stats : MonoBehaviour
     /// <param name="value"></param>
     /// <param name="o"> The operation to perform on value </param>
     /// <returns>True if successful, false otherwise</returns>
-    public bool ModifyStat(string name, float value, Operation o)
+    public bool ModifyStat(string name, float value, Stat.Operation o)
     {
         if (stats.TryGetValue(name, out _))
         {
@@ -96,17 +95,30 @@ public class Stats : MonoBehaviour
         stats.Clear();
     }
 
-    public bool AddStats(Stats other)
+    public bool AddStats(StatHolder other)
     {
         bool successful = false;
         for (int i=0; i<other.stats.Count; i++)
         {
             string key = other.stats.ElementAt(i).Key;
             float val = other.stats.ElementAt(i).Value.GetValue();
+            if (ModifyStat(key, val)) // if we successfully added the stat
+            {
+                successful = true;
+            }
+        }
 
-            bool s = ModifyStat(key, val);
-
-            if (s) // if we successfully added the stat
+        return successful;
+    }
+    
+    public bool AddStatsFromDict(Dictionary<string, Stat> s)
+    {
+        bool successful = false;
+        for (int i = 0; i < s.Count; i++)
+        {
+            string key = s.ElementAt(i).Key;
+            float val = s.ElementAt(i).Value.GetValue();
+            if (ModifyStat(key, val)) // if we successfully added the stat
             {
                 successful = true;
             }

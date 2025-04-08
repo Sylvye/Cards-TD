@@ -5,7 +5,7 @@ using System.Runtime.Serialization.Json;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class RiskReward : CustomUIElement
+public class RiskReward : SpriteUIE
 {
     public static RiskReward lastBoon;
     public static RiskReward lastCurse;
@@ -19,7 +19,7 @@ public class RiskReward : CustomUIElement
     private Textbox textbox;
     private RiskReward prefab;
 
-    public override void Awake()
+    public override void OnAwake()
     {
         textbox = GameObject.Find("Risk-Reward Textbox").GetComponent<Textbox>();
         outline = transform.GetChild(0).gameObject;
@@ -33,7 +33,7 @@ public class RiskReward : CustomUIElement
         statValues = prefab.statValues;
         description = prefab.description;
         clone = prefab.clone;
-        GetComponent<SpriteRenderer>().sprite = prefab.GetSprite();
+        SetSprite(prefab.GetSprite());
 
         // for x2 and x3
         if (clone)
@@ -96,7 +96,7 @@ public class RiskReward : CustomUIElement
                 lastCurse = prefab;
             }
         }
-        Stats toEdit = boon ? Main.playerStats : Main.enemyStats;
+        StatHolder toEdit = boon ? Main.playerStats : Main.enemyStats;
         for (int i = 0; i < statNames.Count; i++)
         {
             float val = statValues[i];

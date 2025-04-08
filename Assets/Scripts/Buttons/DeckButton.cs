@@ -10,16 +10,14 @@ public class DeckButton : Button
     private bool visible = false;
 
     // Start is called before the first frame update
-    public override void Awake()
+    public override void OnAwake()
     {
-        base.Awake();
         deckText = GameObject.Find("Deck Visualizer Text");
         deckUI = GameObject.Find("Deck Visualizer");
     }
 
-    public override void Start()
+    public override void OnStart()
     {
-        base.Start();
         deckText.SetActive(false);
         deckUI.SetActive(false);
     }
