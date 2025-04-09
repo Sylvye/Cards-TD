@@ -24,12 +24,12 @@ public class Spawner : MonoBehaviour
     private static bool freebie = false; // whether or not a lootbag has dropped yet
 
     [NonSerialized]
-    public StatHolder stats;
+    public Stats stats;
 
     private void Awake()
     {
         main = this;
-        stats = GetComponent<StatHolder>();
+        stats = GetComponent<Stats>();
     }
 
     // Update is called once per frame

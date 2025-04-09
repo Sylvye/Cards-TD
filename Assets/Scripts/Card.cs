@@ -10,7 +10,7 @@ public abstract class Card : Puppetable
 {
     public string type;
     public float cooldown;
-    public Dictionary<string, Stat> stats;
+    public Stats stats;
     private Sprite sprite;
 
     public Card()
@@ -21,7 +21,7 @@ public abstract class Card : Puppetable
         sprite = null;
     }
 
-    public Card(string type, float cooldown, Dictionary<string, Stat> stats, Sprite sprite)
+    public Card(string type, float cooldown, Stats stats, Sprite sprite)
     {
         this.type = type;
         this.cooldown = cooldown;
@@ -33,11 +33,6 @@ public abstract class Card : Puppetable
     {
         return null;
     }
-
-    public abstract void MouseDownAction();
-
-    // true if successful, false if not
-    public abstract bool MouseUpAction();
 
     /// <summary>
     /// returns the "title" of a card (name + tier)

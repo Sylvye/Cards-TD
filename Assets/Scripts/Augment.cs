@@ -9,7 +9,8 @@ public class Augment : Puppetable
     public string displayName;
     public string info;
     public string type;
-    public Dictionary<string, Stat> stats;
+    public Stats stats;
+    public Sprite sprite;
     
     public Augment()
     {
@@ -19,7 +20,7 @@ public class Augment : Puppetable
         stats = new();
     }
 
-    public Augment(string displayName, string info, string type, Dictionary<string, Stat> s)
+    public Augment(string displayName, string info, string type, Stats s)
     {
         this.displayName = displayName;
         this.info = info;
@@ -29,7 +30,7 @@ public class Augment : Puppetable
 
     public void ApplyEffect(TowerCard c)
     {
-        c.stats;
+        c.stats.Add();
     }
 
     public string GetName()
@@ -44,11 +45,6 @@ public class Augment : Puppetable
 
     public Sprite GetSprite()
     {
-        return GetComponent<SpriteRenderer>().sprite;
-    }
-
-    public GameObject GetGameObject()
-    {
-        return gameObject;
+        return sprite;
     }
 }

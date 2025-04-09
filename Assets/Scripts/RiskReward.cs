@@ -96,7 +96,7 @@ public class RiskReward : SpriteUIE
                 lastCurse = prefab;
             }
         }
-        StatHolder toEdit = boon ? Main.playerStats : Main.enemyStats;
+        Stats toEdit = boon ? Main.playerStats : Main.enemyStats;
         for (int i = 0; i < statNames.Count; i++)
         {
             float val = statValues[i];

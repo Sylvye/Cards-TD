@@ -6,6 +6,8 @@ using UnityEngine;
 
 public abstract class Tower : MonoBehaviour
 {
+    private static Transform battlefield;
+
     // checked!
     public enum Type
     {
@@ -13,14 +15,15 @@ public abstract class Tower : MonoBehaviour
         Energy
     }
     [NonSerialized]
-    public StatHolder stats;
+    public Stats stats;
     public Type type = Type.Kinetic;
     public bool activated;
 
     public virtual void Awake()
     {
-        stats = GetComponent<StatHolder>();
+        stats = GetComponent<Stats>();
         activated = false;
+        battlefield = GameObject.Find("Field").transform;
     }
 
     public void LoadSprite(int towerIndex)
@@ -63,10 +66,10 @@ public abstract class Tower : MonoBehaviour
         return finalDamage;
     }
 
-    public static Tower MakeTowerByPrefab(GameObject obj, Vector2 pos, StatHolder s)
+    public static Tower MakeTowerByPrefab(GameObject obj, Vector2 pos, Stats s)
     {
         Tower t = Instantiate(obj, new Vector3(pos.x, pos.y, 2), Quaternion.identity).GetComponent<Tower>();
-        t.transform.parent = Card.battlefield;
+        t.transform.parent = battlefield;
         t.stats.AddStats(s);
         t.ApplyTierEffects();
         return t;

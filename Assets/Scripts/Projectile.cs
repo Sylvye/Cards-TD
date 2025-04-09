@@ -14,7 +14,7 @@ public class Projectile : MonoBehaviour
     public GameObject parentTower;
     [NonSerialized]
     public Tower.Type type;
-    public StatHolder stats;
+    public Stats stats;
     public bool randomFX = true;
     public GameObject[] FX;
     public GameObject[] despawnFX;
@@ -25,7 +25,7 @@ public class Projectile : MonoBehaviour
 
     private void Awake()
     {
-        stats = GetComponent<StatHolder>();
+        stats = GetComponent<Stats>();
     }
 
     // Start is called before the first frame update

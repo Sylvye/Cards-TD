@@ -5,14 +5,14 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.U2D;
 
-public class CardPuppetable : SpriteUIE
+public abstract class CardPuppet : SpriteUIE
 {
     public static Transform battlefield;
 
     public Puppetable reference;
     public Card card;
     public float cooldown;
-    public StatHolder stats;
+    public Stats stats;
     private Vector3 handPos;
     private MaterialAnimator ma;
     private bool clicked;
@@ -21,8 +21,8 @@ public class CardPuppetable : SpriteUIE
     {
         battlefield = GameObject.Find("Field").transform;
         ma = GetComponent<MaterialAnimator>();
-        stats = GetComponent<StatHolder>();
-        stats.SetStatsFromDict(card.stats);
+        stats = GetComponent<Stats>();
+        stats.SetStatsFromDict(card.stats); // Temp
         SetSprite(card.GetSprite());
         cooldown = card.cooldown;
     }
@@ -44,7 +44,7 @@ public class CardPuppetable : SpriteUIE
             SetHandPos();
             transform.parent = transform.parent.parent;
 
-            card.MouseDownAction();
+            MouseDownAction();
 
             CardBar.main.state = CardBar.State.Minimized;
             CardBar.main.forced = true;
@@ -61,7 +61,7 @@ public class CardPuppetable : SpriteUIE
             // stage isnt cleared & stage == battle & the mouse isnt over the card bar
             if (!Spawner.main.IsStageCleared() && StageController.currentStage == StageController.Stage.Battle && !CardBar.main.GetComponent<Collider2D>().OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition)))
             {
-                if (card.MouseUpAction())
+                if (MouseUpAction())
                 {
                     Hand.timeOfLastPlay = Time.time;
                     if (BattleButton.phase == 0)
@@ -97,6 +97,20 @@ public class CardPuppetable : SpriteUIE
             }
         }
     }
+
+    /// <summary>
+    /// When the player presses down on a card, selecting it
+    /// </summary>
+    public virtual void MouseDownAction()
+    {
+
+    }
+
+    /// <summary>
+    /// When the player releases the card, playing it
+    /// </summary>
+    /// <returns></returns>
+    public abstract bool MouseUpAction();
 
     public virtual void MouseDragAction(Vector3 target)
     {

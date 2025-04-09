@@ -22,11 +22,11 @@ public class Enemy : MonoBehaviour
     private float stunEnd;
 
     [NonSerialized]
-    public StatHolder stats;
+    public Stats stats;
 
     private void Awake()
     {
-        stats = GetComponent<StatHolder>();
+        stats = GetComponent<Stats>();
     }
 
     private void Start()

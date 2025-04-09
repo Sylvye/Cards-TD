@@ -8,23 +8,20 @@ using System.Numerics;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class StatHolder : MonoBehaviour
+public class Stats : SerializedDictionary<string, Stat>
 {
-    [SerializedDictionary("Name", "Stat")]
-    public SerializedDictionary<string, Stat> stats = new();
-
     // returns true if successful
     public bool AddStat(string name, float value, string min, string max)
     {
-        return stats.TryAdd(name, new Stat(value, min, max));
+        return TryAdd(name, new Stat(value, min, max));
     }
 
     // returns true if successful
     public bool SetStat(string name, float value)
     {
-        if (stats.TryGetValue(name, out _))
+        if (TryGetValue(name, out Stat s))
         {
-            stats[name].SetValue(value);
+            s.SetValue(value);
             return true;
         }
         Debug.LogWarning("Couldn't SET stat \"" + name + "\"");
@@ -35,7 +32,7 @@ public class StatHolder : MonoBehaviour
     {
         for (int i = 0; i < s.Count; i++)
         {
-            stats.Add(s.ElementAt(i).Key, s.ElementAt(i).Value);
+            Add(s.ElementAt(i).Key, s.ElementAt(i).Value);
         }
     }
 
@@ -47,9 +44,9 @@ public class StatHolder : MonoBehaviour
     /// <returns>True if successful, false otherwise</returns>
     public bool ModifyStat(string name, float value)
     {
-        if (stats.TryGetValue(name, out _))
+        if (TryGetValue(name, out Stat s))
         {
-            stats[name].Modify(value, Stat.Operation.Add);
+            s.Modify(value, Stat.Operation.Add);
             return true;
         }
         Debug.LogWarning("Couldn't ADD stat \"" + name + "\"");
@@ -65,9 +62,9 @@ public class StatHolder : MonoBehaviour
     /// <returns>True if successful, false otherwise</returns>
     public bool ModifyStat(string name, float value, Stat.Operation o)
     {
-        if (stats.TryGetValue(name, out _))
+        if (TryGetValue(name, out Stat s))
         {
-            stats[name].Modify(value, o);
+            s.Modify(value, o);
             return true;
         }
         Debug.LogWarning("Couldn't ADD stat \"" + name + "\"");
@@ -77,31 +74,21 @@ public class StatHolder : MonoBehaviour
     // returns min_value if failed
     public float GetStat(string name)
     {
-        if (stats.ContainsKey(name))
+        if (ContainsKey(name))
         {
-            return stats[name].GetValue();
+            return this[name].GetValue();
         }
         Debug.LogWarning("Couldn't GET stat \"" + name + "\"");
         return float.MinValue;
     }
 
-    public int GetLength()
-    {
-        return stats.Count;
-    }
-
-    public void ClearStats()
-    {
-        stats.Clear();
-    }
-
-    public bool AddStats(StatHolder other)
+    public bool AddStats(Stats other)
     {
         bool successful = false;
-        for (int i=0; i<other.stats.Count; i++)
+        for (int i = 0; i < other.Count; i++)
         {
-            string key = other.stats.ElementAt(i).Key;
-            float val = other.stats.ElementAt(i).Value.GetValue();
+            string key = other.ElementAt(i).Key;
+            float val = other.ElementAt(i).Value.GetValue();
             if (ModifyStat(key, val)) // if we successfully added the stat
             {
                 successful = true;
@@ -110,7 +97,7 @@ public class StatHolder : MonoBehaviour
 
         return successful;
     }
-    
+
     public bool AddStatsFromDict(Dictionary<string, Stat> s)
     {
         bool successful = false;
@@ -130,9 +117,9 @@ public class StatHolder : MonoBehaviour
     public override string ToString()
     {
         string message = "";
-        for (int i=0; i<stats.Count; i++)
+        for (int i = 0; i < Count; i++)
         {
-            message += stats.Keys.ElementAt(i) + " = " + stats.Values.ElementAt(i).GetValue() + "\n";
+            message += Keys.ElementAt(i) + " = " + Values.ElementAt(i).GetValue() + "\n";
         }
         return message;
     }

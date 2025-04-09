@@ -14,7 +14,7 @@ public class AugmentPurchaseable : ShopItem, Purchaseable
 
     public Sprite CalcSprite()
     {
-        return augment.GetComponent<SpriteRenderer>().sprite;
+        return augment.sprite;
     }
 
     public void Claim()
