@@ -19,8 +19,6 @@ public class AugmentPurchaseable : ShopItem, Purchaseable
 
     public void Claim()
     {
-        Augment newAug = Instantiate(augment, new Vector3(-2, 10, 0), Quaternion.identity);
-        Cards.AddToAugments(newAug);
-        augment.transform.position = new Vector3(-2, 10, -2);
+        Cards.AddToAugments(augment); // TEMP - MAKE A DEEPCOPY
     }
 }

@@ -54,8 +54,6 @@ public class Cards : MonoBehaviour
     public static void AddToDeck(Card c)
     {
         main.cards.Add(c);
-        c.transform.SetParent(main.transform);
-        c.transform.position = Vector3.up * 10;
     }
 
     public static void RemoveFromDeck(Card c)
@@ -90,8 +88,6 @@ public class Cards : MonoBehaviour
     public static void AddToAugments(Augment a)
     {
         main.augments.Add(a);
-        a.transform.SetParent(main.transform);
-        a.transform.position = Vector3.up * 12;
     }
 
     public static void RemoveFromAugments(Augment a)

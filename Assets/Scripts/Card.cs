@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public abstract class Card : Puppetable
+public abstract class Card : Puppetable, ICloneable
 {
     public string type;
     public float cooldown;
@@ -67,4 +67,6 @@ public abstract class Card : Puppetable
     {
         sprite = CalcSprite((int)stats["tier"].value);
     }
+
+    public abstract object Clone();
 }

@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 
 [Serializable]
-public class Stat
+public class Stat : ICloneable
 {
     public enum Operation
     {
@@ -71,5 +71,10 @@ public class Stat
         {
             value = maximum;
         }
+    }
+
+    public object Clone()
+    {
+        return new Stat(value, min, max);
     }
 }

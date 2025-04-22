@@ -65,7 +65,7 @@ public class CardBar : MonoBehaviour
         if (state == State.Minimized && !Spawner.main.IsStageCleared() && !forced)
         {
             state = State.Maximized;
-            Hand.ReformatHand();
+            Hand.ReturnAll();
         }
     }
 

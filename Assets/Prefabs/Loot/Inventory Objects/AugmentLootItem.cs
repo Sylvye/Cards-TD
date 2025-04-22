@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AugmentLootItem : LootItem
 {
-    public Augment augment;
+    public AugmentPuppet augment;
 
     public override void OnStart()
     {
@@ -13,7 +13,7 @@ public class AugmentLootItem : LootItem
 
     public override void Claim()
     {
-        Augment newAugment = Instantiate(augment, Vector3.up * 12, Quaternion.identity);
+        Augment newAugment = new();
         Cards.AddToAugments(newAugment);
     }
 

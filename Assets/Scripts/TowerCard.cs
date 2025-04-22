@@ -11,6 +11,20 @@ public class TowerCard : Card
     public float hitboxRadius;
     public int towerIndex;
 
+    public TowerCard() : base()
+    {
+        towerObj = null;
+        hitboxRadius = 1;
+        towerIndex = 0;
+    }
+
+    public TowerCard(string type, float cooldown, GameObject towerObj, float hitboxRadius, int towerIndex, Stats stats, Sprite sprite) : base(type, cooldown, stats, sprite)
+    {
+        this.towerObj = towerObj;
+        this.hitboxRadius = hitboxRadius;
+        this.towerIndex = towerIndex;
+    }
+
     public override GameObject OnPlay()
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -23,5 +37,10 @@ public class TowerCard : Card
     public override Sprite CalcSprite(int tier)
     {
         return Resources.LoadAll<Sprite>("CardPack")[towerIndex * 5 + tier - 1];
+    }
+
+    public override object Clone()
+    {
+        return new TowerCard();
     }
 }

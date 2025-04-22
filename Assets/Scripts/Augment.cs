@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Augment : Puppetable
+public class Augment : Puppetable, ICloneable
 {
     public string displayName;
     public string info;
@@ -30,7 +30,7 @@ public class Augment : Puppetable
 
     public void ApplyEffect(TowerCard c)
     {
-        c.stats.Add();
+        c.stats.AddStats(stats);
     }
 
     public string GetName()
@@ -46,5 +46,10 @@ public class Augment : Puppetable
     public Sprite GetSprite()
     {
         return sprite;
+    }
+
+    public object Clone()
+    {
+        return new Augment(displayName, info, type, (Stats)stats.Clone());
     }
 }

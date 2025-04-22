@@ -2,62 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.U2D;
 
-public abstract class CardPuppet : SpriteUIE
+public abstract class CardPuppet : Puppet
 {
+
     public static Transform battlefield;
 
-    public Puppetable reference;
-    public Card card;
-    public float cooldown;
+    private Card card;
+
     public Stats stats;
     private Vector3 handPos;
-    private MaterialAnimator ma;
-    private bool clicked;
+    protected bool selected;
 
     public override void OnAwake()
     {
+        base.OnAwake();
         battlefield = GameObject.Find("Field").transform;
-        ma = GetComponent<MaterialAnimator>();
-        stats = GetComponent<Stats>();
-        stats.SetStatsFromDict(card.stats); // Temp
+        stats = card.stats; // Temp
         SetSprite(card.GetSprite());
-        cooldown = card.cooldown;
+        stats = GetComponent<Stats>();
     }
 
-    // Update is called once per frame
     public override void OnUpdate()
     {
-        if (!clicked)
+        if (!selected)
         {
             ma.Set("_UnscaledTime", Time.unscaledTime);
-            ma.Set(Mathf.Clamp((Time.time - Hand.timeOfLastPlay) / cooldown, 0, 1));
+            ma.Set(Mathf.Clamp((Time.time - Hand.timeOfLastPlay) / stats.GetStat("cooldown"), 0, 1));
         }
     }
 
-    private void OnMouseDown()
+    public virtual void OnMouseUp()
     {
-        if (IsOffCooldown())
+        if (selected && Hand.GetIndexOf(card) != -1) // if card is in hand
         {
-            SetHandPos();
-            transform.parent = transform.parent.parent;
-
-            MouseDownAction();
-
-            CardBar.main.state = CardBar.State.Minimized;
-            CardBar.main.forced = true;
-            StageController.ToggleTime(true);
-            clicked = true;
-        }
-    }
-
-    private void OnMouseUp()
-    {
-        if (clicked && Hand.GetIndexOf(card) != -1) // if card is in hand
-        {
-            clicked = false;
+            selected = false;
             // stage isnt cleared & stage == battle & the mouse isnt over the card bar
             if (!Spawner.main.IsStageCleared() && StageController.currentStage == StageController.Stage.Battle && !CardBar.main.GetComponent<Collider2D>().OverlapPoint(Camera.main.ScreenToWorldPoint(Input.mousePosition)))
             {
@@ -83,9 +65,9 @@ public abstract class CardPuppet : SpriteUIE
         }
     }
 
-    private void OnMouseDrag()
+    public virtual void OnMouseDrag()
     {
-        if (clicked)
+        if (selected)
         {
             if (StageController.currentStage == StageController.Stage.Battle)
             {
@@ -95,6 +77,22 @@ public abstract class CardPuppet : SpriteUIE
             {
                 ReturnToHand();
             }
+        }
+    }
+
+    private void OnMouseDown()
+    {
+        if (IsOffCooldown())
+        {
+            SetHandPos();
+            transform.parent = transform.parent.parent;
+
+            MouseDownAction();
+
+            CardBar.main.state = CardBar.State.Minimized;
+            CardBar.main.forced = true;
+            StageController.ToggleTime(true);
+            selected = true;
         }
     }
 
@@ -140,6 +138,6 @@ public abstract class CardPuppet : SpriteUIE
 
     public bool IsOffCooldown()
     {
-        return Time.time - Hand.timeOfLastPlay >= cooldown;
+        return Time.time - Hand.timeOfLastPlay >= stats.GetStat("cooldown");
     }
 }

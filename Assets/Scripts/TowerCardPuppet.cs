@@ -53,7 +53,8 @@ public class TowerCardPuppet : CardPuppet
         Main.towerHitboxReticle_.transform.position = pos;
         Main.towerRangeReticle_.transform.position = pos;
         if (Physics2D.OverlapCircle(target, hitboxRadius, Main.placementLayerMask_) == null)
-            Main.towerHitboxReticle_.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f); // TEMP
+            Main.towerHitboxReticle_.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f); 
+
         else
             Main.towerHitboxReticle_.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.5f); // TEMP
     }

@@ -14,7 +14,7 @@ public class CardLootItem : LootItem
 
     public override void Claim()
     {
-        Card newCard = Instantiate(cardReference, Vector3.up * 10, Quaternion.identity);
+        Card newCard = (Card)cardReference.Clone();
         newCard.stats.SetStat("tier", tier);
         info += tier;
         Cards.AddToDeck(newCard);

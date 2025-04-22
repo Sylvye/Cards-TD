@@ -5,11 +5,22 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
 using System.Numerics;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-public class Stats : SerializedDictionary<string, Stat>
+public class Stats : SerializedDictionary<string, Stat>, ICloneable
 {
+    public Stats() : base()
+    {
+
+    }
+
+    public Stats(Stats stats) : base(stats)
+    {
+        // Temp 
+        // MAYBE WONT WORK, DEF TEST
+    }
+
     // returns true if successful
     public bool AddStat(string name, float value, string min, string max)
     {
@@ -26,14 +37,6 @@ public class Stats : SerializedDictionary<string, Stat>
         }
         Debug.LogWarning("Couldn't SET stat \"" + name + "\"");
         return false;
-    }
-
-    public void SetStatsFromDict(Dictionary<string, Stat> s)
-    {
-        for (int i = 0; i < s.Count; i++)
-        {
-            Add(s.ElementAt(i).Key, s.ElementAt(i).Value);
-        }
     }
 
     /// <summary>
@@ -98,22 +101,6 @@ public class Stats : SerializedDictionary<string, Stat>
         return successful;
     }
 
-    public bool AddStatsFromDict(Dictionary<string, Stat> s)
-    {
-        bool successful = false;
-        for (int i = 0; i < s.Count; i++)
-        {
-            string key = s.ElementAt(i).Key;
-            float val = s.ElementAt(i).Value.GetValue();
-            if (ModifyStat(key, val)) // if we successfully added the stat
-            {
-                successful = true;
-            }
-        }
-
-        return successful;
-    }
-
     public override string ToString()
     {
         string message = "";
@@ -122,5 +109,12 @@ public class Stats : SerializedDictionary<string, Stat>
             message += Keys.ElementAt(i) + " = " + Values.ElementAt(i).GetValue() + "\n";
         }
         return message;
+    }
+
+    // TEMP --> TEST THIS TO MAKE SURE IT ACTUALLY DEEP COPIES
+    // VERY POSSIBLE THAT STAT OBJECTS STAY 'LINKED'
+    public object Clone() 
+    {
+        return new Stats(this);
     }
 }

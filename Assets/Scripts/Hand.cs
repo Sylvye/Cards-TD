@@ -6,7 +6,9 @@ using UnityEngine;
 public class Hand : MonoBehaviour
 {
     public static Hand main;
+    public GameObject puppetPrefab;
     private List<Card> hand = new();
+    private List<CardPuppet> puppets = new();
     public static float timeOfLastPlay;
 
     // Start is called before the first frame update
@@ -16,6 +18,13 @@ public class Hand : MonoBehaviour
         timeOfLastPlay = -999;
     }
 
+    private static CardPuppet MakePuppet(Card c)
+    {
+        CardPuppet cp = Instantiate(main.puppetPrefab, main.transform).GetComponent<CardPuppet>();
+        cp.SetReference(c);
+        return cp;
+    }
+
     // returns all cards back to the deck. adds 5 cards from the deck to the hand
     public static void Deal()
     {
@@ -23,9 +32,9 @@ public class Hand : MonoBehaviour
         for (int i=0; i<5; i++) // draw 5 new cards
         {
             Card c = Cards.DrawFromDeck();
-            Add(c);
+            AddCard(c);
         }
-        RecalculateHand();
+        RepositionHand();
     }
 
     public static void Draw()
@@ -33,36 +42,26 @@ public class Hand : MonoBehaviour
         if (Cards.DeckSize() > 0)
         {
             Card c = Cards.DrawFromDeck();
-            Add(c);
-            RecalculateHand();
+            AddCard(c);
+            RepositionHand();
         }
-    }
-
-    public static void Draw(int num)
-    {
-        for (int i=0; i<num; i++)
-        {
-            if (Cards.DeckSize() == 0) break;
-            Card c = Cards.DrawFromDeck();
-            Add(c);
-        }
-        RecalculateHand();
     }
 
     public static void Clear()
     {
-        for (int i=Size()-1; i>=0; i--)
+        foreach (Card c in main.hand)
         {
-            Card c = Get(i);
-            Remove(i);
+            Remove(c);
         }
     }
 
-    public static void Add(Card c)
+    public static void AddCard(Card c)
     {
         main.hand.Add(c);
-        c.transform.SetParent(main.transform);
-        RecalculateHand();
+        CardPuppet cp = MakePuppet(c);
+        main.puppets.Add(cp);
+        cp.transform.SetParent(main.transform);
+        RepositionHand();
     }
 
     public static int GetIndexOf(Card c)
@@ -70,35 +69,22 @@ public class Hand : MonoBehaviour
         return main.hand.IndexOf(c);
     }
 
-    public static Card Get(int index)
+    public static Card GetCard(int index)
     {
         return main.hand[index];
     }
 
-    public static Card Remove(int index)
+    public static CardPuppet GetPuppet(int index)
     {
-        Card c = main.hand[index];
-        main.hand.RemoveAt(index);
-        Cards.AddToDeck(c);
-        RecalculateHand();
-        return c;
+        return main.puppets[index];
     }
 
     public static void Remove(Card c)
     {
         main.hand.Remove(c);
+        main.puppets.RemoveAt(GetIndexOf(c));
         Cards.AddToDeck(c);
-        RecalculateHand();
-    }
-    
-    public static Card Set(int index, Card c)
-    {
-        Card output = Get(index);
-        main.hand[index] = c;
-        c.transform.SetParent(main.transform);
-        Cards.AddToDeck(output);
-        RecalculateHand();
-        return output;
+        RepositionHand();
     }
 
     public static int Size()
@@ -106,18 +92,18 @@ public class Hand : MonoBehaviour
         return main.hand.Count;
     }
 
-    public static void RecalculateHand() // moves cards to their spots in the card bar from the stack of cards out of frame
+    public static void RepositionHand() // moves cards to their spots in the card bar from the stack of cards out of frame
     {
         for (int i=0; i<Size(); i++)
         {
-            Card card = Get(i);
+            CardPuppet card = GetPuppet(i);
             card.SetHandPos();
         }
     }
 
-    public static void ReformatHand()
+    public static void ReturnAll()
     {
-        foreach (Card c in main.hand)
+        foreach (CardPuppet c in main.puppets)
         {
             c.ReturnToHand();
         }
@@ -125,10 +111,9 @@ public class Hand : MonoBehaviour
 
     public static bool CheckForComplete()
     {
-        foreach (Transform child in main.transform)
+        foreach (CardPuppet cp in main.puppets)
         {
-            Card c = child.GetComponent<Card>();
-            if (c.IsOffCooldown()) return true;
+            if (cp.IsOffCooldown()) return true;
         }
         return false;
     }
