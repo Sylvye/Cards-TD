@@ -8,19 +8,22 @@ using UnityEngine.U2D;
 
 public abstract class CardPuppet : Puppet
 {
-
-    public static Transform battlefield;
-
-    private Card card;
-
     public Stats stats;
-    private Vector3 handPos;
+
+    protected Card card;
+    protected Vector3 handPos;
     protected bool selected;
+
+    private static CardPuppet MakePuppet(Card c)
+    {
+        CardPuppet cp = new GameObject().GetComponent<CardPuppet>();
+        cp.SetReference(c);
+        return cp;
+    }
 
     public override void OnAwake()
     {
         base.OnAwake();
-        battlefield = GameObject.Find("Field").transform;
         stats = card.stats; // Temp
         SetSprite(card.GetSprite());
         stats = GetComponent<Stats>();
@@ -126,14 +129,6 @@ public abstract class CardPuppet : Puppet
     {
         handPos = Hand.GetIndexOf(card) * 1.5f * Vector2.right;
         handPos.z = -5;
-    }
-
-    public static void ClearField()
-    {
-        foreach (Transform child in battlefield)
-        {
-            Destroy(child.gameObject);
-        }
     }
 
     public bool IsOffCooldown()

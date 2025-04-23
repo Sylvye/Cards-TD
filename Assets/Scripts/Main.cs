@@ -16,6 +16,8 @@ public class Main : MonoBehaviour
     public static Stats playerStats;
     public static Stats enemyStats;
 
+    public static Transform battlefield;
+
     public int mapLength;
     public static int mapLength_;
 
@@ -45,8 +47,9 @@ public class Main : MonoBehaviour
         towerRangeReticle_ = towerRangeReticle;
         enemyLayerMask_ = enemyLayerMask;
         mapLength_ = mapLength;
-        coinLabel = GameObject.Find("Coin label").GetComponent<TMPLabel>();
         playerStats = GetComponent<Stats>();
+        coinLabel = GameObject.Find("Coin label").GetComponent<TMPLabel>();
+        battlefield = GameObject.Find("Field").transform;
     }
 
     // Start is called before the first frame update
@@ -113,5 +116,13 @@ public class Main : MonoBehaviour
     {
         yield return null;
         MapController.GenerateMap(mapLength);
+    }
+
+    public static void ClearField()
+    {
+        foreach (Transform child in battlefield)
+        {
+            Destroy(child.gameObject);
+        }
     }
 }

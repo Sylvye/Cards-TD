@@ -6,7 +6,7 @@ public class TowerCardPuppet : CardPuppet
 {
     public GameObject spawned;
     public float hitboxRadius;
-    private TowerCard tc;
+    protected TowerCard tc;
 
     public override void OnAwake()
     {

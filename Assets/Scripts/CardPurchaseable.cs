@@ -20,10 +20,9 @@ public class CardPurchaseable : ShopItem, Purchaseable
 
     public void Claim()
     {
-        Card newCard = Instantiate(card, new Vector3(0, 10, 0), Quaternion.identity);
+        Card newCard = (Card)card.Clone();
         newCard.stats.SetStat("tier", tier);
         Cards.AddToDeck(newCard);
-        card.transform.position = new Vector3(0, 10, -2);
 
         // adds the card to the scroll area by refreshing the whole inventory
         ShopController.shopScrollArea.DeleteInventory();

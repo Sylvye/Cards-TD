@@ -6,7 +6,6 @@ using UnityEngine;
 public class Hand : MonoBehaviour
 {
     public static Hand main;
-    public GameObject puppetPrefab;
     private List<Card> hand = new();
     private List<CardPuppet> puppets = new();
     public static float timeOfLastPlay;
@@ -16,13 +15,6 @@ public class Hand : MonoBehaviour
     {
         main = this;
         timeOfLastPlay = -999;
-    }
-
-    private static CardPuppet MakePuppet(Card c)
-    {
-        CardPuppet cp = Instantiate(main.puppetPrefab, main.transform).GetComponent<CardPuppet>();
-        cp.SetReference(c);
-        return cp;
     }
 
     // returns all cards back to the deck. adds 5 cards from the deck to the hand

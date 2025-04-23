@@ -61,7 +61,7 @@ public class BattleButton : Button
                 SetSprites(sprites[index2], sprites[index2 + 1]);
                 return;
             case 2: // Entered Inventory
-                Card.ClearField();
+                Main.ClearField();
                 CardBar.main.state = CardBar.State.Hidden;
                 StageController.ToggleDarken(true);
                 StageController.ToggleTime(false);
