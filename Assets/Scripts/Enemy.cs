@@ -1,3 +1,4 @@
+using AYellowpaper.SerializedCollections;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,8 +21,8 @@ public class Enemy : MonoBehaviour
     public List<GameObject> drops;
     public List<float> dropWeights;
     private float stunEnd;
-
-    [NonSerialized]
+    
+    [SerializedDictionary("Name", "Stat")]
     public Stats stats;
 
     private void Awake()

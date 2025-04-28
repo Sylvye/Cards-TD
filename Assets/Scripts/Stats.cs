@@ -15,10 +15,14 @@ public class Stats : SerializedDictionary<string, Stat>, ICloneable
 
     }
 
-    public Stats(Stats stats) : base(stats)
+
+    /// <summary>
+    /// Initializes with a shallow copy of "other"
+    /// </summary>
+    /// <param name="other"></param>
+    public Stats(Stats other) : base(other)
     {
-        // Temp 
-        // MAYBE WONT WORK, DEF TEST
+
     }
 
     // returns true if successful
@@ -111,10 +115,12 @@ public class Stats : SerializedDictionary<string, Stat>, ICloneable
         return message;
     }
 
-    // TEMP --> TEST THIS TO MAKE SURE IT ACTUALLY DEEP COPIES
-    // VERY POSSIBLE THAT STAT OBJECTS STAY 'LINKED'
     public object Clone() 
     {
-        return new Stats(this);
+        Stats output = new();
+        foreach (var kvp in _serializedList)
+            _serializedList.Add(new SerializedKeyValuePair<string, Stat>(kvp.Key, (Stat)kvp.Value.Clone()));
+
+        return output;
     }
 }

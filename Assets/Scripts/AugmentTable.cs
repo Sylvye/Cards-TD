@@ -18,8 +18,7 @@ public class AugmentTable : Table
         // TEMP
         ScrollAreaItemCard augmentSAI = main.transform.GetChild(0).GetComponentInChildren<ScrollAreaItemCard>();
         ScrollAreaItemCard cardSAI = main.transform.GetChild(1).GetComponentInChildren<ScrollAreaItemCard>();
-        AugmentPuppet ap = augmentSAI.reference.GetComponent<AugmentPuppet>();
-        Augment a = (Augment)ap.GetReference();
+        Augment a = augmentSAI.reference.GetComponent<Augment>();
         TowerCard c = cardSAI.reference.GetComponent<TowerCard>();
 
         a.ApplyEffect(c);

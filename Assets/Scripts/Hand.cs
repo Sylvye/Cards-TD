@@ -7,7 +7,7 @@ public class Hand : MonoBehaviour
 {
     public static Hand main;
     private List<Card> hand = new();
-    private List<CardPuppet> puppets = new();
+    private List<Puppet> puppets = new();
     public static float timeOfLastPlay;
 
     // Start is called before the first frame update
@@ -50,9 +50,9 @@ public class Hand : MonoBehaviour
     public static void AddCard(Card c)
     {
         main.hand.Add(c);
-        CardPuppet cp = MakePuppet(c);
-        main.puppets.Add(cp);
-        cp.transform.SetParent(main.transform);
+        Puppet p = Puppet.MakePuppet(c);
+        main.puppets.Add(p);
+        p.transform.SetParent(main.transform);
         RepositionHand();
     }
 
@@ -66,7 +66,7 @@ public class Hand : MonoBehaviour
         return main.hand[index];
     }
 
-    public static CardPuppet GetPuppet(int index)
+    public static Puppet GetPuppet(int index)
     {
         return main.puppets[index];
     }
@@ -88,7 +88,7 @@ public class Hand : MonoBehaviour
     {
         for (int i=0; i<Size(); i++)
         {
-            CardPuppet card = GetPuppet(i);
+            CardPuppet card = (CardPuppet)GetPuppet(i);
             card.SetHandPos();
         }
     }

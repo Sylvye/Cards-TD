@@ -1,3 +1,4 @@
+using AYellowpaper.SerializedCollections;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,7 +14,9 @@ public class Main : MonoBehaviour
     public static int lives = 100;
     public int[] packs = { 0, 0 }; // augment, gold
 
+    [SerializedDictionary("Name", "Stat")]
     public static Stats playerStats;
+    [SerializedDictionary("Name", "Stat")]
     public static Stats enemyStats;
 
     public static Transform battlefield;

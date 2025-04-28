@@ -1,3 +1,4 @@
+using AYellowpaper.SerializedCollections;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ public class Spawner : MonoBehaviour
     private float lastSpawnTime;
     private static bool freebie = false; // whether or not a lootbag has dropped yet
 
-    [NonSerialized]
+    [SerializedDictionary("Name", "Stat")]
     public Stats stats;
 
     private void Awake()

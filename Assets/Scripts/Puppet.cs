@@ -24,4 +24,11 @@ public class Puppet : SpriteUIE
     { 
         return reference; 
     }
+
+    public static Puppet MakePuppet(Card c)
+    {
+        Puppet p = new GameObject().GetComponent<Puppet>();
+        p.SetReference(c);
+        return p;
+    }
 }

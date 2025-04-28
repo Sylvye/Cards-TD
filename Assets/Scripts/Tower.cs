@@ -1,3 +1,4 @@
+using AYellowpaper.SerializedCollections;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ public abstract class Tower : MonoBehaviour
         Kinetic,
         Energy
     }
-    [NonSerialized]
+    [SerializedDictionary("Name", "Stat")]
     public Stats stats;
     public Type type = Type.Kinetic;
     public bool activated;

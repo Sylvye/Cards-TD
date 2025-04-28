@@ -1,3 +1,4 @@
+using AYellowpaper.SerializedCollections;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,10 +9,11 @@ using UnityEngine.UIElements;
 
 public abstract class Card : Puppetable, ICloneable
 {
+    private Sprite sprite;
     public string type;
     public float cooldown;
+    [SerializedDictionary("Name", "Stat")]
     public Stats stats;
-    private Sprite sprite;
 
     public Card()
     {

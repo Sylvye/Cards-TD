@@ -1,3 +1,4 @@
+using AYellowpaper.SerializedCollections;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ public class Projectile : MonoBehaviour
     public GameObject parentTower;
     [NonSerialized]
     public Tower.Type type;
+    [SerializedDictionary("Name", "Stat")]
     public Stats stats;
     public bool randomFX = true;
     public GameObject[] FX;

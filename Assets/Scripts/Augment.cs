@@ -1,3 +1,4 @@
+using AYellowpaper.SerializedCollections;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,11 +7,12 @@ using UnityEngine;
 
 public class Augment : Puppetable, ICloneable
 {
+    public Sprite sprite;
     public string displayName;
     public string info;
     public string type;
+    [SerializedDictionary("Name", "Stat")]
     public Stats stats;
-    public Sprite sprite;
     
     public Augment()
     {

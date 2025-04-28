@@ -1,3 +1,4 @@
+using AYellowpaper.SerializedCollections;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,25 +9,17 @@ using UnityEngine.U2D;
 
 public abstract class CardPuppet : Puppet
 {
-    public Stats stats;
-
     protected Card card;
     protected Vector3 handPos;
     protected bool selected;
 
-    private static CardPuppet MakePuppet(Card c)
-    {
-        CardPuppet cp = new GameObject().GetComponent<CardPuppet>();
-        cp.SetReference(c);
-        return cp;
-    }
+    private Stats stats;
 
     public override void OnAwake()
     {
         base.OnAwake();
-        stats = card.stats; // Temp
         SetSprite(card.GetSprite());
-        stats = GetComponent<Stats>();
+        stats = card.stats;
     }
 
     public override void OnUpdate()
