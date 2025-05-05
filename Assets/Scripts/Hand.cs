@@ -50,9 +50,8 @@ public class Hand : MonoBehaviour
     public static void AddCard(Card c)
     {
         main.hand.Add(c);
-        Puppet p = Puppet.MakePuppet(c);
+        Puppet p = c.MakePuppet();
         main.puppets.Add(p);
-        p.transform.SetParent(main.transform);
         RepositionHand();
     }
 

@@ -94,9 +94,9 @@ public class ScrollAreaInventory : ScrollArea
             sr.sortingOrder = sortingOrder;
             sr.sprite = puppetable.GetSprite();
 
-            ScrollAreaItemCard item = itemObj.GetComponent<ScrollAreaItemCard>();
+            ScrollAreaItemPuppet item = itemObj.GetComponent<ScrollAreaItemPuppet>();
             item.draggableSnaps.Add(destination);
-            item.reference = Puppet.MakePuppet();
+            item.SetReference(Cards.GetFromDeck(i));
             item.info = puppetable.GetInfo();
         }
         RefreshPositions();

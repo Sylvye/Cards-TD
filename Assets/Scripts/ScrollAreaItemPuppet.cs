@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AugmentPuppet : SpriteUIE, Puppet
+public class ScrollAreaItemPuppet : DraggableScrollAreaItem, Puppet
 {
     private Puppetable reference;
 

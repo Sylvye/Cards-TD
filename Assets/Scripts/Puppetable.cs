@@ -9,4 +9,6 @@ public interface Puppetable
     public string GetInfo();
 
     public Sprite GetSprite();
+
+    public Puppet MakePuppet();
 }

@@ -7,19 +7,23 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.U2D;
 
-public abstract class CardPuppet : Puppet
+public abstract class CardPuppet : SpriteUIE, Puppet
 {
+    protected Puppetable reference;
+
     protected Card card;
     protected Vector3 handPos;
     protected bool selected;
 
     private Stats stats;
+    private MaterialAnimator ma;
 
     public override void OnAwake()
     {
         base.OnAwake();
         SetSprite(card.GetSprite());
         stats = card.stats;
+        ma = GetComponent<MaterialAnimator>();
     }
 
     public override void OnUpdate()
@@ -127,5 +131,16 @@ public abstract class CardPuppet : Puppet
     public bool IsOffCooldown()
     {
         return Time.time - Hand.timeOfLastPlay >= stats.GetStat("cooldown");
+    }
+
+    public Puppetable GetReference()
+    {
+        return reference;
+    }
+
+    public void SetReference(Puppetable r)
+    {
+        reference = r;
+        SetSprite(r.GetSprite());
     }
 }

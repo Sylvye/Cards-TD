@@ -70,5 +70,13 @@ public abstract class Card : Puppetable, ICloneable
         sprite = CalcSprite((int)stats["tier"].value);
     }
 
+    public Puppet MakePuppet()
+    {
+        GameObject p = new GameObject();
+        CardPuppet cp = p.AddComponent<CardPuppet>();
+        cp.SetReference(this);
+        return cp;
+    }
+
     public abstract object Clone();
 }

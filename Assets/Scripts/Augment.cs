@@ -1,6 +1,5 @@
 using AYellowpaper.SerializedCollections;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -30,7 +29,7 @@ public class Augment : Puppetable, ICloneable
         stats = s;
     }
 
-    public void ApplyEffect(TowerCard c)
+    public void ApplyEffect(Card c)
     {
         c.stats.AddStats(stats);
     }
@@ -48,6 +47,14 @@ public class Augment : Puppetable, ICloneable
     public Sprite GetSprite()
     {
         return sprite;
+    }
+
+    public Puppet MakePuppet()
+    {
+        GameObject p = new GameObject();
+        AugmentPuppet ap = p.AddComponent<AugmentPuppet>();
+        ap.SetReference(this);
+        return ap;
     }
 
     public object Clone()

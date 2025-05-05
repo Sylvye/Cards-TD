@@ -15,15 +15,15 @@ public class AugmentTable : Table
 
     public static void Merge() // combines an augment with a card, destroying the augment
     {
-        // TEMP
-        ScrollAreaItemCard augmentSAI = main.transform.GetChild(0).GetComponentInChildren<ScrollAreaItemCard>();
-        ScrollAreaItemCard cardSAI = main.transform.GetChild(1).GetComponentInChildren<ScrollAreaItemCard>();
-        Augment a = augmentSAI.reference.GetComponent<Augment>();
-        TowerCard c = cardSAI.reference.GetComponent<TowerCard>();
+        ScrollAreaItemPuppet augmentSAI = main.transform.GetChild(0).GetComponentInChildren<ScrollAreaItemPuppet>();
+        ScrollAreaItemPuppet cardSAI = main.transform.GetChild(1).GetComponentInChildren<ScrollAreaItemPuppet>();
+        Augment a = (Augment)augmentSAI.GetReference();
+        Card c = (Card)cardSAI.GetReference();
 
         a.ApplyEffect(c);
         Cards.RemoveFromAugments(a);
+
+        // destroy physical puppet
         Destroy(augmentSAI.gameObject);
-        Destroy(ap.gameObject);
     }
 }

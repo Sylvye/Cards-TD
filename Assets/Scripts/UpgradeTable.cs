@@ -15,9 +15,9 @@ public class UpgradeTable : Table
 
     public static bool Upgrade() // upgrades a card by one tier. if successful, returns true
     {
-        ScrollAreaItemCard card = GetCard();
+        ScrollAreaItemPuppet card = GetCard();
         if (card == null) return false;
-        Card c = card.reference.GetComponent<Card>();
+        Card c = (Card)card.GetReference();
         if (c.stats.GetStat("tier") >= 5) return false;
         c.stats.ModifyStat("tier", 1);
         c.UpdateSprite();
@@ -26,9 +26,9 @@ public class UpgradeTable : Table
         return true;
     }
 
-    public static ScrollAreaItemCard GetCard()
+    public static ScrollAreaItemPuppet GetCard()
     {
-        return main.transform.GetChild(0).childCount == 0 ? null : main.transform.GetChild(0).GetComponentInChildren<ScrollAreaItemCard>();
+        return main.transform.GetChild(0).childCount == 0 ? null : main.transform.GetChild(0).GetComponentInChildren<ScrollAreaItemPuppet>();
     }
 
     // 15(x+T-1)^2
@@ -36,9 +36,9 @@ public class UpgradeTable : Table
     // T = tier
     public static int UpgradeCost()
     {
-        ScrollAreaItemCard c = GetCard();
+        ScrollAreaItemPuppet c = GetCard();
         if (c == null) return -1;
-        Card card = c.reference.GetComponent<Card>();
+        Card card = (Card)c.GetReference();
         if (card.stats.GetStat("tier") > 4) return -1;
         int tier = (int)card.stats.GetStat("tier");
         return 15 * (int)Mathf.Pow(upgrades + tier - 1, 2);

@@ -16,7 +16,7 @@ public class UpgradeButton : Button
     {
         int cost = UpgradeTable.UpgradeCost();
         // card isnt null, tier < 5, and can afford
-        SetClickable(UpgradeTable.GetCard() != null && UpgradeTable.GetCard().reference.GetComponent<Card>().stats.GetStat("tier") < 5 && Main.playerStats.GetStat("currency") >= cost);
+        SetClickable(UpgradeTable.GetCard() != null && ((Card)UpgradeTable.GetCard().GetReference()).stats.GetStat("tier") < 5 && Main.playerStats.GetStat("currency") >= cost);
         string text = "";
         if (cost == 0)
         {
