@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2598f44b93b42f46995598594f8d548, type: 3}
-  m_Name: Attack speed
+  m_Name: Exploding
   m_EditorClassIdentifier: 
-  sprite: {fileID: 1935560174, guid: c22905ee193702547a9f48c3c0e567ec, type: 3}
+  sprite: {fileID: -1957736411, guid: c22905ee193702547a9f48c3c0e567ec, type: 3}
   stats:
     _serializedList:
-    - Key: attack_speed
+    - Key: explosion_radius
       Value:
-        value: 0
+        value: 1
         min: 
         max: 

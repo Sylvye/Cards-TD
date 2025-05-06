@@ -99,9 +99,9 @@ public class Projectile : MonoBehaviour
                 e.Stun(stun);
             }
 
-            if (stats.GetStat("discombobulate") > 0)
+            if (stats.GetStat("stun") > 0)
             {
-                Discombobulate(stats.GetStat("discombobulate"), stats.GetStat("discombobulate") / 2); // work on this formula
+                Stun(stats.GetStat("stun"), stats.GetStat("stun") / 2); // TEMP - work on this formula
             }
         }
 
@@ -226,7 +226,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    public void Discombobulate(float radius, float time)
+    public void Stun(float radius, float time)
     {
         float r = radius * AOE_RADIUS_CONSTANT;
         if (r > 0)

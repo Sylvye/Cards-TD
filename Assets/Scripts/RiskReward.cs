@@ -21,8 +21,14 @@ public class RiskReward : SpriteUIE
 
     public override void OnAwake()
     {
+        base.OnAwake();
         textbox = GameObject.Find("Risk-Reward Textbox").GetComponent<Textbox>();
         outline = transform.GetChild(0).gameObject;
+    }
+
+    public override void OnStart()
+    {
+        base.OnStart();
         Refresh();
     }
 

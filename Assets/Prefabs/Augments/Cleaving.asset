@@ -13,3 +13,10 @@ MonoBehaviour:
   m_Name: Cleaving
   m_EditorClassIdentifier: 
   sprite: {fileID: -1459862784, guid: c22905ee193702547a9f48c3c0e567ec, type: 3}
+  stats:
+    _serializedList:
+    - Key: cleave
+      Value:
+        value: 0
+        min: 
+        max: 

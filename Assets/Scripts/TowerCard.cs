@@ -18,7 +18,7 @@ public class TowerCard : Card
         towerIndex = 0;
     }
 
-    public TowerCard(string type, float cooldown, GameObject towerObj, float hitboxRadius, int towerIndex, Stats stats, Sprite sprite) : base(type, cooldown, stats, sprite)
+    public TowerCard(string type, GameObject towerObj, float hitboxRadius, int towerIndex, Stats stats, Sprite sprite) : base(type, stats, sprite)
     {
         this.towerObj = towerObj;
         this.hitboxRadius = hitboxRadius;

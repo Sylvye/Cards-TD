@@ -30,7 +30,7 @@ public class Spawner : MonoBehaviour
     private void Awake()
     {
         main = this;
-        stats = GetComponent<Stats>();
+        stats = new();
     }
 
     // Update is called once per frame

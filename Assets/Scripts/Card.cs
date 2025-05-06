@@ -11,22 +11,20 @@ public abstract class Card : Puppetable, ICloneable
 {
     private Sprite sprite;
     public string type;
-    public float cooldown;
     [SerializedDictionary("Name", "Stat")]
     public Stats stats;
 
     public Card()
     {
         type = "";
-        cooldown = 0;
         stats = null;
         sprite = null;
+        stats = new();
     }
 
-    public Card(string type, float cooldown, Stats stats, Sprite sprite)
+    public Card(string type, Stats stats, Sprite sprite)
     {
         this.type = type;
-        this.cooldown = cooldown;
         this.stats = stats;
         this.sprite = sprite;
     }

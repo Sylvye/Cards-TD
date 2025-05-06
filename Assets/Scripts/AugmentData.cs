@@ -1,4 +1,5 @@
 using AYellowpaper.SerializedCollections;
+using AYellowpaper.SerializedCollections.Editor.Search;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,5 +9,5 @@ public class AugmentData : ScriptableObject
 {
     public Sprite sprite;
     [SerializedDictionary("Name", "Stat")]
-    public Stats stats;
+    public Stats stats = new();
 }

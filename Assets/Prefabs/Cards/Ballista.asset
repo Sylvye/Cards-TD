@@ -9,14 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2598f44b93b42f46995598594f8d548, type: 3}
-  m_Name: Attack speed
+  m_Script: {fileID: 11500000, guid: 9e23bff405cc4eb46833173cf0796621, type: 3}
+  m_Name: Ballista
   m_EditorClassIdentifier: 
-  sprite: {fileID: 1935560174, guid: c22905ee193702547a9f48c3c0e567ec, type: 3}
+  sprite: {fileID: -306165635, guid: 8d88f2d416aced54cb6055c1a4e8bdfc, type: 3}
   stats:
     _serializedList:
-    - Key: attack_speed
+    - Key: damage
       Value:
         value: 0
-        min: 
+        min: 0
+        max: 
+    - Key: damage
+      Value:
+        value: 0
+        min: 0
         max: 
