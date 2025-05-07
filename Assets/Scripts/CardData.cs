@@ -8,5 +8,5 @@ public class CardData : ScriptableObject
 {
     public Sprite sprite;
     [SerializedDictionary("Name", "Stat")]
-    public Stats stats = new Stats();
+    public Stats stats = new();
 }

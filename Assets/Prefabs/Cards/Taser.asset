@@ -15,12 +15,107 @@ MonoBehaviour:
   sprite: {fileID: 408475182, guid: 8d88f2d416aced54cb6055c1a4e8bdfc, type: 3}
   stats:
     _serializedList:
-    - Key: damage
+    - Key: cooldown
       Value:
         value: 0
         min: 0
         max: 
-    - Key: damage
+    - Key: tier
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: range
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: projectiles
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: base_damage
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: damage_mult
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: attack_speed
+      Value:
+        value: 0
+        min: 0.01
+        max: 
+    - Key: speed
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: pierce
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: spread
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: explosion_radius
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: stun
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: cleave
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: homing
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: impact
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: fatal
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: lifetime
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: raze
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: smite
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: weaken
+      Value:
+        value: 0
+        min: 0
+        max: 
+    - Key: weaken_stx
       Value:
         value: 0
         min: 0

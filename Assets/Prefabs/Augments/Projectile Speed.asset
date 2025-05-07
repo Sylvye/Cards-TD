@@ -15,7 +15,7 @@ MonoBehaviour:
   sprite: {fileID: -1211881309, guid: c22905ee193702547a9f48c3c0e567ec, type: 3}
   stats:
     _serializedList:
-    - Key: projectile speed
+    - Key: projectile_speed
       Value:
         value: 0
         min: 

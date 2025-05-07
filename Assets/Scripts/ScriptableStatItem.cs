@@ -4,8 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Augment Data", menuName = "Augment", order = 0)]
-public class AugmentData : ScriptableObject
+[CreateAssetMenu(fileName = "Data", menuName = "Scriptable Stat Item", order = 0)]
+public class ScriptableStatItem : ScriptableObject
 {
     public Sprite sprite;
     [SerializedDictionary("Name", "Stat")]

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e23bff405cc4eb46833173cf0796621, type: 3}
-  m_Name: Marksman
+  m_Name: Rocket Launcher
   m_EditorClassIdentifier: 
-  sprite: {fileID: -603496036, guid: 8d88f2d416aced54cb6055c1a4e8bdfc, type: 3}
+  sprite: {fileID: -1582639936, guid: 8d88f2d416aced54cb6055c1a4e8bdfc, type: 3}
   stats:
     _serializedList:
     - Key: cooldown

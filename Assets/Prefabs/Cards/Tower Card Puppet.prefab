@@ -11,11 +11,10 @@ GameObject:
   - component: {fileID: 467519594113573095}
   - component: {fileID: 5919581471223590647}
   - component: {fileID: 7158332179295412726}
-  - component: {fileID: 6630076731711478058}
-  - component: {fileID: -6811351823866483701}
-  - component: {fileID: -452862328480557775}
+  - component: {fileID: -3119326863907844181}
+  - component: {fileID: 1804282637499346116}
   m_Layer: 0
-  m_Name: taser turret
+  m_Name: Tower Card Puppet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 408475182, guid: 8d88f2d416aced54cb6055c1a4e8bdfc, type: 3}
+  m_Sprite: {fileID: 845336208, guid: 3767b9493c1593e4c92ba89444f692e1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -133,89 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.5625, y: 2.1875}
   m_EdgeRadius: 0
---- !u!114 &6630076731711478058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7631322497954940115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96f00db6c497830478e1eed1d8a0deb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 
-  cooldown: 16
-  spawnable: {fileID: 5304065507062134350, guid: bed34bc661e45414c87597feb578152a, type: 3}
-  spawned: {fileID: 0}
-  towerIndex: 3
-  hitboxRadius: 0.75
---- !u!114 &-6811351823866483701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7631322497954940115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 120fee790d013ae46a3af3417b801ce5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats:
-    _serializedList:
-    - Key: tier
-      Value:
-        value: 1
-        min: 1
-        max: 5
-    - Key: range
-      Value:
-        value: 0
-        min: 
-        max: 
-    - Key: base_damage
-      Value:
-        value: 0
-        min: 
-        max: 
-    - Key: attack_speed
-      Value:
-        value: 0
-        min: 
-        max: 
-    - Key: pierce
-      Value:
-        value: 0
-        min: 
-        max: 
-    - Key: projectiles
-      Value:
-        value: 0
-        min: 
-        max: 
-    - Key: speed
-      Value:
-        value: 0
-        min: 
-        max: 
-    - Key: homing
-      Value:
-        value: 0
-        min: 
-        max: 
-    - Key: spread
-      Value:
-        value: 0
-        min: 
-        max: 
-    - Key: explosion_radius
-      Value:
-        value: 0
-        min: 
-        max: 
---- !u!114 &-452862328480557775
+--- !u!114 &-3119326863907844181
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -230,3 +147,23 @@ MonoBehaviour:
   timeVar: _Height
   speed: 0
   animate: 0
+  minVal: 0
+  maxVal: 1
+--- !u!114 &1804282637499346116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7631322497954940115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad1f6d6efd5df0f4dad7567eba9dc6e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: 
+  readInfo: 1
+  locked: 0
+  zPos: 0
+  spawned: {fileID: 0}
+  hitboxRadius: 0
