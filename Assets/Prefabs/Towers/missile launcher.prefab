@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4856065107173903896}
   - component: {fileID: 5780642335862219962}
   - component: {fileID: -3822027277445450646}
-  - component: {fileID: -4519968466197630646}
   m_Layer: 6
   m_Name: missile launcher
   m_TagString: Untagged
@@ -134,117 +133,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d675a2ab0cd40740bae7392c3a7e0bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats:
+    _serializedList: []
   type: 0
   activated: 0
   projectile: {fileID: 265608084915569301, guid: 6200e177180d30e4ab338262758b2821, type: 3}
   lastShot: -999
   targetEnemy: {fileID: 0}
---- !u!114 &-4519968466197630646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5304065507062134350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 120fee790d013ae46a3af3417b801ce5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats:
-    _serializedList:
-    - Key: tier
-      Value:
-        value: 0
-        min: 1
-        max: 5
-    - Key: projectiles
-      Value:
-        value: 1
-        min: 1
-        max: 
-    - Key: base_damage
-      Value:
-        value: 50
-        min: 0
-        max: 
-    - Key: damage_mult
-      Value:
-        value: 1
-        min: 0
-        max: 
-    - Key: range
-      Value:
-        value: 4
-        min: 1
-        max: 
-    - Key: attack_speed
-      Value:
-        value: 0.4
-        min: 0.1
-        max: 
-    - Key: explosion_radius
-      Value:
-        value: 0.5
-        min: 0
-        max: 
-    - Key: spread
-      Value:
-        value: 25
-        min: 5
-        max: 
-    - Key: speed
-      Value:
-        value: 3
-        min: 0
-        max: 
-    - Key: homing
-      Value:
-        value: 2
-        min: 0
-        max: 
-    - Key: lifetime
-      Value:
-        value: 0
-        min: 0
-        max: 
-    - Key: stun
-      Value:
-        value: 0
-        min: 0
-        max: 
-    - Key: cleave
-      Value:
-        value: 0
-        min: 0
-        max: 
-    - Key: impact
-      Value:
-        value: 0
-        min: 0
-        max: 
-    - Key: weaken
-      Value:
-        value: 0
-        min: 0
-        max: 
-    - Key: weaken_stx
-      Value:
-        value: 0
-        min: 0
-        max: 
-    - Key: raze
-      Value:
-        value: 0
-        min: 0
-        max: 
-    - Key: smite
-      Value:
-        value: 0
-        min: 0
-        max: 
-    - Key: fatal
-      Value:
-        value: 0
-        min: 0
-        max: 

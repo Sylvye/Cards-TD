@@ -42,7 +42,7 @@ public class TaserTurret : Tower
 
                 if (stats.GetStat("explosion_radius") > 0)
                 {
-                    RaycastHit2D[] hit = Physics2D.CircleCastAll(e.transform.position, stats.GetStat("explosion_radius"), Vector2.zero, 0, Main.enemyLayerMask_);
+                    RaycastHit2D[] hit = Physics2D.CircleCastAll(e.transform.position, stats.GetStat("explosion_radius"), Vector2.zero, 0, Main.main.enemyLayerMask);
                     foreach (RaycastHit2D rayC in hit)
                     {
                         GameObject obj = rayC.collider.gameObject;
@@ -60,7 +60,7 @@ public class TaserTurret : Tower
 
     public GameObject[] GetTargets()
     {
-        List<RaycastHit2D> hit = new(Physics2D.CircleCastAll(transform.position, stats.GetStat("range"), Vector2.zero, 0, Main.enemyLayerMask_));
+        List<RaycastHit2D> hit = new(Physics2D.CircleCastAll(transform.position, stats.GetStat("range"), Vector2.zero, 0, Main.main.enemyLayerMask));
         List<GameObject> output = new();
 
         for (int i=0; i< stats.GetStat("projectiles"); i++)

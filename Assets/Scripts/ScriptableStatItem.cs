@@ -8,6 +8,9 @@ using UnityEngine;
 public class ScriptableStatItem : ScriptableObject
 {
     public Sprite sprite;
+    public string id;
+    public string info;
+    public GameObject towerObj;
     [SerializedDictionary("Name", "Stat")]
     public Stats stats = new();
 }

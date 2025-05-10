@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4856065107173903896}
   - component: {fileID: 5780642335862219962}
   - component: {fileID: -2378648107687848834}
-  - component: {fileID: 1309382448439379776}
   m_Layer: 6
   m_Name: tesla
   m_TagString: Untagged
@@ -134,91 +133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b6fdb029be0654f969851e3686c71d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stats:
+    _serializedList: []
   type: 1
   activated: 0
   laser: {fileID: 6254124567953751875, guid: 61cb3435ca5d60a4e857f925901aef26, type: 3}
   FX: {fileID: 6445468403267832974, guid: af82e636ff8d2ce49b3460a8d6333316, type: 3}
---- !u!114 &1309382448439379776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5304065507062134350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 120fee790d013ae46a3af3417b801ce5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats:
-    _serializedList:
-    - Key: tier
-      Value:
-        value: 0
-        min: 1
-        max: 5
-    - Key: projectiles
-      Value:
-        value: 3
-        min: 1
-        max: 
-    - Key: base_damage
-      Value:
-        value: 10
-        min: 0
-        max: 
-    - Key: damage_mult
-      Value:
-        value: 1
-        min: 0
-        max: 
-    - Key: range
-      Value:
-        value: 5
-        min: 1
-        max: 
-    - Key: attack_speed
-      Value:
-        value: 1
-        min: 0.1
-        max: 
-    - Key: explosion_radius
-      Value:
-        value: 0
-        min: 0
-        max: 
-    - Key: stun
-      Value:
-        value: 0.1
-        min: 0
-        max: 
-    - Key: cleave
-      Value:
-        value: 0
-        min: 0
-        max: 
-    - Key: weaken
-      Value:
-        value: 0
-        min: 0
-        max: 
-    - Key: weaken_stx
-      Value:
-        value: 0
-        min: 0
-        max: 
-    - Key: raze
-      Value:
-        value: 0
-        min: 0
-        max: 
-    - Key: smite
-      Value:
-        value: 0
-        min: 0
-        max: 
-    - Key: fatal
-      Value:
-        value: 0
-        min: 0
-        max: 

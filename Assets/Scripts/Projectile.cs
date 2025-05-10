@@ -164,7 +164,7 @@ public class Projectile : MonoBehaviour
         float radius = r * AOE_RADIUS_CONSTANT;
         if (radius > 0)
         {
-            RaycastHit2D[] hit = Physics2D.CircleCastAll(pos, radius, Vector2.zero, 0, Main.enemyLayerMask_);
+            RaycastHit2D[] hit = Physics2D.CircleCastAll(pos, radius, Vector2.zero, 0, Main.main.enemyLayerMask);
             //float segments = 36;
             //Vector2 pos = transform.position + Vector3.right * radius;
             //for (int i=1; i<segments+1; i++) // DEBUG ONLY
@@ -190,7 +190,7 @@ public class Projectile : MonoBehaviour
         float radius = r * AOE_RADIUS_CONSTANT;
         if (radius > 0)
         {
-            RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, radius, Vector2.zero, 0, Main.enemyLayerMask_);
+            RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, radius, Vector2.zero, 0, Main.main.enemyLayerMask);
             float segments = 36;
             Vector2 pos = transform.position + Vector3.right * radius;
             for (int i = 1; i < segments + 1; i++) // DEBUG ONLY
@@ -231,7 +231,7 @@ public class Projectile : MonoBehaviour
         float r = radius * AOE_RADIUS_CONSTANT;
         if (r > 0)
         {
-            RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, r, Vector2.zero, 0, Main.enemyLayerMask_);
+            RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, r, Vector2.zero, 0, Main.main.enemyLayerMask);
             //float segments = 36;
             //Vector2 pos = transform.position + Vector3.right * radius;
             //for (int i = 1; i < segments + 1; i++) // DEBUG ONLY

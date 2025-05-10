@@ -18,7 +18,7 @@ public class TowerCard : Card
         towerIndex = 0;
     }
 
-    public TowerCard(string type, GameObject towerObj, float hitboxRadius, int towerIndex, Stats stats, Sprite sprite) : base(type, stats, sprite)
+    public TowerCard(string type, GameObject towerObj, float hitboxRadius, int towerIndex, Stats stats) : base(type, stats, CalcSprite((int)stats.GetStat("tier"), towerIndex))
     {
         this.towerObj = towerObj;
         this.hitboxRadius = hitboxRadius;
@@ -38,9 +38,14 @@ public class TowerCard : Card
     {
         return Resources.LoadAll<Sprite>("CardPack")[towerIndex * 5 + tier - 1];
     }
+    
+    public static Sprite CalcSprite(int tier, int towerIndex)
+    {
+        return Resources.LoadAll<Sprite>("CardPack")[towerIndex * 5 + tier - 1];
+    }
 
     public override object Clone()
     {
-        return new TowerCard();
+        return new TowerCard(type, Object.Instantiate(towerObj, towerObj.transform.position, Quaternion.identity), hitboxRadius, towerIndex, (Stats)stats.Clone());
     }
 }

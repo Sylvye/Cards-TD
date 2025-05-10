@@ -40,8 +40,8 @@ public abstract class Tower : MonoBehaviour
     {
         if (activated && !Input.GetMouseButton(0))
         {
-            Main.towerRangeReticle_.transform.position = transform.position;
-            Main.towerRangeReticle_.transform.localScale = stats.GetStat("range") * 2 * Vector3.one + Vector3.forward * -6;
+            Main.main.towerRangeReticle.transform.position = transform.position;
+            Main.main.towerRangeReticle.transform.localScale = stats.GetStat("range") * 2 * Vector3.one + Vector3.forward * -6;
         }
     }
 
@@ -49,8 +49,8 @@ public abstract class Tower : MonoBehaviour
     {
         if (activated && !Input.GetMouseButton(0))
         {
-            Main.towerRangeReticle_.transform.position = new Vector3(4, 10, 0);
-            Main.towerRangeReticle_.transform.localScale = Vector2.one;
+            Main.main.towerRangeReticle.transform.position = new Vector3(4, 10, 0);
+            Main.main.towerRangeReticle.transform.localScale = Vector2.one;
         }
     }
 

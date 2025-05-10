@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e23bff405cc4eb46833173cf0796621, type: 3}
-  m_Name: Barrager
+  m_Script: {fileID: 11500000, guid: e2598f44b93b42f46995598594f8d548, type: 3}
+  m_Name: Assault Turret
   m_EditorClassIdentifier: 
-  sprite: {fileID: -647337604, guid: 8d88f2d416aced54cb6055c1a4e8bdfc, type: 3}
+  sprite: {fileID: -1280954968, guid: 8d88f2d416aced54cb6055c1a4e8bdfc, type: 3}
+  id: Assault Turret
+  info: 
+  towerObj: {fileID: 5304065507062134350, guid: 987c16521ba5619458f023b92a5c78be, type: 3}
   stats:
     _serializedList:
     - Key: cooldown

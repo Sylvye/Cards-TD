@@ -63,7 +63,7 @@ public abstract class Turret : Tower
 
     public GameObject GetFirstEnemy()
     {
-        RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, stats.GetStat("range"), Vector2.zero, 0, Main.enemyLayerMask_);
+        RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, stats.GetStat("range"), Vector2.zero, 0, Main.main.enemyLayerMask);
         if (hit.Length > 0 )
         {
             int firstIndex = 0;

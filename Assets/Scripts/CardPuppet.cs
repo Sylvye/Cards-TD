@@ -21,9 +21,15 @@ public abstract class CardPuppet : SpriteUIE, Puppet
     public override void OnAwake()
     {
         base.OnAwake();
+        ma = GetComponent<MaterialAnimator>();
+    }
+
+    public override void OnStart()
+    {
+        Debug.Log("STARTED, card is null: "+(card==null));
+        base.OnStart();
         SetSprite(card.GetSprite());
         stats = card.stats;
-        ma = GetComponent<MaterialAnimator>();
     }
 
     public override void OnUpdate()
@@ -141,6 +147,7 @@ public abstract class CardPuppet : SpriteUIE, Puppet
     public void SetReference(Puppetable r)
     {
         reference = r;
+        card = (Card)reference;
         SetSprite(r.GetSprite());
     }
 }

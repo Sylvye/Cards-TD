@@ -14,33 +14,16 @@ public class Cards : MonoBehaviour
     public static Cards main;
     private List<Card> cards = new();
     private List<Augment> augments = new();
-    private ScrollAreaInventory deckSAI;
-    private ScrollAreaInventory augmentSAI;
 
-    private void Start()
+    public StatItemLootpool cardLP;
+    public StatItemLootpool augmentLP;
+
+    //private ScrollAreaInventory deckSAI;
+    //private ScrollAreaInventory augmentSAI;
+
+    private void Awake()
     {
         main = this;
-    }
-
-    public static void AddAllChildren() // loops through children and adds cards/augments to their respective lists if found
-    {
-        if (main == null)
-        {
-            main = GameObject.Find("Cards").GetComponent<Cards>();
-        }
-        for (int i=0; i<main.transform.childCount; i++)
-        {
-            Transform t = main.transform.GetChild(i);
-            if (t.TryGetComponent(out Card c))
-            {
-                AddToDeck(c);
-            }
-
-            if (t.TryGetComponent(out Augment a))
-            {
-                AddToAugments(a);
-            }
-        }
     }
 
     // picks a random position in the deck to return a card from. The returned card is removed from the deck

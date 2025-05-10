@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 
 public abstract class Card : Puppetable, ICloneable
 {
-    private Sprite sprite;
+    protected Sprite sprite;
     public string type;
     [SerializedDictionary("Name", "Stat")]
     public Stats stats;
@@ -73,6 +73,7 @@ public abstract class Card : Puppetable, ICloneable
         GameObject p = new GameObject();
         CardPuppet cp = p.AddComponent<CardPuppet>();
         cp.SetReference(this);
+        Debug.Log("Set reference");
         return cp;
     }
 

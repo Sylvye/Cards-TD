@@ -11,8 +11,10 @@ using UnityEngine.UI;
 
 public class Main : MonoBehaviour
 {
+    public static Main main;
+
     public static int lives = 100;
-    public int[] packs = { 0, 0 }; // augment, gold
+    public int[] packs = { 0, 0 }; // augment, currency
 
     [SerializedDictionary("Name", "Stat")]
     public static Stats playerStats;
@@ -25,32 +27,22 @@ public class Main : MonoBehaviour
     public static int mapLength_;
 
     public GameObject sparkles;
+    public GameObject cardPuppet;
 
-    public static GameObject towerHitboxReticle_;
-    public GameObject hitboxReticle;
-
-    public static GameObject towerRangeReticle_;
+    public GameObject towerHitboxReticle;
     public GameObject towerRangeReticle;
 
-    public static LayerMask placementLayerMask_;
     public LayerMask placementLayerMask;
-
-    public static LayerMask enemyLayerMask_;
     public LayerMask enemyLayerMask;
 
     private static TMPLabel coinLabel;
 
-    public static Main main;
 
     private void Awake()
     {
         main = this;
-        placementLayerMask_ = placementLayerMask;
-        towerHitboxReticle_ = hitboxReticle;
-        towerRangeReticle_ = towerRangeReticle;
-        enemyLayerMask_ = enemyLayerMask;
         mapLength_ = mapLength;
-        playerStats = GetComponent<Stats>();
+        playerStats = new Stats();
         coinLabel = GameObject.Find("Coin label").GetComponent<TMPLabel>();
         battlefield = GameObject.Find("Field").transform;
     }
@@ -60,7 +52,18 @@ public class Main : MonoBehaviour
     {
         enemyStats = Spawner.main.stats;
         StartCoroutine(SetupMap());
-        Cards.AddAllChildren(); // adds cards to deck
+
+        Cards.AddToDeck(new TowerCard("Assault Turret", Cards.main.cardLP.items[0].towerObj, 1, 0, Cards.main.cardLP.items[0].stats));
+        Cards.AddToDeck(new TowerCard("Assault Turret", Cards.main.cardLP.items[0].towerObj, 1, 0, Cards.main.cardLP.items[0].stats));
+        Cards.AddToDeck(new TowerCard("Assault Turret", Cards.main.cardLP.items[0].towerObj, 1, 0, Cards.main.cardLP.items[0].stats));
+        Cards.AddToDeck(new TowerCard("Barrager", Cards.main.cardLP.items[1].towerObj, 1, 0, Cards.main.cardLP.items[1].stats));
+        Cards.AddToDeck(new TowerCard("Barrager", Cards.main.cardLP.items[1].towerObj, 1, 0, Cards.main.cardLP.items[1].stats));
+        Cards.AddToDeck(new TowerCard("Barrager", Cards.main.cardLP.items[1].towerObj, 1, 0, Cards.main.cardLP.items[1].stats));
+        Cards.AddToDeck(new TowerCard("Marksman", Cards.main.cardLP.items[2].towerObj, 1, 0, Cards.main.cardLP.items[2].stats));
+        Cards.AddToDeck(new TowerCard("Marksman", Cards.main.cardLP.items[2].towerObj, 1, 0, Cards.main.cardLP.items[2].stats));
+        Cards.AddToDeck(new TowerCard("Marksman", Cards.main.cardLP.items[2].towerObj, 1, 0, Cards.main.cardLP.items[2].stats));
+        Cards.AddToDeck(new TowerCard("Rocket Launcher", Cards.main.cardLP.items[3].towerObj, 1, 0, Cards.main.cardLP.items[3].stats));
+        Cards.AddToDeck(new TowerCard("Tesla", Cards.main.cardLP.items[4].towerObj, 1, 0, Cards.main.cardLP.items[4].stats));
     }
 
     public static bool Damage(int amount)
