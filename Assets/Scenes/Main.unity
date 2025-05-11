@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 33561527}
   - component: {fileID: 33561526}
   - component: {fileID: 33561525}
+  - component: {fileID: 33561528}
   m_Layer: 0
   m_Name: Deck
   m_TagString: Untagged
@@ -278,6 +279,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &33561528
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33561523}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 8, y: 8}
+    newSize: {x: 8, y: 8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 8, y: 8}
+  m_EdgeRadius: 0
 --- !u!1 &49849256
 GameObject:
   m_ObjectHideFlags: 0
@@ -777,6 +823,7 @@ MonoBehaviour:
   readInfo: 0
   locked: 1
   zPos: 0
+  sr: {fileID: 0}
   spriteUp: {fileID: -160398962, guid: 7c0ccbf37dce7ae49921dbefdf869b95, type: 3}
   spriteDown: {fileID: 1885041327, guid: 7c0ccbf37dce7ae49921dbefdf869b95, type: 3}
   outlineUp: {fileID: -1927841241, guid: 7c0ccbf37dce7ae49921dbefdf869b95, type: 3}
@@ -1061,6 +1108,7 @@ MonoBehaviour:
   readInfo: 0
   locked: 1
   zPos: 0
+  sr: {fileID: 0}
   spriteUp: {fileID: -1999177674, guid: 7c0ccbf37dce7ae49921dbefdf869b95, type: 3}
   spriteDown: {fileID: 1307918110, guid: 7c0ccbf37dce7ae49921dbefdf869b95, type: 3}
   outlineUp: {fileID: -1927841241, guid: 7c0ccbf37dce7ae49921dbefdf869b95, type: 3}
@@ -1189,6 +1237,7 @@ MonoBehaviour:
   readInfo: 0
   locked: 1
   zPos: 0
+  sr: {fileID: 0}
   spriteUp: {fileID: -160398962, guid: 7c0ccbf37dce7ae49921dbefdf869b95, type: 3}
   spriteDown: {fileID: 1885041327, guid: 7c0ccbf37dce7ae49921dbefdf869b95, type: 3}
   outlineUp: {fileID: -1927841241, guid: 7c0ccbf37dce7ae49921dbefdf869b95, type: 3}
@@ -1676,6 +1725,7 @@ GameObject:
   - component: {fileID: 549982757}
   - component: {fileID: 549982756}
   - component: {fileID: 549982755}
+  - component: {fileID: 549982758}
   m_Layer: 0
   m_Name: Discard
   m_TagString: Untagged
@@ -1819,6 +1869,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &549982758
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 549982753}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 8, y: 8}
+    newSize: {x: 8, y: 8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 8, y: 8}
+  m_EdgeRadius: 0
 --- !u!1 &576230347
 GameObject:
   m_ObjectHideFlags: 0
@@ -2268,8 +2363,8 @@ MonoBehaviour:
   packs: 000000000000000000000000
   mapLength: 20
   sparkles: {fileID: 3073169457333721998, guid: 5b25eeff0dcbae74f901ee9519b50eba, type: 3}
-  cardPuppet: {fileID: 0}
-  towerHitboxReticle: {fileID: 0}
+  cardPuppet: {fileID: 7631322497954940115, guid: 6cef3416ebef8394e9296e522081e718, type: 3}
+  towerHitboxReticle: {fileID: 1783182364}
   towerRangeReticle: {fileID: 2065561394}
   placementLayerMask:
     serializedVersion: 2
@@ -4329,6 +4424,7 @@ MonoBehaviour:
   readInfo: 0
   locked: 1
   zPos: 0
+  sr: {fileID: 0}
   spriteUp: {fileID: -160398962, guid: 7c0ccbf37dce7ae49921dbefdf869b95, type: 3}
   spriteDown: {fileID: 1885041327, guid: 7c0ccbf37dce7ae49921dbefdf869b95, type: 3}
   outlineUp: {fileID: -1927841241, guid: 7c0ccbf37dce7ae49921dbefdf869b95, type: 3}
@@ -4942,6 +5038,7 @@ MonoBehaviour:
   readInfo: 0
   locked: 1
   zPos: 0
+  sr: {fileID: 0}
   spriteUp: {fileID: -1735698840, guid: 7c0ccbf37dce7ae49921dbefdf869b95, type: 3}
   spriteDown: {fileID: -1785785798, guid: 7c0ccbf37dce7ae49921dbefdf869b95, type: 3}
   outlineUp: {fileID: 0}
@@ -5026,6 +5123,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 770447041}
     m_Modifications:
+    - target: {fileID: 409833147243714958, guid: efbe1a1a6193b5341a858a57eda40e4a, type: 3}
+      propertyPath: m_Name
+      value: curse1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914372313776766539, guid: efbe1a1a6193b5341a858a57eda40e4a, type: 3}
+      propertyPath: m_Name
+      value: boon1
+      objectReference: {fileID: 0}
     - target: {fileID: 5436387769845355746, guid: efbe1a1a6193b5341a858a57eda40e4a, type: 3}
       propertyPath: m_Name
       value: risk-reward offer
@@ -5315,8 +5420,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3252ed22c77a4d4f82d7e20807bf55e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardLP: {fileID: 0}
-  augmentLP: {fileID: 0}
+  cardLP: {fileID: 11400000, guid: 34102b2cac966ac438483d4385b4828f, type: 2}
+  augmentLP: {fileID: 11400000, guid: e262fca8c1a6f994fb800cb0912ad8ae, type: 2}
 --- !u!1 &1553169466
 GameObject:
   m_ObjectHideFlags: 0
@@ -6465,6 +6570,7 @@ MonoBehaviour:
   readInfo: 0
   locked: 1
   zPos: 0
+  sr: {fileID: 0}
   spriteUp: {fileID: 399017858, guid: 7c0ccbf37dce7ae49921dbefdf869b95, type: 3}
   spriteDown: {fileID: -1267180424, guid: 7c0ccbf37dce7ae49921dbefdf869b95, type: 3}
   outlineUp: {fileID: -1927841241, guid: 7c0ccbf37dce7ae49921dbefdf869b95, type: 3}
@@ -6726,6 +6832,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 770447041}
     m_Modifications:
+    - target: {fileID: 409833147243714958, guid: efbe1a1a6193b5341a858a57eda40e4a, type: 3}
+      propertyPath: m_Name
+      value: curse2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4914372313776766539, guid: efbe1a1a6193b5341a858a57eda40e4a, type: 3}
+      propertyPath: m_Name
+      value: boon2
+      objectReference: {fileID: 0}
     - target: {fileID: 5436387769845355746, guid: efbe1a1a6193b5341a858a57eda40e4a, type: 3}
       propertyPath: m_Name
       value: risk-reward offer (1)
@@ -6931,6 +7045,7 @@ MonoBehaviour:
   readInfo: 0
   locked: 1
   zPos: 0
+  sr: {fileID: 0}
   spriteUp: {fileID: 1057576472, guid: 4a974da8d7f41a343a07d1253968b0fa, type: 3}
   spriteDown: {fileID: 2090409576, guid: 4a974da8d7f41a343a07d1253968b0fa, type: 3}
   outlineUp: {fileID: 211716340, guid: 4a974da8d7f41a343a07d1253968b0fa, type: 3}

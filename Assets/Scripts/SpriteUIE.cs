@@ -11,7 +11,7 @@ public abstract class SpriteUIE : MonoBehaviour
     public bool readInfo;
     public bool locked = false;
     public float zPos;
-    protected SpriteRenderer sr;
+    public SpriteRenderer sr;
     private Vector2 lerpPos;
 
     public void Awake()
@@ -67,7 +67,7 @@ public abstract class SpriteUIE : MonoBehaviour
 
     public Sprite GetSprite()
     {
-        return sr.sprite;
+        return GetComponent<SpriteRenderer>().sprite;
     }
 
     public void SetSprite(Sprite s)

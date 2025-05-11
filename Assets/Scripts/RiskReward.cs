@@ -10,7 +10,7 @@ public class RiskReward : SpriteUIE
     public static RiskReward lastBoon;
     public static RiskReward lastCurse;
     public bool boon;
-    public bool clone = false;
+    public bool wild = false;
     public string description;
     public List<string> statNames;
     public List<float> statValues;
@@ -38,11 +38,11 @@ public class RiskReward : SpriteUIE
         statNames = prefab.statNames;
         statValues = prefab.statValues;
         description = prefab.description;
-        clone = prefab.clone;
-        SetSprite(prefab.GetSprite());
+        wild = prefab.wild;
+        SetSprite(prefab.GetComponent<SpriteRenderer>().sprite);
 
         // for x2 and x3
-        if (clone)
+        if (wild)
         {
             RiskReward last = boon ? lastBoon : lastCurse;
             if (last == null) // if there hasn't been a boon/curse selected yet
@@ -91,7 +91,7 @@ public class RiskReward : SpriteUIE
 
     public void Action()
     {
-        if (!clone)
+        if (!wild)
         {
             if (boon)
             {
@@ -106,7 +106,7 @@ public class RiskReward : SpriteUIE
         for (int i = 0; i < statNames.Count; i++)
         {
             float val = statValues[i];
-            if (clone)
+            if (wild)
             {
                 val *= boon ? 2 : 3;
             }

@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class TowerCard : Card
 {
@@ -41,7 +39,10 @@ public class TowerCard : Card
     
     public static Sprite CalcSprite(int tier, int towerIndex)
     {
-        return Resources.LoadAll<Sprite>("CardPack")[towerIndex * 5 + tier - 1];
+        int index = towerIndex * 5 + tier - 1;
+        if (index < 0)
+            index = 0;
+        return Resources.LoadAll<Sprite>("CardPack")[index];
     }
 
     public override object Clone()

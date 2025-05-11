@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8341023729203104490}
   - component: {fileID: -4032076880467101793}
   - component: {fileID: 3608488725132355754}
-  - component: {fileID: -7679399298670923840}
   m_Layer: 7
   m_Name: Medium Enemy
   m_TagString: Enemy
@@ -174,52 +173,5 @@ MonoBehaviour:
   dropWeights:
   - 60
   - 40
---- !u!114 &-7679399298670923840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3867853743162614571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 120fee790d013ae46a3af3417b801ce5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   stats:
-    _serializedList:
-    - Key: hp
-      Value:
-        value: 0
-        min: 0
-        max: 
-    - Key: max_hp
-      Value:
-        value: 100
-        min: 0
-        max: 
-    - Key: speed
-      Value:
-        value: 2
-        min: 
-        max: 
-    - Key: resistance
-      Value:
-        value: 0
-        min: 
-        max: 
-    - Key: regeneration
-      Value:
-        value: 0
-        min: 
-        max: 
-    - Key: shield
-      Value:
-        value: 0
-        min: 
-        max: 
-    - Key: desperation
-      Value:
-        value: 1
-        min: 1
-        max: 
+    _serializedList: []
