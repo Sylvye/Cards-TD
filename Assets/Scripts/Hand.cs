@@ -50,9 +50,11 @@ public class Hand : MonoBehaviour
     public static void AddCard(Card c)
     {
         main.hand.Add(c);
-        Puppet p = c.MakePuppet();
+        CardPuppet p = (CardPuppet)c.MakePuppet();
+        p.transform.SetParent(main.transform);
+        p.transform.localPosition = CalcCardHandPos(main.hand.Count-1);
+        Debug.Log(CalcCardHandPos(main.hand.Count - 1));
         main.puppets.Add(p);
-        RepositionHand();
     }
 
     public static int GetIndexOf(Card c)
@@ -72,7 +74,8 @@ public class Hand : MonoBehaviour
 
     public static void Remove(Card c)
     {
-        main.hand.Remove(c);
+        main.hand.RemoveAt(GetIndexOf(c));
+        Destroy((CardPuppet)main.puppets[GetIndexOf(c)]);
         main.puppets.RemoveAt(GetIndexOf(c));
         Cards.AddToDeck(c);
         RepositionHand();
@@ -88,7 +91,9 @@ public class Hand : MonoBehaviour
         for (int i=0; i<Size(); i++)
         {
             CardPuppet card = (CardPuppet)GetPuppet(i);
-            card.SetHandPos();
+            Vector3 pos = CalcCardHandPos(i);
+            card.transform.localPosition = pos;
+            card.SetDestination(pos);
         }
     }
 
@@ -96,7 +101,7 @@ public class Hand : MonoBehaviour
     {
         foreach (CardPuppet c in main.puppets)
         {
-            c.ReturnToHand();
+            c.Return();
         }
     }
 
@@ -107,5 +112,10 @@ public class Hand : MonoBehaviour
             if (cp.IsOffCooldown()) return true;
         }
         return false;
+    }
+
+    public static Vector3 CalcCardHandPos(int index)
+    {
+        return index * 1.5f * Vector3.right + Vector3.back;
     }
 }

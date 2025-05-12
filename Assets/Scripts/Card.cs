@@ -71,10 +71,13 @@ public abstract class Card : Puppetable, ICloneable
     public Puppet MakePuppet()
     {
         GameObject p = new GameObject();
-        CardPuppet cp = p.AddComponent<CardPuppet>();
-        cp.SetReference(this);
-        Debug.Log("Set reference");
-        return cp;
+        p.AddComponent<SpriteRenderer>();
+        p.AddComponent<MaterialAnimator>();
+        p.name = "Card Puppet";
+        TowerCardPuppet tcp = p.AddComponent<TowerCardPuppet>();
+        tcp.SetReference(this);
+        //Debug.Log("Set reference");
+        return tcp;
     }
 
     public abstract object Clone();

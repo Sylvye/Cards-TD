@@ -24,7 +24,7 @@ public abstract class SpriteUIE : MonoBehaviour
     public void Start()
     {
         lerpPos = transform.position;
-        zPos = transform.position.y;
+        zPos = transform.position.z;
         OnStart();
     }
 

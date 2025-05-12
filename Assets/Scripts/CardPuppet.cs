@@ -12,8 +12,8 @@ public abstract class CardPuppet : SpriteUIE, Puppet
     protected Puppetable reference;
 
     protected Card card;
-    protected Vector3 handPos;
     protected bool selected;
+    protected Vector3 lastPos;
 
     private Stats stats;
     private MaterialAnimator ma;
@@ -26,7 +26,7 @@ public abstract class CardPuppet : SpriteUIE, Puppet
 
     public override void OnStart()
     {
-        Debug.Log("STARTED, card is null: "+(card==null));
+        //Debug.Log("STARTED, card is null: "+(card==null));
         base.OnStart();
         SetSprite(card.GetSprite());
         stats = card.stats;
@@ -59,12 +59,12 @@ public abstract class CardPuppet : SpriteUIE, Puppet
                 }
                 else // failed, wrong card specific / overlap conditions
                 {
-                    ReturnToHand();
+                    Return();
                 }
             }
             else // failed, wrong global conditions
             {
-                ReturnToHand();
+                Return();
                 CardBar.main.forced = false;
                 CardBar.main.state = CardBar.State.Maximized;
             }
@@ -81,7 +81,7 @@ public abstract class CardPuppet : SpriteUIE, Puppet
             }
             else
             {
-                ReturnToHand();
+                Return();
             }
         }
     }
@@ -90,7 +90,7 @@ public abstract class CardPuppet : SpriteUIE, Puppet
     {
         if (IsOffCooldown())
         {
-            SetHandPos();
+            lastPos = transform.position;
             transform.parent = transform.parent.parent;
 
             MouseDownAction();
@@ -121,19 +121,6 @@ public abstract class CardPuppet : SpriteUIE, Puppet
         SetDestination(new Vector3(target.x, target.y, -6));
     }
 
-    public virtual void ReturnToHand()
-    {
-        transform.parent = Hand.main.transform;
-        transform.localPosition = handPos;
-        SetDestination(handPos);
-    }
-
-    public void SetHandPos()
-    {
-        handPos = Hand.GetIndexOf(card) * 1.5f * Vector2.right;
-        handPos.z = -5;
-    }
-
     public bool IsOffCooldown()
     {
         return Time.time - Hand.timeOfLastPlay >= stats.GetStat("cooldown");
@@ -149,5 +136,11 @@ public abstract class CardPuppet : SpriteUIE, Puppet
         reference = r;
         card = (Card)reference;
         SetSprite(r.GetSprite());
+    }
+
+    public virtual void Return()
+    {
+        transform.position = lastPos;
+        SetDestination(lastPos);
     }
 }

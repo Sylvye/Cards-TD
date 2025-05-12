@@ -107,8 +107,8 @@ public class MapController : MonoBehaviour
             {
                 ScrollAreaItem SAI = nodes[index].GetComponent<ScrollAreaItem>();
                 nodes[index].GetComponent<MapNode>().column = i;
+                SAI.zPos = 1; //main.transform.position.z-1
                 SAI.SetHomePos(pos);
-                SAI.zPos = main.transform.position.z-1;
                 nodes[index].transform.position = pos;
                 pos.x += xOffset;
                 index++;

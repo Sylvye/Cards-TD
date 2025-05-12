@@ -29,25 +29,18 @@ public class MapNode : Button
 
     public override void Action()
     {
-        if (column == MapController.col && ((column == 0) ||
-                    (MapController.currentNode.exits[0] != null
-                    && MapController.currentNode.exits[0].Equals(this))
-                    || MapController.currentNode.exits[1] != null
-                    && MapController.currentNode.exits[1].Equals(this)))
-        {
-            StageController.SwitchStage(mode);
+        StageController.SwitchStage(mode);
 
-            MapController.EliminateColumn(this);
-            MapController.currentNode.info = "trail";
-            MapController.currentNode = this;
-            MapController.col++;
+        MapController.EliminateColumn(this);
+        MapController.currentNode.info = "trail";
+        MapController.currentNode = this;
+        MapController.col++;
 
-            deactivated = true;
-            ToggleOutline(false);
-            OnMouseExit();
-            SetSprite(spriteIndex + 2);
-            info = "your Location";
-        }
+        deactivated = true;
+        ToggleOutline(false);
+        OnMouseExit();
+        SetSprite(spriteIndex + 2);
+        info = "your Location";
     }
 
     public override void OnMouseEnter()
@@ -118,6 +111,11 @@ public class MapNode : Button
 
     public override bool IsClickable()
     {
-        return base.IsClickable() && !deactivated;
+        //return base.IsClickable() && !deactivated;
+        return column == MapController.col && ((column == 0) ||
+                    (MapController.currentNode.exits[0] != null
+                    && MapController.currentNode.exits[0].Equals(this))
+                    || MapController.currentNode.exits[1] != null
+                    && MapController.currentNode.exits[1].Equals(this));
     }
 }

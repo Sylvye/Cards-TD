@@ -31,7 +31,7 @@ public class TowerCardPuppet : CardPuppet
         }
         else
         {
-            ReturnToHand();
+            Return();
             return false;
         }
     }
@@ -59,9 +59,9 @@ public class TowerCardPuppet : CardPuppet
             Main.main.towerHitboxReticle.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 0.5f); // TEMP
     }
 
-    public override void ReturnToHand()
+    public override void Return()
     {
-        base.ReturnToHand();
+        base.Return();
         Main.main.towerHitboxReticle.transform.position = new Vector3(2, 10, 0);
         Main.main.towerRangeReticle.transform.position = new Vector3(4, 10, 0);
         Main.main.towerRangeReticle.transform.localScale = Vector2.one;

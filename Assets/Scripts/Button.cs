@@ -97,13 +97,13 @@ public abstract class Button : SpriteUIE
     public void UseSpriteUp()
     {
         if (spriteUp != null)
-            UseSpriteUp();
+            SetSprite(spriteUp);
     }
 
     public void UseSpriteDown()
     {
         if (spriteUp != null)
-            UseSpriteDown();
+            SetSprite(spriteDown);
     }
 
     public void SetSprites(Sprite up, Sprite down)
