@@ -22,6 +22,7 @@ public abstract class CardPuppet : SpriteUIE, Puppet
     {
         base.OnAwake();
         ma = GetComponent<MaterialAnimator>();
+        lastPos = transform.position;
     }
 
     public override void OnStart()
@@ -140,7 +141,8 @@ public abstract class CardPuppet : SpriteUIE, Puppet
 
     public virtual void Return()
     {
+        Debug.Log(lastPos);
         transform.position = lastPos;
-        SetDestination(lastPos);
+        SetDestination(transform.localPosition);
     }
 }

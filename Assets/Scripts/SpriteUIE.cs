@@ -17,14 +17,14 @@ public abstract class SpriteUIE : MonoBehaviour
     public void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
+        zPos = transform.position.z;
         OnAwake();
     }
 
     // Dont delete, messes with inheritance
     public void Start()
     {
-        lerpPos = transform.position;
-        zPos = transform.position.z;
+        lerpPos = transform.localPosition;
         OnStart();
     }
 
@@ -33,14 +33,16 @@ public abstract class SpriteUIE : MonoBehaviour
     {
         if (!locked)
         {
-            if (Vector2.Distance(transform.position, lerpPos) > 0.01f)
+            if (Vector2.Distance(transform.localPosition, lerpPos) > 0.01f)
             {
-                transform.position = (Vector3)Vector2.Lerp(transform.position, lerpPos, LERP_SPEED * Time.deltaTime) + Vector3.forward * zPos;
+                transform.localPosition = (Vector3)Vector2.Lerp(transform.localPosition, lerpPos, LERP_SPEED * Time.deltaTime);
             }
             else
             {
-                transform.position = GetDestination();
+                transform.localPosition = GetDestination();
             }
+
+            transform.position = new Vector3(transform.position.x, transform.position.y, zPos);
         }
         OnUpdate();
     }
@@ -81,16 +83,16 @@ public abstract class SpriteUIE : MonoBehaviour
     /// <param name="dest"></param>
     public virtual void SetDestination(Vector2 dest)
     {
-        lerpPos = new Vector3(dest.x, dest.y, zPos);
+        lerpPos = new Vector2(dest.x, dest.y);
     }
 
     /// <summary>
     /// returns the SUIE's lerpPos
     /// </summary>
     /// <returns></returns>
-    public virtual Vector3 GetDestination()
+    public virtual Vector2 GetDestination()
     {
-        return new Vector3(lerpPos.x, lerpPos.y, zPos);
+        return new Vector2(lerpPos.x, lerpPos.y);
     }
 
     /// <summary>
@@ -99,7 +101,8 @@ public abstract class SpriteUIE : MonoBehaviour
     /// <param name="dir"></param>
     public virtual void ShiftPos(Vector2 dir)
     {
-        transform.position = new Vector3(dir.x + transform.position.x, dir.y + transform.position.y, zPos);
-        lerpPos = transform.position;
+        transform.localPosition = new Vector3(dir.x + transform.localPosition.x, dir.y + transform.localPosition.y, 0);
+        transform.position = new Vector3(transform.position.x, transform.position.y, zPos);
+        lerpPos = transform.localPosition;
     }
 }

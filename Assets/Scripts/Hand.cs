@@ -49,11 +49,13 @@ public class Hand : MonoBehaviour
 
     public static void AddCard(Card c)
     {
+        Debug.Log("Hand: "+main.transform.position);
         main.hand.Add(c);
         CardPuppet p = (CardPuppet)c.MakePuppet();
         p.transform.SetParent(main.transform);
         p.transform.localPosition = CalcCardHandPos(main.hand.Count-1);
-        Debug.Log(CalcCardHandPos(main.hand.Count - 1));
+        p.zPos = -1;
+        Debug.Log("Puppet" + p.transform.position);
         main.puppets.Add(p);
     }
 
@@ -94,6 +96,7 @@ public class Hand : MonoBehaviour
             Vector3 pos = CalcCardHandPos(i);
             card.transform.localPosition = pos;
             card.SetDestination(pos);
+            card.zPos = -1;
         }
     }
 
