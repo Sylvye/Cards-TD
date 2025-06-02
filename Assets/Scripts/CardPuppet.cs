@@ -22,7 +22,6 @@ public abstract class CardPuppet : SpriteUIE, Puppet
     {
         base.OnAwake();
         ma = GetComponent<MaterialAnimator>();
-        lastPos = transform.position;
     }
 
     public override void OnStart()
@@ -31,12 +30,14 @@ public abstract class CardPuppet : SpriteUIE, Puppet
         base.OnStart();
         SetSprite(card.GetSprite());
         stats = card.stats;
+        lastPos = transform.position;
     }
 
     public override void OnUpdate()
     {
         if (!selected)
         {
+            transform.localPosition = new Vector3(transform.localPosition.x, 0, transform.localPosition.z);
             ma.Set("_UnscaledTime", Time.unscaledTime);
             ma.Set(Mathf.Clamp((Time.time - Hand.timeOfLastPlay) / stats.GetStat("cooldown"), 0, 1));
         }
@@ -141,7 +142,7 @@ public abstract class CardPuppet : SpriteUIE, Puppet
 
     public virtual void Return()
     {
-        Debug.Log(lastPos);
+        Debug.Log("Last position: " + lastPos);
         transform.position = lastPos;
         SetDestination(transform.localPosition);
     }

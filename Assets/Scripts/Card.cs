@@ -73,6 +73,7 @@ public abstract class Card : Puppetable, ICloneable
         GameObject p = new GameObject();
         p.AddComponent<SpriteRenderer>();
         p.AddComponent<MaterialAnimator>();
+        p.AddComponent<BoxCollider2D>();
         p.name = "Card Puppet";
         TowerCardPuppet tcp = p.AddComponent<TowerCardPuppet>();
         tcp.SetReference(this);
